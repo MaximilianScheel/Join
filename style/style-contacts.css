@@ -1,0 +1,132 @@
+body {
+    margin: 0px;
+}
+
+.contacts-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    height: 100vh;
+    width: 100%;
+}
+
+.contacts-list {
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 100%;
+    max-width: 35%;
+    overflow-y: scroll;
+    border-right: 1px solid rgba(191, 191, 191, 0.4);
+    box-shadow: 0px 4px 4px;
+}
+
+.contacts-list-contact {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.contacts-list-contact-picture {
+    height: 32px;
+    width: 32px;
+    border-radius: 30px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(77, 65, 65, 0.8);
+    margin-right: 10px;
+    background-color: rgb(255, 234, 0);
+}
+
+.contacts-list-contact-keys {
+
+}
+
+.contacts-list-contact-keys-name {
+    margin: 0px;
+}
+
+.contacts-list-contact-keys-email {
+    color: rgb(17, 128, 255);
+    text-decoration: none;
+}
+
+.contacts-list-contact-keys-email:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.contacts-overview {
+    margin-left: 35px;
+}
+
+.contacts-overview-headline {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.contacts-overview-headline hr {
+    border-color: aqua;
+    border-style: solid;
+    height: 35px;
+}
+
+.contacts-overview-headline hr, h1 {
+    margin-right: 15px;
+}
+
+.contacts-list-contact-picture {
+    
+}
+
+.contacts-overview-container {
+
+}
+
+.contacts-overview-container .overview-headline-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.contacts-overview-container .overview-headline-container img {
+    height: 64px;
+    width: 64px;
+    border-radius: 60px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(77, 65, 65, 0.8);
+    margin-right: 15px;
+    background-color: rgb(255, 94, 0);
+}
+
+.contacts-overview-container .overview-body-container {
+
+}
+
+.contacts-overview-container .overview-body-contactInformation {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+.contacts-overview-container .overview-body-editContact-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 25px;
+}
+
+.contacts-overview-container .overview-body-bonusInformation {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 25px;
+}
+
+.contacts-overview-container .overview-body-bonusInformation div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
