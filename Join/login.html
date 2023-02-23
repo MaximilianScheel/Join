@@ -12,11 +12,11 @@
 <body>
     <div>
         <div class="header-login">
-            <img class="join-logo" src="/assets/img/Capa 1.png" alt="logo">
+            <img class="join-logo logo-animation" src="/assets/img/Capa 1.png" alt="logo">
         </div>
         <div class="signup">
             <p class="signup-p">Not a Join user?</p>
-            <button class="signup-button">Sign up</button>
+            <button onclick="location.href='sign-up.html'" class="signup-button">Sign up</button>
         </div>
     </div>
     <div class="container-login">
@@ -30,19 +30,18 @@
                         value="remember-me">
                     <label for="remember-me">Remember me</label>
                     <div class="">
-                        <a class="forgot-my-password-login" href="#">Forgot my password</a>
+                        <a class="forgot-my-password-login" onclick="location.href='forgot-password.html'" href="#">Forgot my password</a>
                     </div>
                 </div>
                 <div class="login-form-buttons">
                     <button type="submit" class="login-button">Login</button>
-                    <div class="guest-submit-login">Guest Login
-                        
+                    <div class="guest-submit-login" onclick="location.href='index.html'">Guest Login
                     </div>
-                </div>
-
                 </div>
             </form>
         </div>
+
+    </div>
     </div>
 </body>
 
