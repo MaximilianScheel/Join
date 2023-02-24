@@ -4,6 +4,10 @@ body {
     font-size: 16px;
 }
 
+.d-none {
+    display: none;
+}
+
 .contacts-wrapper {
     display: flex;
     justify-content: flex-start;
@@ -129,7 +133,7 @@ body {
 }
 
 .contacts-overview-container .overview-body-container {
-
+    
 }
 
 .contacts-overview-container .overview-body-contactInformation {

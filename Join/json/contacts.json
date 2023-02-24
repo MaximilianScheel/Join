@@ -1,0 +1,39 @@
+{
+    "contacts": [
+        {
+            "name": "Anton Mayer",
+            "email": "antom@gmail.com",
+            "phone": "+49 1111 111 11 1"
+        },
+        {
+            "name": "Anja Schulz",
+            "email": "schulz@hotmail.com",
+            "phone": "+49 1111 111 11 1"
+        },
+        {
+            "name": "Benedikt Ziegler",
+            "email": "benedikt@gmail.com",
+            "phone": "+49 1111 111 11 1"
+        },
+        {
+            "name": "David Eisenberg",
+            "email": "davidberg@gmail.com",
+            "phone": "+49 1111 111 11 1"
+        },
+        {
+            "name": "Eva Fischer",
+            "email": "eva@gmail.com",
+            "phone": "+49 1111 111 11 1"
+        },
+        {
+            "name": "Emmanuel Mauer",
+            "email": "emmanuelMa@gmail.com",
+            "phone": "+49 1111 111 11 1"
+        },
+        {
+            "name": "Marcel Bauer",
+            "email": "bauer@gmail.com",
+            "phone": "+49 1111 111 11 1"
+        }
+    ]
+}
