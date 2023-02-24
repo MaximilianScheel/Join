@@ -1,0 +1,275 @@
+.sidebar {
+    background-color: #2A3647;
+    height: 1024px;
+    width: 232px;
+}
+
+.content {
+    display: flex;
+}
+
+.link {
+    color: black;
+    text-decoration: none;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    height: 89px;
+}
+
+.headerHeadline {
+    margin-left: 116px;
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+
+.iconsHeader {
+    margin-right: 36px;
+    display: flex;
+    align-items: center;
+}
+
+.profilIcon {
+    margin-left: 26px;
+}
+
+
+.main {
+    background-color: #F5F5F5;
+    height: 935px;
+    width: 1208px;
+}
+
+.headline {
+    display: flex;
+    margin-left: 123px;
+}
+
+.summary {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    padding-right: 60px;
+    height: 90px;
+    margin-bottom: 87px;
+    margin-top: 82px;
+}
+
+.lineSummary {
+    border-style: groove;
+    border-right-color: #29ABE2;
+    border-left: none;
+    border-bottom: none;
+    border-top: none;
+    height: 100px;
+    margin-top: 76px;
+}
+
+.nutshell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    font-size: 2rem;
+    height: 90px;
+    margin-bottom: 87px;
+    margin-top: 82px;
+}
+
+.contentChild {
+    display: flex;
+    margin-left: 123px;
+}
+
+
+.tasks {
+    display: flex;
+    justify-content: space-between;
+    width: 580px;
+    gap: 18px;
+    margin-bottom: 35px;
+}
+
+.taskBoard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+    height: 170px;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+}
+
+.taskBoardNumber {
+    font-weight: 600;
+    font-size: 3rem;
+}
+
+.taskProgress {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+    height: 170px;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+}
+.taskProgressNumber {
+    font-weight: 600;
+    font-size: 3rem;
+}
+
+
+.taskFeedback {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+    height: 170px;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+}
+
+.taskFeedbackNumber {
+    font-weight: 600;
+    font-size: 3rem;
+}
+
+.urgentContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 580px;
+    height: 150px;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    margin-bottom: 35px;
+}
+
+.urgentIconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.urgentChildContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 129px;
+}
+
+.urgentNumber {
+    display: flex;
+    justify-content: center;
+    font-size: 4rem;
+    font-weight: bold;
+
+}
+
+.lineUrgent {
+border-style: groove;
+border-right-color: #D1D1D1;
+border-left: none;
+border-bottom: none;
+border-top: none;
+height: 100px;
+}
+
+.todoContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 580px;
+}
+
+.todo {
+    display: flex;
+    width: 272.5px;
+    height: 150px;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.todoChildContainer {
+    display: flex;
+    width: 132.5px;
+    justify-content: space-between;
+}
+
+.todoIconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todoNumberText {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.todoNumber {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.done {
+    display: flex;
+    width: 272.5px;
+    height: 150px;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.doneChildContainer {
+    display: flex;
+    width: 132.5px;
+    justify-content: space-between;
+}
+
+.doneIconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.doneNumberText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.doneNumber {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.userNameContainer {
+    display: flex;
+    align-items: center;
+    margin-left: 67px;
+}
+
+.userNameChildContainer {
+    font-size: 2rem;
+    width: 400px;
+}
+
+.userName {
+    color: #29ABE2;
+    font-size: 2.5rem;
+    font-weight: bold;
+    width: 350px;
+}
