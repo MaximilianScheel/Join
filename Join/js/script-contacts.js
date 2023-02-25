@@ -1,13 +1,16 @@
-fetchContacts();
+setURL('http://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ever');
 
-async function fetchContacts() {
-    let contacts = await fetch('./json/contacts.json');
-    let contactsJson = await contacts.json();
-    console.log(contactsJson);
-    displayContact(contactsJson)
+let contacts = [];
+
+async function init() {
+    await downloadFromServer();
+    contacts = JSON.parse(backend.getItem('users')) || [];
+
+    backend.setItem('test', 'hallo');
+    let a = backend.getItem('test');
+
+    console.log(a);
 }
 
-function displayContact(contactsJson) {
-    document.getElementById('contacts_overview_container-1').classList.remove('d-none');
-    document.getElementById('overview_contact_name-1').innerHTML = contactsJson.contacts[0].name;
-}
+
+
