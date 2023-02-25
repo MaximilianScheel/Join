@@ -9,5 +9,5 @@ async function fetchContacts() {
 
 function displayContact(contactsJson) {
     document.getElementById('contacts_overview_container-1').classList.remove('d-none');
-    document.getElementById('overview_contact_name-1').innerText = contactsJson.contacts[0].name;
+    document.getElementById('overview_contact_name-1').innerHTML = contactsJson.contacts[0].name;
 }

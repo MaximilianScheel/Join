@@ -54,10 +54,6 @@ body {
     background-color: rgb(255, 234, 0);
 }
 
-.contacts-list-contact-keys {
-
-}
-
 .contacts-list-contact-keys-name {
     margin: 0px;
 }
@@ -102,14 +98,6 @@ body {
     font-size: 27px;
 }
 
-.contacts-list-contact-picture {
-    
-}
-
-.contacts-overview-container {
-
-}
-
 .overview-headline-container h3 {
     font-size: 47px;
     font-weight: normal;
@@ -130,10 +118,6 @@ body {
     border-color: rgba(77, 65, 65, 0.8);
     margin-right: 15px;
     background-color: rgb(255, 94, 0);
-}
-
-.contacts-overview-container .overview-body-container {
-    
 }
 
 .contacts-overview-container .overview-body-contactInformation {
