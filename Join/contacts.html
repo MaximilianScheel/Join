@@ -18,35 +18,8 @@
 
 <body onload="init()">
     <div class="contacts-wrapper">
-        <div class="contacts-list">
-            <div class="contacts-list-contact" onclick="displayContact()">
-                <img class="contacts-list-contact-picture" src="" alt="AM">
-                <div class="contacts-list-contact-keys">
-                    <h3 class="contacts-list-contact-keys-name">Anton Mayer</h3>
-                    <a class="contacts-list-contact-keys-email" href="#">anton.mayer@gmail.com</a>
-                </div>
-            </div>
-            <div class="contacts-list-contact">
-                <img class="contacts-list-contact-picture" src="" alt="AS">
-                <div class="contacts-list-contact-keys">
-                    <h3 class="contacts-list-contact-keys-name">Anja Schultz</h3>
-                    <a class="contacts-list-contact-keys-email" href="">schulz@hotmail.com</a>
-                </div>
-            </div>
-            <div class="contacts-list-contact">
-                <img class="contacts-list-contact-picture" src="" alt="BZ">
-                <div class="contacts-list-contact-keys">
-                    <h3 class="contacts-list-contact-keys-name">Benedikt Ziegler</h3>
-                    <a class="contacts-list-contact-keys-email" href="">benedikt@gmail.com</a>
-                </div>
-            </div>
-            <div class="contacts-list-contact">
-                <img class="contacts-list-contact-picture" src="" alt="DE">
-                <div class="contacts-list-contact-keys">
-                    <h3 class="contacts-list-contact-keys-name">David Eisenberg</h3>
-                    <a class="contacts-list-contact-keys-email" href="">davidberg@gmail.com</a>
-                </div>
-            </div>
+        <div id="contacts_list" class="contacts-list">
+            
         </div>
         <div class="contacts-overview">
             <div class="contacts-overview-headline">
@@ -54,12 +27,12 @@
                 <hr>
                 <span>Better with a team</span>
             </div>
-            <div id="contacts_overview_container-1" class="contacts-overview-container d-none">
+            <div id="contacts_overview_container" class="contacts-overview-container d-none">
                 <div class="overview-headline-container">
-                    <img id="overview_contact_picture-1" src="" alt="AM">
+                    <img id="overview_contact_picture" src="" alt="AM">
                     <div>
-                        <h3 id="overview_contact_name-1" class="contacts-list-contact-keys-name"></h3>
-                        <a id="overview_contact_email-1" class="contacts-list-contact-keys-email"
+                        <h3 id="overview_contact_name" class="contacts-list-contact-keys-name"></h3>
+                        <a class="contacts-list-contact-keys-email"
                             href="#"><span>&plus;</span> add Tasks</a>
                     </div>
                 </div>
@@ -74,11 +47,11 @@
                     <div class="overview-body-bonusInformation">
                         <div>
                             <b><span>E-Mail</span></b>
-                            <a class="contacts-list-contact-keys-email" href="">anton.mayer@gmail.com</a>
+                            <a id="overview_contact_email" class="contacts-list-contact-keys-email" href="">anton.mayer@gmail.com</a>
                         </div>
                         <div>
                             <b><span>Phone</span></b>
-                            <span>+49 222222 2222</span>
+                            <span id="overview_contact_phone">+49 222222 2222</span>
                         </div>
                     </div>
                 </div>
