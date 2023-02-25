@@ -11,14 +11,15 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../style/style-contacts.css">
+    <link rel="stylesheet" href="style/style-contacts.css">
+    <script src="js/mini_backend.js"></script>
     <script src="js/script-contacts.js"></script>
 </head>
 
-<body>
+<body onload="init()">
     <div class="contacts-wrapper">
         <div class="contacts-list">
-            <div class="contacts-list-contact">
+            <div class="contacts-list-contact" onclick="displayContact()">
                 <img class="contacts-list-contact-picture" src="" alt="AM">
                 <div class="contacts-list-contact-keys">
                     <h3 class="contacts-list-contact-keys-name">Anton Mayer</h3>
@@ -53,12 +54,12 @@
                 <hr>
                 <span>Better with a team</span>
             </div>
-            <div class="contacts-overview-container">
+            <div id="contacts_overview_container-1" class="contacts-overview-container d-none">
                 <div class="overview-headline-container">
-                    <img id="overview_contact_picture" src="" alt="AM">
+                    <img id="overview_contact_picture-1" src="" alt="AM">
                     <div>
-                        <h3 id="overview_contact_name" class="contacts-list-contact-keys-name">Anton Mayer</h3>
-                        <a id="overview_contact_email" class="contacts-list-contact-keys-email"
+                        <h3 id="overview_contact_name-1" class="contacts-list-contact-keys-name"></h3>
+                        <a id="overview_contact_email-1" class="contacts-list-contact-keys-email"
                             href="#"><span>&plus;</span> add Tasks</a>
                     </div>
                 </div>

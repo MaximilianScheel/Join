@@ -6,12 +6,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Add Task</title>
-        <link rel="stylesheet" type="text/css" href="../style/add_task.css">
+        <link rel="stylesheet" type="text/css" href="style/add_task.css">
+        <script src="js/mini_backend.js"></script>
         <script src="js/add_Task.js"></script>
     </head>
 
-    <body onload="">
+    <body onload="init()">
         <header></header>
+        <nav></nav>
         <div class="mainContent">
             <div class="headline">
                 <h1>Add Task</h1>
@@ -24,7 +26,7 @@
                         <input placeholder="Enter a title" required>
 
                         <p>Description</p>
-                        <textarea placeholder="Enter a Description" required></textarea>
+                            <textarea class="add_task_textarea" placeholder="Enter a Description" required></textarea>
 
                         <p>Category</p>
                         <div>
@@ -45,14 +47,19 @@
                         </div>
 
                         <p>Prio</p>
-                        <div>
-                            Urgent
-                        </div>
-                        <div>
-                            Medium
-                        </div>
-                        <div>
-                            Low
+                        <div class="prio">
+                            <div class="prioContainer">
+                                Urgent
+                                <img src="assets/img/Prio_Urgent.png">
+                            </div>
+                            <div class="prioContainer">
+                                Medium
+                                <img src="assets/img/Prio_Medium.png">
+                            </div>
+                            <div class="prioContainer">
+                                Low
+                                <img src="assets/img/Prio_Low.png">
+                            </div>
                         </div>
 
                         <p>Subtasks</p>
@@ -64,7 +71,7 @@
                             <button>
                                 Clear X
                             </button>
-                            <button>
+                            <button onclick="addTask()">
                                 Create Task
                             </button>
                         </div>
