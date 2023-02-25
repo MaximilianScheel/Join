@@ -1,3 +1,12 @@
+setURL('http://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ever');
+
+async function init () {
+    await downloadFromServer();
+    users = JSON.parse(backend.getItem('users')) || [];
+}
+
+
+
 let allTasks = [];
 
 /**

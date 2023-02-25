@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="js/script.js"></script>
+  
 
 
 
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body onload="loadAllTasks()">
+<body onload="init()">
     <h1>Task Management</h1>
     <form onsubmit="addTask()">
         <input required minlength="3" id="title" placeholder="Titel">
@@ -28,5 +28,6 @@
     </form>
     <div id="taskList"></div>
     <script src="./mini_backend.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
