@@ -41,6 +41,8 @@ let contacts = {
             }
         ]
 };
+let startingLetters = [];
+let existingLetterIndex = 0;
 
 async function init() {
     await downloadFromServer();
@@ -51,6 +53,7 @@ async function init() {
     }
     console.log(contacts);
     buildContactList();
+    console.log(startingLetters);
 }
 
 function displayContact(index) {
@@ -58,28 +61,32 @@ function displayContact(index) {
     document.getElementById('overview_contact_email').innerHTML = contacts.contacts[index].email;
     document.getElementById('overview_contact_phone').innerHTML = contacts.contacts[index].phone;
     document.getElementById('contacts_overview_container').classList.remove('d-none');
+}
 
+function findStartingLetters() {
+    contacts.contacts.forEach(contact => {
+        startingLetters.push(contact.name.charAt(0)); 
+    });
+
+    startingLetters = startingLetters.filter((element, index) => {
+        return startingLetters.indexOf(element) === index;
+    });
+
+    console.log(startingLetters);
 }
 
 function buildContactList() {
-    let startingChars = [];
-    contacts.contacts.forEach(contact => {
-        let startLetter = contact.name.charAt(0).toUpperCase();
-        if (!isStartLetterInStartingChars(startLetter, startingChars)) {
-            startingChars.push(startLetter);
-        }
-    });
-
+    findStartingLetters();
     for (let i = 0; i < contacts.contacts.length; i++) {
         document.getElementById('contacts_list').innerHTML += generateContactListEntry(i);
+        startingLetters.splice(existingLetterIndex, 1, 0);
     }
-
-    console.log(startingChars);
 }
 
-function isStartLetterInStartingChars(letter, startingChars) {
-    for (let i = 0; i < startingChars.length; i++) {
-        if (startingChars[i].includes(letter)) {
+function isNameStartingWithExistingLetter(contactIndex) {
+    for (let i = 0; i < startingLetters.length; i++) {
+        if(contacts.contacts[contactIndex].name.charAt(0).includes(startingLetters[i])) {
+            existingLetterIndex = i;
             return true;
         }
     }
@@ -87,6 +94,21 @@ function isStartLetterInStartingChars(letter, startingChars) {
 }
 
 function generateContactListEntry(index) {
+    if (isNameStartingWithExistingLetter(index)) {
+        return `
+            <div class="contact-list-letterSeperator-section">
+                <span class="contacts-list-letter">${startingLetters[existingLetterIndex]}</span>
+                <hr class="contacts-list-headrow">
+            </div>
+            <div id="contacts_list_contact_${index}" class="contacts-list-contact" onclick="displayContact(${index})">
+                <img id="contacts_list_contact_picture_${index}" class="contacts-list-contact-picture" src="" alt="AM">
+                <div class="contacts-list-contact-keys">
+                    <h3 id="contacts-list-contact-keys-name-${index}" class="contacts-list-contact-keys-name">${contacts.contacts[index].name}</h3>
+                    <a id="contacts-list-contact-keys-email-${index}" class="contacts-list-contact-keys-email" href="#">${contacts.contacts[index].email}</a>
+                </div>
+            </div>
+    `;
+    }
     return `
     <div id="contacts_list_contact_${index}" class="contacts-list-contact" onclick="displayContact(${index})">
         <img id="contacts_list_contact_picture_${index}" class="contacts-list-contact-picture" src="" alt="AM">
