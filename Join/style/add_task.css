@@ -16,73 +16,205 @@ body {
     background-color: #F5F5F5;
     font-family: 'Inter', sans-serif;
     font-weight: 400;
+    line-height: 120%;
+
 }
 
 h1 {
-    font-family: 'Inter', sans-serif;
     font-weight: 700;
+    font-size: 61px;
+    line-height: 120%;
+}
+
+.inputTitle {
+    font-weight: 400;
 }
 
 .flexContainer {
     display: flex;
+    gap: 30px;
 }
 
 .leftContainer {
-    width: 50%;
+    width: 100%;
+}
+
+.rightContainer {
+    width: 100%;
+}
+
+.inputBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.inputBlock .inputTitle {
+    font-size: 18px;
+}
+
+.inputBlock input, .inputBlock textarea, .inputBlock select {
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    height: 50px;
+    padding: 0px 15px;
+    font-size: 18px;
+    font-family: 'Inter';
+    cursor: pointer;
 }
 
 .add_task_textarea {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 18px 21px;
-    gap: 10px;
-    isolation: isolate;
-    width: 422px;
-    height: 119px;
-    background: #FFFFFF;
-    border: 1px solid #D1D1D1;
-    border-radius: 10px;
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-    resize: none;
-
+    resize: vertical;
+    max-height: 200px;
+    min-height: 80px;
+    padding: 15px !important;
  }
 
  .prio {
     display: flex;
-    flex-direction: row;
+    gap: 5px;
     justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    width: 136px;
-    height: 51px;
  }
 
- .prioContainer {
-    background: #FFFFFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+.prioBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #FFFFFF;
     border-radius: 10px;
-    flex: none;
-    order: 2;
-    flex-grow: 0;
+    border: 1px solid #DDDDDD;
+    height: 50px;
+    width: 100%;
+    padding: 0 5px;
+    cursor: pointer;
 }
 
-input {
-    box-sizing: border-box;
+.subtask {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    padding: 13px 21px;
-    gap: 10px;
-    width: 422px;
-    height: 51px;
-    background: #FFFFFF;
-    border: 1px solid #D1D1D1;
+    justify-content: space-between;
+}
+
+.subtask input {
+    border-right: unset;
+    border-radius: 10px 0 0 10px;
+    width: 100%;
+}
+
+.subtask-input {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     border-radius: 10px;
-    flex: none;
-    order: 1;
-    flex-grow: 0;
+    border: 1px solid #d1d1d1;
+    height: 50px;
+    padding: 0px 5px 0px 15px;
+    font-size: 18px;
+    font-family: 'inter';
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.subtaskBtn {
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    min-width: 50px;
+    border-radius: 0 10px 10px 0;
+    border: 1px solid #D1D1D1;
+    border-left: unset;
+    cursor: pointer;
+}
+
+
+.line {
+    border-right: 1px solid #ddd;
+}
+
+button {
+    border: unset;
+    background-color: unset;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.buttons-createTask {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    bottom: 100px;
+    right: 15px;
+    height: 50px;
+    gap: 10px;
+    border: unset;
+    background-color: unset;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.buttons-createTask .createBtn button {
+    color: white;
+}
+
+.buttons-createTask .clearBtn button {
+    color: #2A3647;
+}
+
+.clearBtn {
+    background-color: #F5F5F5;
+    border-radius: 10px;
+    border: 1px solid #2A3647;
+    padding: 13px 10px;
+    font-size: 18px;
+    display: flex;
+    gap: 10px;
+}
+
+.clearBtn:hover {
+    border: 1px solid #29abe2;
+    color:  #29abe2;
+    cursor: pointer;
+    z-index: 2000;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.clearBtn button:hover {
+    color:  #29abe2;
+}
+
+
+.createBtn {
+    background-color: #2A3647;
+    font-weight: 700;
+    border-radius: 10px;
+    border: 1px solid #2A3647;
+    padding: 13px 10px;
+    font-size: 18px;
+    display: flex;
+    gap: 10px;
+}
+
+.createBtn:hover {
+    cursor: pointer;
+    background-color: #29abe2;
+    border-color: #29abe2;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.createBtn img {
+    height: 13px;
+    padding-top: 4px;
+    padding-right: 4px;
 }

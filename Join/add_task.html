@@ -14,73 +14,97 @@
     <body onload="init()">
         <header></header>
         <nav></nav>
-        <div class="mainContent">
-            <div class="headline">
-                <h1>Add Task</h1>
-            </div>
-
+        <main class="mainContent">
             <form>
+                <div class="headline">
+                    <h1>Add Task</h1>
+                </div>
                 <div class="flexContainer">
                     <div class="leftContainer">
-                        <p>Title</p>
-                        <input placeholder="Enter a title" required>
 
-                        <p>Description</p>
+                        <div class="inputBlock">
+                            <span class="inputTitle">Title</span>
+                            <input placeholder="Enter a title" required>
+                        </div>
+
+                        <div class="inputBlock">
+                            <span class="inputTitle">Description</span>
                             <textarea class="add_task_textarea" placeholder="Enter a Description" required></textarea>
-
-                        <p>Category</p>
-                        <div>
-                            <p>Select Task Category</p>
                         </div>
 
-                        <p>Assigned to</p>
-                        <div>
-                            <p>Select contacts to assign</p>
+                        <div class="inputBlock">
+                            <span class="inputTitle">Category</span>
+                            <div>
+                                <select style="width: 100%;" required>
+                                    <option disabled selected>
+                                        Select or create a Category
+                                    </option>
+                                    <option value="newCategory">New Category</option>
+                                </select>
+                            </div>
                         </div>
-
+                        
+                        <div class="inputBlock">
+                            <span class="inputTitle">Assigned to</span>
+                            <div class="subtask-input">
+                                <span>Select contacts to assign</span>
+                                <img src="assets/img/dropDownArrow.ico" height="10px">
+                            </div>
+                        </div>
                     </div>
+                    <div class="line"></div>
                     <div class="rightContainer">
-
-                        <p>Due date</p>
-                        <div>
-                            <input placeholder="dd/mm/yyyy" required>
+                        <div class="inputBlock">
+                            <span class="inputTitle">Due date</span>
+                            <input type="date" required>
+                        </div> 
+                        <div class="inputBlock">
+                            <span class="inputTitle">Prio</span>
+                            <div class="prio">
+                                <div id="urgentBtn" class="prioBtn">
+                                    Urgent
+                                    <img src="assets/img/Prio_Urgent.png">
+                                </div>
+                                <div id="mediumBtn" class="prioBtn">
+                                    Medium
+                                    <img src="assets/img/Prio_Medium.png">
+                                </div>
+                                <div id="lowBtn" class="prioBtn">
+                                    Low
+                                    <img src="assets/img/Prio_Low.png">
+                                </div>
+                            </div>
                         </div>
 
-                        <p>Prio</p>
-                        <div class="prio">
-                            <div class="prioContainer">
-                                Urgent
-                                <img src="assets/img/Prio_Urgent.png">
-                            </div>
-                            <div class="prioContainer">
-                                Medium
-                                <img src="assets/img/Prio_Medium.png">
-                            </div>
-                            <div class="prioContainer">
-                                Low
-                                <img src="assets/img/Prio_Low.png">
+                        <div class="inputBlock">
+                            <span class="inputTitle">Subtasks</span>
+                            <div class="subtask">
+                                <input type="text" placeholder="Add new subtask">
+                                <div class="subtaskBtn">
+                                    <img src="assets/img/addSubtask_plus.png">
+                                </div>
                             </div>
                         </div>
 
-                        <p>Subtasks</p>
-                        <div>
-                            <input placeholder="Add new subtask">
-                        </div>
-
-                        <div>
-                            <button>
-                                Clear X
-                            </button>
-                            <button onclick="addTask()">
-                                Create Task
-                            </button>
+                        <div class="buttons-createTask">
+                            <div class="clearBtn">
+                                <button>
+                                    Clear X
+                                </button>
+                            </div>
+                            <div onclick="addTask()" class="createBtn">
+                                <button>
+                                    Create Task
+                                </button>
+                                <img src="assets/img/checkmark.png">
+                            </div>
                         </div>
 
                     </div>
                 </div>
 
             </form>
-        </div> 
+        </main>
         
 
     </body>
