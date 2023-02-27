@@ -7,11 +7,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Add Task</title>
         <link rel="stylesheet" type="text/css" href="style/add_task.css">
-        <script src="js/mini_backend.js"></script>
-        <script src="js/add_Task.js"></script>
     </head>
 
-    <body onload="init()">
+    <body onload="init(), renderAddTask()">
         <header></header>
         <nav></nav>
         <main class="mainContent">
@@ -34,13 +32,13 @@
 
                         <div class="inputBlock">
                             <span class="inputTitle">Category</span>
-                            <div>
-                                <select style="width: 100%;" required>
-                                    <option disabled selected>
-                                        Select or create a Category
-                                    </option>
-                                    <option value="newCategory">New Category</option>
-                                </select>
+                            <div class="selectCategory">
+                                <div>
+                                    <input class="no-outline" maxlength="16" placeholder="Select a category">
+                                </div>
+                                <div>
+                                    <img src="assets/img/dropdown_arrow.png">
+                                </div>
                             </div>
                         </div>
                         
@@ -48,7 +46,7 @@
                             <span class="inputTitle">Assigned to</span>
                             <div class="subtask-input">
                                 <span>Select contacts to assign</span>
-                                <img src="assets/img/dropDownArrow.ico" height="10px">
+                                <img src="assets/img/dropdown_arrow.png">
                             </div>
                         </div>
                     </div>
@@ -56,22 +54,22 @@
                     <div class="rightContainer">
                         <div class="inputBlock">
                             <span class="inputTitle">Due date</span>
-                            <input type="date" required>
+                            <input type="date" required id="date">
                         </div> 
                         <div class="inputBlock">
                             <span class="inputTitle">Prio</span>
                             <div class="prio">
-                                <div id="urgentBtn" class="prioBtn">
+                                <div id="urgentBtn" class="prioBtn" onclick="choosePriority('urgent')">
                                     Urgent
-                                    <img src="assets/img/Prio_Urgent.png">
+                                    <img src="assets/img/Prio_urgent.png">
                                 </div>
-                                <div id="mediumBtn" class="prioBtn">
+                                <div id="mediumBtn" class="prioBtn" onclick="choosePriority('medium')">
                                     Medium
-                                    <img src="assets/img/Prio_Medium.png">
+                                    <img src="assets/img/Prio_medium.png">
                                 </div>
-                                <div id="lowBtn" class="prioBtn">
+                                <div id="lowBtn" class="prioBtn" onclick="choosePriority('low')">
                                     Low
-                                    <img src="assets/img/Prio_Low.png">
+                                    <img src="assets/img/Prio_low.png">
                                 </div>
                             </div>
                         </div>
@@ -87,17 +85,17 @@
                         </div>
 
                         <div class="buttons-createTask">
-                            <div class="clearBtn">
-                                <button>
-                                    Clear X
+                                <button class="clearBtn">
+                                    <img src="assets/img/cancel_default.png" class="default_cancel">
+                                    <img src="assets/img/cancel_hover.png" class="hover_cancel">
+                                    <img src="assets/img/cancel_click.png" class="click_cancel">                                    
                                 </button>
-                            </div>
-                            <div onclick="addTask()" class="createBtn">
-                                <button>
-                                    Create Task
+                                <button onclick="addTask()" class="createBtn">
+                                    <img src="assets/img/createTask_default.png" class="default_create">
+                                    <img src="assets/img/createTask_hover.png" class="hover_create">
+                                    <img src="assets/img/creatTask_click.png" class="click_create">
                                 </button>
-                                <img src="assets/img/checkmark.png">
-                            </div>
+
                         </div>
 
                     </div>
@@ -105,7 +103,9 @@
 
             </form>
         </main>
-        
+
+        <script src="js/mini_backend.js"></script>
+        <script src="js/add_Task.js"></script>
 
     </body>
 
