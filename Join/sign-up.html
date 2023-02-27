@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <script src="/js/mini_backend.js"></script>
+    <script src="/js/login.js"></script>
+    <script src="/js/sign-up.js"></script>
 </head>
 
 <body>
@@ -20,13 +23,13 @@
            <a class="go-back" href="./login.html">
                 <img class="signup-img" src="assets/img/arrow-left-signup.png" alt="back">
             </a>
-            <form class="login-form">
+            <form onsubmit="addUser(); return false;" class="login-form">
                 <img class=""src="" alt="">
                 <h1 class="login-h1">Sign Up</h1>
                 <img class="border-bottom" src="./assets/img/border-bottom.png" alt="">
                 <input class="input-name" type="text" placeholder="Name" required>
-                <input class="input-email" type="email" placeholder="Email" required>
-                <input class="sign-up-password" type="password" placeholder="Password" required>
+                <input id="email" class="input-email" type="email" placeholder="Email" required>
+                <input id="password" class="sign-up-password" type="password" placeholder="Password" required>
                 <div class="remember-me-login">
                 </div>
                 <div>
