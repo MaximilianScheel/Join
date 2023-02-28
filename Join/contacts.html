@@ -21,49 +21,58 @@
         <div w3-include-html="assets/templates/desktop_template.html">
 
         </div>
-        <div id="contacts_list" class="contacts-list">
-            
-        </div>
-        <div class="contacts-overview">
-            <div class="contacts-overview-headline">
-                <h1>CONTACTS</h1>
-                <hr>
-                <span>Better with a team</span>
+        <div class="contacts-wrapper-inner">
+            <div class="desktop-topBar-content-container" w3-include-html="assets/templates/desktop-topBar-template.html">
+
             </div>
-            <div id="contacts_overview_container" class="contacts-overview-container d-none">
-                <div class="overview-headline-container">
-                    <img id="overview_contact_picture" src="" alt="AM">
-                    <div>
-                        <h3 id="overview_contact_name" class="contacts-list-contact-keys-name"></h3>
-                        <a class="contacts-list-contact-keys-email"
-                            href="#"><span>&plus;</span> add Tasks</a>
+            <div class="contacts-wrapper-inner-content">
+                <div id="contacts_list" class="contacts-list">
+
+                </div>
+                <div class="contacts-overview">
+                    <div class="contacts-overview-headline">
+                        <h1>CONTACTS</h1>
+                        <hr>
+                        <span>Better with a team</span>
+                    </div>
+                    <div id="contacts_overview_container" class="contacts-overview-container d-none">
+                        <div class="overview-headline-container">
+                            <img id="overview_contact_picture" src="" alt="AM">
+                            <div>
+                                <h3 id="overview_contact_name" class="contacts-list-contact-keys-name"></h3>
+                                <a class="contacts-list-contact-keys-email" href="#"><span>&plus;</span> add Tasks</a>
+                            </div>
+                        </div>
+                        <div class="overview-body-container">
+                            <div class="overview-body-contactInformation">
+                                <span>Contact Information</span>
+                                <div class="overview-body-editContact-container">
+                                    <img src="" alt="">
+                                    <span> Edit Contact</span>
+                                </div>
+                            </div>
+                            <div class="overview-body-bonusInformation">
+                                <div>
+                                    <b><span>E-Mail</span></b>
+                                    <a id="overview_contact_email" class="contacts-list-contact-keys-email"
+                                        href="">anton.mayer@gmail.com</a>
+                                </div>
+                                <div>
+                                    <b><span>Phone</span></b>
+                                    <span id="overview_contact_phone">+49 222222 2222</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="overview-body-container">
-                    <div class="overview-body-contactInformation">
-                        <span>Contact Information</span>
-                        <div class="overview-body-editContact-container">
-                            <img src="" alt="">
-                            <span> Edit Contact</span>
-                        </div>
-                    </div>
-                    <div class="overview-body-bonusInformation">
-                        <div>
-                            <b><span>E-Mail</span></b>
-                            <a id="overview_contact_email" class="contacts-list-contact-keys-email" href="">anton.mayer@gmail.com</a>
-                        </div>
-                        <div>
-                            <b><span>Phone</span></b>
-                            <span id="overview_contact_phone">+49 222222 2222</span>
-                        </div>
-                    </div>
-                </div>
+                <button class="addContact-button">
+                    <span>New Contact</span>
+                    <img src="assets/img/addUser_white.png">
+                </button>
             </div>
+
         </div>
-        <button class="addContact-button">
-           <span>New Contact</span>  
-           <img src="assets/img/addUser_white.png">
-        </button>
+
 </body>
 
 </html>
