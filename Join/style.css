@@ -246,12 +246,12 @@ a {
 
 /* CCS for mobile templates */
 
-.sidemenu-container-mobile {
+.sidemenu-container-desktop {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    width: 180px;
+    width: 200px;
     height: 100vh;
     background-color: rgba(42, 54, 71, 1);
 }
@@ -263,17 +263,17 @@ a {
     width: 100%;
 }
 
-.sidemenu-mainLogo-mobile {
+.sidemenu-mainLogo-desktop {
     margin-bottom: 100px;
     margin-top: 40px;
 }
 
-.sidemenu-allLinks-container-mobile {
+.sidemenu-allLinks-container-desktop {
     width: 100%;
     overflow: hidden;
 }
 
-.sideMenu-link-container-mobile {
+.sideMenu-link-container-desktop {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -284,12 +284,12 @@ a {
     padding-bottom: 10px;
 }
 
-.sideMenu-link-container-mobile:hover {
+.sideMenu-link-container-desktop:hover {
     background-color: rgba(9, 25, 49, 1);
     cursor: pointer;
 }
 
-.sideMenu-link-container-mobile a {
+.sideMenu-link-container-desktop a {
     text-decoration: none;
     color: white;
     margin-left: 30px;

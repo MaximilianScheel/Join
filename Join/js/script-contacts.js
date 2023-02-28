@@ -52,6 +52,7 @@ async function init() {
         contacts = tempContacts;
     }
     console.log(contacts);
+    includeHTML();
     buildContactList();
     console.log(startingLetters);
 }
