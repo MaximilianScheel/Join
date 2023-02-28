@@ -102,7 +102,11 @@ function generateContactListEntry(index) {
                 <hr class="contacts-list-headrow">
             </div>
             <div id="contacts_list_contact_${index}" class="contacts-list-contact" onclick="displayContact(${index})">
-                <img id="contacts_list_contact_picture_${index}" class="contacts-list-contact-picture" src="" alt="AM">
+                <div class="contacts-list-contact-pictureContainer">
+                    <span id="contacts_list_contact_picture_${index}" class="contacts-list-contact-picture">
+
+                    </span>
+                </div>
                 <div class="contacts-list-contact-keys">
                     <h3 id="contacts-list-contact-keys-name-${index}" class="contacts-list-contact-keys-name">${contacts.contacts[index].name}</h3>
                     <a id="contacts-list-contact-keys-email-${index}" class="contacts-list-contact-keys-email" href="#">${contacts.contacts[index].email}</a>
@@ -112,11 +116,15 @@ function generateContactListEntry(index) {
     }
     return `
     <div id="contacts_list_contact_${index}" class="contacts-list-contact" onclick="displayContact(${index})">
-        <img id="contacts_list_contact_picture_${index}" class="contacts-list-contact-picture" src="" alt="AM">
-            <div class="contacts-list-contact-keys">
-                <h3 id="contacts-list-contact-keys-name-${index}" class="contacts-list-contact-keys-name">${contacts.contacts[index].name}</h3>
-                <a id="contacts-list-contact-keys-email-${index}" class="contacts-list-contact-keys-email" href="#">${contacts.contacts[index].email}</a>
-            </div>
+        <div class="contacts-list-contact-pictureContainer">
+            <span id="contacts_list_contact_picture_${index}" class="contacts-list-contact-picture">
+
+            </span>
+        </div>
+        <div class="contacts-list-contact-keys">
+            <h3 id="contacts-list-contact-keys-name-${index}" class="contacts-list-contact-keys-name">${contacts.contacts[index].name}</h3>
+            <a id="contacts-list-contact-keys-email-${index}" class="contacts-list-contact-keys-email" href="#">${contacts.contacts[index].email}</a>
+        </div>
     </div>
     `;
 }

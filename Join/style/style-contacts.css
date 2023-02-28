@@ -60,6 +60,7 @@ body {
     padding-bottom: 15px;
     padding-top: 15px;
     border-radius: 5px;
+    overflow: hidden;
 }
 
 .contacts-list-contact:hover {
@@ -68,14 +69,20 @@ body {
     color: white;
 }
 
-.contacts-list-contact-picture {
-    min-height: 38px;
-    min-width: 38px;
-    border-radius: 30px;
-    border-width: 1px;
+.contacts-list-contact-pictureContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-style: none;
-    margin-right: 10px;
+    border-radius: 40px;
+    min-height: 42px;
+    min-width: 42px;
     background-color: rgb(255, 234, 0);
+    margin-right: 30px;
+}
+
+.contacts-list-contact-picture {
+    font-size: 18px;
 }
 
 .contacts-list-contact-keys-name {
@@ -277,6 +284,7 @@ body {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .desktop-topBar-container span {
@@ -284,7 +292,7 @@ body {
 }
 
 .desktop-topBar-container div {
-    padding-right: 10px;
+    padding-right: 20px;
 }
 
 .desktop-topBar-content-container {
@@ -295,4 +303,19 @@ body {
     z-index: 0;
 }
 
+.desktop-topBar-profilPicture {
+    height: 24px;
+    width: 24px;
+    border-radius: 30px;
+    padding: 1px;
+    border-style: solid;
+    border-color: black;
+}
+
+.desktop-topBar-helpPicture {
+    height: 28px;
+    width: 28px;
+    border-radius: 30px;
+    margin-right: 15px;
+}
 /*  topBar-template CSS ends  */
