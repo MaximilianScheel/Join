@@ -1,0 +1,122 @@
+/*  addContact css BEGINS here  */
+
+#addContact-container {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    color: white;
+}
+
+/*  addContact css ENDS here  */
+
+/*  topBar-template css BEGINS here  */
+
+
+.desktop-topBar-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.desktop-topBar-container span {
+    padding-left: 160px;
+}
+
+.desktop-topBar-container div {
+    padding-right: 20px;
+}
+
+.desktop-topBar-content-container {
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-shadow: rgba(191, 191, 191, 0.4) 4px 4px 4px;
+    z-index: 0;
+}
+
+.desktop-topBar-profilPicture {
+    height: 24px;
+    width: 24px;
+    border-radius: 30px;
+    padding: 1px;
+    border-style: solid;
+    border-color: black;
+}
+
+.desktop-topBar-helpPicture {
+    height: 28px;
+    width: 28px;
+    border-radius: 30px;
+    margin-right: 15px;
+}
+/*  topBar-template css ENDS here  */
+
+/*  sideBar-template css BEGINS here  */
+
+.sidemenu-container-desktop {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 200px;
+    height: 100vh;
+    background-color: rgba(42, 54, 71, 1);
+}
+
+.sidemenu-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.sidemenu-mainLogo-desktop {
+    margin-bottom: 100px;
+    margin-top: 40px;
+}
+
+.sidemenu-allLinks-container-desktop {
+    width: 100%;
+    overflow: hidden;
+}
+
+.sideMenu-link-container-desktop {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.sideMenu-link-container-desktop:hover {
+    background-color: rgba(9, 25, 49, 1);
+    cursor: pointer;
+}
+
+.sideMenu-link-container-desktop a {
+    text-decoration: none;
+    color: white;
+    margin-left: 30px;
+} 
+
+.contactsLink {
+    margin-left: 38px !important;
+}
+
+.summaryLink {
+    margin-left: 35px !important;
+}
+
+.addTaskLink {
+    margin-left: 25px !important;
+}
+
+.boardLink {
+    margin-left: 30px !important;
+}
+
+/*  sideBar-template css ENDS here  */
