@@ -59,30 +59,69 @@ body {
     padding-right: 22px;
     padding-bottom: 15px;
     padding-top: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     border-radius: 5px;
     overflow: hidden;
+    color: white;
+}
+
+.contactActive {
+    background-color: rgba(42, 54, 71, 1);
+}
+
+.contactActive h3 {
+    color: white !important;
+}
+
+.contacts-list-contact h3 {
+    color: black;
 }
 
 .contacts-list-contact:hover {
     background-color: rgba(42, 54, 71, 1);
     cursor: pointer;
-    color: white;
+}
+
+.contacts-list-contact:hover h3 {
+    color: white !important;
 }
 
 .contacts-list-contact-pictureContainer {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-style: none;
-    border-radius: 40px;
-    min-height: 42px;
-    min-width: 42px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 80px;
+    min-height: 48px;
+    min-width: 48px;
     background-color: rgb(255, 234, 0);
     margin-right: 30px;
+    color: white;
 }
 
 .contacts-list-contact-picture {
     font-size: 18px;
+}
+
+.contacts-overview-contact-pictureContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 80px;
+    box-shadow: 0px 0px 3px 2px rgb(226, 226, 226);
+    min-height: 80px;
+    min-width: 80px;
+    background-color: rgb(255, 234, 0);
+    margin-right: 30px;
+    color: white;
+}
+
+.contacts-overview-contact-picture {
+    font-size: 32px;
 }
 
 .contacts-list-contact-keys-name {
@@ -165,7 +204,17 @@ body {
 .contacts-overview-container .overview-body-editContact-container {
     display: flex;
     justify-content: flex-start;
+    align-items: flex-end;
     margin-left: 25px;
+}
+
+.contacts-overview-container .overview-body-editContact-container:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.contacts-overview-container .overview-body-editContact-container img {
+    margin-right: 10px;
 }
 
 .contacts-overview-container .overview-body-bonusInformation {
