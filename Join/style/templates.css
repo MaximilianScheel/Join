@@ -2,9 +2,140 @@
 
 #addContact-container {
     position: absolute;
-    top: 50px;
-    left: 50px;
+    top: 25vh;
+    left: 25vw;
+    bottom: 0;
+    right: 0;
+    width: 60vw;
+    height: 500px;
+    display: flex;
     color: white;
+    overflow: hidden;
+    border-style: none;
+    border-radius: 10px;
+    transition: 525ms ease-in-out;
+    z-index: 2;
+    opacity: 1;
+}
+
+.addContact-join-container {
+    width: 30%;
+    background-color: rgba(9, 25, 49, 1);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 125px;
+}
+
+.addContact-join-container-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.addContact-join-container-inner img {
+    width: 50px;
+    height: auto;
+}
+ 
+.addContact-join-container-inner hr {
+    margin-left: 0px;
+    width: 25%;
+    border-color: rgba(41, 171, 226, 1);
+} 
+
+.addContact-form-container {
+    width: 70%;
+    background-color: rgb(241, 241, 241);
+    color: black;
+}
+
+.addContact-form-headline {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.addContact-form-headline img {
+    margin-top: 15px;
+    margin-right: 15px;
+}
+
+.addContact-form-headline img:hover {
+    cursor: pointer;
+} 
+
+.addContact-form-body {
+    width: 100%;
+    display: flex;
+}
+
+.addContact-form-body-img {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+
+.addContact-form-body-img-picture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 120px;
+    border-color: white;
+    box-shadow: 0px 0px 3px 2px rgb(226, 226, 226);
+    height: 120px;
+    width: 120px;
+    background-color: white;
+    margin-left: 20px;
+    margin-top: 100px;
+    color: black;
+}
+
+.addContact-form-body-formular {
+    width: 60%;
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-top: 50px;
+}
+
+.addContact-form-body-formular form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.addContact-form-body-formular form div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.addContact-form-body-formular form input {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 7px;
+    border-style: solid;
+    border-width: 0.5px;
+}
+
+#submitButton {
+    background-color: rgba(9, 25, 49, 1);
+    color: white;
+    width: 50%;
+}
+
+#cancelButton {
+    width: 30%;
+    margin-right: 20px;
+}
+
+.hideAddContact {
+    transform: translateX(150%);
 }
 
 /*  addContact css ENDS here  */

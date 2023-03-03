@@ -162,6 +162,21 @@ function generateContactListEntry(index) {
     `;
 }
 
+
+function displayAddContact() {
+    document.getElementById('addContact-container').classList.remove('hideAddContact');
+}
+
+function hideAddContact() {
+    document.getElementById('addContact-container').classList.add('hideAddContact');
+}
+
+
+function addContact() {
+    console.log('Es funktioniert!');
+}
+
+
 function includeHTML() {
     var z, i, elmnt, file, xhttp;
     /* Loop through a collection of all HTML elements: */

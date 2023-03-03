@@ -2,6 +2,7 @@ body {
     margin: 0px;
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
+    overflow-x: hidden;
 }
 
 .d-none {
@@ -24,6 +25,7 @@ body {
 .contacts-wrapper-inner-content {
     display: flex;
     overflow: hidden;
+    background-color: white;
 }
 
 .contacts-list {

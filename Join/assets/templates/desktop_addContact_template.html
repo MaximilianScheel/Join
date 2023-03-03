@@ -1,3 +1,31 @@
-<div>
-    tests
+<div class="addContact-join-container">
+    <div class="addContact-join-container-inner">
+        <img src="../Join/assets/img/mainlogo-desktop.png" alt="img">
+        <h1>Add contact</h1>
+        <span>Tasks are better with a team!</span>
+        <hr>
+    </div>
+</div>
+<div class="addContact-form-container">
+    <div class="addContact-form-headline" onclick="hideAddContact()"><img src="../Join/assets/img/cross.png" alt=""></div>
+    <div class="addContact-form-body">
+        <div class="addContact-form-body-img">
+            <div class="addContact-form-body-img-picture">
+                <span class="contacts-overview-contact-picture">
+                    VM
+                </span>
+            </div>
+        </div>
+        <div class="addContact-form-body-formular">
+            <form onsubmit="addContact()">
+                <input required type="text" placeholder="Name">
+                <input required type="email" placeholder="Email">
+                <input required type="tel" placeholder="Phone">
+                <div>
+                    <input type="button" value="Cancel" id="cancelButton">
+                    <input type="submit" value="Submit" id="submitButton">
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
