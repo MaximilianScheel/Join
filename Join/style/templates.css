@@ -1,6 +1,6 @@
 /*  addContact css BEGINS here  */
 
-#addContact-container {
+.contactPopUp-container {
     position: absolute;
     top: 25vh;
     left: 25vw;
@@ -18,7 +18,7 @@
     opacity: 1;
 }
 
-.addContact-join-container {
+.contactPopUp-join-container {
     width: 30%;
     background-color: rgba(9, 25, 49, 1);
     display: flex;
@@ -27,7 +27,7 @@
     padding-top: 125px;
 }
 
-.addContact-join-container-inner {
+.contactPopUp-join-container-inner {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -35,50 +35,50 @@
     margin-right: 20px;
 }
 
-.addContact-join-container-inner img {
+.contactPopUp-join-container-inner img {
     width: 50px;
     height: auto;
 }
  
-.addContact-join-container-inner hr {
+.contactPopUp-join-container-inner hr {
     margin-left: 0px;
     width: 25%;
     border-color: rgba(41, 171, 226, 1);
 } 
 
-.addContact-form-container {
+.contactPopUp-form-container {
     width: 70%;
     background-color: rgb(241, 241, 241);
     color: black;
 }
 
-.addContact-form-headline {
+.contactPopUp-form-headline {
     width: 100%;
     display: flex;
     justify-content: flex-end;
 }
 
-.addContact-form-headline img {
+.contactPopUp-form-headline img {
     margin-top: 15px;
     margin-right: 15px;
 }
 
-.addContact-form-headline img:hover {
+.contactPopUp-form-headline img:hover {
     cursor: pointer;
 } 
 
-.addContact-form-body {
+.contactPopUp-form-body {
     width: 100%;
     display: flex;
 }
 
-.addContact-form-body-img {
+.contactPopUp-form-body-img {
     width: 40%;
     display: flex;
     justify-content: center;
 }
 
-.addContact-form-body-img-picture {
+.contactPopUp-form-body-img-picture {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -95,26 +95,26 @@
     color: black;
 }
 
-.addContact-form-body-formular {
+.contactPopUp-form-body-formular {
     width: 60%;
     margin-right: 40px;
     margin-left: 40px;
     margin-top: 50px;
 }
 
-.addContact-form-body-formular form {
+.contactPopUp-form-body-formular form {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
-.addContact-form-body-formular form div {
+.contactPopUp-form-body-formular form div {
     width: 100%;
     display: flex;
     justify-content: flex-start;
 }
 
-.addContact-form-body-formular form input {
+.contactPopUp-form-body-formular form input {
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 10px;
@@ -123,19 +123,23 @@
     border-width: 0.5px;
 }
 
-#submitButton {
+.submitButton {
     background-color: rgba(9, 25, 49, 1);
     color: white;
     width: 50%;
 }
 
-#cancelButton {
+.cancelButton {
     width: 30%;
     margin-right: 20px;
 }
 
 .hideAddContact {
     transform: translateY(150%);
+}
+
+.hideEditContact {
+    transform: translateY(-150%);
 }
 
 /*  addContact css ENDS here  */

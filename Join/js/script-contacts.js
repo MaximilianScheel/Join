@@ -164,11 +164,19 @@ function generateContactListEntry(index) {
 
 
 function displayAddContact() {
-    document.getElementById('addContact-container').classList.remove('hideAddContact');
+    document.getElementById('contactAddPopUp-container').classList.remove('hideAddContact');
 }
 
 function hideAddContact() {
-    document.getElementById('addContact-container').classList.add('hideAddContact');
+    document.getElementById('contactAddPopUp-container').classList.add('hideAddContact');
+}
+
+function displayEditContact() {
+    document.getElementById('contactEditPopUp-container').classList.remove('hideEditContact');
+}
+
+function hideEditContact() {
+    document.getElementById('contactEditPopUp-container').classList.add('hideEditContact');
 }
 
 
