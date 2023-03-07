@@ -6,12 +6,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Add Task</title>
+        <link rel="icon" type="image/png" href="assets/img/capa1.png">
         <link rel="stylesheet" type="text/css" href="style/add_task.css">
         <link rel="stylesheet" href="style/fonts.css">
         <link rel="stylesheet" href="style/templates.css">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
         <script src="js/mini_backend.js"></script>
-        <script src="js/categories_addTask.js"></script>
+        <script src="js/addTask_categories.js"></script>
+        <script src="js/addTask_contacts.js"></script>
         <script src="js/add_Task.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
@@ -42,12 +44,14 @@
                         </div>
 
                         <div class="inputBlock">
+
+                            <!-- Category Start -->
                             <span class="inputTitle">Category</span>
                             <div class="selectField" id="selectField" onclick="openCloseCategories()">
                                 <div class="selectCategory" id="selectCategory">
                                     <div class="center">
                                         <div id="categoryColor"></div>
-                                        <input id="category" class="no-outline" maxlength="16" placeholder="Select a category">
+                                        <input id="category" class="no-outline" maxlength="16" placeholder="Select a category" required>
                                     </div>
                                     <div id="categoryImage">
                                         <img src="assets/img/dropdown_arrow.png">
@@ -95,14 +99,23 @@
                                 </div>
                             </div>
                         </div>
-                        
+                        <!-- Categroy End -->
+                        <!-- Assigned To Start -->
                         <div class="inputBlock">
                             <span class="inputTitle">Assigned to</span>
-                            <div class="subtask-input">
-                                <span>Select contacts to assign</span>
-                                <img src="assets/img/dropdown_arrow.png">
+                            <div class="selectField" id="selectFieldContact" onclick="openCloseContacts()">
+                                <div class="selectContact" id="selectContact">
+                                    <input id="contact"  placeholder="Select contacts to assign"/>
+                                    <div id="imageContact">
+                                        <img src="assets/img/dropdown_arrow.png"/>
+                                    </div>
+                                </div>
+                                <div class="d-none" id="openedContacts" onclick="notOpenCloseContacts(event)">
+                                </div>
                             </div>
+                                <div id="addedContacts"></div>
                         </div>
+                        <!-- Assigned To End -->
                     </div>
                     <div class="line"></div>
                     <div class="rightContainer">
@@ -127,15 +140,16 @@
                                 </div>
                             </div>
                         </div>
-
+                        <!-- Subtask Start -->
                         <div class="inputBlock">
                             <span class="inputTitle">Subtasks</span>
-                            <div class="subtask">
-                                <input type="text" placeholder="Add new subtask">
-                                <div class="subtaskBtn">
-                                    <img src="assets/img/addSubtask_plus.png">
+                                <div class="subtask">
+                                    <input id="newSubtaskInput" type="text" placeholder="Add new subtask">
+                                    <div class="subtaskBtn">
+                                        <img src="assets/img/addSubtask_plus.png" onclick="addNewSubtask()">
+                                    </div>
                                 </div>
-                            </div>
+                                <div id="newSubtasks"></div>
                         </div>
 
                         <div class="buttons-createTask">

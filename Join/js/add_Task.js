@@ -1,8 +1,12 @@
 setURL('https://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ever');
 
+
 let tasks = [];
 let allTasks = [];
 let priority = "low" ;
+let allSubtasks = [];
+let selectedSubtasks = [];
+let activePriority = [];
 
 
 async function init() {
@@ -18,9 +22,8 @@ async function init() {
 }
 
 function addTask() {
-    let description = document.getElementById("description");
-    let category = document.getElementById("category");   
-    let title = document.getElementById("title");
+    let description = document.getElementById('description');
+    let title = document.getElementById('title');
     let date = document.getElementById('date');
     let task = {
         'title': title.value,
@@ -28,6 +31,8 @@ function addTask() {
         'category': selectedCategory,
         'color': selectedColor,
         'date': date.value,
+        'priority': getActivePriority(),
+        'subtasks': selectedSubtasks,
         };
     allTasks.push(task);
     let allTasksAsString = JSON.stringify(allTasks); //Array wird zu string
@@ -52,7 +57,7 @@ function clearValues() {
 */
 
 function loadAllTasks() {
-    localStorage.getItem("allTasks");
+    localStorage.getItem("tasks");
     let allTasksAsString = localStorage.getItem("allTasks");
     allTasks = JSON.parse(allTasksAsString);
     console.log(allTasks);
@@ -81,6 +86,12 @@ function loadAllTasks() {
 //         taskList.appendChild(taskElement);
 //     }
 // }
+
+/**
+ * 
+ * Prio
+ * 
+*/
 
 function renderPrioBtnClicked(prio) {
     return `
@@ -137,6 +148,72 @@ function choosePriority(priority) {
             break;
     }
 }
+
+function getActivePriority() {
+  let activePriority = "";
+  let urgent = document.getElementById("urgentBtn");
+  let medium = document.getElementById("mediumBtn");
+  let low = document.getElementById("lowBtn");
+
+  if (urgent.style.backgroundColor === "rgb(255, 61, 0)") {
+    activePriority = "urgent";
+  } else if (medium.style.backgroundColor === "rgb(255, 168, 0)") {
+    activePriority = "medium";
+  } else if (low.style.backgroundColor === "rgb(122, 226, 41)") {
+    activePriority = "low";
+  }
+
+  return activePriority;
+}
+
+/**
+ * Subtask
+ */
+
+function addNewSubtask() {
+    let newSubtaskInput = document.getElementById('newSubtaskInput');
+    document.getElementById('newSubtasks').innerHTML = '';
+    if (!newSubtaskInput.value == '') {
+      allSubtasks.push(newSubtaskInput.value);
+      for (let i = 0; i < allSubtasks.length; i++) {
+        let newSubtask = allSubtasks[i];
+        let subtaskImageSrc = changeImage(newSubtask);
+        document.getElementById('newSubtasks').innerHTML += showSubtask(i, newSubtask, subtaskImageSrc);
+      }
+    }
+    newSubtaskInput.value = '';
+  }
+  
+function changeImage(newSubtask, selectedSubtasks) {
+  let subtaskImageSrc = "assets/img/subtask_rectangle.png";
+  if (selectedSubtasks && selectedSubtasks.some(task => task.name === newSubtask)) {
+    subtaskImageSrc = "assets/img/subtask_check.png";
+  }
+  return subtaskImageSrc;
+}
+  
+function showSubtask (i, newSubtask) {
+  const subtaskImageSrc = changeImage(newSubtask, selectedSubtasks);
+  return `
+    <div class="newSubtasks">
+      <img src=${subtaskImageSrc} class="paddingRight" id="checkbox${i}" onclick="checkmark(${i})"><span class="newSubtask">${newSubtask}</span>
+    </div>
+  `;
+}
+  
+function checkmark(i) {
+  const newSubtask = { "name": allSubtasks[i], "state": "todo" };
+  const index = selectedSubtasks.findIndex(task => task.name === newSubtask.name);
+  if (index === -1) {
+    selectedSubtasks.push(newSubtask);
+  } else {
+    selectedSubtasks.splice(index, 1);
+  }
+  const subtaskImageSrc = changeImage(newSubtask.name, selectedSubtasks);
+  document.getElementById('checkbox' + i).src = subtaskImageSrc;
+}
+  
+
 
 function includeHTML() {
     var z, i, elmnt, file, xhttp;

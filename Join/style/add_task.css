@@ -78,7 +78,6 @@ h1 {
     cursor: pointer;
     background-color: white;
     transition: all 150ms ease-in-out;
-    overflow: auto;
     z-index: 800;
     height: 50px;
   }
@@ -87,10 +86,6 @@ h1 {
     border: 0;
     padding: 0;
     cursor: pointer;
-}
-
-.selectCategory img {
-    padding-right: 5px;
 }
 
 .center {
@@ -102,6 +97,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-right: 5px;
 }
 
 .oneCategory:hover {
@@ -139,11 +135,39 @@ h1 {
 
 /* Category Input Field End */
 
+/* Assign to Start */
+
+.selectContact {
+    padding: 0px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.selectContact input {
+    padding: 0;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.imageContact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Assign to End */
+
 .add_task_textarea {
     resize: vertical;
     max-height: 200px;
     min-height: 80px;
     padding: 15px !important;
+ }
+
+ .paddingRight {
+    padding-right: 5px;
  }
 
  .no-outline:focus {

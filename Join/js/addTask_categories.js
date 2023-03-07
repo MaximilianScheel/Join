@@ -14,7 +14,6 @@ function disableInput () {
   }
 }
 
-
 /**
  * function to add a existing category and its color to the array "selectedCategory"
  *
