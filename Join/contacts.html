@@ -30,7 +30,7 @@
                 <div id="contacts_list" class="contacts-list">
 
                 </div>
-                <div class="contacts-overview">
+                <div id="contacts_overview" class="contacts-overview">
                     <div class="contacts-overview-headline">
                         <h1>CONTACTS</h1>
                         <hr>
@@ -51,8 +51,8 @@
                         <div class="overview-body-container">
                             <div class="overview-body-contactInformation">
                                 <span>Contact Information</span>
-                                <div class="overview-body-editContact-container" onclick="displayEditContact()">
-                                    <img src="./assets/img/pencil.png" alt="">
+                                <div id="overview_body_editContact_container" class="overview-body-editContact-container" onclick="displayEditContact()">
+                                    <img id="overview_body_editContact_container_img" src="./assets/img/pencil.png" alt="">
                                     <span> Edit Contact</span>
                                 </div>
                             </div>
@@ -69,8 +69,9 @@
                             </div>
                         </div>
                     </div>
+                    <img id="showMobileContactListArrow" class="showMobileContactListArrow d-none" src="../Join/assets/img/arrow-left-signup.png" onclick="showContactListMobile()">
                 </div>
-                <button class="addContact-button" onclick="displayAddContact()">
+                <button id="addContact_button" class="addContact-button" onclick="displayAddContact()">
                     <span>New Contact</span>
                     <img src="assets/img/addUser_white.png">
                 </button>
