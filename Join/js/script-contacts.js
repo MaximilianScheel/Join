@@ -72,6 +72,29 @@ function displayContact(index) {
     document.getElementById('contacts_overview_contact_pictureContainer').style.backgroundColor = contacts.contacts[index].favouriteColor;
     document.getElementById('contacts_overview_contact_picture').innerText = getNamePrefix(index);
     activateContactEntry(index);
+    if (isMobile()) {
+        document.getElementById('contacts_overview').classList.add('d-show');
+        document.getElementById('contacts_list').classList.add('d-none');
+        document.getElementById('showMobileContactListArrow').classList.remove('d-none');
+        document.getElementById('addContact_button').classList.add('d-none');
+        document.getElementById('overview_body_editContact_container').classList.add('overview-body-editContact-container-mobile');
+        document.getElementById('overview_body_editContact_container_img').src = "./assets/img/pencil_white.png";
+    }
+}
+
+function isMobile() {
+    let viewportWidth = 0;
+    viewportWidth = window.innerWidth;
+    if (viewportWidth <= 700) {
+        return true;
+    }
+    return false;
+}
+
+function showContactListMobile() {
+    document.getElementById('contacts_overview').classList.remove('d-show');
+    document.getElementById('contacts_list').classList.remove('d-none');
+    document.getElementById('addContact_button').classList.remove('d-none');
 }
 
 function activateContactEntry(contactIndex) {
@@ -79,7 +102,7 @@ function activateContactEntry(contactIndex) {
     allContactlistEntries.forEach(contactEntry => {
         contactEntry.classList.remove('contactActive');
     });
-    document.getElementById('contacts_list_contact_'+contactIndex).classList.add('contactActive');
+    document.getElementById('contacts_list_contact_' + contactIndex).classList.add('contactActive');
 }
 
 function findStartingLetters() {
@@ -114,7 +137,7 @@ function isNameStartingWithExistingLetter(contactIndex) {
 }
 
 function setFavouriteBackgroundColor(contactIndex) {
-    document.getElementById('contacts_list_contact_pictureContainer_'+contactIndex).style.backgroundColor = contacts.contacts[contactIndex].favouriteColor;
+    document.getElementById('contacts_list_contact_pictureContainer_' + contactIndex).style.backgroundColor = contacts.contacts[contactIndex].favouriteColor;
 }
 
 function getNamePrefix(contactIndex) {
@@ -164,11 +187,19 @@ function generateContactListEntry(index) {
 
 
 function displayAddContact() {
-    document.getElementById('addContact-container').classList.remove('hideAddContact');
+    document.getElementById('contactAddPopUp-container').classList.remove('hideAddContact');
 }
 
 function hideAddContact() {
-    document.getElementById('addContact-container').classList.add('hideAddContact');
+    document.getElementById('contactAddPopUp-container').classList.add('hideAddContact');
+}
+
+function displayEditContact() {
+    document.getElementById('contactEditPopUp-container').classList.remove('hideEditContact');
+}
+
+function hideEditContact() {
+    document.getElementById('contactEditPopUp-container').classList.add('hideEditContact');
 }
 
 

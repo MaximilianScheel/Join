@@ -5,8 +5,12 @@ body {
     overflow-y: hidden;
 }
 
+.d-show {
+    display: block !important;
+}
+
 .d-none {
-    display: none;
+    display: none !important;
 }
 
 .contacts-wrapper {
@@ -219,6 +223,19 @@ body {
     margin-right: 10px;
 }
 
+.contacts-overview-container .overview-body-editContact-container-mobile {
+    position: absolute;
+    bottom: 120px;
+    right: 20px;
+    padding: 10px;
+    background-color: rgba(42, 54, 71, 1);
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .contacts-overview-container .overview-body-bonusInformation {
     display: flex;
     flex-direction: column;
@@ -231,6 +248,12 @@ body {
     flex-direction: column;
     align-items: flex-start;
     margin-bottom: 15px;
+}
+
+.showMobileContactListArrow {
+    position: absolute;
+    top: 90px;
+    right: 5%;
 }
 
 .addContact-button {
@@ -260,5 +283,81 @@ body {
     background-color: rgba(42, 54, 71, 0.8)
 }
 
+@media(max-width: 700px) {
 
+    body {
+        overflow-y: visible !important;
+    }
 
+    .contacts-wrapper {
+        flex-direction: column-reverse;
+        height: 100% !important;
+    }
+
+    .contacts-wrapper-inner-content {
+        overflow-y: hidden !important;
+    }
+
+    .contacts-overview {
+        display: none;
+        margin-top: -5px;
+    }
+
+    .contacts-wrapper-inner {
+        width: 100%;
+    }
+
+    .contacts-list {
+        max-width: 100% !important;
+        width: 100%;
+        margin-top: 40px;
+        margin-bottom: 80px;
+        padding-bottom: 20px;
+    }
+
+    .addContact-button {
+        position: fixed;
+        top: 90px;
+        right: 5%;
+        bottom: unset;
+        padding: 7px;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        background-color: #2A3647;
+        border-radius: 5px;
+        border-style: none;
+        color: white;
+        font-weight: bold;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .contacts-overview-headline {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+
+    .contacts-overview-headline hr {
+        border-color: aqua;
+        border-style: solid;
+        margin-left: 0px;
+        height: 0px;
+        width: 60px;
+        margin-right: 0px;
+    }
+    
+    .contacts-overview-headline h1 {
+        font-size: 42px;
+        margin-right: 15px;
+        margin-bottom: 0px;
+    }
+    
+    .contacts-overview-headline span {
+        font-size: 27px;
+    }
+
+    .overview-headline-container h3 {
+        font-size: 32px;
+    }
+}

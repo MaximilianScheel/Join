@@ -1,23 +1,20 @@
-@font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    src: url(../assets/fonts/Inter-Regular.ttf);
-}
-
-@font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    src: url(../assets/fonts/Inter-Bold.ttf);
-}
-
 body {
     background-color: #F5F5F5;
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     line-height: 120%;
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+}
 
+main {
+    width: 100%;
+}
+
+form {
+    margin: 40px;
 }
 
 h1 {
@@ -54,7 +51,7 @@ h1 {
     font-size: 21px;
 }
 
-.inputBlock input, .inputBlock textarea, .subtask-input, .selectCategory  {
+.inputBlock input, .inputBlock textarea, .subtask-input  {
     background-color: #FFFFFF;
     display: flex;
     align-items: center;
@@ -67,17 +64,110 @@ h1 {
     font-family: 'Inter';
 }
 
+/* Category Input Field Start */
+.selectCategory{
+    display: flex;
+    padding: 0px 15px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.selectField {
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    cursor: pointer;
+    background-color: white;
+    transition: all 150ms ease-in-out;
+    z-index: 800;
+    height: 50px;
+  }
+
 .selectCategory input{
     border: 0;
     padding: 0;
     cursor: pointer;
 }
 
+.center {
+    display: flex;
+    align-items: center;
+}
+
+.imageCat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 5px;
+}
+
+.oneCategory:hover {
+    background-color: #D1D1D1;
+}
+
+.oneCategory {
+    padding: 10px 15px;
+    font-size: 21px;
+    font-family: 'Inter';
+}
+
+#categoryColor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#categoryColors {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5px;
+    width: 200px;
+}
+
+#categoryColors:hover img {
+    cursor: pointer;
+
+  }
+
+.crossAndCheck {
+    display: flex;
+}
+
+
+/* Category Input Field End */
+
+/* Assign to Start */
+
+.selectContact {
+    padding: 0px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.selectContact input {
+    padding: 0;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.imageContact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Assign to End */
+
 .add_task_textarea {
     resize: vertical;
     max-height: 200px;
     min-height: 80px;
     padding: 15px !important;
+ }
+
+ .paddingRight {
+    padding-right: 5px;
  }
 
  .no-outline:focus {
@@ -203,6 +293,13 @@ button {
 
 .click_create {
     display: none;
+}
+
+.d-none  {
+    display: none !important;
+}
+#categoryImage img{
+    padding-right: 0;
 }
 
 
