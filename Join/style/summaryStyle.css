@@ -1,0 +1,622 @@
+body {
+    margin: 0px;
+}
+
+.sidebar {
+    background-color: #2A3647;
+    height: 1024px;
+    width: 232px;
+}
+
+.content {
+    display: flex;
+}
+
+.link {
+    color: black;
+    text-decoration: none;
+    
+}
+
+.link :hover {
+    transform: scale(1.1);
+    transition: 400ms;
+}
+
+
+
+.linkBackground {
+    background-color: #2A3647 !important;
+}
+
+.textHover {
+    color: white;
+}
+
+
+
+.circle {
+    fill: #FFFFFF;
+}
+
+.path {
+    fill: #2A3647; 
+}
+
+.stroke {
+    stroke: #2A3647;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    height: 89px;
+}
+
+.headerHeadline {
+    margin-left: 116px;
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+
+.iconsHeader {
+    margin-right: 36px;
+    display: flex;
+    align-items: center;
+}
+
+.profilIcon {
+    margin-left: 26px;
+}
+
+
+.main {
+    background-color: #F5F5F5;
+    height: 92%;
+    width: 92vw;
+}
+
+.headline {
+    display: flex;
+    margin-left: 123px;
+}
+
+.summary {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    padding-right: 60px;
+    height: 90px;
+    margin-bottom: 87px;
+    margin-top: 82px;
+}
+
+.lineSummary {
+    border-style: groove;
+    border-right-color: #29ABE2;
+    border-left: none;
+    border-bottom: none;
+    border-top: none;
+    height: 100px;
+    margin-top: 76px;
+}
+
+.nutshell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    font-size: 2rem;
+    height: 90px;
+    margin-bottom: 87px;
+    margin-top: 82px;
+}
+
+.contentChild {
+    display: flex;
+    margin-left: 123px;
+}
+
+
+.tasks {
+    display: flex;
+    justify-content: space-between;
+    width: 580px;
+    gap: 18px;
+    margin-bottom: 35px;
+}
+
+.taskBoard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+    height: 170px;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+}
+
+.taskBoardNumber {
+    font-weight: 600;
+    font-size: 3rem;
+    pointer-events: none;
+}
+
+.taskBoardText {
+    pointer-events: none;
+}
+
+.taskProgress {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+    height: 170px;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+}
+.taskProgressNumber {
+    font-weight: 600;
+    font-size: 3rem;
+    pointer-events: none;
+}
+
+.taskProgressText {
+    pointer-events: none;
+}
+
+.taskFeedback {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+    height: 170px;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+}
+
+.taskFeedbackNumber {
+    font-weight: 600;
+    font-size: 3rem;
+    pointer-events: none;
+
+}
+
+.taskFeedbackText {
+    pointer-events: none; 
+}
+
+.urgentContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 580px;
+    height: 150px;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    margin-bottom: 35px;
+}
+
+
+
+.urgentIconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.urgentChildContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 129px;
+    pointer-events: none;
+}
+
+.urgentSmallContainer {
+    pointer-events: none;
+}
+
+.urgentNumber {
+    display: flex;
+    justify-content: center;
+    font-size: 4rem;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.urgentText {
+    pointer-events: none;
+}
+
+.lineUrgent {
+border-style: groove;
+border-right-color: #D1D1D1;
+border-left: none;
+border-bottom: none;
+border-top: none;
+height: 100px;
+}
+
+.dateContainer {
+    pointer-events: none;
+}
+
+.date {
+    pointer-events: none;
+}
+
+.deadline {
+    pointer-events: none;
+}
+
+.todoContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 580px;
+}
+
+.todo {
+    display: flex;
+    width: 272.5px;
+    height: 150px;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.todoLink {
+    background-color: #2A3647;
+}
+
+.todoChildContainer {
+    display: flex;
+    width: 132.5px;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.todoIconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.todoIcon {
+    pointer-events: none;
+}
+
+.todoNumberText {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+pointer-events: none;
+}
+
+.todoNumber {
+    font-size: 4rem;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.done {
+    display: flex;
+    width: 272.5px;
+    height: 150px;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.doneChildContainer {
+    display: flex;
+    width: 132.5px;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.doneIconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.doneNumberText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.doneNumber {
+    font-size: 4rem;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.userNameContainer {
+    display: flex;
+    align-items: center;
+    margin-left: 67px;
+}
+
+.userNameChildContainer {
+    font-size: 2rem;
+    width: 400px;
+}
+
+.userName {
+    color: #29ABE2;
+    font-size: 2.5rem;
+    font-weight: bold;
+    width: 350px;
+}
+
+.sum {
+    border: 10px;
+}
+
+@media only screen and (max-width: 1950px) {
+    .main {
+        width: 89vw;
+    }
+
+}
+
+@media only screen and (max-width: 1450px) {
+    .main {
+        width: 84vw;
+    }
+
+}
+
+
+@media only screen and (max-width: 1300px) {
+    .main {
+        width: 83vw;
+    }
+
+    .headline {
+        margin-left: 95px;
+    }
+
+    .contentChild {
+        margin-left: 95px;
+    }
+
+    .userNameContainer {
+        width: 347px;
+        margin-left: 30px;
+    }
+
+}
+
+
+@media only screen and (max-width: 1240px) {
+    .main {
+        width: 78vw;
+        height: 99%;
+    }
+
+
+    .headline {
+        margin-bottom: -60px;
+        margin-top: -60px;
+    }
+
+    .contentChild {
+        display: block;
+    }
+
+    .userNameChildContainer {
+        margin-top: 24px;
+        margin-left: 0px;
+    }
+}
+
+
+@media only screen and (max-width: 830px) {
+    .sidemenu-container-desktop {
+        display: none !important;
+    }
+
+    .main {
+        width: 100vw;
+        height: 137%;
+    }
+}
+
+@media only screen and (max-width: 770px) {
+
+
+    .main {
+        height: 119%;
+    }
+}
+
+@media only screen and (max-width: 416px) {
+
+
+    .main {
+        height: 119%;
+    }
+
+    .headline {
+        margin-left: 20px;
+        display: block;
+    }
+
+    .lineSummary {
+        display: none !important;
+    }
+
+    .nutshell {
+        justify-content: flex-start;
+        margin-top: -108px;
+        width: 330px;
+    }
+
+    .contentChild {
+        margin-left: 20px;
+    }
+
+    .tasks {
+        width: 360px;
+    }
+
+    .urgentContainer {
+        width: 360px;
+    }
+
+
+.todoContainer {
+    width: 360px;
+}
+
+    .taskBoard {
+        width: 110px;
+        height: 110px;
+    }
+
+
+    .taskProgress {
+        width: 110px;
+        height: 110px;
+}
+
+.taskFeedback {
+    width: 110px;
+    height: 110px;
+}
+
+.urgentContainer {
+    width: 360px;
+    height: 110px;
+
+}
+
+.todo {
+    width: 177.5px;
+    height: 110px;
+
+}
+
+.done {
+    width: 177.5px;
+    height: 110px;
+
+}
+
+.userNameContainer {
+    display: none;
+}
+
+.taskFeedbackText {
+    padding-left: 26px;
+}
+
+}
+
+@media only screen and (max-width: 390px) {
+
+
+    .main {
+        height: 119%;
+    }
+
+    .headline {
+        margin-left: 20px;
+        display: block;
+    }
+
+    .lineSummary {
+        display: none !important;
+    }
+
+    .nutshell {
+        justify-content: flex-start;
+        margin-top: -108px;
+        width: 330px;
+    }
+
+    .contentChild {
+        margin-left: 16px;
+    }
+
+    .tasks {
+        width: 320px;
+        gap: 0px;
+    }
+
+    .urgentContainer {
+        width: 320px;
+    }
+
+
+.todoContainer {
+    width: 320px;
+}
+
+    .taskBoard {
+        width: 98px;
+        height: 98px;
+    }
+
+
+    .taskProgress {
+        width: 98px;
+        height: 98px;
+}
+
+.taskFeedback {
+    width: 98px;
+    height: 98px;
+}
+
+.urgentContainer {
+    width: 320px;
+    height: 98px;
+
+}
+
+.todo {
+    width: 155.5px;
+    height: 98px;
+
+}
+
+.done {
+    width: 155.5px;
+    height: 98px;
+
+}
+
+.userNameContainer {
+    display: none;
+}
+
+.taskFeedbackText {
+    padding-left: 20px;
+}
+
+.taskProgressText {
+    padding-left: 20px;
+}
+
+}
+
+
+
+
+

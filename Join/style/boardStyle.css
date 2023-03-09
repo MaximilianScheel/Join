@@ -1,0 +1,158 @@
+body {
+    margin: 0px;
+}
+
+.sidebar {
+    background-color: #2A3647;
+    height: 1024px;
+    width: 232px;
+}
+
+.content {
+    display: flex;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    height: 89px;
+}
+
+.headerHeadline {
+    margin-left: 116px;
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.iconsHeader {
+    margin-right: 36px;
+    display: flex;
+    align-items: center;
+}
+
+.profilIcon {
+    margin-left: 26px;
+}
+
+.main {
+    background-color: #F5F5F5;
+    height: 935px;
+    width: 90vw;
+}
+
+.headline {
+    display: flex;
+    margin-left: 123px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.board {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    padding-right: 60px;
+    height: 90px;
+    margin-bottom: 87px;
+    margin-top: 82px;
+}
+
+.contentChild {
+    display: flex;
+    margin-left: 123px;
+}
+
+.searchAddTask {
+    display: flex;
+    margin-right: 65px;
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    width: 251px;
+    height: 51px;
+    background-color: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+}
+
+.inputSearch {
+    height: 40px;
+    border: none;
+    width: 190px;
+    margin-left: 10px;
+}
+
+.lineBoard {
+    border-style: groove;
+    border-right: 1px solid #D1D1D1;
+    border-left: none;
+    border-bottom: none;
+    border-top: none;
+    height: 31px;
+}
+
+.lensContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 47px;
+}
+
+.lensImg {
+    width: 27px;
+    height: 31px;
+    cursor: pointer;
+}
+
+.addTaskContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2A3647;
+    width: 137px;
+    height: 51px;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-left: 35px;
+    cursor: pointer;
+}
+
+.addTaskContainer:hover {
+    background-color: #2AABE2;
+}
+
+.addTaskIcon {
+margin-left: 15px;
+}
+
+.dragAreaHighlight {
+    background-color: #e6e6e6;
+}
+
+.area {
+width: 250px;
+font-weight: bold;
+font-size: 1.5rem;
+height: 800px;
+}
+
+.areaChild {
+    display: flex;
+    justify-content: space-between;
+}
+
+.addTaskSvg {
+    cursor: pointer;
+}
+
+.addTaskSvg :hover rect {
+    stroke: #2AABE2;
+    color: #2AABE2;
+    fill: #2AABE2;
+
+}
