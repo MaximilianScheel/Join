@@ -17,7 +17,6 @@
         <script src="js/add_Task.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-
     </head>
 
     <body onload="init(), loadAllTasks()">
@@ -26,7 +25,11 @@
          <div>
             <div class="desktop-topBar-content-container" w3-include-html="assets/templates/desktop-topBar-template.html"></div>
          </div>
-            <form onsubmit="addTask()">
+         <div id="createTaskBtn" >
+            <img id="image" src="assets/img/task_added_to_board.png" alt="Bild">
+          </div>
+
+            <form onsubmit="addTask(); return false;">
                 <div class="headline">
                     <h1>Add Task</h1>
                 </div>
@@ -35,12 +38,12 @@
 
                         <div class="inputBlock">
                             <span class="inputTitle">Title</span>
-                            <input id="title" placeholder="Enter a title" required>
+                            <input id="title" placeholder="Enter a title" onkeyup="addTitle()" required>
                         </div>
 
                         <div class="inputBlock">
                             <span class="inputTitle">Description</span>
-                            <textarea id="description" class="add_task_textarea" placeholder="Enter a Description" required></textarea>
+                            <textarea id="description" class="add_task_textarea" placeholder="Enter a Description" onkeyup="addDescription()" required></textarea>
                         </div>
 
                         <div class="inputBlock">
@@ -121,7 +124,7 @@
                     <div class="rightContainer">
                         <div class="inputBlock">
                             <span class="inputTitle">Due date</span>
-                            <input type="date" required id="date">
+                            <input type="date" required id="date" onkeyup="addDate()">
                         </div> 
                         <div class="inputBlock">
                             <span class="inputTitle">Prio</span>
@@ -158,14 +161,13 @@
                                     <img src="assets/img/cancel_hover.png" class="hover_cancel">
                                     <img src="assets/img/cancel_click.png" class="click_cancel">                                    
                                 </button>
-                                <button class="createBtn">
+                                <button class="createBtn" onclick="clearValues()">
                                     <img src="assets/img/createTask_default.png" class="default_create">
                                     <img src="assets/img/createTask_hover.png" class="hover_create">
                                     <img src="assets/img/creatTask_click.png" class="click_create">
                                 </button>
 
                         </div>
-
                     </div>
                 </div>
 

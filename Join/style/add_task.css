@@ -70,6 +70,7 @@ h1 {
     padding: 0px 15px;
     justify-content: space-between;
     align-items: center;
+    height: 50px;
 }
 
 .selectField {
@@ -142,6 +143,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 50px;
 }
 
 .selectContact input {
@@ -204,6 +206,7 @@ h1 {
     border-right: unset;
     border-radius: 10px 0 0 10px;
     width: 100%;
+    height: 50px;
 }
 
 .subtaskBtn {
@@ -302,14 +305,30 @@ button {
     padding-right: 0;
 }
 
+/* create Task button */
+#createTaskBtn {
+    display: flex;
+    justify-content: center;
+  }
+  
+  #image {
+    position: absolute;
+    bottom: 30px;
+    transform: translateY(-70%);
+    opacity: 0;
+    transition: opacity 3s, transform 3s;
+  }
 
 
-
-
-@media (max-width: 800px) {
+@media (max-width: 950px) {
 
     h1 {
         line-height: 30px;
+        font-size: 50px;
+    }
+
+    form {
+        padding-bottom: 80px;
     }
     
     .line {
@@ -318,7 +337,12 @@ button {
 
     .flexContainer {
         flex-direction: column;
+        justify-content: flex-start;
+        display: flex;
+        height: 100% !important;
         gap: 0;
+        overflow-y: auto;
+        height: fit-content;
     }
 
     .clearBtn {
@@ -326,7 +350,41 @@ button {
     }
 
     .buttons-createTask {
-        top: 35px;
+        top: 10px;
+    }
+    
+    .inputBlock input, .inputBlock textarea, .subtask-input,.subtaskBtn, .subtask, .selectContact, .selectField, .selectCategory, .prioBtn {
+        height: 43px !important;
+    }
+
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #F5F5F5;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #AAA;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #999;
+    }
+      
+}
+
+@media (max-width: 450px) { 
+    
+    input, textarea, .oneCategory {
+        font-size: 18px !important;
+    }
+
+    form {
+        margin: 15px;
     }
 
 }

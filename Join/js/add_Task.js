@@ -1,96 +1,108 @@
 setURL('https://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ever');
 
-
 let tasks = [];
 let allTasks = [];
-let priority = "low" ;
-let allSubtasks = [];
+let priority = '"low"' ;
+let selectedTitle;
+let selectedDescription;
+let selectedDate;
+let activePriority;
 let selectedSubtasks = [];
-let activePriority = [];
+let allSubtasks = [];
 
 
 async function init() {
-    await downloadFromServer();
-    tasks = JSON.parse(backend.getItem('users')) || [];
+  await downloadFromServer();
+  tasks = JSON.parse(backend.getItem(allTasks)) || [];
 
-    backend.setItem('test', 'Backend Einbindung funktioniert!');
-    let a = backend.getItem('test');
 
-    console.log(a);
-    includeHTML();
-    loadAllTasks();
+  console.log(allTasks);
+  includeHTML();
+  loadAllTasks();
+
 }
 
-function addTask() {
-    let description = document.getElementById('description');
-    let title = document.getElementById('title');
-    let date = document.getElementById('date');
-    let task = {
-        'title': title.value,
-        'description': description.value,
-        'category': selectedCategory,
-        'color': selectedColor,
-        'date': date.value,
-        'priority': getActivePriority(),
-        'subtasks': selectedSubtasks,
-        };
-    allTasks.push(task);
-    let allTasksAsString = JSON.stringify(allTasks); //Array wird zu string
-    localStorage.setItem("allTasks", allTasksAsString); 
-    console.log(task);
-    clearValues();  
-    }
+async function addTask() {
+  let task = {
+      'title': selectedTitle,
+      'description': selectedDescription,
+      'category': selectedCategory,
+      'color': selectedColor,
+      'date': selectedDate,
+      'priority': getActivePriority(),
+      'subtasks': selectedSubtasks,
+      };
+    // allTasks.push(task);
+    await saveAllTasks(task);
+    // let allTasksAsString = JSON.stringify(allTasks); //Array wird zu string
+    // localStorage.setItem("allTasks", allTasksAsString);
+    // console.log(task);
+    clearValues();
+  }
+
+function addTitle() {
+  let title = document.getElementById('title');
+  selectedTitle = '';
+  selectedTitle = title.value;
+}
+
+function addDescription() {
+  let description = document.getElementById('description');
+  selectedDescription = '';
+  selectedDescription = description.value;
+}
+
+function addDate() {
+  let date = document.getElementById('date');
+  selectedDate = '';
+  selectedDate = date.value;
+}
+
+async function saveAllTasks(task) {
+  allTasks.push(task);
+  await backend.setItem('allTasks', JSON.stringify(allTasks));
+  loadAllTasks();
+}
+
+// function showInfo() {
+//   document.getElementById('createTaskBtn').classList.remove('d-none');
+//   setTimeout(function() {
+//     document.getElementById('createTaskBtn').classList.add('d-none');
+//   },3800);
+// }
 
 function clearValues() {
-    let title = document.getElementById("title");
-    let description = document.getElementById("description");
-    let category = document.getElementById("category");
-    title.value = '';
-    description.value = '';
-    category.value = '';
+  let title = document.getElementById("title");
+  let description = document.getElementById("description");
+  let category = document.getElementById("category");
+  let date = document.getElementById("date");
+
+  title.value = '';
+  description.value = '';
+  category.value = '';
+  date.value = '';
+  cancelNewCategory();
 }
 
 /**
  * Load all tasks from local storage
  * and display them in the list
- * 
+ *
 */
 
 function loadAllTasks() {
-    localStorage.getItem("tasks");
-    let allTasksAsString = localStorage.getItem("allTasks");
+    backend.getItem("tasks");
+    let allTasksAsString = backend.getItem("allTasks");
     allTasks = JSON.parse(allTasksAsString);
     console.log(allTasks);
-    // showTasks();
 }
 
-/**
- * 
- * Display all tasks in the list
- * 
-*/
 
-// function showTasks() {
-//     let taskList = document.getElementById("taskList");
-//     taskList.innerHTML = '';
-//     for (let i = 0; i < allTasks.length; i++) {
-//         let task = allTasks[i];
-//         let taskElement = document.createElement("div");
-//         taskElement.innerHTML = `
-//             <h2>${task.title}</h2>
-//             <p>${task.description}</p>
-//             <p>${task.category}</p>
-//             <p>${task.createdAt}</p>
-//             <button onclick="deleteTask(${i})">Delete</button>
-//         `;
-//         taskList.appendChild(taskElement);
-//     }
-// }
 
 /**
- * 
+ *
  * Prio
- * 
+ *
 */
 
 function renderPrioBtnClicked(prio) {
@@ -183,7 +195,7 @@ function addNewSubtask() {
     }
     newSubtaskInput.value = '';
   }
-  
+
 function changeImage(newSubtask, selectedSubtasks) {
   let subtaskImageSrc = "assets/img/subtask_rectangle.png";
   if (selectedSubtasks && selectedSubtasks.some(task => task.name === newSubtask)) {
@@ -191,7 +203,7 @@ function changeImage(newSubtask, selectedSubtasks) {
   }
   return subtaskImageSrc;
 }
-  
+
 function showSubtask (i, newSubtask) {
   const subtaskImageSrc = changeImage(newSubtask, selectedSubtasks);
   return `
@@ -200,7 +212,7 @@ function showSubtask (i, newSubtask) {
     </div>
   `;
 }
-  
+
 function checkmark(i) {
   const newSubtask = { "name": allSubtasks[i], "state": "todo" };
   const index = selectedSubtasks.findIndex(task => task.name === newSubtask.name);
@@ -212,7 +224,6 @@ function checkmark(i) {
   const subtaskImageSrc = changeImage(newSubtask.name, selectedSubtasks);
   document.getElementById('checkbox' + i).src = subtaskImageSrc;
 }
-  
 
 
 function includeHTML() {

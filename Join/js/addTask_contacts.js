@@ -1,7 +1,3 @@
-
-/**
- * function to open or close the contacts-field by clicking on it
- */
 function openCloseContacts() {
   if (document.getElementById('selectFieldContact').style.height == '147px') {
     if ($(window).width() > 720) {
@@ -18,7 +14,6 @@ function openCloseContacts() {
   }
   disableInputContact()
 }
-
 
 function disableInputContact () {
   if (document.getElementById('contact').disabled = true) {

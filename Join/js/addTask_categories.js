@@ -1,6 +1,6 @@
 let colors = ['#e200be','#1fd7c1','#0038ff','#ff8a00','#2ad300','#ff0000','#8aa4ff'];
-let selectedCategory;
-let selectedColor;
+let selectedCategory = [];
+let selectedColor = [];
 
 
 /**
