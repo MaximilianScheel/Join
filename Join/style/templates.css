@@ -99,7 +99,7 @@
     width: 60%;
     margin-right: 40px;
     margin-left: 40px;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .contactPopUp-form-body-formular form {
@@ -150,7 +150,7 @@
         bottom: 0;
         right: 0;
         width: 100%;
-        height: 500px;
+        height: 100vh;
         display: flex;
         color: white;
         overflow: hidden;
@@ -164,6 +164,7 @@
 
     .contactPopUp-join-container {
         width: 100%;
+        height: 40%;
         padding-bottom: 75px;
     }
 
