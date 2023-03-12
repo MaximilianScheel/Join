@@ -1,112 +1,176 @@
-setURL('http://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ever');
-
-async function init () {
-    await downloadFromServer();
-    users = JSON.parse(backend.getItem('users')) || [];
-}
 
 
 
-let allTasks = [];
-
-async function init() {
-    await downloadFromServer();
-    allTasks = JSON.parse(backend.getItem('users')) || [];
-
-    backend.setItem('test', 'hallo');
-    let a = backend.getItem('test');
-
-    console.log(a);
-}
+setURL('https://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ever');
 
 /**
- * Add a new task to the list
+ * Initiates the main page
  */
-function addTask() {
-    let description = document.getElementById("description");
-    let category = document.getElementById("category");   
-    let title = document.getElementById("title");
-    let task = {
-        'title': title.value,
-        'description': description.value,
-        'category': category.value,
-        'createdAt': new Date().getTime(),
-    };
-    allTasks.push(task);
-    let allTasksAsString = JSON.stringify(allTasks);
-    localStorage.setItem("allTasks", allTasksAsString);
-    console.log(task);
-    clearValues();  
+async function init() {
+    await loadDataFromServer();
+    await loadCurrentUserFromServer();
+
 }
 
 
 /**
- * clear all values
- * 
-*/
+ * Loads all data from the server
+ */
+async function loadDataFromServer() {
+    await downloadFromServer();
+    users = await loadFromServer('users');
 
-
-function clearValues() {
-    let title = document.getElementById("title");
-    let description = document.getElementById("description");
-    let category = document.getElementById("category");
-    title.value = '';
-    description.value = '';
-    category.value = '';
 }
 
 
 /**
- * 
- * Display all tasks in the list
- * 
-*/
+ * Loads the current user from server
+ */
+async function loadCurrentUserFromServer() {
+    currentUser = JSON.parse(backend.getItem('currentUser'))
+}
 
-function showTasks() {
-    let taskList = document.getElementById("taskList");
-    taskList.innerHTML = '';
-    for (let i = 0; i < allTasks.length; i++) {
-        let task = allTasks[i];
-        let taskElement = document.createElement("div");
-        taskElement.innerHTML = `
-            <h2>${task.title}</h2>
-            <p>${task.description}</p>
-            <p>${task.category}</p>
-            <p>${task.createdAt}</p>
-            <button onclick="deleteTask(${i})">Delete</button>
-        `;
-        taskList.appendChild(taskElement);
+/**
+ * Loads the requested data from server
+ * @param {string} key 
+ * @returns Data from server as Array
+ */
+async function loadFromServer(key) {
+    let item = [];
+    item = JSON.parse(backend.getItem(key)) || [];
+    return Array.from(item);
+}
+
+
+/**
+ * Saves the data to the server
+ * @param {String} key 
+ * @param {Array} item 
+ */
+async function saveOnServer(key, item) {
+    itemAsString = JSON.stringify(item);
+    await backend.setItem(key, itemAsString);
+}
+
+
+
+/**
+ * Reads the page name and converts it to a container ID
+ * @returns String
+ */
+function getPageName() {
+    let path = window.location.pathname;
+    path = path.split('/').pop();
+    path = path.split('.').shift();
+    path = 'menu-' + path;
+
+    return path;
+}
+
+
+/**
+ * Highlightes the menu item for the current page
+ */
+function controlMenuHighlighting() {
+    const path = getPageName();
+
+    if (path != 'menu-help') {
+        let menuToActivate = document.getElementById(path);
+        menuToActivate.classList.add('nav-item-active');
     }
 }
 
 
 /**
- * 
- * Delete a task from the list
- * @param {number} index
- * 
-*/
+ * Toggles the visibility of the context menu
+ * @param {Object} ctxMenuId The ID of the context menu
+ */
+function toggleContextMenu(ctxMenuId) {
+    const ctxMenu = document.getElementById(ctxMenuId);
 
-function deleteTask(index) {
-    allTasks.splice(index, 1);
-    let allTasksAsString = JSON.stringify(allTasks);
-    localStorage.setItem("allTasks", allTasksAsString);
-    showTasks();
+    if (ctxMenu.classList.contains('d-none')) {
+        showCtxMenu(ctxMenu);
+    }
+    else {
+        hideCtxMenu(ctxMenu);
+    }
 }
 
 
 
 /**
- * Load all tasks from local storage
- * and display them in the list
- * 
-*/
-
-function loadAllTasks() {
-    localStorage.getItem("allTasks");
-    let allTasksAsString = localStorage.getItem("allTasks");
-    allTasks = JSON.parse(allTasksAsString);
-    console.log(allTasks);
-    showTasks();
+ * Logout and reset currentUser
+ */
+async function logout() {
+    currentUser = [];
+    await saveOnServer('currentUser', currentUser);
+    window.location.href = './index.html';
 }
 
+
+
+
+/**
+ * Validating that full name is given
+ * @param {Object} username The input field for the user name
+ * @param {String} msgElemId The ID of the HTML message element
+ * @param {String} className The CSS class name to be used
+ * @returns Boolean
+ */
+function nameValidation(username, msgElemId, className) {
+    if (!username.value.trim().includes(' ')) {
+        document.getElementById(msgElemId).classList.remove(className);
+        return false;
+    }
+    else {
+        document.getElementById(msgElemId).classList.add(className);
+        return true;
+    }
+}
+
+
+/**
+ * Create initials from first letters of ssername
+ * @param {String} name The full name of the user
+ * @returns String
+ */
+function getInitials(name) {
+    const fullName = name.split(' ');
+    const initials = fullName.shift().charAt(0) + fullName.pop().charAt(0);
+    return initials.toUpperCase();
+}
+
+
+/**
+ * Generate random color for User initials background
+ * @returns HSL color as String
+ */
+function generateColors() {
+    let h = Math.floor(Math.random() * 359);
+    return color = `hsl(${h}, 100%, 50%)`;
+}
+
+
+
+
+
+/**
+ * Shows the popup "Task added to board" with animation
+ */
+function showPopup(id) {
+    let popup = document.getElementById(id);
+
+    popup.classList.add('animation');
+    setTimeout(function () {
+        removeAnimate(popup);
+    }, 3000);
+}
+
+
+/**
+ * Removes the animation class from the little popup
+ * @param {string} popup Little Popup 
+ */
+function removeAnimate(popup) {
+    popup.classList.remove('animation');
+}
