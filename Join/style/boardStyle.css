@@ -2,6 +2,11 @@ body {
     margin: 0px;
 }
 
+.fontBold {
+    font-weight: bold;
+font-size: 1.5rem;
+}
+
 .sidebar {
     background-color: #2A3647;
     height: 1024px;
@@ -59,8 +64,10 @@ body {
 }
 
 .contentChild {
+    width: 1700px;
     display: flex;
     margin-left: 123px;
+    justify-content: space-between;
 }
 
 .searchAddTask {
@@ -135,24 +142,63 @@ margin-left: 15px;
 }
 
 .area {
-width: 250px;
-font-weight: bold;
-font-size: 1.5rem;
+width: 300px;
 height: 800px;
+}
+
+
+.areaTodoDrag {
+    height: 200px;
+    width: 300px;
 }
 
 .areaChild {
     display: flex;
     justify-content: space-between;
+    width: 342px;
+    margin-bottom: 16px;
 }
 
 .addTaskSvg {
     cursor: pointer;
+    padding-right: 20px;
 }
 
 .addTaskSvg :hover rect {
     stroke: #2AABE2;
     color: #2AABE2;
     fill: #2AABE2;
+
+}
+
+.taskContainer {
+    width: 300px;
+    height: fit-content;
+    background-color: #FFFFFF;
+    padding: 16px;
+    margin-right: 26px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.titleContainer {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.categoryContainer {
+    display: flex;
+    justify-content: center;
+color: #FFFFFF;
+width: 100px;
+border-radius: 8px;
+margin-bottom: 16px;
+}
+
+.descriptionContainer {
+    height: fit-content;
+    color: #A8A8A8;
+    word-break: break-word;
+    margin-bottom: 8px;
 
 }
