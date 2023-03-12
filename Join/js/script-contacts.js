@@ -7,37 +7,44 @@ let contacts = {
             {
                 "name": "Anton Mayer",
                 "email": "anton@gmail.com",
-                "phone": "+49 1111 111 131 1"
+                "phone": "+49 1111 111 131 1",
+                "favouriteColor": "rgba(255, 122, 0, 1)"
             },
             {
                 "name": "Anja Schulz",
                 "email": "schulz@hotmail.com",
-                "phone": "+49 11122 111 11 1"
+                "phone": "+49 11122 111 11 1",
+                "favouriteColor": "rgba(147, 39, 255, 1)"
             },
             {
                 "name": "Benedikt Ziegler",
                 "email": "benedikt@gmail.com",
-                "phone": "+49 1111 111 11 1"
+                "phone": "+49 1111 111 11 1",
+                "favouriteColor": "rgba(41, 171, 226, 1)"
             },
             {
                 "name": "David Eisenberg",
                 "email": "davidberg@gmail.com",
-                "phone": "+49 1112 311 11 1"
+                "phone": "+49 1112 311 11 1",
+                "favouriteColor": "rgba(252, 113, 255, 1)"
             },
             {
                 "name": "Eva Fischer",
                 "email": "eva@gmail.com",
-                "phone": "+49 1199 1021 11 1"
+                "phone": "+49 1199 1021 11 1",
+                "favouriteColor": "rgba(2, 207, 47, 1)"
             },
             {
                 "name": "Emmanuel Mauer",
                 "email": "emmanuelMa@gmail.com",
-                "phone": "+49 116311 11 2"
+                "phone": "+49 116311 11 2",
+                "favouriteColor": "rgba(175, 22, 22, 1)"
             },
             {
                 "name": "Marcel Bauer",
                 "email": "bauer@gmail.com",
-                "phone": "+49 1611 156 11 1"
+                "phone": "+49 1611 156 11 1",
+                "favouriteColor": "rgba(70, 47, 138, 1)"
             }
         ]
 };
@@ -62,6 +69,40 @@ function displayContact(index) {
     document.getElementById('overview_contact_email').innerHTML = contacts.contacts[index].email;
     document.getElementById('overview_contact_phone').innerHTML = contacts.contacts[index].phone;
     document.getElementById('contacts_overview_container').classList.remove('d-none');
+    document.getElementById('contacts_overview_contact_pictureContainer').style.backgroundColor = contacts.contacts[index].favouriteColor;
+    document.getElementById('contacts_overview_contact_picture').innerText = getNamePrefix(index);
+    activateContactEntry(index);
+    if (isMobile()) {
+        document.getElementById('contacts_overview').classList.add('d-show');
+        document.getElementById('contacts_list').classList.add('d-none');
+        document.getElementById('showMobileContactListArrow').classList.remove('d-none');
+        document.getElementById('addContact_button').classList.add('d-none');
+        document.getElementById('overview_body_editContact_container').classList.add('overview-body-editContact-container-mobile');
+        document.getElementById('overview_body_editContact_container_img').src = "./assets/img/pencil_white.png";
+    }
+}
+
+function isMobile() {
+    let viewportWidth = 0;
+    viewportWidth = window.innerWidth;
+    if (viewportWidth <= 700) {
+        return true;
+    }
+    return false;
+}
+
+function showContactListMobile() {
+    document.getElementById('contacts_overview').classList.remove('d-show');
+    document.getElementById('contacts_list').classList.remove('d-none');
+    document.getElementById('addContact_button').classList.remove('d-none');
+}
+
+function activateContactEntry(contactIndex) {
+    let allContactlistEntries = document.querySelectorAll('.contacts-list-contact');
+    allContactlistEntries.forEach(contactEntry => {
+        contactEntry.classList.remove('contactActive');
+    });
+    document.getElementById('contacts_list_contact_' + contactIndex).classList.add('contactActive');
 }
 
 function findStartingLetters() {
@@ -81,6 +122,7 @@ function buildContactList() {
     for (let i = 0; i < contacts.contacts.length; i++) {
         document.getElementById('contacts_list').innerHTML += generateContactListEntry(i);
         startingLetters.splice(existingLetterIndex, 1, 0);
+        setFavouriteBackgroundColor(i);
     }
 }
 
@@ -94,6 +136,20 @@ function isNameStartingWithExistingLetter(contactIndex) {
     return false;
 }
 
+function setFavouriteBackgroundColor(contactIndex) {
+    document.getElementById('contacts_list_contact_pictureContainer_' + contactIndex).style.backgroundColor = contacts.contacts[contactIndex].favouriteColor;
+}
+
+function getNamePrefix(contactIndex) {
+    let contactName = contacts.contacts[contactIndex].name;
+    contactName = contactName.split(" ");
+    let contactNamePrefix = "";
+    for (let i = 0; i < contactName.length; i++) {
+        contactNamePrefix += contactName[i].charAt(0);
+    }
+    return contactNamePrefix;
+}
+
 function generateContactListEntry(index) {
     if (isNameStartingWithExistingLetter(index)) {
         return `
@@ -102,7 +158,11 @@ function generateContactListEntry(index) {
                 <hr class="contacts-list-headrow">
             </div>
             <div id="contacts_list_contact_${index}" class="contacts-list-contact" onclick="displayContact(${index})">
-                <img id="contacts_list_contact_picture_${index}" class="contacts-list-contact-picture" src="" alt="AM">
+                <div id="contacts_list_contact_pictureContainer_${index}" class="contacts-list-contact-pictureContainer">
+                    <span id="contacts_list_contact_picture_${index}" class="contacts-list-contact-picture">
+                        ${getNamePrefix(index)}
+                    </span>
+                </div>
                 <div class="contacts-list-contact-keys">
                     <h3 id="contacts-list-contact-keys-name-${index}" class="contacts-list-contact-keys-name">${contacts.contacts[index].name}</h3>
                     <a id="contacts-list-contact-keys-email-${index}" class="contacts-list-contact-keys-email" href="#">${contacts.contacts[index].email}</a>
@@ -112,14 +172,41 @@ function generateContactListEntry(index) {
     }
     return `
     <div id="contacts_list_contact_${index}" class="contacts-list-contact" onclick="displayContact(${index})">
-        <img id="contacts_list_contact_picture_${index}" class="contacts-list-contact-picture" src="" alt="AM">
-            <div class="contacts-list-contact-keys">
-                <h3 id="contacts-list-contact-keys-name-${index}" class="contacts-list-contact-keys-name">${contacts.contacts[index].name}</h3>
-                <a id="contacts-list-contact-keys-email-${index}" class="contacts-list-contact-keys-email" href="#">${contacts.contacts[index].email}</a>
-            </div>
+        <div id="contacts_list_contact_pictureContainer_${index}" class="contacts-list-contact-pictureContainer">
+            <span id="contacts_list_contact_picture_${index}" class="contacts-list-contact-picture">
+                ${getNamePrefix(index)}
+            </span>
+        </div>
+        <div class="contacts-list-contact-keys">
+            <h3 id="contacts-list-contact-keys-name-${index}" class="contacts-list-contact-keys-name">${contacts.contacts[index].name}</h3>
+            <a id="contacts-list-contact-keys-email-${index}" class="contacts-list-contact-keys-email" href="#">${contacts.contacts[index].email}</a>
+        </div>
     </div>
     `;
 }
+
+
+function displayAddContact() {
+    document.getElementById('contactAddPopUp-container').classList.remove('hideAddContact');
+}
+
+function hideAddContact() {
+    document.getElementById('contactAddPopUp-container').classList.add('hideAddContact');
+}
+
+function displayEditContact() {
+    document.getElementById('contactEditPopUp-container').classList.remove('hideEditContact');
+}
+
+function hideEditContact() {
+    document.getElementById('contactEditPopUp-container').classList.add('hideEditContact');
+}
+
+
+function addContact() {
+    console.log('Es funktioniert!');
+}
+
 
 function includeHTML() {
     var z, i, elmnt, file, xhttp;

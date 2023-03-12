@@ -4,11 +4,69 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canban Board</title>
-    <script src="js/mini_backend.js"></script>
-    <script src=""></script>
+    <link rel="stylesheet" href="style/boardStyle.css">
+    <link rel="stylesheet" href="style/templates.css">
+    <script src="js/board.js"></script>
+    <title>Board</title>
 </head>
-<body>
-    
+<body onload="init()">
+
+
+
+<div class="content">
+    <header w3-include-html="assets/templates/desktop_template.html"></header>
+    <div class="containerChild">
+        <header class="desktop-topBar-content-container" w3-include-html="assets/templates/desktop-topBar-template.html">
+
+        </header>
+        <main class="main">
+            <div class="headline"> 
+                <div class="board"><h1><b>Board</b></h1></div>
+            <div class="searchAddTask">
+                <div class="searchBar">
+                <input class="inputSearch" type="text" id="myInput" onkeyup="myFunction()" placeholder="Find Task">
+                <div class="lineBoard"></div>
+                <div class="lensContainer"><img onclick="search()" class="lensImg" src="assets/img/lens.svg" alt="Lupe"></div>
+            </div>
+            <div class="addTaskContainer">Add Task <img class="addTaskIcon" src="assets/img/plus.svg" alt="Plus"></div>
+            </div>
+        </div>
+            <div class="contentChild">
+                <div class="area">
+                    <div class="areaChild">
+                    <div class="areaTodoHeader fontBold">To do</div>
+                    <img class="addTaskSvg" src="assets/img/plusButtonBoard.svg" alt="Plus">
+                    </div>
+                    <div id="todoArea" class="areaTodoDrag">
+                        
+                    </div>
+                </div>
+                <div class="area">
+                    <div class="areaChild">
+                    <div class="areaProgressHeader fontBold">In progress</div>
+                    <img class="addTaskSvg" src="assets/img/plusButtonBoard.svg" alt="Plus">
+                </div>
+                    <div id="progressArea" class="areaProgressDrag">
+                    </div>
+                </div>
+                <div class="area">
+                    <div class="areaChild">
+                    <div class="areaFeedbackHeader fontBold">Awaiting Feedback</div>
+                    <img class="addTaskSvg" src="assets/img/plusButtonBoard.svg" alt="Plus">
+                </div>
+                    <div id="feedbackArea" class="areaFeedbackDrag"></div>
+                </div>
+                <div class="area">
+                    <div class="areaChild">
+                    <div class="areaDoneHeader fontBold">Done</div>
+                    <img class="addTaskSvg" onclick="addTask()" src="assets/img/plusButtonBoard.svg" alt="Plus">
+                </div>
+                    <div id="doneArea" class="areaDoneDrag"></div>
+                </div>
+        </div>
+        </main>
+    </div>
+    </div>
+
 </body>
 </html>
