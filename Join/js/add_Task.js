@@ -9,35 +9,36 @@ let selectedDate;
 let activePriority;
 let selectedSubtasks = [];
 let allSubtasks = [];
+let idCounter = 0;
 
 
 async function init() {
   await downloadFromServer();
-  tasks = JSON.parse(backend.getItem(allTasks)) || [];
-
-
-  console.log(allTasks);
+  await loadContacts();
+  allTasks = JSON.parse(backend.getItem(allTasks)) || [];
+  renderAllContacts()
   includeHTML();
   loadAllTasks();
-
 }
 
 async function addTask() {
+  addDate();
   let task = {
       'title': selectedTitle,
       'description': selectedDescription,
       'category': selectedCategory,
       'color': selectedColor,
       'date': selectedDate,
+      'contactNames': selectedContactNames,
       'priority': getActivePriority(),
       'subtasks': selectedSubtasks,
+      'id': idCounter,
       };
-    // allTasks.push(task);
+
     await saveAllTasks(task);
-    // let allTasksAsString = JSON.stringify(allTasks); //Array wird zu string
-    // localStorage.setItem("allTasks", allTasksAsString);
-    // console.log(task);
     clearValues();
+    idCounter++;
+    init();
   }
 
 function addTitle() {
@@ -53,9 +54,7 @@ function addDescription() {
 }
 
 function addDate() {
-  let date = document.getElementById('date');
-  selectedDate = '';
-  selectedDate = date.value;
+  selectedDate = document.getElementById('date').value;
 }
 
 async function saveAllTasks(task) {
@@ -64,25 +63,65 @@ async function saveAllTasks(task) {
   loadAllTasks();
 }
 
-// function showInfo() {
-//   document.getElementById('createTaskBtn').classList.remove('d-none');
-//   setTimeout(function() {
-//     document.getElementById('createTaskBtn').classList.add('d-none');
-//   },3800);
-// }
+function showInfo() {
+  document.getElementById('createTaskBtn').classList.remove('d-none');
+  setTimeout(function() {
+    document.getElementById('createTaskBtn').classList.add('d-none');
+  },3800);
+}
 
 function clearValues() {
-  let title = document.getElementById("title");
-  let description = document.getElementById("description");
-  let category = document.getElementById("category");
-  let date = document.getElementById("date");
-
-  title.value = '';
-  description.value = '';
-  category.value = '';
-  date.value = '';
-  cancelNewCategory();
+  resetVariables();
+  resetContent();
 }
+
+function  resetVariables() {
+  selectedLetters = [];
+  selectedContactNames = [];
+  selectedSubtasks = [];
+  allSubtasks = [];
+}
+
+function resetContent() {
+  document.getElementById('title').value = '';
+  document.getElementById('description').value = '';
+  document.getElementById('date').value = '';
+  document.getElementById('newSubtasks').innerHTML = '';
+  document.getElementById('newSubtaskInput').value = '';
+  document.getElementById('addedContacts').innerHTML = '';
+  document.getElementById('contact').value = '';
+  for (let i = 0; i < allContacts.length; i++) {
+    document.getElementById('contactButton'+i).innerHTML = '<img src="assets/img/button_rectangle.png">';
+  }
+  cancelNewCategory();
+  closeCategories();
+  resetPriority();
+  closeContacts();
+}
+
+
+/**
+ * function to close the opened contacts and categories field
+ */
+function closeContacts() {
+  if ($(window).width() > 720) {
+    document.getElementById('selectFieldContact').style.height = '50px';
+  } else {
+    document.getElementById('selectFieldContact').style.height = '43px';
+
+  }
+  document.getElementById('openedContacts').classList.add('d-none');
+}
+
+function closeCategories() {
+  if ($(window).width() > 720) {
+    document.getElementById('selectField').style.height = '50px';
+  } else {
+    document.getElementById('selectField').style.height = '43px';
+  }
+  document.getElementById('openedCategories').classList.add('d-none');
+}
+
 
 /**
  * Load all tasks from local storage
@@ -93,7 +132,11 @@ function clearValues() {
 function loadAllTasks() {
     backend.getItem("tasks");
     let allTasksAsString = backend.getItem("allTasks");
-    allTasks = JSON.parse(allTasksAsString);
+    allTasks = JSON.parse(allTasksAsString) || [];
+    idCounter = allTasks.reduce((maxId, task) => Math.max(maxId, task.id), -1) + 1;
+    if (allTasks.length > 0) {
+      idCounter = Math.max(...allTasks.map(task => task.id)) + 1;
+    }
     console.log(allTasks);
 }
 
@@ -176,6 +219,18 @@ function getActivePriority() {
   }
 
   return activePriority;
+}
+
+function resetPriority() {
+  document.getElementById('urgentBtn').style.backgroundColor = '#FFF';
+  document.getElementById('mediumBtn').style.backgroundColor = '#FFF';
+  document.getElementById('lowBtn').style.backgroundColor = '#FFF';
+  document.getElementById('urgentBtn').style.color = '#000';
+  document.getElementById('mediumBtn').style.color = '#000';
+  document.getElementById('lowBtn').style.color = '#000';
+  document.getElementById('urgentBtn').innerHTML = renderPrioBtnUnclicked('urgent');
+  document.getElementById('mediumBtn').innerHTML = renderPrioBtnUnclicked('medium');
+  document.getElementById('lowBtn').innerHTML = renderPrioBtnUnclicked('low');
 }
 
 /**

@@ -100,7 +100,7 @@ function acceptNewCategory() {
 function openCloseCategories() {
   if (document.getElementById('selectField').style.height == '192px') {
     if ($(window).width() > 720) {
-    document.getElementById('selectField').style.height = '53px';
+    document.getElementById('selectField').style.height = '50px';
     } else {
       document.getElementById('selectField').style.height = '43px';
     }
