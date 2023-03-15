@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-setURL('https://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ever');
-=======
+
 function init() {
 const date = new Date();
 const dateFormatted = new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeZone: 'Europe/Berlin' }).format(date)
@@ -8,7 +6,7 @@ document.getElementById('currentDate').innerHTML = dateFormatted;
 includeHTML();
 greetUser();
 }
->>>>>>> f78ae8fb4bd43ba583bb5718356ac3d66dd6a265
+
 
 function loadAtStart() {
     let nameTest = JSON.parse(backend.getItem("currentUser")) || [];
