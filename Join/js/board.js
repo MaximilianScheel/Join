@@ -7,7 +7,8 @@ let tasks = [
         'color': ['#FF7A00'],
         'priority': ['assets/img/Prio_Low.png'],
         'priorityNumber': 1, 
-    },
+        'id': 0,
+    }, 
 
     {
         'title': ['Call potential clients'],
@@ -17,6 +18,7 @@ let tasks = [
         'color': ['#FC71FF'],
         'priority': ['assets/img/Prio_Urgent.png'],
         'priorityNumber': 3, 
+        'id': 1,
     },
 
     {
@@ -27,6 +29,7 @@ let tasks = [
         'color': ['#1FD7C1'],
         'priority': ['assets/img/Prio_Medium.png'],
         'priorityNumber': 2, 
+        'id': 2,
     },
 
     {
@@ -37,12 +40,14 @@ let tasks = [
         'color': ['#0038FF'],
         'priority': ['assets/img/Prio_Low.png'],
         'priorityNumber': 1, 
+        'id': 3,
     }
 
 
 ];
 
 let priorityCount = [0]
+let currentDraggedElement;
 
 
 
@@ -51,6 +56,7 @@ function init() {
     loadTask();
     countTasks();
     console.log('Urgent:', priorityCount);
+
 
 }
 
@@ -90,9 +96,8 @@ function loadTask() {
 }
 
 
-
 function renderTask(task,i) {
-    return /* html */ `    <div class="taskContainer" onclick="openTask(i)">
+    return /* html */ `    <div draggable="true" class="taskContainer" ondragstart="startDragging(${task['id']})"  onclick="openTask(i)">
     <div style="background-color: ${task['color']};" class="categoryContainer">
         ${task['category']}
     </div>
@@ -109,6 +114,28 @@ function renderTask(task,i) {
 </div>
 </div> `
 
+}
+
+
+function startDragging(id) {
+    currentDraggedElement = id;
+}
+
+function allowDrop(ev) {
+    ev.preventDefault();
+  }
+
+function moveTo(state) {
+    tasks[currentDraggedElement]['state'] = state;
+    init();
+}
+
+function dragHighlight(id) {
+    document.getElementById(id).classList.add('dragAreaHighlight');
+}
+
+function removedragHighlight(id) {
+    document.getElementById(id).classList.remove('dragAreaHighlight');
 }
 
 function countTasks() {
@@ -133,6 +160,19 @@ if (task.priorityNumber == 3) {
 
 
 function openTask(i) {
+}
+
+
+function mouseOverBoard(i) {
+    document.getElementById('pathA' + i).classList.add('pathA');
+    document.getElementById('pathB'+ i).classList.add('pathA');
+    document.getElementById('rect' + i).classList.add('rect');
+}
+
+function mouseOutBoard(i) {
+    document.getElementById('pathA' + i).classList.remove('pathA');
+    document.getElementById('pathB' + i).classList.remove('pathA');
+    document.getElementById('rect' + i).classList.remove('rect');
 }
 
 function includeHTML() {
@@ -162,3 +202,4 @@ function includeHTML() {
         }
     }
 }
+

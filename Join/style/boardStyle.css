@@ -138,12 +138,15 @@ margin-left: 15px;
 }
 
 .dragAreaHighlight {
-    background-color: #e6e6e6;
+    background-color: #a5a3a3;
+    border-radius: 10px;
 }
 
 .area {
-width: 300px;
+width: 330px;
 height: 800px;
+transition: 525ms;
+padding: 10px;
 }
 
 
@@ -177,6 +180,7 @@ height: 800px;
     background-color: #FFFFFF;
     padding: 16px;
     margin-right: 26px;
+    margin-bottom: 16px;
     border-radius: 30px;
     cursor: pointer;
 }
@@ -201,4 +205,40 @@ margin-bottom: 16px;
     word-break: break-word;
     margin-bottom: 8px;
 
+}
+
+.doneHeadlineContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.feedbackHeadlineContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.progressHeadlineContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.todoHeadlineContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.svg {
+    cursor: pointer;
+}
+
+.pathA {
+    stroke: #2AABE2;
+}
+
+.pathB {
+    stroke: #2AABE2;
+}
+
+.rect {
+        stroke: #2AABE2;
 }

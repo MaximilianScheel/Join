@@ -32,40 +32,83 @@
             </div>
         </div>
             <div class="contentChild">
-                <div class="area">
+                <div class="todoContainer">
+                    <div class="todoHeadlineContainer">
+                        <div class="todoHeadline fontBold">To do</div>
+                        <div class="todoPlusButton" onmouseover="mouseOverBoard(1)" onmouseout="mouseOutBoard(1)" onclick="addTask(i)">
+                            <svg class="svg" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path id="pathA1" d="M15 7.5V22.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                            <path id="pathB1" d="M22.5 15.1416L7.5 15.1416" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                            <rect id="rect1" x="1" y="1" width="28" height="28" rx="9" stroke="#2A3647" stroke-width="2"/>
+                            </svg></div>
+                    </div>
+                <div class="area" id="todoAreaContainer" ondragleave="removedragHighlight('todoAreaContainer')" ondragover="allowDrop(event);dragHighlight('todoAreaContainer')" ondrop="moveTo('toDo');removedragHighlight('todoAreaContainer')">
                     <div class="areaChild">
-                    <div class="areaTodoHeader fontBold">To do</div>
-                    <img class="addTaskSvg" src="assets/img/plusButtonBoard.svg" alt="Plus">
+                    <div class="areaTodoHeader fontBold"></div>
+                    
                     </div>
                     <div id="todoArea" class="areaTodoDrag">
-                        
+                    </div>
                     </div>
                 </div>
-                <div class="area">
+                <div class="progressContainer">
+                    <div class="progressHeadlineContainer">
+                        <div class="progressHeadline fontBold">In Progress</div>
+                        <div class="progressPlusButton" onmouseover="mouseOverBoard(2)" onmouseout="mouseOutBoard(2)" onclick="addTask(i)">
+                            <svg class="svg" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path id="pathA2" d="M15 7.5V22.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                            <path id="pathB2" d="M22.5 15.1416L7.5 15.1416" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                            <rect id="rect2" x="1" y="1" width="28" height="28" rx="9" stroke="#2A3647" stroke-width="2"/>
+                            </svg></div>
+                    </div>
+                <div class="area" id="progressAreaContainer" ondragleave="removedragHighlight('progressAreaContainer')" ondragover="allowDrop(event);dragHighlight('progressAreaContainer')" ondrop="moveTo('progress');removedragHighlight('progressAreaContainer')">
                     <div class="areaChild">
-                    <div class="areaProgressHeader fontBold">In progress</div>
-                    <img class="addTaskSvg" src="assets/img/plusButtonBoard.svg" alt="Plus">
+                    <div class="areaProgressHeader fontBold"></div>
+                    
                 </div>
                     <div id="progressArea" class="areaProgressDrag">
+                    </div> 
                     </div>
                 </div>
-                <div class="area">
+                <div class="feedbackContainer">
+                    <div class="feedbackHeadlineContainer">
+                        <div class="feedbackHeadline fontBold">Awaiting Feedback</div>
+                        <div class="feedbackPlusButton" onmouseover="mouseOverBoard(3)" onmouseout="mouseOutBoard(3)" onclick="addTask(i)">
+                            <svg class="svg" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path id="pathA3" d="M15 7.5V22.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                            <path id="pathB3" d="M22.5 15.1416L7.5 15.1416" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                            <rect id="rect3" x="1" y="1" width="28" height="28" rx="9" stroke="#2A3647" stroke-width="2"/>
+                            </svg></div>
+                    </div>
+                <div class="area" id="feedbackAreaContainer" ondragleave="removedragHighlight('feedbackAreaContainer')" ondragover="allowDrop(event);dragHighlight('feedbackAreaContainer')" ondrop="moveTo('feedback');removedragHighlight('feedbackAreaContainer')">
                     <div class="areaChild">
-                    <div class="areaFeedbackHeader fontBold">Awaiting Feedback</div>
-                    <img class="addTaskSvg" src="assets/img/plusButtonBoard.svg" alt="Plus">
+                    <div class="areaFeedbackHeader fontBold"></div>
                 </div>
                     <div id="feedbackArea" class="areaFeedbackDrag"></div>
                 </div>
-                <div class="area">
+                </div>
+                <div class="doneContainer">
+                <div class="doneHeadlineContainer">
+                    <div class="doneHeadline fontBold">Done</div>
+                    <div class="donePlusButton" onmouseover="mouseOverBoard(4)" onmouseout="mouseOutBoard(4)" onclick="addTask(i)">
+                        <svg class="svg" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path id="pathA4" d="M15 7.5V22.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                        <path id="pathB4" d="M22.5 15.1416L7.5 15.1416" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                        <rect id="rect4" x="1" y="1" width="28" height="28" rx="9" stroke="#2A3647" stroke-width="2"/>
+                        </svg></div>
+                </div>
+                <div class="area" id="doneAreaContainer" ondragleave="removedragHighlight('doneAreaContainer')" ondragover="allowDrop(event);dragHighlight('doneAreaContainer')" ondrop="moveTo('done');removedragHighlight('doneAreaContainer')">
                     <div class="areaChild">
-                    <div class="areaDoneHeader fontBold">Done</div>
-                    <img class="addTaskSvg" onclick="addTask()" src="assets/img/plusButtonBoard.svg" alt="Plus">
+                    <div class="areaDoneHeader fontBold"></div>
+                   
                 </div>
                     <div id="doneArea" class="areaDoneDrag"></div>
                 </div>
+            </div>
         </div>
         </main>
     </div>
+    <div id="taskCard" class="taskCard"></div>
     </div>
 
 </body>
