@@ -1,4 +1,4 @@
-/*  addContact css BEGINS here  */
+/*  contactPopUp css BEGINS here  */
 
 .contactPopUp-container {
     position: fixed;
@@ -164,7 +164,7 @@
 
     .contactPopUp-join-container {
         width: 100%;
-        height: 40%;
+        height: 30%;
         padding-bottom: 75px;
     }
 
@@ -174,6 +174,7 @@
 
     .contactPopUp-form-container {
         width: 100%;
+        height: 70%;
     }
 
     .contactPopUp-form-body {
@@ -197,9 +198,18 @@
         margin-top: -100px !important;
         color: black;
     }
+
+    .cancelButton {
+        display: none;
+    }
+
+
+    .contactPopUp-form-body-formular form div {
+        justify-content: center;
+    }
 }
 
-/*  addContact css ENDS here  */
+/*  contactPopUp css ENDS here  */
 
 /*  topBar-template css BEGINS here  */
 
@@ -352,7 +362,10 @@
         flex-direction: column;
     }
 
-    .summaryLink, .boardLink, .addTaskLink, .contactsLink {
+    .summaryLink,
+    .boardLink,
+    .addTaskLink,
+    .contactsLink {
         margin-left: 0px !important;
         margin-top: 5px;
     }

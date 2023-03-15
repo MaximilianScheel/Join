@@ -36,6 +36,9 @@ async function login(e) {
     let password = document.getElementById('password');
 
     currentUser = users.find(u => u.email == email.value && u.password == password.value);
+    console.log(users.find(u => u.email == email.value && u.password == password.value));
+    console.log(currentUser);
+    console.log(users);
 
     if (currentUser) {
         await saveOnServer('currentUser', currentUser);

@@ -1,75 +1,90 @@
 setURL('https://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ever');
 
-let users = [];
-let contacts = {
-    contacts:
-        [
-            {
-                "name": "Anton Mayer",
-                "email": "anton@gmail.com",
-                "phone": "+49 1111 111 131 1",
-                "favouriteColor": "rgba(255, 122, 0, 1)"
-            },
-            {
-                "name": "Anja Schulz",
-                "email": "schulz@hotmail.com",
-                "phone": "+49 11122 111 11 1",
-                "favouriteColor": "rgba(147, 39, 255, 1)"
-            },
-            {
-                "name": "Benedikt Ziegler",
-                "email": "benedikt@gmail.com",
-                "phone": "+49 1111 111 11 1",
-                "favouriteColor": "rgba(41, 171, 226, 1)"
-            },
-            {
-                "name": "David Eisenberg",
-                "email": "davidberg@gmail.com",
-                "phone": "+49 1112 311 11 1",
-                "favouriteColor": "rgba(252, 113, 255, 1)"
-            },
-            {
-                "name": "Eva Fischer",
-                "email": "eva@gmail.com",
-                "phone": "+49 1199 1021 11 1",
-                "favouriteColor": "rgba(2, 207, 47, 1)"
-            },
-            {
-                "name": "Emmanuel Mauer",
-                "email": "emmanuelMa@gmail.com",
-                "phone": "+49 116311 11 2",
-                "favouriteColor": "rgba(175, 22, 22, 1)"
-            },
-            {
-                "name": "Marcel Bauer",
-                "email": "bauer@gmail.com",
-                "phone": "+49 1611 156 11 1",
-                "favouriteColor": "rgba(70, 47, 138, 1)"
-            }
-        ]
-};
+
+let contacts = [
+    {
+        "prename": "Anton",
+        "name": "Mayer",
+        "short_name": "AM",
+        "email": "anton@gmail.com",
+        "password": "test123",
+        "phone": "+49 1111 111 131 1",
+        "favouriteColor": "rgba(255, 122, 0, 1)"
+    },
+    {
+        "prename": "Anja",
+        "name": "Schulz",
+        "short_name": "AS",
+        "email": "schulz@hotmail.com",
+        "password": "test123",
+        "phone": "+49 11122 111 11 1",
+        "favouriteColor": "rgba(147, 39, 255, 1)"
+    },
+    {
+        "prename": "Benedikt",
+        "name": "Ziegler",
+        "short_name": "BZ",
+        "email": "benedikt@gmail.com",
+        "password": "test123",
+        "phone": "+49 1111 111 11 1",
+        "favouriteColor": "rgba(41, 171, 226, 1)"
+    },
+    {
+        "prename": "David",
+        "name": "Eisenberg",
+        "short_name": "DE",
+        "email": "davidberg@gmail.com",
+        "password": "test123",
+        "phone": "+49 1112 311 11 1",
+        "favouriteColor": "rgba(252, 113, 255, 1)"
+    },
+    {
+        "prename": "Eva",
+        "name": "Fischer",
+        "short_name": "EF",
+        "email": "eva@gmail.com",
+        "password": "test123",
+        "phone": "+49 1199 1021 11 1",
+        "favouriteColor": "rgba(2, 207, 47, 1)"
+    },
+    {
+        "prename": "Emmanuel",
+        "name": "Mauer",
+        "short_name": "EM",
+        "email": "emmanuelMa@gmail.com",
+        "password": "test123",
+        "phone": "+49 116311 11 2",
+        "favouriteColor": "rgba(175, 22, 22, 1)"
+    },
+    {
+        "prename": "Marcel",
+        "name": "Bauer",
+        "short_name": "MB",
+        "email": "bauer@gmail.com",
+        "password": "test123",
+        "phone": "+49 1611 156 11 1",
+        "favouriteColor": "rgba(70, 47, 138, 1)"
+    }
+];
 let startingLetters = [];
 let existingLetterIndex = 0;
 
 async function init() {
     await downloadFromServer();
-    let tempContacts = contacts;
     contacts = await JSON.parse(backend.getItem('contacts')) || [];
-    if (contacts.length <= 0) {
-        contacts = tempContacts;
-    }
     console.log(contacts);
+    backend.setItem('contacts', JSON.stringify(contacts));
     includeHTML();
     buildContactList();
     console.log(startingLetters);
 }
 
 function displayContact(index) {
-    document.getElementById('overview_contact_name').innerHTML = contacts.contacts[index].name;
-    document.getElementById('overview_contact_email').innerHTML = contacts.contacts[index].email;
-    document.getElementById('overview_contact_phone').innerHTML = contacts.contacts[index].phone;
+    document.getElementById('overview_contact_name').innerHTML = contacts[index].name;
+    document.getElementById('overview_contact_email').innerHTML = contacts[index].email;
+    document.getElementById('overview_contact_phone').innerHTML = contacts[index].phone;
     document.getElementById('contacts_overview_container').classList.remove('d-none');
-    document.getElementById('contacts_overview_contact_pictureContainer').style.backgroundColor = contacts.contacts[index].favouriteColor;
+    document.getElementById('contacts_overview_contact_pictureContainer').style.backgroundColor = contacts[index].favouriteColor;
     document.getElementById('contacts_overview_contact_picture').innerText = getNamePrefix(index);
     activateContactEntry(index);
     if (isMobile()) {
@@ -106,7 +121,7 @@ function activateContactEntry(contactIndex) {
 }
 
 function findStartingLetters() {
-    contacts.contacts.forEach(contact => {
+    contacts.forEach(contact => {
         startingLetters.push(contact.name.charAt(0));
     });
 
@@ -118,30 +133,31 @@ function findStartingLetters() {
 }
 
 function buildContactList() {
-    findStartingLetters();
-    for (let i = 0; i < contacts.contacts.length; i++) {
+    
+    for (let i = 0; i < contacts.length; i++) {
         document.getElementById('contacts_list').innerHTML += generateContactListEntry(i);
-        startingLetters.splice(existingLetterIndex, 1, 0);
         setFavouriteBackgroundColor(i);
     }
 }
 
 function isNameStartingWithExistingLetter(contactIndex) {
-    for (let i = 0; i < startingLetters.length; i++) {
-        if (contacts.contacts[contactIndex].name.charAt(0).includes(startingLetters[i])) {
-            existingLetterIndex = i;
-            return true;
-        }
+    if(!contacts[contactIndex].name.charAt(0).toUpperCase().includes(startingLetters.find[contacts[contactIndex].name.charAt(0).toUpperCase()]) || startingLetters.length <= 0) {
+        startingLetters.push(contacts[contactIndex].name.charAt(0).toUpperCase());
+        existingLetterIndex += 1;
+        return true;
+    } else {
+        console.log('lol?')
+        return false;
+       
     }
-    return false;
 }
 
 function setFavouriteBackgroundColor(contactIndex) {
-    document.getElementById('contacts_list_contact_pictureContainer_' + contactIndex).style.backgroundColor = contacts.contacts[contactIndex].favouriteColor;
+    document.getElementById('contacts_list_contact_pictureContainer_' + contactIndex).style.backgroundColor = contacts[contactIndex].favouriteColor;
 }
 
 function getNamePrefix(contactIndex) {
-    let contactName = contacts.contacts[contactIndex].name;
+    let contactName = contacts[contactIndex].name;
     contactName = contactName.split(" ");
     let contactNamePrefix = "";
     for (let i = 0; i < contactName.length; i++) {
@@ -154,18 +170,18 @@ function generateContactListEntry(index) {
     if (isNameStartingWithExistingLetter(index)) {
         return `
             <div class="contact-list-letterSeperator-section">
-                <span class="contacts-list-letter">${startingLetters[existingLetterIndex]}</span>
+                <span class="contacts-list-letter">${startingLetters[existingLetterIndex-1]}</span>
                 <hr class="contacts-list-headrow">
             </div>
             <div id="contacts_list_contact_${index}" class="contacts-list-contact" onclick="displayContact(${index})">
                 <div id="contacts_list_contact_pictureContainer_${index}" class="contacts-list-contact-pictureContainer">
                     <span id="contacts_list_contact_picture_${index}" class="contacts-list-contact-picture">
-                        ${getNamePrefix(index)}
+                        ${contacts[index].short_name}
                     </span>
                 </div>
                 <div class="contacts-list-contact-keys">
-                    <h3 id="contacts-list-contact-keys-name-${index}" class="contacts-list-contact-keys-name">${contacts.contacts[index].name}</h3>
-                    <a id="contacts-list-contact-keys-email-${index}" class="contacts-list-contact-keys-email" href="#">${contacts.contacts[index].email}</a>
+                    <h3 id="contacts-list-contact-keys-name-${index}" class="contacts-list-contact-keys-name">${contacts[index].prename+ " " + contacts[index].name}</h3>
+                    <a id="contacts-list-contact-keys-email-${index}" class="contacts-list-contact-keys-email" href="#">${contacts[index].email}</a>
                 </div>
             </div>
     `;
@@ -174,12 +190,12 @@ function generateContactListEntry(index) {
     <div id="contacts_list_contact_${index}" class="contacts-list-contact" onclick="displayContact(${index})">
         <div id="contacts_list_contact_pictureContainer_${index}" class="contacts-list-contact-pictureContainer">
             <span id="contacts_list_contact_picture_${index}" class="contacts-list-contact-picture">
-                ${getNamePrefix(index)}
+                ${contacts[index].short_name}
             </span>
         </div>
         <div class="contacts-list-contact-keys">
-            <h3 id="contacts-list-contact-keys-name-${index}" class="contacts-list-contact-keys-name">${contacts.contacts[index].name}</h3>
-            <a id="contacts-list-contact-keys-email-${index}" class="contacts-list-contact-keys-email" href="#">${contacts.contacts[index].email}</a>
+            <h3 id="contacts-list-contact-keys-name-${index}" class="contacts-list-contact-keys-name">${contacts[index].prename + " " + contacts[index].name}</h3>
+            <a id="contacts-list-contact-keys-email-${index}" class="contacts-list-contact-keys-email" href="#">${contacts[index].email}</a>
         </div>
     </div>
     `;
@@ -204,7 +220,18 @@ function hideEditContact() {
 
 
 function addContact() {
-    console.log('Es funktioniert!');
+    const contactName = document.getElementById('addContact_name').value
+    const contactEmail = document.getElementById('addContact_email').value
+    const contactPhone = document.getElementById('addContact_phone').value
+    const newContact = {
+        "name": contactName,
+        "email": contactEmail,
+        "phone": contactPhone,
+        "favouriteColor": "rgba(255, 122, 0, 1)"
+    };
+    contacts.contacts.push(newContact);
+    backend.setItem("contacts", JSON.stringify(contacts));
+    init();
 }
 
 
