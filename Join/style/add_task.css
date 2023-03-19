@@ -376,9 +376,6 @@ button {
   #image {
     position: absolute;
     bottom: 30px;
-    transform: translateY(-70%);
-    opacity: 0;
-    transition: opacity 3s, transform 3s;
   }
 
 
@@ -448,5 +445,6 @@ button {
     form {
         margin: 15px;
     }
-
 }
+
+
