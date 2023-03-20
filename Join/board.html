@@ -6,7 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/boardStyle.css">
     <link rel="stylesheet" href="style/templates.css">
+    <link rel="icon" type="image/png" href="assets/img/capa1.png">
+    <link rel="stylesheet" type="text/css" href="style/add_task.css">
+    <link rel="stylesheet" href="style/fonts.css">
+    <link rel="stylesheet" href="style/templates.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script src="js/board.js"></script>
+    <script src="js/mini_backend.js"></script>
+    <script src="js/addTask_categories.js"></script>
+    <script src="js/addTask_contacts.js"></script>
+    <script src="js/add_Task.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <title>Board</title>
 </head>
 <body onload="init()">
@@ -24,11 +35,13 @@
                 <div class="board"><h1><b>Board</b></h1></div>
             <div class="searchAddTask">
                 <div class="searchBar">
-                <input class="inputSearch" type="text" id="myInput" onkeyup="myFunction()" placeholder="Find Task">
-                <div class="lineBoard"></div>
-                <div class="lensContainer"><img onclick="search()" class="lensImg" src="assets/img/lens.svg" alt="Lupe"></div>
-            </div>
-            <div class="addTaskContainer">Add Task <img class="addTaskIcon" src="assets/img/plus.svg" alt="Plus"></div>
+                    <input class="inputSearch" type="text" id="myInput" onkeyup="myFunction()" placeholder="Find Task">
+                    <div class="lineBoard"></div>
+                    <div class="lensContainer"><img onclick="search()" class="lensImg" src="assets/img/lens.svg" alt="Lupe"></div>
+                </div>
+                <div class="addTaskContainer">Add Task <img class="addTaskIcon" src="assets/img/plus.svg" alt="Plus">
+                    <div w3-include-html="assets/templates/desktop_addTask.html" class="d-none"></div>
+                </div>
             </div>
         </div>
             <div class="contentChild">
