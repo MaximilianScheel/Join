@@ -1,7 +1,9 @@
 setURL('https://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ever');
 
+let contacts = [];
+console.log(contacts);
 
-let contacts = [
+/*let contacts = [
     {
         "prename": "Anton",
         "name": "Mayer",
@@ -65,14 +67,14 @@ let contacts = [
         "phone": "+49 1611 156 11 1",
         "favouriteColor": "rgba(70, 47, 138, 1)"
     }
-];
+];*/
 let startingLetters = [];
 let existingLetterIndex = 0;
 let currentContactIndex = 0;
 
 async function init() {
-    //await downloadFromServer();
-    //contacts = await JSON.parse(backend.getItem('contacts')) || [];
+    await downloadFromServer();
+    contacts = await JSON.parse(backend.getItem('contacts')) || [];
     //backend.setItem('contacts', JSON.stringify(contacts));
     startingLetters = []
     existingLetterIndex = 0;
@@ -80,7 +82,7 @@ async function init() {
     loadNameStartingLetters();
     includeHTML();
     buildContactList();
-    console.log(startingLetters);
+    console.log(contacts);
 }
 
 
@@ -137,21 +139,17 @@ function findStartingLetters() {
     startingLetters = startingLetters.filter((element, index) => {
         return startingLetters.indexOf(element) === index;
     });
-
-    console.log(startingLetters);
 }
 
 function sortAllContacts() {
     contacts.sort(function (a, b) {
         return a.name.localeCompare(b.name);
     });
-    console.log(contacts);
 }
 
 
 
 function buildContactList() {
-    
     document.getElementById('contacts_list').innerHTML = "";
     for (let i = 0; i < contacts.length; i++) {
         document.getElementById('contacts_list').innerHTML += generateContactListEntry(i);
@@ -173,7 +171,6 @@ function isNameStartingWithExistingLetter(contactIndex) {
     }
     for (let i = 0; i < existingLetterIndex; i++) {
         if (contacts[contactIndex].name.charAt(0).includes(startingLetters[i])) {
-            console.log('true')
             return true;
         }
     }
@@ -245,30 +242,30 @@ function hideEditContact() {
 }
 
 function updateShortname(name) {
-    console.log(name);
     contacts[currentContactIndex].short_name = contacts[currentContactIndex].prename.charAt(0).toUpperCase() + name.charAt(0).toUpperCase();
-    console.log('new short_name: ' + contacts[currentContactIndex].short_name);
+}
+
+function createShortname(prename, name) {
+    return prename.charAt(0) + name.charAt(0);
 }
 
 function addContact() {
-    const contactName = document.getElementById('addContact_name').value
-    const contactEmail = document.getElementById('addContact_email').value
-    const contactPhone = document.getElementById('addContact_phone').value
-    if (contactName && contactEmail && contactPhone != undefined) {
-        updateShortname(contactName);
-        const newContact = {
-            "prename": contacts[currentContactIndex].prename.toString(),
-            "name": contactName,
-            "short_name": contacts[currentContactIndex].short_name,
-            "email": contactEmail,
-            "password": contacts[currentContactIndex].password,
-            "phone": contactPhone,
-            "favouriteColor": contacts[currentContactIndex].favouriteColor
-        };
-        contacts.push(newContact);
-    }
-
-    //backend.setItem("contacts", JSON.stringify(contacts));
+    const contactPreName = document.getElementById('add_prename_input').value
+    const contactName = document.getElementById('add_name_input').value
+    const contactEmail = document.getElementById('add_email_input').value
+    const contactPhone = document.getElementById('add_phone_input').value
+    const newContact = {
+        "prename": contactPreName,
+        "name": contactName,
+        "short_name": createShortname(contactPreName, contactName),
+        "email": contactEmail,
+        "password": 'test123',
+        "phone": contactPhone,
+        "favouriteColor": "rgba(255, 122, 0, 1)"
+    };
+    contacts.push(newContact);
+    hideAddContact();
+    backend.setItem("contacts", JSON.stringify(contacts));
     init();
 }
 
@@ -279,7 +276,7 @@ function editContact() {
 
     updateShortname(contactName);
     const newContact = {
-        "prename": contacts[currentContactIndex].prename.toString(),
+        "prename": contacts[currentContactIndex].prename,
         "name": contactName,
         "short_name": contacts[currentContactIndex].short_name,
         "email": contactEmail,
@@ -288,9 +285,7 @@ function editContact() {
         "favouriteColor": contacts[currentContactIndex].favouriteColor
     };
     contacts[currentContactIndex] = newContact;
-
-
-    //backend.setItem("contacts", JSON.stringify(contacts));
+    backend.setItem("contacts", JSON.stringify(contacts));
     hideEditContact();
     init();
 }
