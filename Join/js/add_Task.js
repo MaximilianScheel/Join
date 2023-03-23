@@ -33,8 +33,9 @@ async function addTask() {
       'priority': getActivePriority(),
       'subtasks': selectedSubtasks,
       'id': idCounter,
+      'state': 'todo',
       };
-
+      showInfo();
     await saveAllTasks(task);
     clearValues();
     idCounter++;
