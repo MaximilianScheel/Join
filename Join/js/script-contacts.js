@@ -68,19 +68,25 @@ let contacts = [
 ];
 let startingLetters = [];
 let existingLetterIndex = 0;
+let currentContactIndex = 0;
 
 async function init() {
-    await downloadFromServer();
-    contacts = await JSON.parse(backend.getItem('contacts')) || [];
-    console.log(contacts);
-    backend.setItem('contacts', JSON.stringify(contacts));
+    //await downloadFromServer();
+    //contacts = await JSON.parse(backend.getItem('contacts')) || [];
+    //backend.setItem('contacts', JSON.stringify(contacts));
+    startingLetters = []
+    existingLetterIndex = 0;
+    sortAllContacts();
+    loadNameStartingLetters();
     includeHTML();
     buildContactList();
     console.log(startingLetters);
 }
 
+
+
 function displayContact(index) {
-    document.getElementById('overview_contact_name').innerHTML = contacts[index].name;
+    document.getElementById('overview_contact_name').innerHTML = contacts[index].prename + " " + contacts[index].name;
     document.getElementById('overview_contact_email').innerHTML = contacts[index].email;
     document.getElementById('overview_contact_phone').innerHTML = contacts[index].phone;
     document.getElementById('contacts_overview_container').classList.remove('d-none');
@@ -106,6 +112,8 @@ function isMobile() {
     return false;
 }
 
+
+
 function showContactListMobile() {
     document.getElementById('contacts_overview').classList.remove('d-show');
     document.getElementById('contacts_list').classList.remove('d-none');
@@ -113,6 +121,7 @@ function showContactListMobile() {
 }
 
 function activateContactEntry(contactIndex) {
+    currentContactIndex = contactIndex;
     let allContactlistEntries = document.querySelectorAll('.contacts-list-contact');
     allContactlistEntries.forEach(contactEntry => {
         contactEntry.classList.remove('contactActive');
@@ -132,24 +141,44 @@ function findStartingLetters() {
     console.log(startingLetters);
 }
 
+function sortAllContacts() {
+    contacts.sort(function (a, b) {
+        return a.name.localeCompare(b.name);
+    });
+    console.log(contacts);
+}
+
+
+
 function buildContactList() {
     
+    document.getElementById('contacts_list').innerHTML = "";
     for (let i = 0; i < contacts.length; i++) {
         document.getElementById('contacts_list').innerHTML += generateContactListEntry(i);
         setFavouriteBackgroundColor(i);
     }
 }
 
-function isNameStartingWithExistingLetter(contactIndex) {
-    if(!contacts[contactIndex].name.charAt(0).toUpperCase().includes(startingLetters.find[contacts[contactIndex].name.charAt(0).toUpperCase()]) || startingLetters.length <= 0) {
-        startingLetters.push(contacts[contactIndex].name.charAt(0).toUpperCase());
-        existingLetterIndex += 1;
-        return true;
-    } else {
-        console.log('lol?')
-        return false;
-       
+function loadNameStartingLetters() {
+    for (let i = 0; i < contacts.length; i++) {
+        startingLetters.push(contacts[i].name.charAt(0));
+        startingLetters = [...new Set(startingLetters)];
     }
+}
+
+function isNameStartingWithExistingLetter(contactIndex) {
+    if (existingLetterIndex <= 0) {
+        existingLetterIndex++;
+        return false;
+    }
+    for (let i = 0; i < existingLetterIndex; i++) {
+        if (contacts[contactIndex].name.charAt(0).includes(startingLetters[i])) {
+            console.log('true')
+            return true;
+        }
+    }
+    existingLetterIndex++;
+    return false;
 }
 
 function setFavouriteBackgroundColor(contactIndex) {
@@ -157,20 +186,14 @@ function setFavouriteBackgroundColor(contactIndex) {
 }
 
 function getNamePrefix(contactIndex) {
-    let contactName = contacts[contactIndex].name;
-    contactName = contactName.split(" ");
-    let contactNamePrefix = "";
-    for (let i = 0; i < contactName.length; i++) {
-        contactNamePrefix += contactName[i].charAt(0);
-    }
-    return contactNamePrefix;
+    return contacts[contactIndex].short_name;
 }
 
 function generateContactListEntry(index) {
-    if (isNameStartingWithExistingLetter(index)) {
+    if (!isNameStartingWithExistingLetter(index)) {
         return `
             <div class="contact-list-letterSeperator-section">
-                <span class="contacts-list-letter">${startingLetters[existingLetterIndex-1]}</span>
+                <span class="contacts-list-letter">${startingLetters[existingLetterIndex - 1]}</span>
                 <hr class="contacts-list-headrow">
             </div>
             <div id="contacts_list_contact_${index}" class="contacts-list-contact" onclick="displayContact(${index})">
@@ -180,7 +203,7 @@ function generateContactListEntry(index) {
                     </span>
                 </div>
                 <div class="contacts-list-contact-keys">
-                    <h3 id="contacts-list-contact-keys-name-${index}" class="contacts-list-contact-keys-name">${contacts[index].prename+ " " + contacts[index].name}</h3>
+                    <h3 id="contacts-list-contact-keys-name-${index}" class="contacts-list-contact-keys-name">${contacts[index].prename + " " + contacts[index].name}</h3>
                     <a id="contacts-list-contact-keys-email-${index}" class="contacts-list-contact-keys-email" href="#">${contacts[index].email}</a>
                 </div>
             </div>
@@ -212,25 +235,63 @@ function hideAddContact() {
 
 function displayEditContact() {
     document.getElementById('contactEditPopUp-container').classList.remove('hideEditContact');
+    document.getElementById('edit-name-input').value = contacts[currentContactIndex].name;
+    document.getElementById('edit-email-input').value = contacts[currentContactIndex].email;
+    document.getElementById('edit-phone-input').value = contacts[currentContactIndex].phone;
 }
 
 function hideEditContact() {
     document.getElementById('contactEditPopUp-container').classList.add('hideEditContact');
 }
 
+function updateShortname(name) {
+    console.log(name);
+    contacts[currentContactIndex].short_name = contacts[currentContactIndex].prename.charAt(0).toUpperCase() + name.charAt(0).toUpperCase();
+    console.log('new short_name: ' + contacts[currentContactIndex].short_name);
+}
 
 function addContact() {
     const contactName = document.getElementById('addContact_name').value
     const contactEmail = document.getElementById('addContact_email').value
     const contactPhone = document.getElementById('addContact_phone').value
+    if (contactName && contactEmail && contactPhone != undefined) {
+        updateShortname(contactName);
+        const newContact = {
+            "prename": contacts[currentContactIndex].prename.toString(),
+            "name": contactName,
+            "short_name": contacts[currentContactIndex].short_name,
+            "email": contactEmail,
+            "password": contacts[currentContactIndex].password,
+            "phone": contactPhone,
+            "favouriteColor": contacts[currentContactIndex].favouriteColor
+        };
+        contacts.push(newContact);
+    }
+
+    //backend.setItem("contacts", JSON.stringify(contacts));
+    init();
+}
+
+function editContact() {
+    const contactName = document.getElementById('edit-name-input').value
+    const contactEmail = document.getElementById('edit-email-input').value
+    const contactPhone = document.getElementById('edit-phone-input').value
+
+    updateShortname(contactName);
     const newContact = {
+        "prename": contacts[currentContactIndex].prename.toString(),
         "name": contactName,
+        "short_name": contacts[currentContactIndex].short_name,
         "email": contactEmail,
+        "password": contacts[currentContactIndex].password,
         "phone": contactPhone,
-        "favouriteColor": "rgba(255, 122, 0, 1)"
+        "favouriteColor": contacts[currentContactIndex].favouriteColor
     };
-    contacts.contacts.push(newContact);
-    backend.setItem("contacts", JSON.stringify(contacts));
+    contacts[currentContactIndex] = newContact;
+
+
+    //backend.setItem("contacts", JSON.stringify(contacts));
+    hideEditContact();
     init();
 }
 

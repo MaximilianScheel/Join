@@ -135,11 +135,11 @@
 }
 
 .hideAddContact {
-    transform: translateY(150%);
+    transform: translateY(150vh);
 }
 
 .hideEditContact {
-    transform: translateY(-150%);
+    transform: translateY(-150vh);
 }
 
 @media(max-width: 700px) {
