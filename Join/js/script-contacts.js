@@ -1,7 +1,7 @@
 setURL('https://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ever');
 
 let contacts = [];
-console.log(contacts);
+// console.log(contacts);
 
 /*let contacts = [
     {
@@ -68,6 +68,7 @@ console.log(contacts);
         "favouriteColor": "rgba(70, 47, 138, 1)"
     }
 ];*/
+console.log(contacts);
 let startingLetters = [];
 let existingLetterIndex = 0;
 let currentContactIndex = 0;
@@ -75,7 +76,7 @@ let currentContactIndex = 0;
 async function init() {
     await downloadFromServer();
     contacts = await JSON.parse(backend.getItem('contacts')) || [];
-    //backend.setItem('contacts', JSON.stringify(contacts));
+    //await backend.setItem('contacts', JSON.stringify(contacts));
     startingLetters = []
     existingLetterIndex = 0;
     sortAllContacts();
@@ -246,10 +247,10 @@ function updateShortname(name) {
 }
 
 function createShortname(prename, name) {
-    return prename.charAt(0) + name.charAt(0);
+    return prename.charAt(0).toUpperCase() + name.charAt(0).toUpperCase();
 }
 
-function addContact() {
+async function addContact() {
     const contactPreName = document.getElementById('add_prename_input').value
     const contactName = document.getElementById('add_name_input').value
     const contactEmail = document.getElementById('add_email_input').value
@@ -265,11 +266,11 @@ function addContact() {
     };
     contacts.push(newContact);
     hideAddContact();
-    backend.setItem("contacts", JSON.stringify(contacts));
-    init();
+    await backend.setItem("contacts", JSON.stringify(contacts));
+    window.location.href = "./contacts.html";
 }
 
-function editContact() {
+async function editContact() {
     const contactName = document.getElementById('edit-name-input').value
     const contactEmail = document.getElementById('edit-email-input').value
     const contactPhone = document.getElementById('edit-phone-input').value
@@ -285,9 +286,8 @@ function editContact() {
         "favouriteColor": contacts[currentContactIndex].favouriteColor
     };
     contacts[currentContactIndex] = newContact;
-    backend.setItem("contacts", JSON.stringify(contacts));
-    hideEditContact();
-    init();
+    await backend.setItem("contacts", JSON.stringify(contacts));
+    window.location.href = "./contacts.html";
 }
 
 
