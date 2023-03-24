@@ -76,7 +76,7 @@ let currentContactIndex = 0;
 async function init() {
     await downloadFromServer();
     contacts = await JSON.parse(backend.getItem('contacts')) || [];
-    //await backend.setItem('contacts', JSON.stringify(contacts));
+   //await backend.setItem('contacts', JSON.stringify(contacts));
     startingLetters = []
     existingLetterIndex = 0;
     sortAllContacts();
@@ -265,15 +265,14 @@ async function addContact() {
         "favouriteColor": "rgba(255, 122, 0, 1)"
     };
     contacts.push(newContact);
-    hideAddContact();
     await backend.setItem("contacts", JSON.stringify(contacts));
     window.location.href = "./contacts.html";
 }
 
 async function editContact() {
-    const contactName = document.getElementById('edit-name-input').value
-    const contactEmail = document.getElementById('edit-email-input').value
-    const contactPhone = document.getElementById('edit-phone-input').value
+    const contactName = document.getElementById('edit-name-input').value;
+    const contactEmail = document.getElementById('edit-email-input').value;
+    const contactPhone = document.getElementById('edit-phone-input').value;
 
     updateShortname(contactName);
     const newContact = {
