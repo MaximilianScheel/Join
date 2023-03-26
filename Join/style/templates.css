@@ -119,8 +119,12 @@
     margin-bottom: 20px;
     padding: 10px;
     border-radius: 7px;
-    border-style: solid;
+    border-style: unset;
     border-width: 0.5px;
+}
+
+.contactPopUp-form-body-formular form input:focus {
+    outline: none;
 }
 
 .submitButton {
@@ -206,6 +210,11 @@
 
     .contactPopUp-form-body-formular form div {
         justify-content: center;
+    }
+
+    .contactPopUp-form-body-formular form input {
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 }
 

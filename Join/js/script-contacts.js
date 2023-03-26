@@ -251,11 +251,14 @@ function createShortname(prename, name) {
 }
 
 async function addContact() {
-    const contactPreName = document.getElementById('add_prename_input').value
-    const contactName = document.getElementById('add_name_input').value
-    const contactEmail = document.getElementById('add_email_input').value
-    const contactPhone = document.getElementById('add_phone_input').value
-    const newContact = {
+    let contactPreName = document.getElementById('add_prename_input').value;
+    contactPreName = contactPreName.charAt(0).toUpperCase() + contactPreName.slice(1);
+    let contactName = document.getElementById('add_name_input').value;
+    contactName = contactName.charAt(0).toUpperCase() + contactName.slice(1);
+    console.log(contactName);
+    let contactEmail = document.getElementById('add_email_input').value;
+    let contactPhone = document.getElementById('add_phone_input').value;
+    let newContact = {
         "prename": contactPreName,
         "name": contactName,
         "short_name": createShortname(contactPreName, contactName),
@@ -270,13 +273,16 @@ async function addContact() {
 }
 
 async function editContact() {
-    const contactName = document.getElementById('edit-name-input').value;
-    const contactEmail = document.getElementById('edit-email-input').value;
-    const contactPhone = document.getElementById('edit-phone-input').value;
+    let contactPreName = document.getElementById('edit_prename_input').value;
+    contactPreName = contactPreName.charAt(0).toUpperCase() + contactPreName.slice(1);
+    let contactName = document.getElementById('edit-name-input').value;
+    contactName = contactName.charAt(0).toUpperCase() + contactName.slice(1);
+    let contactEmail = document.getElementById('edit-email-input').value;
+    let contactPhone = document.getElementById('edit-phone-input').value;
 
     updateShortname(contactName);
     const newContact = {
-        "prename": contacts[currentContactIndex].prename,
+        "prename": contactPreName,
         "name": contactName,
         "short_name": contacts[currentContactIndex].short_name,
         "email": contactEmail,
