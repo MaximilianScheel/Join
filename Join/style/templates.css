@@ -342,7 +342,7 @@
     margin-left: 30px !important;
 }
 
-@media(max-width: 700px) {
+@media(max-width: 1028px) {
 
     .sidemenu-container-desktop {
         display: flex;
