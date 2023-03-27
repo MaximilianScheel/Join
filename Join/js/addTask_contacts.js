@@ -12,7 +12,7 @@ async function loadContacts() {
 
 function sortAllContacts() {
   allContacts = allContacts.sort((a,b) => {
-    if (a.name < b.name) {
+    if (a.prename < b.prename) {
       return -1;
     }
   });

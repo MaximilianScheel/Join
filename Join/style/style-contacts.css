@@ -24,6 +24,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
+    overflow-y: auto;
 }
 
 .contacts-wrapper-inner-content {
