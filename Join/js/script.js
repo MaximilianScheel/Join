@@ -171,7 +171,6 @@ function removeAnimate(popup) {
     popup.classList.remove('animation');
 }
 
-
 function openLogout() {
     let logoutContainer = document.getElementById("logoutContainer");
     logoutContainer.style.display = "block";
