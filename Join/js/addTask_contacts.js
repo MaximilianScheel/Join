@@ -33,7 +33,7 @@ function renderAllContacts() {
     const prename = allContacts[i]['prename'];
     const contact = prename + ' ' + allContacts[i]['name'];
     document.getElementById('openedContacts').innerHTML += `
-    <div class="oneContact" onclick="addContact(${i})">
+    <div class="oneContact" onclick="addContactToTask(${i})">
       <div id="contact${i}">${contact}</div>
       <div class="contactButton" id="contactButton${i}"><img src="assets/img/button_rectangle.png"></div>
     </div>
@@ -41,7 +41,7 @@ function renderAllContacts() {
   }
 }
 
-function addContact(i) {
+function addContactToTask(i) {
   let contactID = document.getElementById('contact' + i);
   let index = selectedContactNames.indexOf(contactID.innerHTML);
   let index2 = selectedLetters.findIndex(obj => obj.bothLetters==firstLetters[i]['bothLetters']);
