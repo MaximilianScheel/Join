@@ -144,7 +144,7 @@ margin-left: 15px;
 
 .area {
 width: 330px;
-height: 800px;
+height: auto;
 transition: 525ms;
 padding: 10px;
 }
