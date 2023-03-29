@@ -1,6 +1,6 @@
-let currentUser;
+//let currentUser;
 
-let users = [
+/*let users = [
     {
         "name": "Heiner Müller",
         "email": "hmueller@company.com",
@@ -55,3 +55,4 @@ let users = [
         "color": "HSL(280, 100%, 50%)"
     }
 ];
+*/

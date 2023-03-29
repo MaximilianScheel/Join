@@ -68,15 +68,16 @@ let contacts = [];
         "favouriteColor": "rgba(70, 47, 138, 1)"
     }
 ];*/
-console.log(contacts);
+//console.log(contacts);
 let startingLetters = [];
 let existingLetterIndex = 0;
 let currentContactIndex = 0;
+let currentUser;
 
 async function init() {
     await downloadFromServer();
-    contacts = await JSON.parse(backend.getItem('contacts')) || [];
-   //await backend.setItem('contacts', JSON.stringify(contacts));
+    contacts = await backend.getItem('contacts');
+    //await backend.setItem('contacts', JSON.stringify(contacts));
     startingLetters = []
     existingLetterIndex = 0;
     sortAllContacts();
@@ -268,7 +269,7 @@ async function addContact() {
         "favouriteColor": "rgba(255, 122, 0, 1)"
     };
     contacts.push(newContact);
-    await backend.setItem("contacts", JSON.stringify(contacts));
+    await backend.setItem("contacts", contacts);
     window.location.href = "./contacts.html";
 }
 
@@ -291,7 +292,7 @@ async function editContact() {
         "favouriteColor": contacts[currentContactIndex].favouriteColor
     };
     contacts[currentContactIndex] = newContact;
-    await backend.setItem("contacts", JSON.stringify(contacts));
+    await backend.setItem("contacts", contacts);
     window.location.href = "./contacts.html";
 }
 

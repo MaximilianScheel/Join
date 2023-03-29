@@ -7,7 +7,6 @@ setURL('https://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ev
 async function init() {
     await loadDataFromServer();
     await loadCurrentUserFromServer();
-
 }
 
 
@@ -16,8 +15,8 @@ async function init() {
  */
 async function loadDataFromServer() {
     await downloadFromServer();
-    users = await loadFromServer('users');
-
+    contacts = await backend.getItem('contacts');
+    console.log(contacts)
 }
 
 
@@ -32,6 +31,7 @@ async function loadCurrentUserFromServer() {
  * Loads the requested data from server
  * @param {string} key 
  * @returns Data from server as Array
+ * ~~~~~~ deprecated ~~~~~~
  */
 async function loadFromServer(key) {
     let item = [];

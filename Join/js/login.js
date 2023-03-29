@@ -2,6 +2,8 @@
  * Loading data from server
  */
 async function initLogin() {
+    //~~~~~~~ NEVER REMOVE THE FOLLOWING LINE -> ITS FOR DATABASE REPAIR PURPOSE!!! ~~~~~~~
+    //await backend.setItem('contacts', contacts);
     await loadDataFromServer();
 }
 
@@ -12,12 +14,13 @@ async function initLogin() {
 async function guestLogin() {
 
     currentUser = {
+        "prename": "Guest",
         "name": "Guest",
+        "short_name": "G",
         "email": "",
         "password": "",
         "phone": "",
-        "short_name": "G",
-        "color": "HSL(150, 100%, 50%)",
+        "favouriteColor": "HSL(150, 100%, 50%)",
     };
     await saveOnServer('currentUser', currentUser);
     window.location.href = './summary.html?login=1'
@@ -35,10 +38,11 @@ async function login(e) {
     let email = document.getElementById('email');
     let password = document.getElementById('password');
 
-    currentUser = users.find(u => u.email == email.value && u.password == password.value);
-    console.log(users.find(u => u.email == email.value && u.password == password.value));
+    currentUser = contacts.find(c => c.email == email.value && c.password == password.value);
+
+    console.log(contacts.find(c => c.email == email.value && c.password == password.value));
     console.log(currentUser);
-    console.log(users);
+    console.log(contacts);
 
     if (currentUser) {
         await saveOnServer('currentUser', currentUser);
@@ -158,7 +162,7 @@ function action(formData) {
  */
 function checkIfEmailExists() {
     let email = document.getElementById('email-field');
-    let user = users.find(u => u.email == email.value);
+    let user = contacts.find(c => c.email == email.value);
     if (user) {
         return true;
     } else {
@@ -178,9 +182,9 @@ async function resetPassword(event) {
     if (password1 == password2) {
         const urlParams = new URLSearchParams(window.location.search);
         const userEmail = urlParams.get('email');
-        let index = users.findIndex(u => u.email == userEmail);
-        users[index]['password'] = password1;
-        await saveOnServer('users', users);
+        let index = contacts.findIndex(c => c.email == userEmail);
+        contacts[index]['password'] = password1;
+        await saveOnServer('contacts', contacts);
         showSuccessMessage();
     } else {
         showPopupMessage('password-failed');

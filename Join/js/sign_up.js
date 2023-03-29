@@ -7,19 +7,40 @@ async function registerUser(e) {
     e.preventDefault();
 
     let username = document.getElementById("username");
+    let prename_name = username.value.split(' '); //is an ['Max', 'Scheel']
+    let userPrename = prename_name[0]; // is 'Max'
+    let userName = prename_name[1]; // 'Scheel'
     let email = document.getElementById("email");
     let password = document.getElementById("password");
     let isNameValid = nameValidation(username, 'name-validation', 'hidden');
     if (!isNameValid) return;
     let initials = getInitials(username.value);
     let color = generateColors();
-    let user = users.find(u => u.email == email.value);
+    let user = contacts.find(c => c.email == email.value);
 
     if (user) {
         showSignupPopup('popup-failed-signup');
     } else {
-        users.push({name: username.value.trim(), email: email.value, password: password.value, phone: "", short_name: initials, color: color});
-        await saveOnServer('users', users);
+        contacts.push(
+            {   prename: userPrename,
+                name: userName,
+                short_name: initials,
+                email: email.value,
+                password: password.value,
+                phone: "",
+                favouriteColor: color
+            });
+
+            /*
+            "prename": "Emmanuel",
+        "name": "Mauer",
+        "short_name": "EM",
+        "email": "emmanuelMa@gmail.com",
+        "password": "test123",
+        "phone": "+49 116311 11 2",
+        "favouriteColor": "rgba(175, 22, 22, 1)"
+        */ 
+        await backend.setItem('contacts', contacts);
         showSignupPopup('popup-success-signup');
         setTimeout(function () {window.location.href = './index.html?msg=success';}, 3000);
     }
