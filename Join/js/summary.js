@@ -1,5 +1,6 @@
 
 function init() {
+    
 const date = new Date();
 const dateFormatted = new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeZone: 'Europe/Berlin' }).format(date)
 document.getElementById('currentDate').innerHTML = dateFormatted; 

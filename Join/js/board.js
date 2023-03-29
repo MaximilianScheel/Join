@@ -1,63 +1,84 @@
+setURL('https://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ever');
+
+let currentUser = [];
+let alltasks = [];
+let contacts = [];
+let counts = [];
 let tasks = [
-    {
-        'title': ['Website redesign'],
-        'description': ['Modify the contents of the main website',],
-        'category': ['Design',],
-        'state': ['toDo'],
-        'color': ['#FF7A00'],
-        'priority': ['assets/img/Prio_Low.png'],
-        'priorityNumber': 1, 
-        'id': 0,
-    }, 
+    // {
+    //     'title': ['Website redesign'],
+    //     'description': ['Modify the contents of the main website',],
+    //     'category': ['Design',],
+    //     'state': ['toDo'],
+    //     'color': ['#FF7A00'],
+    //     'priority': ['assets/img/Prio_Low.png'],
+    //     'priorityNumber': 1, 
+    //     'subtasks': selectedSubtasks,
+    //     'contacts': 
+    //     'id': 0,
+    // }, 
 
-    {
-        'title': ['Call potential clients'],
-        'description': ['Make the product presentation to prospective buyers'],
-        'category': ['Sales',],
-        'state': ['progress',],
-        'color': ['#FC71FF'],
-        'priority': ['assets/img/Prio_Urgent.png'],
-        'priorityNumber': 3, 
-        'id': 1,
-    },
+    // {
+    //     'title': ['Call potential clients'],
+    //     'description': ['Make the product presentation to prospective buyers'],
+    //     'category': ['Sales',],
+    //     'state': ['progress',],
+    //     'color': ['#FC71FF'],
+    //     'priority': ['assets/img/Prio_Urgent.png'],
+    //     'priorityNumber': 3, 
+    //     'subtasks': selectedSubtasks,
+    //     'contacts':
+    //     'id': 1,
+    // },
 
-    {
-        'title': ['Accounting invoices'],
-        'description': ['Write open invoices for customer'],
-        'category': ['Backoffice'],
-        'state': ['feedback'],
-        'color': ['#1FD7C1'],
-        'priority': ['assets/img/Prio_Medium.png'],
-        'priorityNumber': 2, 
-        'id': 2,
-    },
+    // {
+    //     'title': ['Accounting invoices'],
+    //     'description': ['Write open invoices for customer'],
+    //     'category': ['Backoffice'],
+    //     'state': ['feedback'],
+    //     'color': ['#1FD7C1'],
+    //     'priority': ['assets/img/Prio_Medium.png'],
+    //     'priorityNumber': 2, 
+    //     'subtasks': ,
+    //     'contacts':
+    //     'id': 2,
+    // },
 
-    {
-        'title': ['Social media strategy'],
-        'description': ['Develop an ad campaign for brand positioning'],
-        'category': ['Marketing'],
-        'state': ['done'],
-        'color': ['#0038FF'],
-        'priority': ['assets/img/Prio_Low.png'],
-        'priorityNumber': 1, 
-        'id': 3,
-    }
+    // {
+    //     'title': ['Social media strategy'],
+    //     'description': ['Develop an ad campaign for brand positioning'],
+    //     'category': ['Marketing'],
+    //     'state': ['done'],
+    //     'color': ['#0038FF'],
+    //     'priority': ['assets/img/Prio_Low.png'],
+    //     'priorityNumber': 1, 
+    //     'subtasks': ,
+    //     'contacts':
+    //     'id': 3,
+    // }
 
 
 ];
+
+
+
+
 
 let priorityCount = [0]
 let currentDraggedElement;
 
 
 
-function init() {
+    async function init() {
+        await downloadFromServer();
+        await loadContacts();
+        allTasks = JSON.parse(backend.getItem(allTasks)) || [];
+        contacts = await JSON.parse(backend.getItem('contacts')) || [];
+        currentUser = JSON.parse(backend.getItem(currentUser)) || [];
     includeHTML();
     loadTask();
     countTasks();
     console.log('Urgent:', priorityCount);
-
-
 }
 
 
@@ -149,14 +170,35 @@ function countTasks() {
     console.log('Area:', numbArea);
     let numbtask = numbTodo + numbProgress + numbFeedback + numbArea;
     console.log('Task:', numbtask);
+    countNumbs(numbTodo, numbProgress, numbFeedback, numbArea, numbtask);
+}
+
+async function countNumbs(numbTodo, numbProgress, numbFeedback, numbArea, numbtask) {
+    let counts = {
+        'todoCount': numbTodo,
+        'progressCount': numbProgress,
+        'feedbackCount': numbFeedback,
+        'doneCount': numbDone,
+        'boardCount': numbTask,
+    };
+    await saveCounts(counts)
+}
+
+
+
+async function saveCounts(counts) {
+    counts.push();
 
 }
+
+
 
 function countPrio(task) {
 if (task.priorityNumber == 3) {
     priorityCount +++ 1
 }
 }
+
 
 
 function openTask(i) {
