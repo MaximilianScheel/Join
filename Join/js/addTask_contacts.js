@@ -1,38 +1,39 @@
 let allContacts =[];
 let selectedContactNames = [];
+let short_name = [];
 let firstLetters = [];
 let selectedLetters = [];
 
 async function loadContacts() {
-  await downloadFromServer();
   allContacts = JSON.parse(backend.getItem("contacts")) || [];
   sortAllContacts();
-  getFirstLetters();
+  getContactInfo();
 }
 
 function sortAllContacts() {
   allContacts = allContacts.sort((a,b) => {
-    if (a.name < b.name) {
+    if (a.prename < b.prename) {
       return -1;
     }
   });
 }
 
-function getFirstLetters() {
+function getContactInfo() {
   for (let i = 0; i < allContacts.length; i++) {
-    let contact = allContacts[i]['name'];
+    let contact = allContacts[i]['prename']+ ' ' + allContacts[i]['name'];
     let color = allContacts[i]['favouriteColor'];
-    let splitNames = contact.split(' ');
-    let bothLetters = splitNames[0].charAt(0)+splitNames[1].charAt(0);
+    let short_name = allContacts[i]['short_name'];
+    let bothLetters = short_name;
     firstLetters.push({bothLetters, color});
   }
 }
 
 function renderAllContacts() {
   for (let i = 0; i < allContacts.length; i++) {
-    const contact = allContacts[i]['name'];
+    const prename = allContacts[i]['prename'];
+    const contact = prename + ' ' + allContacts[i]['name'];
     document.getElementById('openedContacts').innerHTML += `
-    <div class="oneContact" onclick="addContact(${i})">
+    <div class="oneContact" onclick="addContactToTask(${i})">
       <div id="contact${i}">${contact}</div>
       <div class="contactButton" id="contactButton${i}"><img src="assets/img/button_rectangle.png"></div>
     </div>
@@ -40,7 +41,7 @@ function renderAllContacts() {
   }
 }
 
-function addContact(i) {
+function addContactToTask(i) {
   let contactID = document.getElementById('contact' + i);
   let index = selectedContactNames.indexOf(contactID.innerHTML);
   let index2 = selectedLetters.findIndex(obj => obj.bothLetters==firstLetters[i]['bothLetters']);

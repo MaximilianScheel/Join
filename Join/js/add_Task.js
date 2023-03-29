@@ -12,7 +12,7 @@ let allSubtasks = [];
 let idCounter = 0;
 
 
-async function init() {
+async function initTask() {
   await downloadFromServer();
   await loadContacts();
   allTasks = JSON.parse(backend.getItem(allTasks)) || [];
@@ -33,8 +33,9 @@ async function addTask() {
       'priority': getActivePriority(),
       'subtasks': selectedSubtasks,
       'id': idCounter,
+      'state': 'todo',
       };
-
+      showInfo();
     await saveAllTasks(task);
     clearValues();
     idCounter++;
@@ -278,6 +279,17 @@ function checkmark(i) {
   }
   const subtaskImageSrc = changeImage(newSubtask.name, selectedSubtasks);
   document.getElementById('checkbox' + i).src = subtaskImageSrc;
+}
+
+// Pop Up Add Task
+
+function displayAddTask() {
+  initTask();
+  document.getElementById('addTaskPopUp-container').classList.remove('hideAddTask');
+}
+
+function hideAddTask() {
+  document.getElementById('addTaskPopUp-container').classList.add('hideAddTask');
 }
 
 

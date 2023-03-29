@@ -1,4 +1,4 @@
-/*  addContact css BEGINS here  */
+/*  contactPopUp css BEGINS here  */
 
 .contactPopUp-container {
     position: fixed;
@@ -119,8 +119,12 @@
     margin-bottom: 20px;
     padding: 10px;
     border-radius: 7px;
-    border-style: solid;
+    border-style: unset;
     border-width: 0.5px;
+}
+
+.contactPopUp-form-body-formular form input:focus {
+    outline: none;
 }
 
 .submitButton {
@@ -135,11 +139,11 @@
 }
 
 .hideAddContact {
-    transform: translateY(150%);
+    transform: translateY(150vh);
 }
 
 .hideEditContact {
-    transform: translateY(-150%);
+    transform: translateY(-150vh);
 }
 
 @media(max-width: 700px) {
@@ -164,7 +168,7 @@
 
     .contactPopUp-join-container {
         width: 100%;
-        height: 40%;
+        height: 30%;
         padding-bottom: 75px;
     }
 
@@ -174,6 +178,7 @@
 
     .contactPopUp-form-container {
         width: 100%;
+        height: 70%;
     }
 
     .contactPopUp-form-body {
@@ -197,9 +202,112 @@
         margin-top: -100px !important;
         color: black;
     }
+
+    .cancelButton {
+        display: none;
+    }
+
+
+    .contactPopUp-form-body-formular form div {
+        justify-content: center;
+    }
+
+    .contactPopUp-form-body-formular form input {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 }
 
-/*  addContact css ENDS here  */
+/*  contactPopUp css ENDS here  */
+
+/* addTaskPopUp css Starts here*/
+
+.addTaskPopUp-container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 7vh;
+    left: 20vw;
+    bottom: 0;
+    right: 0;
+    width: 70vw;
+    height: 820px;
+    color: #2A3647;
+    border-style: none;
+    border-radius: 10px;
+    transition: 825ms ease-in-out;
+    z-index: 2;
+    opacity: 1;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+    overflow-y: hidden;
+}
+
+.popupAddTaskHeader {
+    color: #2A3647;
+    display: flex;
+    justify-content: space-between;
+}
+.popupAddTaskHeader img:hover {
+    cursor: pointer;
+}
+
+.popupAddTaskHeader div {
+    font-size: 32px;
+}
+
+.hideAddTask {
+    transform: translateY(-150vh);
+}
+
+@media(max-width: 900px) {
+
+    .buttons-createTask {
+        position: relative !important;
+        overflow: hidden !important;
+        height: 75px !important;
+    }
+    .flexContainer {
+        overflow-y: hidden !important;
+    }
+    .addTaskPopUp-container {
+        overflow-y: auto;
+    }
+}
+
+@media(max-width: 700px) {
+
+    .addTaskPopUp-container {
+        overflow-y: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        overflow: hidden;
+        border-style: none;
+        border-radius: 0px;
+        transition: 825ms ease-in-out;
+        z-index: 2;
+        opacity: 1;
+        flex-direction: column;
+    }
+
+    .mainContainer {
+        overflow-y: auto;
+    }
+
+    .contPopupAddTask {
+        padding-bottom: 20px;
+    }
+}
+
+
+/* addTaskPopUp css ENDS here*/
 
 /*  topBar-template css BEGINS here  */
 
@@ -323,7 +431,7 @@
     margin-left: 30px !important;
 }
 
-@media(max-width: 700px) {
+@media(max-width: 1028px) {
 
     .sidemenu-container-desktop {
         display: flex;
@@ -352,7 +460,10 @@
         flex-direction: column;
     }
 
-    .summaryLink, .boardLink, .addTaskLink, .contactsLink {
+    .summaryLink,
+    .boardLink,
+    .addTaskLink,
+    .contactsLink {
         margin-left: 0px !important;
         margin-top: 5px;
     }

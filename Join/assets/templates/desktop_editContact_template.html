@@ -1,12 +1,12 @@
 <div class="contactPopUp-join-container">
     <div class="contactPopUp-join-container-inner">
-        <img src="../Join/assets/img/mainlogo-desktop.png" alt="img">
+        <img src="././assets/img/mainlogo-desktop.png" alt="img">
         <h1>Edit contact</h1>
         <hr>
     </div>
 </div>
 <div class="contactPopUp-form-container">
-    <div class="contactPopUp-form-headline" onclick="hideEditContact()"><img src="../Join/assets/img/cross.png" alt=""></div>
+    <div class="contactPopUp-form-headline" onclick="hideEditContact()"><img src="././assets/img/cross.png" alt=""></div>
     <div class="contactPopUp-form-body">
         <div class="contactPopUp-form-body-img">
             <div class="contactPopUp-form-body-img-picture">
@@ -16,10 +16,11 @@
             </div>
         </div>
         <div class="contactPopUp-form-body-formular">
-            <form onsubmit="addContact()">
-                <input required type="text" placeholder="Name">
-                <input required type="email" placeholder="Email">
-                <input required type="tel" placeholder="Phone">
+            <form onsubmit="editContact(); return false;">
+                <input required min="2" maxlength="25" type="text" placeholder="Preame" id="edit_prename_input">
+                <input required min="2" maxlength="25" type="text" placeholder="Name" id="edit-name-input">
+                <input required min="2" maxlength="25" type="email" placeholder="Email" id="edit-email-input">
+                <input required min="2" maxlength="25" type="tel" placeholder="Phone" id="edit-phone-input">
                 <div>
                     <input type="submit" value="Save" id="submitButtonEditContact" class="submitButton">
                 </div>

@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="de">
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Add Task</title>
-        <link rel="icon" type="image/png" href="assets/img/capa1.png">
-        <link rel="stylesheet" type="text/css" href="style/add_task.css">
-        <link rel="stylesheet" href="style/fonts.css">
-        <link rel="stylesheet" href="style/templates.css">
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-        <script src="js/mini_backend.js"></script>
-        <script src="js/addTask_categories.js"></script>
-        <script src="js/addTask_contacts.js"></script>
-        <script src="js/add_Task.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Task</title>
+    <link rel="icon" type="image/png" href="assets/img/capa1.png">
+    <link rel="stylesheet" type="text/css" href="style/add_task.css">
+    <link rel="stylesheet" href="style/fonts.css">
+    <link rel="stylesheet" href="style/templates.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="js/mini_backend.js"></script>
+    <script src="js/addTask_categories.js"></script>
+    <script src="js/addTask_contacts.js"></script>
+    <script src="js/add_Task.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+</head>
 
-    <body onload="init(), loadAllTasks()">
+
+    <body onload="initTask(), loadAllTasks()">
         <nav w3-include-html="assets/templates/desktop_template.html"></nav>
         <main class="mainContent">
          <div>
-            <div class="desktop-topBar-content-container" 
-            ></div>
+            <div class="desktop-topBar-content-container"  w3-include-html="assets/templates/desktop-topBar-template.html"></div>
          </div>
-         <div id="createTaskBtn" >
-            <img id="image" src="assets/img/task_added_to_board.png" alt="Bild">
-          </div>
+
+
 
             <form onsubmit="addTask(); return false;">
                 <div class="headline">
@@ -44,7 +44,8 @@
 
                         <div class="inputBlock">
                             <span class="inputTitle">Description</span>
-                            <textarea id="description" class="add_task_textarea" placeholder="Enter a Description" onkeyup="addDescription()" required></textarea>
+                            <textarea id="description" class="add_task_textarea" placeholder="Enter a Description"
+                                onkeyup="addDescription()" required></textarea>
                         </div>
 
                         <div class="inputBlock">
@@ -55,7 +56,8 @@
                                 <div class="selectCategory" id="selectCategory">
                                     <div class="center">
                                         <div id="categoryColor"></div>
-                                        <input id="category" class="no-outline" maxlength="16" placeholder="Select a category" required>
+                                        <input id="category" class="no-outline" maxlength="16"
+                                            placeholder="Select a category" required>
                                     </div>
                                     <div id="categoryImage">
                                         <img src="assets/img/dropdown_arrow.png">
@@ -109,15 +111,15 @@
                             <span class="inputTitle">Assigned to</span>
                             <div class="selectField" id="selectFieldContact" onclick="openCloseContacts()">
                                 <div class="selectContact" id="selectContact">
-                                    <input id="contact"  placeholder="Select contacts to assign"/>
+                                    <input id="contact" placeholder="Select contacts to assign" />
                                     <div id="imageContact">
-                                        <img src="assets/img/dropdown_arrow.png"/>
+                                        <img src="assets/img/dropdown_arrow.png" />
                                     </div>
                                 </div>
                                 <div class="d-none" id="openedContacts" onclick="notOpenCloseContacts(event)">
                                 </div>
                             </div>
-                                <div id="addedContacts"></div>
+                            <div id="addedContacts"></div>
                         </div>
                         <!-- Assigned To End -->
                     </div>
@@ -126,7 +128,7 @@
                         <div class="inputBlock">
                             <span class="inputTitle">Due date</span>
                             <input type="date" required id="date" onkeyup="addDate()">
-                        </div> 
+                        </div>
                         <div class="inputBlock">
                             <span class="inputTitle">Prio</span>
                             <div class="prio">
@@ -147,13 +149,13 @@
                         <!-- Subtask Start -->
                         <div class="inputBlock">
                             <span class="inputTitle">Subtasks</span>
-                                <div class="subtask">
-                                    <input id="newSubtaskInput" type="text" placeholder="Add new subtask">
-                                    <div class="subtaskBtn">
-                                        <img src="assets/img/addSubtask_plus.png" onclick="addNewSubtask()">
-                                    </div>
+                            <div class="subtask">
+                                <input id="newSubtaskInput" type="text" placeholder="Add new subtask">
+                                <div class="subtaskBtn">
+                                    <img src="assets/img/addSubtask_plus.png" onclick="addNewSubtask()">
                                 </div>
-                                <div id="newSubtasks"></div>
+                            </div>
+                            <div id="newSubtasks"></div>
                         </div>
 
                         <div class="buttons-createTask">
@@ -167,13 +169,14 @@
                                     <img src="assets/img/createTask_hover.png" class="hover_create">
                                     <img src="assets/img/creatTask_click.png" class="click_create">
                                 </button>
-
                         </div>
                     </div>
                 </div>
-
+                <div id="createTaskBtn" class="d-none">
+                    <img id="image" src="assets/img/task_added_to_board.png" alt="Bild">
+                </div>
             </form>
-        </main>
-    </body>
+    </main>
+</body>
 
 </html>

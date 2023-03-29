@@ -1,6 +1,4 @@
 
-
-
 setURL('https://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ever');
 
 /**
@@ -152,8 +150,6 @@ function generateColors() {
 
 
 
-
-
 /**
  * Shows the popup "Task added to board" with animation
  */
@@ -173,4 +169,9 @@ function showPopup(id) {
  */
 function removeAnimate(popup) {
     popup.classList.remove('animation');
+}
+
+function openLogout() {
+    let logoutContainer = document.getElementById("logoutContainer");
+    logoutContainer.style.display = "block";
 }
