@@ -234,6 +234,7 @@ function hideAddContact() {
 
 function displayEditContact() {
     document.getElementById('contactEditPopUp-container').classList.remove('hideEditContact');
+    document.getElementById('edit-prename-input').value = contacts[currentContactIndex].prename;
     document.getElementById('edit-name-input').value = contacts[currentContactIndex].name;
     document.getElementById('edit-email-input').value = contacts[currentContactIndex].email;
     document.getElementById('edit-phone-input').value = contacts[currentContactIndex].phone;
