@@ -80,7 +80,7 @@ async function init() {
     //await backend.setItem('contacts', JSON.stringify(contacts));
     startingLetters = []
     existingLetterIndex = 0;
-    sortAllContacts();
+    sortContacts();
     loadNameStartingLetters();
     includeHTML();
     buildContactList();
@@ -143,7 +143,7 @@ function findStartingLetters() {
     });
 }
 
-function sortAllContacts() {
+function sortContacts() {
     contacts.sort(function (a, b) {
         return a.name.localeCompare(b.name);
     });
