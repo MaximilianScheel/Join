@@ -110,7 +110,7 @@ function displayContact(index) {
 function isMobile() {
     let viewportWidth = 0;
     viewportWidth = window.innerWidth;
-    if (viewportWidth <= 700) {
+    if (viewportWidth <= 1028) {
         return true;
     }
     return false;
