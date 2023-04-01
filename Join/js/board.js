@@ -69,19 +69,21 @@ let currentDraggedElement;
 
 
 
-    async function init() {
-        await downloadFromServer();
-        await loadContacts();
-        allTasks = JSON.parse(backend.getItem(allTasks)) || [];
-        contacts = await JSON.parse(backend.getItem('contacts')) || [];
-        currentUser = JSON.parse(backend.getItem(currentUser)) || [];
+async function init() {
+    await downloadFromServer();
+    await loadContacts();
+    allTasks = JSON.parse(backend.getItem(allTasks)) || [];
+    contacts = await JSON.parse(backend.getItem('contacts')) || [];
+    currentUser = JSON.parse(backend.getItem(currentUser)) || [];
     includeHTML();
     loadTask();
     countTasks();
     console.log('Urgent:', priorityCount);
 }
 
-
+function routeToPage(destination) {
+    window.location.href = destination;
+}
 
 
 
@@ -99,25 +101,25 @@ function loadTask() {
     progressTasks.innerHTML = "";
     feedbackTasks.innerHTML = "";
     doneTasks.innerHTML = "";
-    
+
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
         if (tasks[i].state == "toDo") {
-            toDoTasks.innerHTML += renderTask(task,i);
+            toDoTasks.innerHTML += renderTask(task, i);
         } else if (tasks[i].state == "progress") {
-            progressTasks.innerHTML += renderTask(task,i);
+            progressTasks.innerHTML += renderTask(task, i);
         } else if (tasks[i].state == "feedback") {
-            feedbackTasks.innerHTML += renderTask(task,i);
+            feedbackTasks.innerHTML += renderTask(task, i);
         } else if (tasks[i].state == "done") {
-            doneTasks.innerHTML += renderTask(task,i);
+            doneTasks.innerHTML += renderTask(task, i);
         }
-        countPrio(task) 
+        countPrio(task)
     }
 
 }
 
 
-function renderTask(task,i) {
+function renderTask(task, i) {
     return /* html */ `    <div draggable="true" class="taskContainer" ondragstart="startDragging(${task['id']})"  onclick="openTask(i)">
     <div style="background-color: ${task['color']};" class="categoryContainer">
         ${task['category']}
@@ -144,7 +146,7 @@ function startDragging(id) {
 
 function allowDrop(ev) {
     ev.preventDefault();
-  }
+}
 
 function moveTo(state) {
     tasks[currentDraggedElement]['state'] = state;
@@ -194,9 +196,9 @@ async function saveCounts(counts) {
 
 
 function countPrio(task) {
-if (task.priorityNumber == 3) {
-    priorityCount +++ 1
-}
+    if (task.priorityNumber == 3) {
+        priorityCount++ + 1
+    }
 }
 
 
@@ -207,7 +209,7 @@ function openTask(i) {
 
 function mouseOverBoard(i) {
     document.getElementById('pathA' + i).classList.add('pathA');
-    document.getElementById('pathB'+ i).classList.add('pathA');
+    document.getElementById('pathB' + i).classList.add('pathA');
     document.getElementById('rect' + i).classList.add('rect');
 }
 

@@ -292,6 +292,9 @@ function hideAddTask() {
   document.getElementById('addTaskPopUp-container').classList.add('hideAddTask');
 }
 
+function routeToPage(destination) {
+  window.location.href = destination;
+}
 
 function includeHTML() {
     var z, i, elmnt, file, xhttp;

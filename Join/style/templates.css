@@ -249,6 +249,7 @@
     display: flex;
     justify-content: space-between;
 }
+
 .popupAddTaskHeader img:hover {
     cursor: pointer;
 }
@@ -268,9 +269,11 @@
         overflow: hidden !important;
         height: 75px !important;
     }
+
     .flexContainer {
         overflow-y: hidden !important;
     }
+
     .addTaskPopUp-container {
         overflow-y: auto;
     }
@@ -369,8 +372,9 @@
 .sidemenu-container-desktop {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
+    overflow-x: hidden;
     width: 200px;
     height: 100vh;
     background-color: rgba(42, 54, 71, 1);
@@ -386,11 +390,7 @@
 .sidemenu-mainLogo-desktop {
     margin-bottom: 100px;
     margin-top: 40px;
-}
-
-.sidemenu-allLinks-container-desktop {
-    width: 100%;
-    overflow: hidden;
+    align-self: center;
 }
 
 .sideMenu-link-container-desktop {
@@ -434,6 +434,8 @@
 @media(max-width: 1028px) {
 
     .sidemenu-container-desktop {
+        position: fixed;
+        bottom: 0px;
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -447,17 +449,14 @@
         display: none;
     }
 
-    .sidemenu-allLinks-container-desktop {
-        display: flex;
-        align-items: flex-end;
-    }
-
     .sideMenu-link-container-desktop {
         padding-left: 0px !important;
         padding-right: 0px !important;
         padding-top: 0px !important;
         padding-bottom: 0px !important;
         flex-direction: column;
+        height: 100%;
+        justify-content: center;
     }
 
     .summaryLink,
@@ -466,11 +465,6 @@
     .contactsLink {
         margin-left: 0px !important;
         margin-top: 5px;
-    }
-
-    .sidemenu-container-desktop {
-        position: fixed;
-        bottom: 0px;
     }
 
 }

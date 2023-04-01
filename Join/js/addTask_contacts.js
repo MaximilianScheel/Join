@@ -5,7 +5,7 @@ let firstLetters = [];
 let selectedLetters = [];
 
 async function loadContacts() {
-  allContacts = JSON.parse(backend.getItem("contacts")) || [];
+  allContacts = backend.getItem("contacts");
   sortAllContacts();
   getContactInfo();
 }

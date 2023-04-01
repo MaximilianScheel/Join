@@ -1,25 +1,25 @@
 
 function init() {
-    
-const date = new Date();
-const dateFormatted = new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeZone: 'Europe/Berlin' }).format(date)
-document.getElementById('currentDate').innerHTML = dateFormatted; 
-includeHTML();
-greetUser();
+
+    const date = new Date();
+    const dateFormatted = new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeZone: 'Europe/Berlin' }).format(date)
+    document.getElementById('currentDate').innerHTML = dateFormatted;
+    includeHTML();
+    greetUser();
 }
 
 
 function loadAtStart() {
     let nameTest = JSON.parse(backend.getItem("currentUser")) || [];
     if (nameTest.length < 2) {
-      ShowCurrentUserNameForSummery = "Guest user";
+        ShowCurrentUserNameForSummery = "Guest user";
     } else {
-      ShowCurrentUserNameForSummery = nameTest;
+        ShowCurrentUserNameForSummery = nameTest;
     }
 }
 
 
-function currentTasks(){
+function currentTasks() {
 
     // let boardNumber = JSON.parse(backend.getItem("numbtask")) || [];
     // let progressNumber = JSON.parse(backend.getItem("numbProgress")) || [];
@@ -44,11 +44,11 @@ function greetUser() {
     let currentTime = new Date().getHours();
     // let name = ShowCurrentUserNameForSummery["userName"];
     if (currentTime < 12) {
-      document.getElementById("greetTime").innerHTML = "Good morning, ";
+        document.getElementById("greetTime").innerHTML = "Good morning, ";
     } else if (currentTime < 17) {
-      document.getElementById("greetTime").innerHTML = "Good afternoon, ";
+        document.getElementById("greetTime").innerHTML = "Good afternoon, ";
     } else {
-      document.getElementById("greetTime").innerHTML = "Good evening, ";
+        document.getElementById("greetTime").innerHTML = "Good evening, ";
     }
     // if (name == undefined) {
     //   document.getElementById("nameUser").innerHTML =
@@ -57,13 +57,17 @@ function greetUser() {
     //   document.getElementById("nameUser").innerHTML =
     //     ShowCurrentUserNameForSummery["userName"];
     // }
-  }
+}
+
+function routeToPage(destination) {
+    window.location.href = destination;
+}
 
 
 
 function mouseOverTodo(i) {
     document.getElementById('todo' + i).classList.add('linkBackground');
-    document.getElementById('todo'+ i).classList.add('textHover');
+    document.getElementById('todo' + i).classList.add('textHover');
     document.getElementById('circle' + i).classList.add('circle');
     document.getElementById('pathBig' + i).classList.add('path');
     document.getElementById('pathSmall' + i).classList.add('path');
@@ -79,7 +83,7 @@ function mouseOutTodo(i) {
 
 function mouseOverDone(i) {
     document.getElementById('todo' + i).classList.add('linkBackground');
-    document.getElementById('todo'+ i).classList.add('textHover');
+    document.getElementById('todo' + i).classList.add('textHover');
     document.getElementById('circle' + i).classList.add('circle');
     document.getElementById('pathBig' + i).classList.add('stroke');
 }
@@ -94,7 +98,7 @@ function mouseOutDone(i) {
 
 function mouseOverSmall(i) {
     document.getElementById('todo' + i).classList.add('linkBackground');
-    document.getElementById('todo'+ i).classList.add('textHover');
+    document.getElementById('todo' + i).classList.add('textHover');
 }
 
 function mouseOutSmall(i) {
