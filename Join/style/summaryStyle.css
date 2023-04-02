@@ -74,8 +74,9 @@ body {
 
 .main {
     background-color: #F5F5F5;
-    height: 92%;
-    width: 92vw;
+    height: 100vh;
+    width: 100%;
+    overflow-x: scroll;
 }
 
 .headline {
@@ -348,7 +349,6 @@ pointer-events: none;
 .userNameContainer {
     display: flex;
     align-items: center;
-    margin-left: 67px;
 }
 
 .userNameChildContainer {
@@ -367,25 +367,23 @@ pointer-events: none;
     border: 10px;
 }
 
-@media only screen and (max-width: 1950px) {
-    .main {
-        width: 89vw;
-    }
-
+.content-summary {
+    width: 100%;
 }
 
-@media only screen and (max-width: 1450px) {
-    .main {
-        width: 84vw;
-    }
-
+.goodMorning {
+    margin-left: 67px;
 }
+
+
+
+
 
 
 @media only screen and (max-width: 1300px) {
-    .main {
+    /*.main {
         width: 83vw;
-    }
+    }*/
 
     .headline {
         margin-left: 95px;
@@ -395,19 +393,14 @@ pointer-events: none;
         margin-left: 95px;
     }
 
-    .userNameContainer {
-        width: 347px;
-        margin-left: 30px;
-    }
-
 }
 
 
 @media only screen and (max-width: 1240px) {
-    .main {
+    /*.main {
         width: 78vw;
         height: 99%;
-    }
+    }*/
 
 
     .headline {
@@ -426,31 +419,28 @@ pointer-events: none;
 }
 
 
-@media only screen and (max-width: 830px) {
-    .sidemenu-container-desktop {
-        display: none !important;
-    }
+/*@media only screen and (max-width: 830px) {
 
     .main {
         width: 100vw;
         height: 137%;
     }
-}
+}*/
 
-@media only screen and (max-width: 770px) {
+/*@media only screen and (max-width: 770px) {
 
 
     .main {
         height: 119%;
     }
-}
+}*/
 
 @media only screen and (max-width: 416px) {
 
 
-    .main {
+    /*.main {
         height: 119%;
-    }
+    }*/
 
     .headline {
         margin-left: 20px;
@@ -531,9 +521,9 @@ pointer-events: none;
 @media only screen and (max-width: 390px) {
 
 
-    .main {
+    /*.main {
         height: 119%;
-    }
+    }*/
 
     .headline {
         margin-left: 20px;

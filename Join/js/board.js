@@ -1,69 +1,8 @@
 setURL('https://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ever');
 
 let currentUser = [];
-let alltasks = [];
 let contacts = [];
 let counts = [];
-let tasks = [
-    // {
-    //     'title': ['Website redesign'],
-    //     'description': ['Modify the contents of the main website',],
-    //     'category': ['Design',],
-    //     'state': ['toDo'],
-    //     'color': ['#FF7A00'],
-    //     'priority': ['assets/img/Prio_Low.png'],
-    //     'priorityNumber': 1, 
-    //     'subtasks': selectedSubtasks,
-    //     'contacts': 
-    //     'id': 0,
-    // }, 
-
-    // {
-    //     'title': ['Call potential clients'],
-    //     'description': ['Make the product presentation to prospective buyers'],
-    //     'category': ['Sales',],
-    //     'state': ['progress',],
-    //     'color': ['#FC71FF'],
-    //     'priority': ['assets/img/Prio_Urgent.png'],
-    //     'priorityNumber': 3, 
-    //     'subtasks': selectedSubtasks,
-    //     'contacts':
-    //     'id': 1,
-    // },
-
-    // {
-    //     'title': ['Accounting invoices'],
-    //     'description': ['Write open invoices for customer'],
-    //     'category': ['Backoffice'],
-    //     'state': ['feedback'],
-    //     'color': ['#1FD7C1'],
-    //     'priority': ['assets/img/Prio_Medium.png'],
-    //     'priorityNumber': 2, 
-    //     'subtasks': ,
-    //     'contacts':
-    //     'id': 2,
-    // },
-
-    // {
-    //     'title': ['Social media strategy'],
-    //     'description': ['Develop an ad campaign for brand positioning'],
-    //     'category': ['Marketing'],
-    //     'state': ['done'],
-    //     'color': ['#0038FF'],
-    //     'priority': ['assets/img/Prio_Low.png'],
-    //     'priorityNumber': 1, 
-    //     'subtasks': ,
-    //     'contacts':
-    //     'id': 3,
-    // }
-
-
-];
-
-
-
-
-
 let priorityCount = [0]
 let currentDraggedElement;
 
@@ -72,9 +11,9 @@ let currentDraggedElement;
 async function init() {
     await downloadFromServer();
     await loadContacts();
-    allTasks = JSON.parse(backend.getItem(allTasks)) || [];
-    contacts = await JSON.parse(backend.getItem('contacts')) || [];
-    currentUser = JSON.parse(backend.getItem(currentUser)) || [];
+    allTasks = JSON.parse(backend.getItem('allTasks'));
+    contacts = backend.getItem('contacts');
+    currentUser = backend.getItem(currentUser);
     includeHTML();
     loadTask();
     countTasks();
@@ -102,15 +41,15 @@ function loadTask() {
     feedbackTasks.innerHTML = "";
     doneTasks.innerHTML = "";
 
-    for (let i = 0; i < tasks.length; i++) {
-        const task = tasks[i];
-        if (tasks[i].state == "toDo") {
+    for (let i = 0; i < allTasks.length; i++) {
+        const task = allTasks[i];
+        if (allTasks[i].state == "todo") {
             toDoTasks.innerHTML += renderTask(task, i);
-        } else if (tasks[i].state == "progress") {
+        } else if (allTasks[i].state == "progress") {
             progressTasks.innerHTML += renderTask(task, i);
-        } else if (tasks[i].state == "feedback") {
+        } else if (allTasks[i].state == "feedback") {
             feedbackTasks.innerHTML += renderTask(task, i);
-        } else if (tasks[i].state == "done") {
+        } else if (allTasks[i].state == "done") {
             doneTasks.innerHTML += renderTask(task, i);
         }
         countPrio(task)
@@ -120,7 +59,7 @@ function loadTask() {
 
 
 function renderTask(task, i) {
-    return /* html */ `    <div draggable="true" class="taskContainer" ondragstart="startDragging(${task['id']})"  onclick="openTask(i)">
+    return /* html */ `    <div draggable="true" id="${task['id']}" class="taskContainer" ondragstart="startDragging(${task['id']})"  onclick="openTask(i)">
     <div style="background-color: ${task['color']};" class="categoryContainer">
         ${task['category']}
     </div>
@@ -133,7 +72,7 @@ function renderTask(task, i) {
     <div class="subTaskContainer"></div>
     <div class="contactsPrioContainer"></div>
     <div class="contacts"></div>
-    <div class="prio"><img class="#" src="${task['priority']}"></div>
+    <div class="prio"><img class="#" src="./assets/img/Prio_${task['priority']}.png"></div>
 </div>
 </div> `
 
@@ -141,7 +80,8 @@ function renderTask(task, i) {
 
 
 function startDragging(id) {
-    currentDraggedElement = id;
+    currentDraggedElement = id; // TODO: id is currently only a number 0, 2 or 4.. 
+    console.log(currentDraggedElement);
 }
 
 function allowDrop(ev) {
@@ -149,7 +89,8 @@ function allowDrop(ev) {
 }
 
 function moveTo(state) {
-    tasks[currentDraggedElement]['state'] = state;
+    allTasks[currentDraggedElement]['state'] = state;
+    console.log(currentDraggedElement.state);
     init();
 }
 
@@ -170,28 +111,28 @@ function countTasks() {
     console.log('Feedback:', numbFeedback);
     let numbArea = document.getElementById("doneArea").childElementCount;
     console.log('Area:', numbArea);
-    let numbtask = numbTodo + numbProgress + numbFeedback + numbArea;
-    console.log('Task:', numbtask);
-    countNumbs(numbTodo, numbProgress, numbFeedback, numbArea, numbtask);
+    let numbTask = numbTodo + numbProgress + numbFeedback + numbArea;
+    console.log('Task:', numbTask);
+    countNumbs(numbTodo, numbProgress, numbFeedback, numbArea, numbTask);
 }
 
-async function countNumbs(numbTodo, numbProgress, numbFeedback, numbArea, numbtask) {
+async function countNumbs(numbTodo, numbProgress, numbFeedback, numbArea, numbTask) {
     let counts = {
         'todoCount': numbTodo,
         'progressCount': numbProgress,
         'feedbackCount': numbFeedback,
-        'doneCount': numbDone,
+        'doneCount': numbArea,
         'boardCount': numbTask,
     };
-    await saveCounts(counts)
+    //await saveCounts(counts)
 }
 
 
 
-async function saveCounts(counts) {
+/*async function saveCounts(counts) {
     counts.push();
 
-}
+}*/
 
 
 
