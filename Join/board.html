@@ -47,7 +47,7 @@
                             <div class="lensContainer"><img onclick="search()" class="lensImg" src="assets/img/lens.svg"
                                     alt="Lupe"></div>
                         </div>
-                        <div class="addTaskContainer">Add Task <img class="addTaskIcon" src="assets/img/plus.svg"
+                        <div class="addTaskContainer" onclick="displayAddTask()">Add Task <img class="addTaskIcon" src="assets/img/plus.svg"
                                 alt="Plus"></div>
                     </div>
                 </div>
@@ -164,6 +164,8 @@
             </main>
         </div>
         <div id="taskCard" class="taskCard"></div>
+    </div>
+    <div id="addTaskPopUp-container" class="addTaskPopUp-container hideAddTask" w3-include-html="assets/templates/desktop_addTask.html">
     </div>
 
 </body>
