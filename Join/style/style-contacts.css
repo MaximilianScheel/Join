@@ -25,6 +25,7 @@ body {
     flex-direction: column;
     width: 100%;
     overflow-y: auto;
+    background-color: white;
 }
 
 .contacts-wrapper-inner-content {

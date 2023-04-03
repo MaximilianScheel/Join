@@ -275,7 +275,7 @@ async function addContact() {
 }
 
 async function editContact() {
-    let contactPreName = document.getElementById('edit_prename_input').value;
+    let contactPreName = document.getElementById('edit-prename-input').value;
     contactPreName = contactPreName.charAt(0).toUpperCase() + contactPreName.slice(1);
     let contactName = document.getElementById('edit-name-input').value;
     contactName = contactName.charAt(0).toUpperCase() + contactName.slice(1);
