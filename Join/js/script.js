@@ -176,6 +176,13 @@ function openLogout() {
     logoutContainer.style.display = "block";
 }
 
+async function logout() {
+    currentUser = [];
+    await saveOnServer('currentUser', currentUser);
+    window.location.href = './index.html';
+}
+
+
 function routeToPage(destination) {
     window.location.href = destination;
 }

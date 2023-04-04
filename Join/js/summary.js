@@ -1,4 +1,4 @@
-
+let currentUser = [];
 function init() {
 
     const date = new Date();
@@ -6,15 +6,16 @@ function init() {
     document.getElementById('currentDate').innerHTML = dateFormatted;
     includeHTML();
     greetUser();
+    loadAtStart();
 }
 
 
 function loadAtStart() {
-    let nameTest = JSON.parse(backend.getItem("currentUser")) || [];
-    if (nameTest.length < 2) {
+    currentUser = JSON.parse(backend.getItem("currentUser")) || [];
+    if (currentUser.length < 2) {
         ShowCurrentUserNameForSummery = "Guest user";
     } else {
-        ShowCurrentUserNameForSummery = nameTest;
+        ShowCurrentUserNameForSummery = currentUser;
     }
 }
 
