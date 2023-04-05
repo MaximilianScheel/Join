@@ -9,6 +9,8 @@ async function init() {
 }
 
 
+
+
 function loadAtStart() {
     let nameTest = JSON.parse(backend.getItem("currentUser")) || [];
     if (nameTest.length < 2) {

@@ -1,17 +1,14 @@
-<head>
-    <script src="/js/script.js"></script>
-</head>
 
 
 <div class="desktop-topBar-container">
     <span>Kanban Project Management Tool</span>
-    <div>
+    <div class="image-container-top-bar">
         <img class="desktop-topBar-helpPicture" src="assets/img/help.png" alt="">
-        <img onclick="openLogout()" class="desktop-topBar-profilPicture" id="desktop_topBar_profilPicture" src="assets/img/stockProfileImg1.png" alt="">
+        <img class="desktop-topBar-profilPicture" id="desktop_topBar_profilPicture"
+            src="assets/img/stockProfileImg1.png" alt="">
+        <div class="logout-container">
+            <p onclick="logout()"class="logout-text">Logout</p>
+        </div>
+    </div>
     </div>
 </div>
-
-<div id="logoutContainer" style="display:none">
-    <button onclick="logout()"id="logout-button">Logout</button>
-</div>
-
