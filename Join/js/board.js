@@ -7,7 +7,6 @@ let priorityCount = [0]
 let currentDraggedElement;
 
 
-
 async function init() {
     await downloadFromServer();
     await loadContacts();
@@ -52,7 +51,7 @@ function loadTask() {
         } else if (allTasks[i].state == "done") {
             doneTasks.innerHTML += renderTask(task, i);
         }
-        countPrio(task)
+        // countPrio(task)
     }
 
 }
@@ -92,6 +91,7 @@ function moveTo(state) {
     allTasks[currentDraggedElement]['state'] = state;
     console.log(currentDraggedElement.state);
     init();
+    // state kommt aus dem backend, daher wird state nicht geändert.
 }
 
 function dragHighlight(id) {
@@ -136,11 +136,11 @@ async function countNumbs(numbTodo, numbProgress, numbFeedback, numbArea, numbTa
 
 
 
-function countPrio(task) {
-    if (task.priorityNumber == 3) {
-        priorityCount++ + 1
-    }
-}
+// function countPrio(task) {
+//     if (task.priorityNumber == 3) {
+//         priorityCount++ + 1
+//     }
+// }
 
 
 
