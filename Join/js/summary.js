@@ -1,21 +1,20 @@
-let currentUser = [];
-function init() {
 
+async function init() {
+   
     const date = new Date();
     const dateFormatted = new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeZone: 'Europe/Berlin' }).format(date)
     document.getElementById('currentDate').innerHTML = dateFormatted;
     includeHTML();
     greetUser();
-    loadAtStart();
 }
 
 
 function loadAtStart() {
-    currentUser = JSON.parse(backend.getItem("currentUser")) || [];
-    if (currentUser.length < 2) {
+    let nameTest = JSON.parse(backend.getItem("currentUser")) || [];
+    if (nameTest.length < 2) {
         ShowCurrentUserNameForSummery = "Guest user";
     } else {
-        ShowCurrentUserNameForSummery = currentUser;
+        ShowCurrentUserNameForSummery = nameTest;
     }
 }
 
