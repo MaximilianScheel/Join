@@ -355,7 +355,7 @@
 }
 
 .desktop-topBar-container div {
-    padding-right: 20px;
+    padding-right: 0px;
 }
 
 .desktop-topBar-content-container {
@@ -387,15 +387,14 @@
 
 .image-container-top-bar {
     position: relative;
-    width: 100px;
     cursor: pointer;
 }
 
 .logout-container {
     position: absolute;
     top: 100%;
-    left: 0;
-    right: 35px;
+    right: 0;
+    width: 100px;
     border-radius: 20px 0px 20px 20px;
     background-color: rgb(42, 54, 71);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
