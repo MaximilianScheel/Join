@@ -357,6 +357,9 @@
     padding-bottom: 15px;
     box-shadow: rgba(191, 191, 191, 0.4) 4px 4px 4px;
     z-index: 0;
+    position: fixed;
+    top: 0;
+    background-color: white;
 }
 
 .desktop-topBar-profilPicture {
