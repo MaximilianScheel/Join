@@ -243,3 +243,113 @@ margin-bottom: 16px;
         stroke: #2AABE2;
 }
 
+
+/* Add Task Overview Pop Up */
+.overlay {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    backdrop-filter: blur(2px);
+    z-index: 99;
+    cursor: pointer;
+}
+
+.TaskCard {
+    height: 800px;
+    width: 600px;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.innerContentBoxOverlay{
+    width: 90%;
+    height: 90%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    font-weight: 400;
+    font-size: 18px;
+    cursor: default;
+    overflow: auto;
+}
+.overlayCategory{
+    padding: 5px 15px;
+    color: white;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    font-size: 27px;
+    border-radius: 10px;
+}
+.overlayTitle{
+    font-weight: 700;
+    font-size: 50px;
+    
+}
+.overlayTitle h5{
+    margin: 0;
+    color:#2A3647;
+    font-size: 61px;
+}
+.overlayDiscription{
+    font-weight: 400;
+    font-size: 21px;
+
+}
+.overlayDate{
+    display: flex;
+    gap: 25px;
+}
+
+.overlayPrio{
+    display: flex;
+    align-items: center;
+    gap: 25px;    
+    border-radius: 10px; 
+}
+
+.overlayInitialArea{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+}
+.overlayInitials{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+.overlaySubtasks{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.overlaySubtasks h5{
+    margin: 0;
+}
+
+.overlayTaskClose {
+    position: absolute;
+    z-index: 100;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.overlayTaskEdit {
+    position: absolute;
+    z-index: 100;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+

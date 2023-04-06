@@ -39,7 +39,7 @@ async function addTask() {
     await saveAllTasks(task);
     clearValues();
     idCounter++;
-    init();
+    loadAllTasks();
   }
 
 function addTitle() {
@@ -212,11 +212,11 @@ function getActivePriority() {
   let low = document.getElementById("lowBtn");
 
   if (urgent.style.backgroundColor === "rgb(255, 61, 0)") {
-    activePriority = "urgent";
+    activePriority = "Urgent";
   } else if (medium.style.backgroundColor === "rgb(255, 168, 0)") {
-    activePriority = "medium";
+    activePriority = "Medium";
   } else if (low.style.backgroundColor === "rgb(122, 226, 41)") {
-    activePriority = "low";
+    activePriority = "Low";
   }
 
   return activePriority;

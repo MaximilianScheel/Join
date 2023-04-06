@@ -58,7 +58,7 @@ function loadTask() {
 
 
 function renderTask(task, i) {
-    return /* html */ `    <div draggable="true" id="${task['id']}" class="taskContainer" ondragstart="startDragging(${task['id']})"  onclick="openTask(i)">
+    return /* html */ `    <div draggable="true" id="${task['id']}" class="taskContainer" ondragstart="startDragging(${task['id']})"  onclick="openTask(id)">
     <div style="background-color: ${task['color']};" class="categoryContainer">
         ${task['category']}
     </div>
@@ -143,8 +143,63 @@ async function countNumbs(numbTodo, numbProgress, numbFeedback, numbArea, numbTa
 // }
 
 
+// Start Pop Up Task 
 
-function openTask(i) {
+function openTask(id) {
+    document.getElementById('TaskOverview').classList.remove('d-none');
+    document.getElementById('TaskCard').innerHTML='';
+    renderFullscreenView(id);
+}
+
+async function renderFullscreenView(id){
+    let task = allTasks[id];
+    let title = task['title'];
+    let contactNames = task['contactNames'];
+    let description = task['description'];
+    let category = task['category'];
+    let date = task['date'];
+    let prio = task['priority'];
+    let subtasks = task['subtasks'];
+    let color = task['color'];
+    
+    document.getElementById('TaskCard').innerHTML = generateFullscreenView(id, title, description, category, color, date, prio);
+    generateAssignedToOverlay(id,contactNames);
+    // generateSubtaskOverlay(id,subtasks);
+}
+
+function generateFullscreenView(id, title, description, category, color, date, prio){
+    return /*html*/`
+    <div class="innerContentBoxOverlay">
+        <img class="overlayTaskClose" src="assets/img/cross.png" onclick="closeOverview()">
+        <img class="overlayTaskEdit" src="assets/img/editTask_button.png" onclick="OverlaySwitch(${id})">
+        <div class="overlayCategory" style="background-color: ${color}";>${category}</div>
+        <div class="overlayTitle"><h5>${title}</h5></div>
+        <div class="overlayDiscription">${description}</div>
+        <div class="overlayDate"> <div><b>Due date:</b></div> <div>${date}</div> </div>
+        <div class="overlayPrio"><div><b>Priority:</b></div><div class="overlayPrio ${prio}"> <div> ${prio}</div><img src='assets/img/prio_${prio}.png'></div></div>
+        <div id="overlaySubtasks" class="overlaySubtasks"><b>Subtasks:</b></div>
+        <div><b>Assigned To:</b></div>
+        <div id="overlayInitials" class="overlayInitialArea">
+        </div>
+    </div>
+    `;
+}
+
+function generateAssignedToOverlay(id,contactNames){
+    document.getElementById(`overlayInitials`).innerHTML ='';
+    for (let t = 0; t < contactNames.length; t++) {
+        const position = contactNames[t];
+        document.getElementById(`overlayInitials`).innerHTML +=/*html*/`
+        <div class="overlayInitials">
+        <div class="overlayCardAvatar" style="background-color: ${contactNames};">${contactNames}</div>
+        <div class="overlayCardName">${short_name}</div>        
+        </div>
+        `;
+    }
+}
+
+function closeOverview() {
+    document.getElementById('TaskOverview').classList.add('d-none');
 }
 
 
