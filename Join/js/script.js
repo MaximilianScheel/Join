@@ -15,7 +15,7 @@ async function init() {
  */
 async function loadDataFromServer() {
     await downloadFromServer();
-    contacts = await backend.getItem('contacts');
+    contacts = await JSON.parse(backend.getItem('contacts'));
     console.log(contacts)
 }
 
