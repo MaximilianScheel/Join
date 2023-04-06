@@ -16,6 +16,7 @@ body {
 .link {
     color: black;
     text-decoration: none;
+    width: 30%;
 }
 
 .link :hover {
@@ -25,7 +26,7 @@ body {
 }
 
 .todoAndDoneLink {
-    width: 200px !important;
+    width: 45% !important;
 }
 
 .linkBackground {
@@ -94,8 +95,7 @@ body {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin-left: 100px;
-    margin-top: 80px;
+    margin-top: 20px;
     margin-bottom: 40px;
 }
 
@@ -107,7 +107,7 @@ body {
 
 .lineSummary {
     border-style: groove;
-    border-right-color: #29ABE2;
+    border-right-color: rgb(39, 169, 224);
     border-left: none;
     border-bottom: none;
     border-top: none;
@@ -146,7 +146,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 120px;
     height: 120px;
     background-color: #FFFFFF;
     border-radius: 30px;
@@ -172,7 +171,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 120px;
     height: 120px;
     background-color: #FFFFFF;
     border-radius: 30px;
@@ -198,7 +196,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 120px;
     height: 120px;
     background-color: #FFFFFF;
     border-radius: 30px;
@@ -377,6 +374,17 @@ body {
 .userNameContainer {
     display: flex;
     align-items: center;
+    margin-left: 30px;
+}
+
+.greetingTime {
+    font-size: 2rem;
+}
+
+.nameOfUserGreeting {
+    font-size: 3rem;
+    color: rgba(41, 171, 226, 1);
+    font-weight: bold;
 }
 
 .userName {
@@ -395,6 +403,11 @@ body {
     overflow-y: scroll;
 }
 
+.doneIcon {
+    height: 70px;
+    width: 70px;
+}
+
 @media (max-width: 1024px) {
 
     .main {
@@ -407,10 +420,16 @@ body {
 
     .headline {
         margin-left: 0px;
-        margin-top: 80px;
-        margin-bottom: 40px;
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: start;
+        margin-left: 0px;
+        margin-top: 20px;
+        margin-bottom: 40px;
     }
+
 
     .contentChild {
         padding-bottom: 100px;
@@ -428,12 +447,70 @@ body {
         margin-left: 0px;
         width: 100%;
     }
-}
 
-@media (max-width: 890px) {
+    .tasks {
+        margin-bottom: 15px;
+    }
+
+    .urgentContainer {
+        margin-bottom: 15px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .urgentChildContainer {
+        justify-content: center;
+    }
+
+    .todo {
+        height: 100px;
+    }
+
+    .done {
+        height: 100px;
+    }
+
+    .todoIcon {
+        height: 45px;
+        width: 45px;
+    }
+
+    .todoNumber {
+        font-size: 2rem;
+    }
+
+    .doneIcon {
+        height: 45px;
+        width: 45px;
+    }
+
+    .doneNumber {
+        font-size: 2rem;
+    }
+
+    .doneNumberText {
+        margin-left: 10px;
+    }
+
+    .todoNumberText {
+        margin-left: 10px;
+    }
+
+    .lineSummary {
+        border-style: groove;
+        border-right: none;
+        border-left: none;
+        border-bottom: groove;
+        border-bottom-color: rgb(39, 169, 224);
+        border-top: none;
+        height: 0px;
+        width: 100px;
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-bottom: 20px;
+    }
 
     .taskFeedback {
-        width: 80px;
         height: 80px;
         background-color: #FFFFFF;
         border-radius: 30px;
@@ -455,7 +532,6 @@ body {
     }
 
     .taskProgress {
-        width: 80px;
         height: 80px;
         background-color: #FFFFFF;
         border-radius: 30px;
@@ -477,7 +553,6 @@ body {
     }
 
     .taskBoard {
-        width: 80px;
         height: 80px;
         background-color: #FFFFFF;
         border-radius: 30px;
