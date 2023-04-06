@@ -43,7 +43,7 @@ body {
 }
 
 .path {
-    fill: #2A3647; 
+    fill: #2A3647;
 }
 
 .stroke {
@@ -81,6 +81,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+.main-inner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .headline {
@@ -171,6 +178,7 @@ body {
     border-radius: 30px;
     padding: 10px;
 }
+
 .taskProgressNumber {
     font-weight: 600;
     font-size: 3rem;
@@ -205,7 +213,7 @@ body {
 }
 
 .taskFeedbackText {
-    pointer-events: none; 
+    pointer-events: none;
     text-align: center;
     font-size: 18px;
     padding-left: 10px;
@@ -232,6 +240,11 @@ body {
     pointer-events: none;
 }
 
+.urgentIconContainer img {
+    height: 60px;
+    width: 60px;
+}
+
 .urgentChildContainer {
     display: flex;
     justify-content: space-between;
@@ -256,12 +269,12 @@ body {
 }
 
 .lineUrgent {
-border-style: groove;
-border-right-color: #D1D1D1;
-border-left: none;
-border-bottom: none;
-border-top: none;
-height: 100px;
+    border-style: groove;
+    border-right-color: #D1D1D1;
+    border-left: none;
+    border-bottom: none;
+    border-top: none;
+    height: 100px;
 }
 
 .dateContainer {
@@ -312,11 +325,11 @@ height: 100px;
 }
 
 .todoNumberText {
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
 }
 
 .todoNumber {
@@ -384,11 +397,124 @@ pointer-events: none;
 
 @media (max-width: 1024px) {
 
+    .main {
+        align-items: center;
+    }
+
+    .main-inner {
+        width: 80%;
+    }
+
+    .headline {
+        margin-left: 0px;
+        margin-top: 80px;
+        margin-bottom: 40px;
+        width: 100%;
+    }
+
     .contentChild {
         padding-bottom: 100px;
     }
+
+    .userNameContainer {
+        display: none;
+    }
+
+    .contentChild {
+        justify-content: center;
+    }
+
+    .containerOverview {
+        margin-left: 0px;
+        width: 100%;
+    }
 }
 
+@media (max-width: 890px) {
+
+    .taskFeedback {
+        width: 80px;
+        height: 80px;
+        background-color: #FFFFFF;
+        border-radius: 30px;
+        padding: 10px;
+    }
+
+    .taskFeedbackNumber {
+        font-weight: 600;
+        font-size: 2rem;
+        pointer-events: none;
+    }
+
+    .taskFeedbackText {
+        pointer-events: none;
+        text-align: center;
+        font-size: 14px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .taskProgress {
+        width: 80px;
+        height: 80px;
+        background-color: #FFFFFF;
+        border-radius: 30px;
+        padding: 10px;
+    }
+
+    .taskProgressNumber {
+        font-weight: 600;
+        font-size: 2rem;
+        pointer-events: none;
+    }
+
+    .taskProgressText {
+        pointer-events: none;
+        text-align: center;
+        font-size: 14px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .taskBoard {
+        width: 80px;
+        height: 80px;
+        background-color: #FFFFFF;
+        border-radius: 30px;
+        padding: 10px;
+    }
+
+    .taskBoardNumber {
+        font-weight: 600;
+        font-size: 2rem;
+        pointer-events: none;
+    }
+
+    .taskBoardText {
+        pointer-events: none;
+        text-align: center;
+        font-size: 14px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .nutshell {
+        font-size: 1.5rem;
+    }
+
+    .urgentIconContainer img {
+        height: 42px;
+        width: 42px;
+    }
+
+    .urgentNumber {
+        font-size: 2rem;
+    }
+
+    .urgentText {
+        font-size: 14px;
+    }
+}
 
 /* 
 @media only screen and (max-width: 1300px) {
@@ -616,8 +742,3 @@ pointer-events: none;
 }
 
 } */
-
-
-
-
-
