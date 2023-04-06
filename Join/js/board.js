@@ -11,8 +11,8 @@ async function init() {
     await downloadFromServer();
     await loadContacts();
     allTasks = JSON.parse(backend.getItem('allTasks'));
-    contacts = backend.getItem('contacts');
-    currentUser = backend.getItem(currentUser);
+    contacts = JSON.parse(backend.getItem('contacts'));
+    currentUser = JSON.parse(backend.getItem(currentUser));
     includeHTML();
     loadTask();
     countTasks();

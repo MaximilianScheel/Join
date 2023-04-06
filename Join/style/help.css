@@ -2,3 +2,7 @@ body {
     margin: 0px;
     display: flex;
 }
+
+.help-content--inner {
+    margin: 30px;
+}

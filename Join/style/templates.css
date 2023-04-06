@@ -337,14 +337,21 @@
 
 
 .desktop-topBar-container {
-    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .desktop-topBar-container span {
     padding-left: 160px;
+}
+
+.desktop-topBar-container .mainLogo {
+    height: 32px;
+    width: auto;
+    display: none;
 }
 
 .desktop-topBar-container div {
@@ -415,10 +422,13 @@
 }
 
 
-@media(max-width: 700px) {
+@media(max-width: 1028px) {
     .desktop-topBar-container span {
-        padding-left: 30px;
-        font-size: 14px;
+        display: none;
+    }
+
+    .desktop-topBar-container .mainLogo {
+        display: block;
     }
 
     .desktop-topBar-helpPicture {
