@@ -30,11 +30,11 @@
 
     <div class="content">
         <nav w3-include-html="assets/templates/desktop_template.html"></nav>
-        <div class="containerChild">
+        <div class="main-content">
             <header class="desktop-topBar-content-container"
                 w3-include-html="assets/templates/desktop-topBar-template.html">
             </header>
-            <main class="main">
+            <div class="main-content--container">
                 <div class="headline">
                     <div class="board">
                         <h1><b>Board</b></h1>
@@ -51,7 +51,7 @@
                                 alt="Plus"></div>
                     </div>
                 </div>
-                <div class="contentChild">
+                <div class="tasklist-container">
                     <div class="todoContainer">
                         <div class="todoHeadlineContainer">
                             <div class="todoHeadline fontBold">To do</div>
@@ -161,7 +161,7 @@
                         </div>
                     </div>
                 </div>
-            </main>
+            </div>
         </div>
         <div id="taskCard" class="taskCard"></div>
     </div>

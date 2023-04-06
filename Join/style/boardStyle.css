@@ -4,7 +4,7 @@ body {
 
 .fontBold {
     font-weight: bold;
-font-size: 1.5rem;
+    font-size: 1.5rem;
 }
 
 .sidebar {
@@ -15,6 +15,7 @@ font-size: 1.5rem;
 
 .content {
     display: flex;
+    width: 100%;
 }
 
 .headerContainer {
@@ -40,15 +41,20 @@ font-size: 1.5rem;
     margin-left: 26px;
 }
 
-.main {
+.main-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content--container {
     background-color: #F5F5F5;
-    height: 935px;
-    width: 90vw;
 }
 
 .headline {
     display: flex;
-    margin-left: 123px;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
 }
@@ -56,18 +62,14 @@ font-size: 1.5rem;
 .board {
     display: flex;
     align-items: center;
-    font-size: 2rem;
-    padding-right: 60px;
-    height: 90px;
-    margin-bottom: 87px;
-    margin-top: 82px;
+    font-size: 1.5rem;
+    margin-bottom: 22px;
+    margin-top: 22px;
 }
 
-.contentChild {
-    width: 1700px;
+.tasklist-container {
     display: flex;
-    margin-left: 123px;
-    justify-content: space-between;
+    width: 100%;
 }
 
 .searchAddTask {
@@ -134,7 +136,7 @@ font-size: 1.5rem;
 }
 
 .addTaskIcon {
-margin-left: 15px;
+    margin-left: 15px;
 }
 
 .dragAreaHighlight {
@@ -143,16 +145,29 @@ margin-left: 15px;
 }
 
 .area {
-width: 330px;
-height: auto;
-transition: 525ms;
-padding: 10px;
+    width: 100%;
+    height: auto;
+    transition: 525ms;
+    padding: 10px;
 }
 
+.todoContainer,
+.progressContainer,
+.feedbackContainer,
+.doneContainer {
+    width: 20%;
+    margin-left: 3%;
+}
 
-.areaTodoDrag {
+.areaTodoDrag,
+.areaProgressDrag,
+.areaFeedbackDrag,
+.areaDoneDrag {
     height: 200px;
-    width: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .areaChild {
@@ -175,7 +190,7 @@ padding: 10px;
 }
 
 .taskContainer {
-    width: 300px;
+    width: 80%;
     height: fit-content;
     background-color: #FFFFFF;
     padding: 16px;
@@ -193,10 +208,10 @@ padding: 10px;
 .categoryContainer {
     display: flex;
     justify-content: center;
-color: #FFFFFF;
-width: 100px;
-border-radius: 8px;
-margin-bottom: 16px;
+    color: #FFFFFF;
+    width: 100px;
+    border-radius: 8px;
+    margin-bottom: 16px;
 }
 
 .descriptionContainer {
@@ -240,6 +255,5 @@ margin-bottom: 16px;
 }
 
 .rect {
-        stroke: #2AABE2;
+    stroke: #2AABE2;
 }
-
