@@ -164,7 +164,7 @@ async function renderFullscreenView(id){
     
     document.getElementById('TaskCard').innerHTML = generateFullscreenView(id, title, description, category, color, date, prio);
     generateAssignedToOverlay(id,contactNames);
-    // generateSubtaskOverlay(id,subtasks);
+    // generateSubtaskOverlay(subtasks);
 }
 
 function generateFullscreenView(id, title, description, category, color, date, prio){
@@ -176,7 +176,7 @@ function generateFullscreenView(id, title, description, category, color, date, p
         <div class="overlayTitle"><h5>${title}</h5></div>
         <div class="overlayDiscription">${description}</div>
         <div class="overlayDate"> <div><b>Due date:</b></div> <div>${date}</div> </div>
-        <div class="overlayPrio"><div><b>Priority:</b></div><div class="overlayPrio ${prio}"> <div> ${prio}</div><img src='assets/img/prio_${prio}.png'></div></div>
+        <div class="overlayPrio"><div><b>Priority:</b></div><div class="overlayCardPrio ${prio}"> <div> ${prio}</div><img src='assets/img/prio_${prio}_white.png'></div></div>
         <div id="overlaySubtasks" class="overlaySubtasks"><b>Subtasks:</b></div>
         <div><b>Assigned To:</b></div>
         <div id="overlayInitials" class="overlayInitialArea">
@@ -188,11 +188,14 @@ function generateFullscreenView(id, title, description, category, color, date, p
 function generateAssignedToOverlay(id,contactNames){
     document.getElementById(`overlayInitials`).innerHTML ='';
     for (let t = 0; t < contactNames.length; t++) {
-        const position = contactNames[t];
+        const fullname = contactNames[t];
+        let splitNames = fullname.split(' ');
+        let bothLetters = splitNames[0].charAt(0)+splitNames[1].charAt(0);
+        let favouriteColor = contacts[t].favouriteColor;
         document.getElementById(`overlayInitials`).innerHTML +=/*html*/`
         <div class="overlayInitials">
-        <div class="overlayCardAvatar" style="background-color: ${contactNames};">${contactNames}</div>
-        <div class="overlayCardName">${short_name}</div>        
+        <div class="overlayTaskShortName" style="background-color: ${favouriteColor};">${bothLetters}</div>
+        <div class="overlayCardName">${fullname}</div>        
         </div>
         `;
     }

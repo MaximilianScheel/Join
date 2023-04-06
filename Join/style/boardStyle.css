@@ -327,11 +327,20 @@ body {
     gap: 25px;
 }
 
-.overlayPrio{
+.overlayPrio {
     display: flex;
     align-items: center;
-    gap: 25px;    
-    border-radius: 10px; 
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.overlayCardPrio {
+    display: flex;
+    align-items: center;
+    padding: 5px 15px;
+    border-radius: 10px;
+    gap: 10px;
+    color: white;
 }
 
 .overlayInitialArea{
@@ -368,5 +377,27 @@ body {
     bottom: 10px;
     right: 10px;
     cursor: pointer;
+}
+
+.overlayTaskShortName {
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Low {
+    background-color: #7AE229;
+}
+
+.Medium {
+    background-color: #FFA800;
+}
+
+.Urgent {
+    background-color: #FF3D00;
 }
 
