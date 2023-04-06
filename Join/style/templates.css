@@ -473,6 +473,10 @@
     margin-left: 30px;
 }
 
+.legalLink-container {
+    margin-top: 100px;
+}
+
 .contactsLink {
     margin-left: 38px !important;
 }
@@ -486,6 +490,10 @@
 }
 
 .boardLink {
+    margin-left: 30px !important;
+}
+
+.legalLink {
     margin-left: 30px !important;
 }
 
@@ -523,6 +531,10 @@
     .contactsLink {
         margin-left: 0px !important;
         margin-top: 5px;
+    }
+
+    .legalLink-container {
+        display: none;
     }
 
 }
