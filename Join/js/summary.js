@@ -1,10 +1,19 @@
+setURL('https://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ever');
+
+let counts = []
+let prioCounts = []
 
 async function init() {
+    await downloadFromServer();
     const date = new Date();
     const dateFormatted = new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeZone: 'Europe/Berlin' }).format(date)
     document.getElementById('currentDate').innerHTML = dateFormatted;
+    counts = JSON.parse(backend.getItem('counts'));
+    prioCount = JSON.parse(backend.getItem('prioCount'));
     includeHTML();
     greetUser();
+    currentTasks();
+    currentUrgent();
 }
 
 
@@ -21,23 +30,28 @@ function loadAtStart() {
 
 
 function currentTasks() {
-
-    // let boardNumber = JSON.parse(backend.getItem("numbtask")) || [];
-    // let progressNumber = JSON.parse(backend.getItem("numbProgress")) || [];
-    // let feedbackNumber = JSON.parse(backend.getItem("numbFeedback")) || [];
-    // let urgentNumber = JSON.parse(backend.getItem("#")) || [];
-    // let todoNumber = JSON.parse(backend.getItem("numbTodo")) || [];
-    // let doneNumber = JSON.parse(backend.getItem("numbArea")) || [];
+    for (let i = 0; i < counts.length; i++) {
+    countsNumber = counts[i]
+    let boardNumber = countsNumber['boardCount']
+    let progressNumber = countsNumber['progressCount']
+    let feedbackNumber = countsNumber['feedbackCount']
+    let todoNumber = countsNumber['todoCount']
+    let doneNumber = countsNumber['doneCount']
 
     document.getElementById('boardCount').innerHTML = boardNumber;
     document.getElementById('progressCount').innerHTML = progressNumber;
     document.getElementById('feedbackCount').innerHTML = feedbackNumber;
-    document.getElementById('urgentCount').innerHTML = urgentNumber;
     document.getElementById('todoCount').innerHTML = todoNumber;
     document.getElementById('doneCount').innerHTML = doneNumber;
-    document.getElementById('nameUser').innerHTML = userName;
+}
 }
 
+
+function currentUrgent() {
+    prioCounts = prioCount
+    let urgentNumber = prioCounts.length
+    document.getElementById('urgentCount').innerHTML = urgentNumber;
+}
 
 
 

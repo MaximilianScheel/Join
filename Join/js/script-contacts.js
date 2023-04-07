@@ -77,7 +77,7 @@ let currentUser;
 async function init() {
     await downloadFromServer();
     contacts = await JSON.parse(backend.getItem('contacts'));
-    //await backend.setItem('contacts', JSON.stringify(contacts));
+    // await backend.setItem('contacts', JSON.stringify(contacts));
     startingLetters = []
     existingLetterIndex = 0;
     sortContacts();

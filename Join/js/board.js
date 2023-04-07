@@ -1,6 +1,7 @@
 setURL('https://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ever');
 
 let currentUser = [];
+let prioCount = [];
 let contacts = [];
 let counts = [];
 let priorityCount = [0]
@@ -18,6 +19,7 @@ async function init() {
     countTasks();
     console.log('Urgent:', priorityCount);
 }
+
 
 function routeToPage(destination) {
     window.location.href = destination;
@@ -44,14 +46,20 @@ function loadTask() {
         if (allTasks[i].state == "todo") {
             toDoTasks.innerHTML += renderTask(task, i);
             renderAssigned(id);
+            countPrio(i,task);
         } else if (allTasks[i].state == "progress") {
             progressTasks.innerHTML += renderTask(task, i);
+            renderAssigned(id);
+            countPrio(i,task);
         } else if (allTasks[i].state == "feedback") {
             feedbackTasks.innerHTML += renderTask(task, i);
+            renderAssigned(id);
+            countPrio(i,task);
         } else if (allTasks[i].state == "done") {
             doneTasks.innerHTML += renderTask(task, i);
+            renderAssigned(id);
+            countPrio(i,task);
         }
-        // countPrio(task)
     
     }
 
@@ -69,7 +77,10 @@ function renderTask(task, id, i) {
     <div class="descriptionContainer">${task['description']}
 </div>
    
-    <div class="subTaskContainer"></div>
+    <div class="subTaskContainer">
+        <div class="progressBar"></div>
+        <div>1/2 Done</div>
+    </div>
     <div class="contactsPrioContainer">
     <div id="boardInitials${id}" class="contactsPictureContainer">renderAssigned()</div>
     <div class="prioImage"><img class="#" src="./assets/img/Prio_${task['priority']}.png"></div>
@@ -137,31 +148,33 @@ function countTasks() {
     countNumbs(numbTodo, numbProgress, numbFeedback, numbArea, numbTask);
 }
 
+
 async function countNumbs(numbTodo, numbProgress, numbFeedback, numbArea, numbTask) {
-    let counts = {
+    let countsBoard = {
         'todoCount': numbTodo,
         'progressCount': numbProgress,
         'feedbackCount': numbFeedback,
         'doneCount': numbArea,
         'boardCount': numbTask,
     };
-    //await saveCounts(counts)
+    counts.push(countsBoard)
+    await backend.setItem("counts", JSON.stringify(counts));
 }
 
 
 
-/*async function saveCounts(counts) {
-    counts.push();
-
-}*/
 
 
 
-// function countPrio(task) {
-//     if (task.priorityNumber == 3) {
-//         priorityCount++ + 1
-//     }
-// }
+async function countPrio(i,task ) {
+    if (task['priority'] == 'Urgent') {
+        priorityCount++ 
+    }
+    prioCount.push(priorityCount)
+    await backend.setItem("prioCount", JSON.stringify(prioCount));
+}
+
+
 
 
 // Start Pop Up Task 
