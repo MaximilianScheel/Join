@@ -346,6 +346,13 @@ body {
         margin-bottom: 10px;
         align-self: flex-end;
     }
+
+    .area {
+        width: 100%;
+        height: 100%;
+        transition: 525ms;
+        padding: 10px;
+    }
 }
 
 /* Add Task Overview Pop Up */
