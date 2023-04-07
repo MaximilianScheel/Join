@@ -10,6 +10,7 @@ let activePriority;
 let selectedSubtasks = [];
 let allSubtasks = [];
 let idCounter = 0;
+let state = []
 
 
 async function initTask() {
@@ -33,7 +34,7 @@ async function addTask() {
       'priority': getActivePriority(),
       'subtasks': selectedSubtasks,
       'id': idCounter,
-      'state': 'todo',
+      'state': state,
       };
       showInfo();
     await saveAllTasks(task);
@@ -283,9 +284,26 @@ function checkmark(i) {
 
 // Pop Up Add Task
 
-function displayAddTask() {
+function displayAddTask(type) {
   initTask();
   document.getElementById('addTaskPopUp-container').classList.remove('hideAddTask');
+  switch (type) {
+    case "todo":
+      state = "todo";
+      break;
+    case "progress":
+      state = "progress";
+      break;
+    case "feedback":
+      state = "feedback";
+      break;
+    case "done":
+      state = "done";
+      break;
+    default:
+      state = "todo";
+      break;
+  }
 }
 
 function hideAddTask() {

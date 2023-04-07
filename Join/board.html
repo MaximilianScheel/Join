@@ -56,7 +56,7 @@
                         <div class="todoHeadlineContainer">
                             <div class="todoHeadline fontBold">To do</div>
                             <div class="todoPlusButton" onmouseover="mouseOverBoard(1)" onmouseout="mouseOutBoard(1)"
-                                onclick="addTask(i)">
+                                onclick="displayAddTask('todo')">
                                 <svg class="svg" width="30" height="30" viewBox="0 0 30 30" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path id="pathA1" d="M15 7.5V22.5" stroke="#2A3647" stroke-width="2"
@@ -84,7 +84,7 @@
                         <div class="progressHeadlineContainer">
                             <div class="progressHeadline fontBold">In Progress</div>
                             <div class="progressPlusButton" onmouseover="mouseOverBoard(2)"
-                                onmouseout="mouseOutBoard(2)" onclick="addTask(i)">
+                                onmouseout="mouseOutBoard(2)" onclick="displayAddTask('progress')">
                                 <svg class="svg" width="30" height="30" viewBox="0 0 30 30" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path id="pathA2" d="M15 7.5V22.5" stroke="#2A3647" stroke-width="2"
@@ -112,7 +112,7 @@
                         <div class="feedbackHeadlineContainer">
                             <div class="feedbackHeadline fontBold">Awaiting Feedback</div>
                             <div class="feedbackPlusButton" onmouseover="mouseOverBoard(3)"
-                                onmouseout="mouseOutBoard(3)" onclick="addTask(i)">
+                                onmouseout="mouseOutBoard(3)" onclick="displayAddTask('feedback')">
                                 <svg class="svg" width="30" height="30" viewBox="0 0 30 30" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path id="pathA3" d="M15 7.5V22.5" stroke="#2A3647" stroke-width="2"
@@ -138,7 +138,7 @@
                         <div class="doneHeadlineContainer">
                             <div class="doneHeadline fontBold">Done</div>
                             <div class="donePlusButton" onmouseover="mouseOverBoard(4)" onmouseout="mouseOutBoard(4)"
-                                onclick="addTask(i)">
+                                onclick="displayAddTask('done')">
                                 <svg class="svg" width="30" height="30" viewBox="0 0 30 30" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path id="pathA4" d="M15 7.5V22.5" stroke="#2A3647" stroke-width="2"
@@ -171,11 +171,9 @@
         <div id="TaskCard" class="TaskCard" onclick="event.stopPropagation()">
         </div>
     </div>
-  
-    <div id="TaskEdit" class="overlay d-none" onclick="addTaskEdit()">
-        <div id="TaskCard" class="TaskCard" onclick="event.stopPropagation()">
-        </div>
+    <div id="editTaskPopUp-container" class="addTaskPopUp-container hideAddTask" w3-include-html="assets/templates/desktop_editTask.html">
     </div>
+  
 
 </body>
 
