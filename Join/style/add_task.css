@@ -382,6 +382,73 @@ button {
     bottom: 30px;
   }
 
+/* Edit task */
+
+#editTaskPopUp-container {
+    height: 800px;
+    width: 600px;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contPopupEditTask {
+    position: relative;
+    background-color: white;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    overflow-y: scroll;
+}
+
+.saveBtn {
+    padding: 10px 5px;
+    width: 115px;
+    height: 51px;
+    background-color: #2A3647;
+    border-radius: 10px;
+    color: white;
+}
+
+.flexContainerEdit {
+    flex-direction: column;
+    align-items: center;
+}
+
+.popupEditTaskHeader {
+    position: absolute;
+    z-index: 100;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.EditTaskPopUp-container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 7vh;
+    left: 35vw;
+    bottom: 0;
+    right: 0;
+    color: #2A3647;
+    border-style: none;
+    border-radius: 10px;
+    z-index: 2;
+    opacity: 1;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+
 
 @media (max-width: 950px) {
 

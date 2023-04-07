@@ -192,7 +192,7 @@ function generateFullscreenView(id, title, description, category, color, date, p
     return /*html*/`
     <div class="innerContentBoxOverlay">
         <img class="overlayTaskClose" src="assets/img/cross.png" onclick="closeOverview()">
-        <img class="overlayTaskEdit" src="assets/img/editTask_button.png" onclick="OverlaySwitch(${id})">
+        <img class="overlayTaskEdit" src="assets/img/editTask_button.png" onclick="displayEditTask(${id})">
         <div class="overlayCategory" style="background-color: ${color}";>${category}</div>
         <div class="overlayTitle"><h5>${title}</h5></div>
         <div class="overlayDiscription">${description}</div>
@@ -222,7 +222,7 @@ function generateAssignedToOverlay(id,contactNames){
     }
 }
 
-function closeOverview() {
+function closeOverview(id) {
     document.getElementById('TaskOverview').classList.add('d-none');
 }
 
