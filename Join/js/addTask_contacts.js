@@ -98,6 +98,23 @@ function openCloseContacts() {
   disableInputContact()
 }
 
+function openCloseContactsEdit() {
+  if (document.getElementById('selectFieldContactEdit').style.height == '147px') {
+    if ($(window).width() > 720) {
+      document.getElementById('selectFieldContactEdit').style.height = '50px';
+    } else {
+      document.getElementById('selectFieldContactEdit').style.height = '43px';
+    }
+    document.getElementById('openedContacts').classList.add('d-none');
+  } else {
+    document.getElementById('selectFieldContactEdit').setAttribute('style', 'height: 147px !important;')
+    setTimeout(function () {
+      document.getElementById('openedContacts').classList.remove('d-none');
+    }, 150)
+  }
+  disableInputContact()
+}
+
 function disableInputContact () {
   if (document.getElementById('contact').disabled = true) {
     document.getElementById('contact').disabled = false;

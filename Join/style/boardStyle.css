@@ -72,6 +72,7 @@ body {
 .tasklist-container {
     display: flex;
     width: 100%;
+    height: 70%;
 }
 
 .searchAddTask {
@@ -159,6 +160,9 @@ body {
 .doneContainer {
     width: 20%;
     margin-left: 3%;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .contactsPrioContainer {
@@ -181,7 +185,7 @@ body {
     border-radius: 80px;
     min-height: 36px;
     min-width: 36px;
-    color: white; 
+    color: white;
 }
 
 .prioImage {
@@ -310,9 +314,59 @@ body {
 }
 
 .rect {
-        stroke: #2AABE2;
+    stroke: #2AABE2;
 }
 
+@media (max-width: 1028px) {
+
+    .tasklist-container {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+
+    .todoContainer,
+    .progressContainer,
+    .feedbackContainer,
+    .doneContainer {
+        width: 80%;
+        height: 500px;
+        margin-left: 0%;
+        margin-bottom: 40px;
+    }
+
+
+    .headline {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .board {
+        width: 80%;
+        margin-left: 0%;
+    }
+
+    .searchAddTask {
+        flex-direction: column-reverse;
+        width: 80%;
+        margin-right: 0px;
+        margin-bottom: 30px;
+    }
+
+    .addTaskContainer {
+        margin-left: 0px;
+        margin-bottom: 10px;
+        align-self: flex-end;
+    }
+
+    .area {
+        width: 100%;
+        height: 100%;
+        transition: 525ms;
+        padding: 10px;
+    }
+}
 
 /* Add Task Overview Pop Up */
 .overlay {
@@ -338,7 +392,7 @@ body {
     align-items: center;
 }
 
-.innerContentBoxOverlay{
+.innerContentBoxOverlay {
     width: 90%;
     height: 90%;
     position: relative;
@@ -351,31 +405,36 @@ body {
     cursor: default;
     overflow: auto;
 }
-.overlayCategory{
+
+.overlayCategory {
     padding: 5px 15px;
     color: white;
     display: flex;
-    justify-content: center ;
+    justify-content: center;
     align-items: center;
     font-size: 27px;
     border-radius: 10px;
 }
-.overlayTitle{
+
+.overlayTitle {
     font-weight: 700;
     font-size: 50px;
-    
+
 }
-.overlayTitle h5{
+
+.overlayTitle h5 {
     margin: 0;
-    color:#2A3647;
+    color: #2A3647;
     font-size: 61px;
 }
-.overlayDiscription{
+
+.overlayDiscription {
     font-weight: 400;
     font-size: 21px;
 
 }
-.overlayDate{
+
+.overlayDate {
     display: flex;
     gap: 25px;
 }
@@ -396,23 +455,26 @@ body {
     color: white;
 }
 
-.overlayInitialArea{
+.overlayInitialArea {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 25px;
 }
-.overlayInitials{
+
+.overlayInitials {
     display: flex;
     align-items: center;
     gap: 25px;
 }
-.overlaySubtasks{
+
+.overlaySubtasks {
     display: flex;
     flex-direction: column;
     gap: 25px;
 }
-.overlaySubtasks h5{
+
+.overlaySubtasks h5 {
     margin: 0;
 }
 
@@ -453,4 +515,3 @@ body {
 .Urgent {
     background-color: #FF3D00;
 }
-

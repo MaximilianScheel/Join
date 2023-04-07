@@ -205,7 +205,7 @@ function generateFullscreenView(id, title, description, category, color, date, p
     return /*html*/`
     <div class="innerContentBoxOverlay">
         <img class="overlayTaskClose" src="assets/img/cross.png" onclick="closeOverview()">
-        <img class="overlayTaskEdit" src="assets/img/editTask_button.png" onclick="OverlaySwitch(${id})">
+        <img class="overlayTaskEdit" src="assets/img/editTask_button.png" onclick="displayEditTask(${id})">
         <div class="overlayCategory" style="background-color: ${color}";>${category}</div>
         <div class="overlayTitle"><h5>${title}</h5></div>
         <div class="overlayDiscription">${description}</div>
@@ -225,17 +225,17 @@ function generateAssignedToOverlay(id,contactNames){
         const fullname = contactNames[t];
         let splitNames = fullname.split(' ');
         let bothLetters = splitNames[0].charAt(0)+splitNames[1].charAt(0);
-        let favouriteColor = contacts[t].favouriteColor;
+        let favouriteColor = contacts.find(contact => contact.name === splitNames[1]).favouriteColor;
         document.getElementById(`overlayInitials`).innerHTML +=/*html*/`
-        <div class="overlayInitials">
-        <div class="overlayTaskShortName" style="background-color: ${favouriteColor};">${bothLetters}</div>
-        <div class="overlayCardName">${fullname}</div>        
-        </div>
+          <div class="overlayInitials">
+            <div class="overlayTaskShortName" style="background-color: ${favouriteColor};">${bothLetters}</div>
+            <div class="overlayCardName">${fullname}</div>        
+          </div>
         `;
     }
 }
 
-function closeOverview() {
+function closeOverview(id) {
     document.getElementById('TaskOverview').classList.add('d-none');
 }
 

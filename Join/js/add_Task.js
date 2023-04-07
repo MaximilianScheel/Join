@@ -10,6 +10,7 @@ let activePriority;
 let selectedSubtasks = [];
 let allSubtasks = [];
 let idCounter = 0;
+let state = []
 
 
 async function initTask() {
@@ -33,7 +34,7 @@ async function addTask() {
       'priority': getActivePriority(),
       'subtasks': selectedSubtasks,
       'id': idCounter,
-      'state': 'todo',
+      'state': state,
       };
       showInfo();
     await saveAllTasks(task);
@@ -283,14 +284,121 @@ function checkmark(i) {
 
 // Pop Up Add Task
 
-function displayAddTask() {
+function displayAddTask(type) {
   initTask();
   document.getElementById('addTaskPopUp-container').classList.remove('hideAddTask');
+  switch (type) {
+    case "todo":
+      state = "todo";
+      break;
+    case "progress":
+      state = "progress";
+      break;
+    case "feedback":
+      state = "feedback";
+      break;
+    case "done":
+      state = "done";
+      break;
+    default:
+      state = "todo";
+      break;
+  }
 }
 
 function hideAddTask() {
   document.getElementById('addTaskPopUp-container').classList.add('hideAddTask');
 }
+
+// Edit Task Pop up
+
+async function displayEditTask(id) {
+  document.getElementById('TaskOverview').classList.add('d-none');
+  document.getElementById('editTaskPopUp-container').classList.remove('hideAddTask');
+  renderFullscreenEdit(id)
+}
+
+
+function hideEditTask() {
+  document.getElementById('editTaskPopUp-container').classList.add('hideAddTask');
+}
+
+
+function choosePriorityEdit(priority) {
+  let urgent = document.getElementById("urgentBtnEdit");
+  let medium = document.getElementById("mediumBtnEdit");
+  let low = document.getElementById("lowBtnEdit");
+
+  switch (priority) {
+      case "urgent":
+          urgent.style.backgroundColor = "#FF3D00";
+          medium.style.backgroundColor = "#FFF";
+          low.style.backgroundColor = "#FFF";
+          urgent.style.color = "#FFF";
+          medium.style.color = "#000";
+          low.style.color = "#000";
+          urgent.innerHTML = renderPrioBtnClicked("urgent");
+          medium.innerHTML = renderPrioBtnUnclicked("medium");
+          low.innerHTML = renderPrioBtnUnclicked("low");
+          break;
+      case "medium":
+          medium.style.backgroundColor = "#FFA800";
+          urgent.style.backgroundColor = "#FFF";
+          low.style.backgroundColor = "#FFF";
+          urgent.style.color = "#000";
+          medium.style.color = "#FFF";
+          low.style.color = "#000";
+          urgent.innerHTML = renderPrioBtnUnclicked("urgent");
+          medium.innerHTML = renderPrioBtnClicked("medium");
+          low.innerHTML = renderPrioBtnUnclicked("low");
+          break;
+      case "low":
+          low.style.backgroundColor = "#7AE229";
+          medium.style.backgroundColor = "#FFF";
+          urgent.style.backgroundColor = "#FFF";
+          urgent.style.color = "#000";
+          medium.style.color = "#000";
+          low.style.color = "#FFF";
+          urgent.innerHTML = renderPrioBtnUnclicked("urgent");
+          medium.innerHTML = renderPrioBtnUnclicked("medium");
+          low.innerHTML = renderPrioBtnClicked("low");
+          break;
+  }
+}
+
+function renderFullscreenEdit(id){
+  if(id != undefined){
+      let task = allTasks[id];
+      document.getElementById('Edittitle').value = task['title'];
+      document.getElementById('Editdescription').value = task['description'];
+      document.getElementById('Editdate').value = task['date'];
+      let prio = task['priority'];
+  }
+}
+
+async function editTask() {
+  let title = document.getElementById('Edittitle').value;
+  let description = document.getElementById('Editdescription').value;
+  let date= document.getElementById('Editdate').value;
+
+  const task = {
+      'title': title,
+      'description': description,
+      'category': selectedCategory,
+      'color': selectedColor,
+      'date': date,
+      'contactNames': selectedContactNames,
+      'priority': getActivePriority(),
+      'subtasks': selectedSubtasks,
+      'id': idCounter,
+      'state': state,
+      };
+
+  await saveAllTasks(task);
+  window.location.href = "./board.html";
+}
+
+
 
 function routeToPage(destination) {
   window.location.href = destination;
