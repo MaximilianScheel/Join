@@ -29,8 +29,6 @@ function search() {
 }
 
 function loadTask() {
-
-
     let toDoTasks = document.getElementById("todoArea");
     let progressTasks = document.getElementById("progressArea");
     let feedbackTasks = document.getElementById("feedbackArea");
@@ -42,8 +40,10 @@ function loadTask() {
 
     for (let i = 0; i < allTasks.length; i++) {
         const task = allTasks[i];
+       let id = task['id'];
         if (allTasks[i].state == "todo") {
             toDoTasks.innerHTML += renderTask(task, i);
+            renderAssigned(id);
         } else if (allTasks[i].state == "progress") {
             progressTasks.innerHTML += renderTask(task, i);
         } else if (allTasks[i].state == "feedback") {
@@ -52,12 +52,13 @@ function loadTask() {
             doneTasks.innerHTML += renderTask(task, i);
         }
         // countPrio(task)
+    
     }
 
 }
 
 
-function renderTask(task, i) {
+function renderTask(task, id, i) {
     return /* html */ `    <div draggable="true" id="${task['id']}" class="taskContainer" ondragstart="startDragging(${task['id']})"  onclick="openTask(id)">
     <div style="background-color: ${task['color']};" class="categoryContainer">
         ${task['category']}
@@ -69,12 +70,32 @@ function renderTask(task, i) {
 </div>
    
     <div class="subTaskContainer"></div>
-    <div class="contactsPrioContainer"></div>
-    <div class="contacts"></div>
-    <div class="prio"><img class="#" src="./assets/img/Prio_${task['priority']}.png"></div>
+    <div class="contactsPrioContainer">
+    <div id="boardInitials${id}" class="contactsPictureContainer">renderAssigned()</div>
+    <div class="prioImage"><img class="#" src="./assets/img/Prio_${task['priority']}.png"></div>
+    </div>
 </div>
 </div> `
+}
 
+
+
+
+function renderAssigned(id){
+    let task = allTasks[id];
+    let assignedName = task['contactNames'];
+    document.getElementById(`boardInitials${id}`).innerHTML ='';
+    for (let k = 0; k < assignedName.length; k++) {
+        const fullname = assignedName[k];
+        let splitNames = fullname.split(' ');
+        let bothLetters = splitNames[0].charAt(0)+splitNames[1].charAt(0);
+        let favouriteColor = contacts[k].favouriteColor;
+        document.getElementById(`boardInitials${id}`).innerHTML +=/*html*/`
+        <div class="boardInitialsInitials">
+        <div class="boardInitialsShortName" style="background-color: ${favouriteColor};">${bothLetters}</div>     
+        </div>
+        `;
+    }
 }
 
 

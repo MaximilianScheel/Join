@@ -161,6 +161,46 @@ body {
     margin-left: 3%;
 }
 
+.contactsPrioContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contactsPictureContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boardInitialsShortName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 80px;
+    min-height: 36px;
+    min-width: 36px;
+    color: white; 
+}
+
+.prioImage {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 80px;
+    min-height: 48px;
+    min-width: 48px;
+    margin-right: 30px;
+    color: white;
+}
+
+.boardInitialsInitials {
+    min-height: 23px;
+}
+
 .areaTodoDrag,
 .areaProgressDrag,
 .areaFeedbackDrag,
