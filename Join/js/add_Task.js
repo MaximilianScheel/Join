@@ -10,7 +10,7 @@ let activePriority;
 let selectedSubtasks = [];
 let allSubtasks = [];
 let idCounter = 0;
-let state = []
+let state = 'todo';
 
 
 async function initTask() {
@@ -41,6 +41,8 @@ async function addTask() {
     clearValues();
     idCounter++;
     loadAllTasks();
+    loadTask();
+    hideAddTask();
   }
 
 function addTitle() {
@@ -310,17 +312,10 @@ function hideAddTask() {
   document.getElementById('addTaskPopUp-container').classList.add('hideAddTask');
 }
 
-// Edit Task Pop up
-
-async function displayEditTask(id) {
-  document.getElementById('TaskOverview').classList.add('d-none');
-  document.getElementById('editTaskPopUp-container').classList.remove('hideAddTask');
-  renderFullscreenEdit(id)
-}
-
 
 function hideEditTask() {
   document.getElementById('editTaskPopUp-container').classList.add('hideAddTask');
+  document.getElementById('popupAddTaskBoard').classList.add('d-none')
 }
 
 
@@ -364,6 +359,9 @@ function choosePriorityEdit(priority) {
           low.innerHTML = renderPrioBtnClicked("low");
           break;
   }
+
+  // Setzen Sie den neuen Prioritätswert in newPrio
+  newPrio = priority;
 }
 
 function renderFullscreenEdit(id){
@@ -376,28 +374,46 @@ function renderFullscreenEdit(id){
   }
 }
 
+
+async function displayEditTask(id) {
+  let task = allTasks[id];
+  let title = task['title'];
+  let description = task['description'];
+  let date = task['date'];
+  let prio = task['priority'];
+
+  document.getElementById('TaskOverview').classList.add('d-none');
+  document.getElementById('editTaskPopUp-container').classList.remove('hideAddTask');
+  document.getElementById('popupAddTaskBoard').classList.remove('d-none')
+  choosePriorityEdit(prio);
+  renderFullscreenEdit(id)
+
+  document.getElementById('Edittitle').value = title;
+  document.getElementById('Editdescription').value = description;
+  document.getElementById('Editdate').value = date;
+
+  };
+
 async function editTask() {
-  let title = document.getElementById('Edittitle').value;
-  let description = document.getElementById('Editdescription').value;
-  let date= document.getElementById('Editdate').value;
 
-  const task = {
-      'title': title,
-      'description': description,
-      'category': selectedCategory,
-      'color': selectedColor,
-      'date': date,
-      'contactNames': selectedContactNames,
-      'priority': getActivePriority(),
-      'subtasks': selectedSubtasks,
-      'id': idCounter,
-      'state': state,
-      };
+  let id = idCounter;   
 
-  await saveAllTasks(task);
-  window.location.href = "./board.html";
+    let newTitle = document.getElementById('Edittitle').value;
+    let newDescription = document.getElementById('Editdescription').value;
+    let newDate = document.getElementById('Editdate').value;
+
+    allTasks[id]['title'] = newTitle;
+    allTasks[id]['description'] = newDescription;
+    allTasks[id]['date'] = newDate;
+    allTasks[id]['priority'] = newPrio;
+
+    await backend.setItem('allTasks', JSON.stringify(allTasks));
+
+    hideEditTask()
+
+    renderFullscreenView(id);
+    init();
 }
-
 
 
 function routeToPage(destination) {

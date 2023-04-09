@@ -193,12 +193,12 @@ async function renderFullscreenView(id){
     let category = task['category'];
     let date = task['date'];
     let prio = task['priority'];
-    let subtasks = task['subtasks'];
+    let subtask = task['subtasks']['name'];
     let color = task['color'];
     
     document.getElementById('TaskCard').innerHTML = generateFullscreenView(id, title, description, category, color, date, prio);
     generateAssignedToOverlay(id,contactNames);
-    // generateSubtaskOverlay(subtasks);
+    generateSubtaskOverlay(id, subtask);
 }
 
 function generateFullscreenView(id, title, description, category, color, date, prio){
@@ -233,6 +233,35 @@ function generateAssignedToOverlay(id,contactNames){
           </div>
         `;
     }
+}
+
+function generateSubtaskOverlay(id,subtask){
+    // document.getElementById('overlaySubtasks').innerHTML ='';
+
+    for (let i = 0; i < allTasks[id]['subtasks'].length; i++) {
+        const subtask = allTasks[id]['subtasks'][i];
+        const isChecked = subtask.state === 'isChecked';
+
+        document.getElementById('overlaySubtasks').innerHTML +=/*html*/`
+            <div class="singleSubTask">
+                <input type="checkbox" id="${id}-${i}" ${isChecked ? 'checked' : ''} onclick="subtaskIsChecked(${id},${i})">
+                <h5>${subtask.name}</h5>
+            </div> 
+        `;
+    }
+}
+
+/** this function is checking if a subtask is checked and saves it */
+async function subtaskIsChecked(id, index){
+    const task = allTasks[id];
+    const subtask = task.subtasks[index];
+    if (document.getElementById(`${id}-${index}`).checked) {
+        subtask.state = 'isChecked';
+    } else {
+        subtask.state = 'todo';
+    }
+    await backend.setItem('allTasks', JSON.stringify(allTasks));
+    init()
 }
 
 function closeOverview(id) {

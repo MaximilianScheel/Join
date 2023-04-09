@@ -504,6 +504,24 @@ body {
     align-items: center;
 }
 
+.popup-board-task {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    backdrop-filter: blur(2px);
+    z-index: 99;
+}
+
+.singleSubTask {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
 .Low {
     background-color: #7AE229;
 }
