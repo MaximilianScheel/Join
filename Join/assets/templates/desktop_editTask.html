@@ -1,8 +1,9 @@
 <form id="popupAddTask" class="contPopupEditTask" onsubmit="editTask(); return false;">
         <div class="popupEditTaskHeader">
-            <div onclick="hideEditTask()"><img src="../Join/assets/img/cross.png" alt=""></div>
+            <img src="../Join/assets/img/cross.png" alt="" onclick="hideEditTask()" class="overlayEditClose">   
         </div>
         <div class="flexContainerEdit">
+            
                 <div class="inputBlock">
                     <span class="inputTitle">Title</span>
                     <input id="Edittitle" placeholder="Enter a title" onkeyup="addTitle()" required>

@@ -302,7 +302,7 @@
 
 @media(max-width: 700px) {
 
-    .addTaskPopUp-container {
+    .addTaskPopUp-container, .TaskCard, .EditTaskPopUp-container {
         overflow-y: auto;
         position: fixed;
         top: 0;
@@ -319,6 +319,18 @@
         z-index: 2;
         opacity: 1;
         flex-direction: column;
+    }
+
+    .overlayCategory {
+        font-size: 20px;
+    }
+
+    .overlayTitle h5 {
+        font-size: 35px;
+    }
+
+    .innerContentBoxOverlay b {
+        font-size: 15px;
     }
 
     .mainContainer {
