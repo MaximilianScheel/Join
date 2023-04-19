@@ -435,6 +435,10 @@ body {
         padding-bottom: 100px;
     }
 
+    .d-none {
+        display: none;
+    }
+
     .userNameContainer {
         display: none;
     }

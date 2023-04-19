@@ -4,6 +4,11 @@ let counts = []
 let prioCounts = []
 
 async function init() {
+    await loadSummary();
+    loadingFinished();
+}
+
+async function loadSummary() {
     await downloadFromServer();
     const date = new Date();
     const dateFormatted = new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeZone: 'Europe/Berlin' }).format(date)
@@ -16,8 +21,9 @@ async function init() {
     currentUrgent();
 }
 
-
-
+function loadingFinished () {
+    document.getElementById('preloader').classList.add('d-none');
+}
 
 function loadAtStart() {
     let nameTest = JSON.parse(backend.getItem("currentUser")) || [];

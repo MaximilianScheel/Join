@@ -18,6 +18,15 @@ body {
     z-index: 5;
 }
 
+#preloader {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    z-index: 9999999;
+}
 
 @keyframes slideLogo {
     0% {
@@ -58,7 +67,7 @@ body {
 
 .signup-button {
     margin-top: 20px;
-    background-color: rgb(42,54,71);
+    background-color: rgb(42, 54, 71);
     border-radius: 10px;
     border: none;
     color: white;
@@ -83,6 +92,7 @@ body {
 .border-bottom {
     margin-bottom: 27px;
 }
+
 .main-login {
     display: flex;
     justify-content: center;
@@ -122,7 +132,7 @@ body {
 }
 
 .forgot-password-l {
-    width: 800px!important;
+    width: 800px !important;
 }
 
 .forgot-password-p {
@@ -137,6 +147,7 @@ body {
     top: 30px;
     left: 30px;
 }
+
 .input-email {
     background-image: url(../assets/img/email.png);
     background-repeat: no-repeat;
@@ -194,7 +205,7 @@ body {
 }
 
 .login-button {
-    background-color: rgb(42,54,71);
+    background-color: rgb(42, 54, 71);
     border: none;
     color: #fff;
     padding: 13px 30px;
@@ -204,8 +215,8 @@ body {
     border-radius: 10px;
 }
 
-.sign-up-button { 
-    background-color: rgb(42,54,71);
+.sign-up-button {
+    background-color: rgb(42, 54, 71);
     border: none;
     color: #fff;
     padding: 13px 30px;
@@ -219,7 +230,7 @@ body {
 
 a {
     text-decoration: none;
-    color: rgb(48,178,231);
+    color: rgb(48, 178, 231);
 }
 
 .guest-submit-login {
@@ -243,4 +254,3 @@ a {
 }
 
 /* CSS for Login page ends */
-

@@ -9,9 +9,12 @@
     <script src="js/help.js"></script>
     <link rel="stylesheet" href="style/help.css">
     <link rel="stylesheet" href="style/templates.css">
+    <script src="./js/board.js"></script>
 </head>
 
 <body onload="includeHTML()">
+    <div id="preloader"></div>
+
     <nav w3-include-html="assets/templates/desktop_template.html">
     </nav>
     <div class="help-content">
@@ -26,25 +29,20 @@
             <div>
                 <h3>What is Join?</h3>
                 <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. A, ducimus voluptatibus. Ipsa esse
-                    veniam laudantium aliquid voluptas sequi quo, velit provident temporibus quas minus hic id eos
-                    dolorum! Cumque, qui!
+                    Join is a kanban board is a visual management tool used to help teams track and prioritize tasks in a workflow. The board is divided into columns that represent different stages of the workflow, and tasks are represented as cards that are moved from one column to the next as they progress. This allows teams to have a clear and up-to-date view of what work is in progress, what needs to be done next, and what has been completed. The use of a kanban board helps teams to manage work more efficiently, reduce bottlenecks and improve communication.
                 </p>
             </div>
             <div>
                 <h3>How to use it</h3>
                 <ol>
                     <li>
-                        laudantium aliquid voluptas sequi quo, velit provident temporibus quas minus hic id eos
-                        dolorum! Cumque, qui!
+                        <b>Define Workflow</b>: Start by defining the workflow for your projects or tasks, breaking them down into individual steps or stages. Assign each step to a specific column on the kanban board.
                     </li>
                     <li>
-                        em ipsum, dolor sit am
+                        <b>Add Cards</b> : Add work items to the board as cards, assigning each card to the appropriate column based on its current status in the workflow.
                     </li>
                     <li>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. A, ducimus voluptatibus. Ipsa esse
-                        veniam laudantium aliquid voluptas sequi quo, velit provident temporibus quas minus hic id eos
-                        dolorum! Cumque, qui!
+                        <b>Move Cards</b> : Move the cards from column to column as the work progresses, updating the board in real-time to reflect the current status of each work item. Use the board to track progress, identify bottlenecks, and make informed decisions about what work to tackle next.
                     </li>
                 </ol>
             </div>
