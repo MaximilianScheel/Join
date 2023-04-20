@@ -14,12 +14,21 @@ let state = 'todo';
 
 
 async function initTask() {
+  await loadAddTask();
+  loadingFinished();
+}
+
+async function loadAddTask() {
   await downloadFromServer();
   await loadContacts();
   allTasks = JSON.parse(backend.getItem(allTasks)) || [];
   renderAllContacts()
   includeHTML();
   loadAllTasks();
+}
+
+function loadingFinished() {
+  document.getElementById('preloader').classList.add('d-none');
 }
 
 async function addTask() {
