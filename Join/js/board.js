@@ -9,6 +9,11 @@ let currentDraggedElement;
 
 
 async function init() {
+    loadBoard();
+    loadingFinished();
+}
+
+async function loadBoard() {
     await downloadFromServer();
     await loadContacts();
     allTasks = JSON.parse(backend.getItem('allTasks'));
@@ -20,6 +25,9 @@ async function init() {
     console.log('Urgent:', priorityCount);
 }
 
+function loadingFinished() {
+    document.getElementById('preloader').classList.add('d-none');
+  }
 
 function routeToPage(destination) {
     window.location.href = destination;
