@@ -74,7 +74,12 @@ let existingLetterIndex = 0;
 let currentContactIndex = 0;
 let currentUser;
 
-async function init() {
+
+function loadingFinished() {
+    document.getElementById('preloader').classList.add('d-none');
+}
+
+async function loadContactSite() {
     await downloadFromServer();
     contacts = await JSON.parse(backend.getItem('contacts'));
     // await backend.setItem('contacts', JSON.stringify(contacts));
@@ -85,6 +90,11 @@ async function init() {
     includeHTML();
     buildContactList();
     console.log(contacts);
+}
+
+async function init() {
+    await loadContactSite();
+    loadingFinished();
 }
 
 
