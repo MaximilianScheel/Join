@@ -127,9 +127,10 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
-function moveTo(state) {
+async function moveTo(state) {
     allTasks[currentDraggedElement]['state'] = state;
     console.log(currentDraggedElement.state);
+    await backend.setItem('allTasks', JSON.stringify(allTasks));
     init();
     // state kommt aus dem backend, daher wird state nicht geändert.
 }
@@ -260,17 +261,17 @@ function generateSubtaskOverlay(id,subtask){
 }
 
 /** this function is checking if a subtask is checked and saves it */
-async function subtaskIsChecked(id, index){
-    const task = allTasks[id];
-    const subtask = task.subtasks[index];
-    if (document.getElementById(`${id}-${index}`).checked) {
-        subtask.state = 'isChecked';
-    } else {
-        subtask.state = 'todo';
-    }
-    await backend.setItem('allTasks', JSON.stringify(allTasks));
-    init()
-}
+// async function subtaskIsChecked(id, index){
+//     const task = allTasks[id];
+//     const subtask = task.subtasks[index];
+//     if (document.getElementById(`${id}-${index}`).checked) {
+//         subtask.state = 'isChecked';
+//     } else {
+//         subtask.state = 'todo';
+//     }
+//     await backend.setItem('allTasks', JSON.stringify(allTasks));
+//     init()
+// }
 
 function closeOverview(id) {
     document.getElementById('TaskOverview').classList.add('d-none');
