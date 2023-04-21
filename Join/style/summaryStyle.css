@@ -82,6 +82,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    height: 92vh;
 }
 
 .main-inner {
@@ -592,6 +593,12 @@ body {
 
     .urgentText {
         font-size: 14px;
+    }
+}
+
+@media (max-height: 815px) {
+    .main {
+        height: 90vh;
     }
 }
 
