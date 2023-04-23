@@ -261,17 +261,17 @@ function generateSubtaskOverlay(id,subtask){
 }
 
 /** this function is checking if a subtask is checked and saves it */
-// async function subtaskIsChecked(id, index){
-//     const task = allTasks[id];
-//     const subtask = task.subtasks[index];
-//     if (document.getElementById(`${id}-${index}`).checked) {
-//         subtask.state = 'isChecked';
-//     } else {
-//         subtask.state = 'todo';
-//     }
-//     await backend.setItem('allTasks', JSON.stringify(allTasks));
-//     init()
-// }
+async function subtaskIsChecked(id, index){
+    const task = allTasks[id];
+    const subtask = task.subtasks[index];
+    if (document.getElementById(`${id}-${index}`).checked) {
+        subtask.state = 'isChecked';
+    } else {
+        subtask.state = 'todo';
+    }
+    await backend.setItem('allTasks', JSON.stringify(allTasks));
+    init()
+}
 
 function closeOverview(id) {
     document.getElementById('TaskOverview').classList.add('d-none');
