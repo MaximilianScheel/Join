@@ -161,7 +161,7 @@ body {
     width: 20%;
     margin-left: 3%;
     height: 100%;
-    overflow-y: scroll;
+    /*overflow-y: hidden;*/
     overflow-x: hidden;
 }
 
@@ -238,11 +238,11 @@ body {
 .areaProgressDrag,
 .areaFeedbackDrag,
 .areaDoneDrag {
-    height: 800px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: scroll;
 }
 
 .areaChild {
@@ -376,6 +376,7 @@ body {
     }
 
     .todoHeadlineContainer {
+        align-self: center;
         width: 80%;
     }
 
