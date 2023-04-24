@@ -186,13 +186,23 @@ async function countPrio(i,task ) {
 
 
 
-// Start Pop Up Task 
+/**
+ * function to open the task
+ * 
+ * @param {number} id - number to get the correct task
+ */
 
 function openTask(id) {
     document.getElementById('TaskOverview').classList.remove('d-none');
     document.getElementById('TaskCard').innerHTML='';
     renderFullscreenView(id);
 }
+
+/**
+ * function to get all informations for the open task
+ * 
+ * @param {number} id - number to get the correct task
+ */
 
 async function renderFullscreenView(id){
     let task = allTasks[id];
@@ -209,6 +219,19 @@ async function renderFullscreenView(id){
     generateAssignedToOverlay(id,contactNames);
     generateSubtaskOverlay(id, subtask);
 }
+
+/**
+ * function to show the open Task with all informations
+ * 
+ * @param {number} id - number to geht the correct task
+ * @param {string} title - title for task
+ * @param {string} description - description for task
+ * @param {string} category - categrory fot task
+ * @param {number} color - color fot the category
+ * @param {Date} date - date for the dateline to finish the task
+ * @param {string} prio - priority for the task
+ * @returns 
+ */
 
 function generateFullscreenView(id, title, description, category, color, date, prio){
     return /*html*/`
@@ -228,6 +251,13 @@ function generateFullscreenView(id, title, description, category, color, date, p
     `;
 }
 
+/**
+ * function to show the contact names for the task
+ * 
+ * @param {number} id - number to get the correct task
+ * @param {string} contactNames - name assigned to the task
+ */
+
 function generateAssignedToOverlay(id,contactNames){
     document.getElementById(`overlayInitials`).innerHTML ='';
     for (let t = 0; t < contactNames.length; t++) {
@@ -243,6 +273,13 @@ function generateAssignedToOverlay(id,contactNames){
         `;
     }
 }
+
+/**
+ * Adds all subtasks of the selected main task to the "overlaySubtasks" div.
+ * 
+ * @param {number} id - The ID of the selected main task.
+ * @param {string} subtask - The information about the subtask.
+ */
 
 function generateSubtaskOverlay(id,subtask){
     // document.getElementById('overlaySubtasks').innerHTML ='';
@@ -260,7 +297,11 @@ function generateSubtaskOverlay(id,subtask){
     }
 }
 
-/** this function is checking if a subtask is checked and saves it */
+/**
+ * this function is checking if a subtask is checked and saves it
+ * 
+ */
+
 async function subtaskIsChecked(id, index){
     const task = allTasks[id];
     const subtask = task.subtasks[index];
@@ -290,7 +331,9 @@ function mouseOutBoard(i) {
     document.getElementById('rect' + i).classList.remove('rect');
 }
 
-// Seaching Function to sort Tasks
+/**
+ * function to search Task in board
+ */
 
 function searchTasks() {            
     let search = document.getElementById('search').value;
@@ -298,11 +341,18 @@ function searchTasks() {
     showSearchedTask(search);
 }
 
+/**
+ * function to show searched task
+ * 
+ * @param {string} search - search is the value from the search input field
+ */
+
 function showSearchedTask(search) {
     for (let i = 0; i < allTasks.length; i++) {
         let currentTask = allTasks[i]['title'];
+        let currentDescription = allTasks[i]['description'];
         document.getElementById(i).classList.add('d-none');
-        if (currentTask.toLowerCase().includes(search)) {
+        if (currentTask.toLowerCase().includes(search) || currentDescription.toLowerCase().includes(search)) {
             document.getElementById(i).classList.remove('d-none');
         
         }
