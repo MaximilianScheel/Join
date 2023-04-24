@@ -171,18 +171,29 @@ function removeAnimate(popup) {
     popup.classList.remove('animation');
 }
 
+
+/**
+ * Opens the logout container
+ */
 function openLogout() {
     let logoutContainer = document.getElementById("logoutContainer");
     logoutContainer.style.display = "block";
 }
 
+
+/**
+ * Closes the logout container and redirects to index.html
+ */
 async function logout() {
     currentUser = [];
     await saveOnServer('currentUser', currentUser);
     window.location.href = './index.html';
 }
 
-
+/**
+ * 
+ * @param {} destination  The destination page
+ */
 function routeToPage(destination) {
     window.location.href = destination;
 }
