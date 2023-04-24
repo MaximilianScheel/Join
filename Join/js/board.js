@@ -92,13 +92,9 @@ function renderTask(task, id, i) {
 </div>
    
 
-    <div class="subTaskContainer">
-        <div class="progressBarContainer">
-        <div id="progressBar${id}" class="progressBar"></div>
-        </div>
-        <div id="subtaskCheckedCount" class="subtaskCheckedCount">1</div>
-        <div class="subTasksCount">/${allTasks[id]['subtasks'].length} Done</div>
-    </div>
+    <div id="subTaskContainer${id}" class="subTaskContainer">
+</div>
+
 
     <div class="contactsPrioContainer">
     <div id="boardInitials${id}" class="contactsPictureContainer">renderAssigned()</div>
@@ -108,14 +104,27 @@ function renderTask(task, id, i) {
 </div> `
 }
 
-// ${alltasks[id]['subtasks'][index]['subtaskChecked']}
+// ${alltasks[id]['subtasks'][index]['subtaskChecked'].length}
 
 function renderProgressBar(task, id, i) {
-let percent = 1 / allTasks[id]['subtasks'].length
+let percent = subtaskChecked.length / allTasks[id]['subtasks'].length
 percentProgress = percent * 100
+
+if (allTasks[id]['subtasks'].length == 0) {
+
+} else {
+    document.getElementById(`subTaskContainer${id}`).innerHTML += /* html */ `
+    <div class="progressBarContainer">
+    <div id="progressBar${id}" class="progressBar"></div>
+    </div>
+        <div id="subtaskCheckedCount" class="subtaskCheckedCount">${subtaskChecked.length}</div>
+        <div class="subTasksCount">/${allTasks[id]['subtasks'].length} Done</div>
+    </div>
+`;
+
 document.getElementById(`progressBar${id}`).style = `width: ${percentProgress}%`;
 
-    
+}  
 }
 
 
@@ -283,8 +292,10 @@ async function subtaskIsChecked(id, index){
     if (document.getElementById(`${id}-${index}`).checked) {
         subtask.state = 'isChecked';
         // task.subtasks[index][subtaskChecked].push(allTasks[id]['subtasks'][index]['name'])
+        subtaskChecked.push(allTasks[id]['subtasks'][index]['name'])
     } else {
         subtask.state = 'todo';
+        subtaskChecked.splice(allTasks[id]['subtasks'][index]['name'])
     }
     await backend.setItem('allTasks', JSON.stringify(allTasks));
     init()
