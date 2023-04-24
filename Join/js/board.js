@@ -6,6 +6,7 @@ let contacts = [];
 let counts = [];
 let priorityCount = [0]
 let currentDraggedElement;
+let subtaskChecked = [];
 
 
 async function init() {
@@ -22,7 +23,6 @@ async function loadBoard() {
     includeHTML();
     loadTask();
     countTasks();
-    console.log('Urgent:', priorityCount);
 }
 
 function loadingFinished() {
@@ -53,20 +53,26 @@ function loadTask() {
        let id = task['id'];
         if (allTasks[i].state == "todo") {
             toDoTasks.innerHTML += renderTask(task, i);
+            renderProgressBar(task, id, i);
             renderAssigned(id);
             countPrio(i,task);
+
         } else if (allTasks[i].state == "progress") {
             progressTasks.innerHTML += renderTask(task, i);
+            renderProgressBar(task, id, i);
             renderAssigned(id);
             countPrio(i,task);
         } else if (allTasks[i].state == "feedback") {
             feedbackTasks.innerHTML += renderTask(task, i);
+            renderProgressBar(task, id, i);
             renderAssigned(id);
             countPrio(i,task);
         } else if (allTasks[i].state == "done") {
             doneTasks.innerHTML += renderTask(task, i);
+            renderProgressBar(task, id, i);
             renderAssigned(id);
             countPrio(i,task);
+            
         }
     
     }
@@ -85,16 +91,40 @@ function renderTask(task, id, i) {
     <div class="descriptionContainer">${task['description']}
 </div>
    
-    <div class="subTaskContainer">
-        <div class="progressBar"></div>
-        <div>1/2 Done</div>
-    </div>
+
+    <div id="subTaskContainer${id}" class="subTaskContainer">
+</div>
+
+
     <div class="contactsPrioContainer">
     <div id="boardInitials${id}" class="contactsPictureContainer">renderAssigned()</div>
     <div class="prioImage"><img class="#" src="./assets/img/Prio_${task['priority']}.png"></div>
     </div>
 </div>
 </div> `
+}
+
+// ${alltasks[id]['subtasks'][index]['subtaskChecked'].length}
+
+function renderProgressBar(task, id, i) {
+let percent = subtaskChecked.length / allTasks[id]['subtasks'].length
+percentProgress = percent * 100
+
+if (allTasks[id]['subtasks'].length == 0) {
+
+} else {
+    document.getElementById(`subTaskContainer${id}`).innerHTML += /* html */ `
+    <div class="progressBarContainer">
+    <div id="progressBar${id}" class="progressBar"></div>
+    </div>
+        <div id="subtaskCheckedCount" class="subtaskCheckedCount">${subtaskChecked.length}</div>
+        <div class="subTasksCount">/${allTasks[id]['subtasks'].length} Done</div>
+    </div>
+`;
+
+document.getElementById(`progressBar${id}`).style = `width: ${percentProgress}%`;
+
+}  
 }
 
 
@@ -132,7 +162,6 @@ async function moveTo(state) {
     console.log(currentDraggedElement.state);
     await backend.setItem('allTasks', JSON.stringify(allTasks));
     init();
-    // state kommt aus dem backend, daher wird state nicht geändert.
 }
 
 function dragHighlight(id) {
@@ -145,16 +174,12 @@ function removedragHighlight(id) {
 
 function countTasks() {
     let numbTodo = document.getElementById("todoArea").childElementCount;
-    console.log('Todo:', numbTodo);
     let numbProgress = document.getElementById("progressArea").childElementCount;
-    console.log('Progress:', numbProgress);
-    let numbFeedback = document.getElementById("feedbackArea").childElementCount;
-    console.log('Feedback:', numbFeedback);
-    let numbArea = document.getElementById("doneArea").childElementCount;
-    console.log('Area:', numbArea);
-    let numbTask = numbTodo + numbProgress + numbFeedback + numbArea;
-    console.log('Task:', numbTask);
+    let numbFeedback = document.getElementById("feedbackArea").childElementCount;   
+    let numbArea = document.getElementById("doneArea").childElementCount;    
+    let numbTask = numbTodo + numbProgress + numbFeedback + numbArea; 
     countNumbs(numbTodo, numbProgress, numbFeedback, numbArea, numbTask);
+
 }
 
 
@@ -307,8 +332,11 @@ async function subtaskIsChecked(id, index){
     const subtask = task.subtasks[index];
     if (document.getElementById(`${id}-${index}`).checked) {
         subtask.state = 'isChecked';
+        // task.subtasks[index][subtaskChecked].push(allTasks[id]['subtasks'][index]['name'])
+        subtaskChecked.push(allTasks[id]['subtasks'][index]['name'])
     } else {
         subtask.state = 'todo';
+        subtaskChecked.splice(allTasks[id]['subtasks'][index]['name'])
     }
     await backend.setItem('allTasks', JSON.stringify(allTasks));
     init()
