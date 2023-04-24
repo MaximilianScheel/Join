@@ -3,6 +3,13 @@ function routeToPage(destination) {
     window.location.href = destination;
 }
 
+
+setTimeout(function () {
+    document.getElementById('preloader').style.display = 'none';
+}, 1500);
+
+
+
 function includeHTML() {
     var z, i, elmnt, file, xhttp;
     /* Loop through a collection of all HTML elements: */

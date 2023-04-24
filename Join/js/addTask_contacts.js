@@ -10,6 +10,10 @@ async function loadContacts() {
   getContactInfo();
 }
 
+/**
+ * function to sort all contacts in alphabetical order
+ */
+
 function sortAllContacts() {
   allContacts = allContacts.sort((a,b) => {
     if (a.prename < b.prename) {
@@ -17,6 +21,10 @@ function sortAllContacts() {
     }
   });
 }
+
+/**
+ * function to get the contact information from the JSON
+ */
 
 function getContactInfo() {
   for (let i = 0; i < allContacts.length; i++) {
@@ -27,6 +35,10 @@ function getContactInfo() {
     firstLetters.push({bothLetters, color});
   }
 }
+
+/**
+ * function to render all contacts in the contact field
+ */
 
 function renderAllContacts() {
   for (let i = 0; i < allContacts.length; i++) {
@@ -40,6 +52,12 @@ function renderAllContacts() {
     `;
   }
 }
+
+/**
+ * function to add Contacts to the task
+ * 
+ * @param {numebr} i - number to get the correct name
+ */
 
 function addContactToTask(i) {
   let contactID = document.getElementById('contact' + i);

@@ -316,6 +316,7 @@ body {
     justify-content: center;
     align-items: center;
     pointer-events: none;
+    margin-right: 12px;
 }
 
 .todoIcon {
@@ -356,6 +357,7 @@ body {
     justify-content: center;
     align-items: center;
     pointer-events: none;
+    margin-right: 12px;
 }
 
 .doneNumberText {

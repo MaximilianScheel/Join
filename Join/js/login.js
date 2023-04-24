@@ -57,7 +57,9 @@ async function login(e) {
     return false
 }
 
-
+/**
+ * Shows a popup message with animation
+ */
 
 function hidePopupMessage(){
     let popup = document.getElementById('popup-container');
