@@ -274,11 +274,27 @@ body {
     display: flex;
 }
 
-.progressBar {
+.subtaskCheckedCount {
+    margin-left: 20px;
+}
+
+.progressBarContainer {
     height: 16px;
     background-color: #F4F4F4;
     min-width: 60%;
     border-radius: 6px;
+}
+
+.progressBar {
+    height: 16px;
+    background-color: #29ABE2;
+    width: 0%;
+    border-radius: 6px;
+}
+
+
+.subTasksCountContainer {
+    margin-left: 20px;
 }
 
 .doneHeadlineContainer {
