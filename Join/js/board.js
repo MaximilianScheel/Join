@@ -307,6 +307,25 @@ function mouseOutBoard(i) {
     document.getElementById('rect' + i).classList.remove('rect');
 }
 
+// Seaching Function to sort Tasks
+
+function searchTasks() {            
+    let search = document.getElementById('search').value;
+    search = search.toLowerCase();
+    showSearchedTask(search);
+}
+
+function showSearchedTask(search) {
+    for (let i = 0; i < allTasks.length; i++) {
+        let currentTask = allTasks[i]['title'];
+        document.getElementById(i).classList.add('d-none');
+        if (currentTask.toLowerCase().includes(search)) {
+            document.getElementById(i).classList.remove('d-none');
+        
+        }
+    }
+}
+
 function includeHTML() {
     var z, i, elmnt, file, xhttp;
     /* Loop through a collection of all HTML elements: */
