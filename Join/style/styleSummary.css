@@ -208,6 +208,7 @@ height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 11px;
 }
 
 .todoNumberText {
@@ -242,6 +243,7 @@ align-items: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 11px;
 }
 
 .doneNumberText {
