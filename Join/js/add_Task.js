@@ -16,6 +16,7 @@ let state = 'todo';
 async function initTask() {
   await loadAddTask();
   loadingFinished();
+  updateMin();
 }
 
 async function loadAddTask() {
@@ -163,7 +164,7 @@ function loadAllTasks() {
     if (allTasks.length > 0) {
       idCounter = Math.max(...allTasks.map(task => task.id)) + 1;
     }
-    console.log(allTasks);
+    // console.log(allTasks);
 }
 
 
@@ -278,18 +279,19 @@ function resetPriority() {
  * function to add a new Subtask to the subtasks list
  */
 function addNewSubtask() {
-    let newSubtaskInput = document.getElementById('newSubtaskInput');
-    document.getElementById('newSubtasks').innerHTML = '';
-    if (!newSubtaskInput.value == '') {
-      allSubtasks.push(newSubtaskInput.value);
-      for (let i = 0; i < allSubtasks.length; i++) {
-        let newSubtask = allSubtasks[i];
-        let subtaskImageSrc = changeImage(newSubtask);
-        document.getElementById('newSubtasks').innerHTML += showSubtask(i, newSubtask, subtaskImageSrc);
-      }
+  let newSubtaskInput = document.getElementById('newSubtaskInput');
+  document.getElementById('newSubtasks').innerHTML = '';
+  if (!newSubtaskInput.value == '') {
+    let newSubtask = newSubtaskInput.value;
+    allSubtasks.push(newSubtask);
+    selectedSubtasks.push({ "name": newSubtask, "state": "todo" }); // add new subtask to selectedSubtasks
+    for (let i = 0; i < allSubtasks.length; i++) {
+      let subtaskImageSrc = changeImage(allSubtasks[i], selectedSubtasks); // pass selectedSubtasks to changeImage()
+      document.getElementById('newSubtasks').innerHTML += showSubtask(i, allSubtasks[i], subtaskImageSrc);
     }
-    newSubtaskInput.value = '';
   }
+  newSubtaskInput.value = '';
+}
 
 /**
  * function to change the image for selected subtasks
@@ -498,6 +500,28 @@ async function editTask() {
 
 function routeToPage(destination) {
   window.location.href = destination;
+}
+
+/**
+ * function for Datepicker to get the Date from today
+ * 
+ * @returns {string} - Today's date in yyyy-mm-dd format
+ */
+function getTodayDate() {
+  const today = new Date();
+  const month = (today.getMonth() + 1).toString().padStart(2, '0');
+  const day = today.getDate().toString().padStart(2, '0');
+  return `${today.getFullYear()}-${month}-${day}`;
+}
+
+/**
+ * Add the minimum date to an HTML date input field based on today's date
+ *
+ * @returns {void}
+ */
+function updateMin() {
+  const datepicker = document.getElementById('date');
+  datepicker.setAttribute('min', getTodayDate());
 }
 
 function includeHTML() {

@@ -98,7 +98,7 @@ function renderTask(task, id, i) {
 
     <div class="contactsPrioContainer">
     <div id="boardInitials${id}" class="contactsPictureContainer">renderAssigned()</div>
-    <div class="prioImage"><img class="#" src="./assets/img/Prio_${task['priority']}.png"></div>
+    <div class="prioImage"><img class="#" src="./assets/img/prio_${task['priority']}.png"></div>
     </div>
 </div>
 </div> `
