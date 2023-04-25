@@ -72,11 +72,21 @@ function addDate() {
   selectedDate = document.getElementById('date').value;
 }
 
+/**
+ * this function save the new created Task in the backend
+ * 
+ * @param {JSON} - task contains all informations for a task
+ */
+
 async function saveAllTasks(task) {
   allTasks.push(task);
   await backend.setItem('allTasks', JSON.stringify(allTasks));
   loadAllTasks();
 }
+
+/**
+ * function to show a PopUp Information 
+ */
 
 function showInfo() {
   document.getElementById('createTaskBtn').classList.remove('d-none');
@@ -84,6 +94,10 @@ function showInfo() {
     document.getElementById('createTaskBtn').classList.add('d-none');
   },3800);
 }
+
+/**
+ * function to clear all values in AddTask template
+ */
 
 function clearValues() {
   resetVariables();
@@ -139,8 +153,7 @@ function closeCategories() {
 
 
 /**
- * Load all tasks from local storage
- * and display them in the list
+ * Load all tasks from local storage and display them in the list
  *
 */
 
@@ -156,13 +169,12 @@ function loadAllTasks() {
 }
 
 
-
 /**
- *
- * Prio
- *
-*/
-
+ * function for clicked or unclicked priority button
+ * 
+ * @param {string} prio
+ * @returns 
+ */
 function renderPrioBtnClicked(prio) {
     return `
         <span>${prio.charAt(0).toUpperCase() + prio.slice(1)}</span>
@@ -176,6 +188,12 @@ function renderPrioBtnUnclicked(prio) {
         <img src="assets/img/prio_${prio}.png" width="18px"/>
     `;
 }
+
+/**
+ * function to choose the priority with the buttons
+ * 
+ * @param {string} priority - This is the priority you choose with the button
+ */
 
 function choosePriority(priority) {
     let urgent = document.getElementById("urgentBtn");
@@ -219,6 +237,12 @@ function choosePriority(priority) {
     }
 }
 
+/**
+ * function to get the active priority for backend
+ * 
+ * @returns 
+ */
+
 function getActivePriority() {
   let activePriority = "";
   let urgent = document.getElementById("urgentBtn");
@@ -236,6 +260,10 @@ function getActivePriority() {
   return activePriority;
 }
 
+/**
+ * function to reset the priority buttons
+ */
+
 function resetPriority() {
   document.getElementById('urgentBtn').style.backgroundColor = '#FFF';
   document.getElementById('mediumBtn').style.backgroundColor = '#FFF';
@@ -249,9 +277,8 @@ function resetPriority() {
 }
 
 /**
- * Subtask
+ * function to add a new Subtask to the subtasks list
  */
-
 function addNewSubtask() {
     let newSubtaskInput = document.getElementById('newSubtaskInput');
     document.getElementById('newSubtasks').innerHTML = '';
@@ -266,6 +293,14 @@ function addNewSubtask() {
     newSubtaskInput.value = '';
   }
 
+/**
+ * function to change the image for selected subtasks
+ * 
+ * @param {string} newSubtask - the subtask(s) who was created in addNewSubtask()
+ * @param {JSON} selectedSubtasks - All subtasks who are selected with the checkmark
+ * @returns 
+ */
+
 function changeImage(newSubtask, selectedSubtasks) {
   let subtaskImageSrc = "assets/img/subtask_rectangle.png";
   if (selectedSubtasks && selectedSubtasks.some(task => task.name === newSubtask)) {
@@ -273,7 +308,13 @@ function changeImage(newSubtask, selectedSubtasks) {
   }
   return subtaskImageSrc;
 }
-
+/**
+ * function to show the new subtask and the correct image left to it. checkmark or rectangle
+ * 
+ * @param {number} i - number to check the correct subtask
+ * @param {string} newSubtask - subtask which was written in the input field
+ * @returns 
+ */
 function showSubtask (i, newSubtask) {
   const subtaskImageSrc = changeImage(newSubtask, selectedSubtasks);
   return `
@@ -282,6 +323,12 @@ function showSubtask (i, newSubtask) {
     </div>
   `;
 }
+
+/**
+ * function to add or remove the checkmark next to the subtask
+ * 
+ * @param {number} i - number to checkmark the correct subtask 
+ */
 
 function checkmark(i) {
   const newSubtask = { "name": allSubtasks[i], "state": "todo" };
@@ -295,7 +342,11 @@ function checkmark(i) {
   document.getElementById('checkbox' + i).src = subtaskImageSrc;
 }
 
-// Pop Up Add Task
+/**
+ * function to display AddTask template and create the state
+ *
+ * @param {string} type - type ist the state for the task
+ */
 
 function displayAddTask(type) {
   initTask();
@@ -329,7 +380,11 @@ function hideEditTask() {
   document.getElementById('popupAddTaskBoard').classList.add('d-none')
 }
 
-
+/**
+ * function to choose the new priority in editTask
+ * 
+ * @param {string} priority - This is the priority you choose with the button
+ */
 function choosePriorityEdit(priority) {
   let urgent = document.getElementById("urgentBtnEdit");
   let medium = document.getElementById("mediumBtnEdit");
@@ -371,9 +426,14 @@ function choosePriorityEdit(priority) {
           break;
   }
 
-  // Setzen Sie den neuen Prioritätswert in newPrio
   newPrio = priority;
 }
+
+/**
+ * function to render the information for selected task
+ * 
+ * @param {number} id - number to show the right information for the selceted task
+ */
 
 function renderFullscreenEdit(id){
   if(id != undefined){
@@ -385,6 +445,11 @@ function renderFullscreenEdit(id){
   }
 }
 
+/**
+ * function to display editTaks template
+ * 
+ * @param {number} id -number to show the right information for the selected task
+ */
 
 async function displayEditTask(id) {
   let task = allTasks[id];
@@ -404,6 +469,12 @@ async function displayEditTask(id) {
   document.getElementById('Editdate').value = date;
 
   };
+
+
+/**
+ * function for save the changes in the open task
+ * 
+ */
 
 async function editTask() {
 
