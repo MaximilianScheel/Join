@@ -112,7 +112,7 @@ if (allTasks[id]['subtasks'].length == 0) {
     <div class="progressBarContainer">
     <div id="progressBar${id}" class="progressBar"></div>
     </div>
-        <div id="subtaskCheckedCount" class="subtaskCheckedCount">1</div>
+        <div id="subtaskCheckedCount" class="subtaskCheckedCount">${allTasks[id]['subtasksChecked'].length}</div>
         <div class="subTasksCount">/${allTasks[id]['subtasks'].length} Done</div>
     </div>
 `;
@@ -328,11 +328,9 @@ async function subtaskIsChecked(id, index){
     if (document.getElementById(`${id}-${index}`).checked) {
         subtask.state = 'isChecked';
         allTasks[id]['subtasksChecked'].push(allTasks[id]['subtasks'][index]['name'])
-        // subtaskChecked.push(allTasks[id]['subtasks'][index]['name'])
     } else {
         subtask.state = 'todo';
-        // subtaskChecked.splice(allTasks[id]['subtasks'][index]['name'])
-        allTasks[id]['subtasksChecked'].push(allTasks[id]['subtasks'][index]['name'])
+        allTasks[id]['subtasksChecked'].splice(allTasks[id]['subtasks'][index]['name'])
     }
     await backend.setItem('allTasks', JSON.stringify(allTasks));
     init()
