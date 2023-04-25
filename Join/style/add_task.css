@@ -48,7 +48,6 @@ h1 {
 .flexContainer {
     display: flex;
     gap: 30px;
-    flex-wrap: wrap;
 }
 
 .leftContainer {
@@ -511,5 +510,3 @@ button {
 
 
 }
-
-
