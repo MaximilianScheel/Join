@@ -34,10 +34,6 @@ function routeToPage(destination) {
 }
 
 
-
-function search() {
-}
-
 function loadTask() {
     let toDoTasks = document.getElementById("todoArea");
     let progressTasks = document.getElementById("progressArea");
@@ -56,7 +52,6 @@ function loadTask() {
             renderProgressBar(task, id, i);
             renderAssigned(id);
             countPrio(i,task);
-
         } else if (allTasks[i].state == "progress") {
             progressTasks.innerHTML += renderTask(task, i);
             renderProgressBar(task, id, i);
@@ -104,7 +99,7 @@ function renderTask(task, id, i) {
 </div> `
 }
 
-// ${alltasks[id]['subtasks'][index]['subtaskChecked'].length}
+// ${allTasks[id]['subtasksChecked'].length}
 
 function renderProgressBar(task, id, i) {
 let percent = subtaskChecked.length / allTasks[id]['subtasks'].length
@@ -117,7 +112,7 @@ if (allTasks[id]['subtasks'].length == 0) {
     <div class="progressBarContainer">
     <div id="progressBar${id}" class="progressBar"></div>
     </div>
-        <div id="subtaskCheckedCount" class="subtaskCheckedCount">${subtaskChecked.length}</div>
+        <div id="subtaskCheckedCount" class="subtaskCheckedCount">1</div>
         <div class="subTasksCount">/${allTasks[id]['subtasks'].length} Done</div>
     </div>
 `;
@@ -291,11 +286,12 @@ async function subtaskIsChecked(id, index){
     const subtask = task.subtasks[index];
     if (document.getElementById(`${id}-${index}`).checked) {
         subtask.state = 'isChecked';
-        // task.subtasks[index][subtaskChecked].push(allTasks[id]['subtasks'][index]['name'])
-        subtaskChecked.push(allTasks[id]['subtasks'][index]['name'])
+        allTasks[id]['subtasksChecked'].push(allTasks[id]['subtasks'][index]['name'])
+        // subtaskChecked.push(allTasks[id]['subtasks'][index]['name'])
     } else {
         subtask.state = 'todo';
-        subtaskChecked.splice(allTasks[id]['subtasks'][index]['name'])
+        // subtaskChecked.splice(allTasks[id]['subtasks'][index]['name'])
+        allTasks[id]['subtasksChecked'].push(allTasks[id]['subtasks'][index]['name'])
     }
     await backend.setItem('allTasks', JSON.stringify(allTasks));
     init()

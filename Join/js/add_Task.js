@@ -11,6 +11,7 @@ let selectedSubtasks = [];
 let allSubtasks = [];
 let idCounter = 0;
 let state = 'todo';
+let subtasksChecked = [];
 
 
 async function initTask() {
@@ -44,6 +45,7 @@ async function addTask() {
       'subtasks': selectedSubtasks,
       'id': idCounter,
       'state': state,
+      'subtasksChecked': subtasksChecked,
       };
       showInfo();
     await saveAllTasks(task);
