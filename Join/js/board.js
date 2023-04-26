@@ -102,7 +102,7 @@ function renderTask(task, id, i) {
 
 
 function renderProgressBar(task, id, i) {
-let percent = subtaskChecked.length / allTasks[id]['subtasks'].length
+let percent = allTasks[id]['subtasksChecked'].length / allTasks[id]['subtasks'].length
 percentProgress = percent * 100
 
 if (allTasks[id]['subtasks'].length == 0) {
