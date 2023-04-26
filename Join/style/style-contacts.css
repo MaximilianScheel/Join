@@ -298,6 +298,7 @@ body {
 
     .contacts-wrapper-inner-content {
         overflow-y: hidden !important;
+        margin-top: 40px;
     }
 
     .contacts-overview {
@@ -332,6 +333,7 @@ body {
         font-weight: bold;
         display: flex;
         justify-content: flex-start;
+        z-index: 5;
     }
 
     .contacts-overview-headline {
