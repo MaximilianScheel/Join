@@ -494,6 +494,10 @@
     padding-bottom: 10px;
 }
 
+.menuLinkActive {
+    background-color: rgba(9, 25, 49, 1);
+}
+
 .sideMenu-link-container-desktop:hover {
     background-color: rgba(9, 25, 49, 1);
     cursor: pointer;

@@ -16,3 +16,8 @@ function showLogOut() {
 function hideLogOut() {
     document.getElementById('logoutContainer').classList.remove('logoutDisplayed');
 }
+
+function activateLink(element) {
+    document.querySelectorAll('sideMenu-link-container-desktop').classList.remove('menuLinkActive');
+    element.classList.add('menuLinkActive');
+}

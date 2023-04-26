@@ -70,7 +70,6 @@
 .contactPopUp-form-body {
     width: 100%;
     display: flex;
-    overflow-y: scroll;
 }
 
 .contactPopUp-form-body-img {
