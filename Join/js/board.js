@@ -99,7 +99,7 @@ function renderTask(task, id, i) {
 </div> `
 }
 
-// ${allTasks[id]['subtasksChecked'].length}
+
 
 function renderProgressBar(task, id, i) {
 let percent = subtaskChecked.length / allTasks[id]['subtasks'].length
