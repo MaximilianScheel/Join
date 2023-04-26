@@ -48,7 +48,6 @@ h1 {
 .flexContainer {
     display: flex;
     gap: 30px;
-    flex-wrap: wrap;
 }
 
 .leftContainer {
@@ -72,7 +71,6 @@ h1 {
 
 .inputBlock input, .inputBlock textarea, .subtask-input  {
     background-color: #FFFFFF;
-    display: flex;
     align-items: center;
     justify-content: space-between;
     border-radius: 10px;
@@ -512,5 +510,3 @@ button {
 
 
 }
-
-

@@ -2,7 +2,7 @@ setURL('https://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ev
 
 let tasks = [];
 let allTasks = [];
-let priority = '"low"' ;
+let priority = '"Low"' ;
 let selectedTitle;
 let selectedDescription;
 let selectedDate;
@@ -17,6 +17,7 @@ let subtasksChecked = [];
 async function initTask() {
   await loadAddTask();
   loadingFinished();
+  updateMin();
 }
 
 async function loadAddTask() {
@@ -165,7 +166,7 @@ function loadAllTasks() {
     if (allTasks.length > 0) {
       idCounter = Math.max(...allTasks.map(task => task.id)) + 1;
     }
-    console.log(allTasks);
+    // console.log(allTasks);
 }
 
 
@@ -201,38 +202,38 @@ function choosePriority(priority) {
     let low = document.getElementById("lowBtn");
 
     switch (priority) {
-        case "urgent":
+        case "Urgent":
             urgent.style.backgroundColor = "#FF3D00";
             medium.style.backgroundColor = "#FFF";
             low.style.backgroundColor = "#FFF";
             urgent.style.color = "#FFF";
             medium.style.color = "#000";
             low.style.color = "#000";
-            urgent.innerHTML = renderPrioBtnClicked("urgent");
-            medium.innerHTML = renderPrioBtnUnclicked("medium");
-            low.innerHTML = renderPrioBtnUnclicked("low");
+            urgent.innerHTML = renderPrioBtnClicked("Urgent");
+            medium.innerHTML = renderPrioBtnUnclicked("Medium");
+            low.innerHTML = renderPrioBtnUnclicked("Low");
             break;
-        case "medium":
+        case "Medium":
             medium.style.backgroundColor = "#FFA800";
             urgent.style.backgroundColor = "#FFF";
             low.style.backgroundColor = "#FFF";
             urgent.style.color = "#000";
             medium.style.color = "#FFF";
             low.style.color = "#000";
-            urgent.innerHTML = renderPrioBtnUnclicked("urgent");
-            medium.innerHTML = renderPrioBtnClicked("medium");
-            low.innerHTML = renderPrioBtnUnclicked("low");
+            urgent.innerHTML = renderPrioBtnUnclicked("Urgent");
+            medium.innerHTML = renderPrioBtnClicked("Medium");
+            low.innerHTML = renderPrioBtnUnclicked("Low");
             break;
-        case "low":
+        case "Low":
             low.style.backgroundColor = "#7AE229";
             medium.style.backgroundColor = "#FFF";
             urgent.style.backgroundColor = "#FFF";
             urgent.style.color = "#000";
             medium.style.color = "#000";
             low.style.color = "#FFF";
-            urgent.innerHTML = renderPrioBtnUnclicked("urgent");
-            medium.innerHTML = renderPrioBtnUnclicked("medium");
-            low.innerHTML = renderPrioBtnClicked("low");
+            urgent.innerHTML = renderPrioBtnUnclicked("Urgent");
+            medium.innerHTML = renderPrioBtnUnclicked("Medium");
+            low.innerHTML = renderPrioBtnClicked("Low");
             break;
     }
 }
@@ -271,27 +272,28 @@ function resetPriority() {
   document.getElementById('urgentBtn').style.color = '#000';
   document.getElementById('mediumBtn').style.color = '#000';
   document.getElementById('lowBtn').style.color = '#000';
-  document.getElementById('urgentBtn').innerHTML = renderPrioBtnUnclicked('urgent');
-  document.getElementById('mediumBtn').innerHTML = renderPrioBtnUnclicked('medium');
-  document.getElementById('lowBtn').innerHTML = renderPrioBtnUnclicked('low');
+  document.getElementById('urgentBtn').innerHTML = renderPrioBtnUnclicked('Urgent');
+  document.getElementById('mediumBtn').innerHTML = renderPrioBtnUnclicked('Medium');
+  document.getElementById('lowBtn').innerHTML = renderPrioBtnUnclicked('Low');
 }
 
 /**
  * function to add a new Subtask to the subtasks list
  */
 function addNewSubtask() {
-    let newSubtaskInput = document.getElementById('newSubtaskInput');
-    document.getElementById('newSubtasks').innerHTML = '';
-    if (!newSubtaskInput.value == '') {
-      allSubtasks.push(newSubtaskInput.value);
-      for (let i = 0; i < allSubtasks.length; i++) {
-        let newSubtask = allSubtasks[i];
-        let subtaskImageSrc = changeImage(newSubtask);
-        document.getElementById('newSubtasks').innerHTML += showSubtask(i, newSubtask, subtaskImageSrc);
-      }
+  let newSubtaskInput = document.getElementById('newSubtaskInput');
+  document.getElementById('newSubtasks').innerHTML = '';
+  if (!newSubtaskInput.value == '') {
+    let newSubtask = newSubtaskInput.value;
+    allSubtasks.push(newSubtask);
+    selectedSubtasks.push({ "name": newSubtask, "state": "todo" }); // add new subtask to selectedSubtasks
+    for (let i = 0; i < allSubtasks.length; i++) {
+      let subtaskImageSrc = changeImage(allSubtasks[i], selectedSubtasks); // pass selectedSubtasks to changeImage()
+      document.getElementById('newSubtasks').innerHTML += showSubtask(i, allSubtasks[i], subtaskImageSrc);
     }
-    newSubtaskInput.value = '';
   }
+  newSubtaskInput.value = '';
+}
 
 /**
  * function to change the image for selected subtasks
@@ -372,6 +374,7 @@ function displayAddTask(type) {
 
 function hideAddTask() {
   document.getElementById('addTaskPopUp-container').classList.add('hideAddTask');
+  clearValues();
 }
 
 
@@ -391,38 +394,38 @@ function choosePriorityEdit(priority) {
   let low = document.getElementById("lowBtnEdit");
 
   switch (priority) {
-      case "urgent":
+      case "Urgent":
           urgent.style.backgroundColor = "#FF3D00";
           medium.style.backgroundColor = "#FFF";
           low.style.backgroundColor = "#FFF";
           urgent.style.color = "#FFF";
           medium.style.color = "#000";
           low.style.color = "#000";
-          urgent.innerHTML = renderPrioBtnClicked("urgent");
-          medium.innerHTML = renderPrioBtnUnclicked("medium");
-          low.innerHTML = renderPrioBtnUnclicked("low");
+          urgent.innerHTML = renderPrioBtnClicked("Urgent");
+          medium.innerHTML = renderPrioBtnUnclicked("Medium");
+          low.innerHTML = renderPrioBtnUnclicked("Low");
           break;
-      case "medium":
+      case "Medium":
           medium.style.backgroundColor = "#FFA800";
           urgent.style.backgroundColor = "#FFF";
           low.style.backgroundColor = "#FFF";
           urgent.style.color = "#000";
           medium.style.color = "#FFF";
           low.style.color = "#000";
-          urgent.innerHTML = renderPrioBtnUnclicked("urgent");
-          medium.innerHTML = renderPrioBtnClicked("medium");
-          low.innerHTML = renderPrioBtnUnclicked("low");
+          urgent.innerHTML = renderPrioBtnUnclicked("Urgent");
+          medium.innerHTML = renderPrioBtnClicked("Medium");
+          low.innerHTML = renderPrioBtnUnclicked("Low");
           break;
-      case "low":
+      case "Low":
           low.style.backgroundColor = "#7AE229";
           medium.style.backgroundColor = "#FFF";
           urgent.style.backgroundColor = "#FFF";
           urgent.style.color = "#000";
           medium.style.color = "#000";
           low.style.color = "#FFF";
-          urgent.innerHTML = renderPrioBtnUnclicked("urgent");
-          medium.innerHTML = renderPrioBtnUnclicked("medium");
-          low.innerHTML = renderPrioBtnClicked("low");
+          urgent.innerHTML = renderPrioBtnUnclicked("Urgent");
+          medium.innerHTML = renderPrioBtnUnclicked("Medium");
+          low.innerHTML = renderPrioBtnClicked("Low");
           break;
   }
 
@@ -500,6 +503,28 @@ async function editTask() {
 
 function routeToPage(destination) {
   window.location.href = destination;
+}
+
+/**
+ * function for Datepicker to get the Date from today
+ * 
+ * @returns {string} - Today's date in yyyy-mm-dd format
+ */
+function getTodayDate() {
+  const today = new Date();
+  const month = (today.getMonth() + 1).toString().padStart(2, '0');
+  const day = today.getDate().toString().padStart(2, '0');
+  return `${today.getFullYear()}-${month}-${day}`;
+}
+
+/**
+ * Add the minimum date to an HTML date input field based on today's date
+ *
+ * @returns {void}
+ */
+function updateMin() {
+  const datepicker = document.getElementById('date');
+  datepicker.setAttribute('min', getTodayDate());
 }
 
 function includeHTML() {

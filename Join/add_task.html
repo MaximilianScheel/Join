@@ -131,22 +131,22 @@
                     <div class="rightContainer">
                         <div class="inputBlock">
                             <span class="inputTitle">Due date</span>
-                            <input type="date" required id="date" onkeyup="addDate()">
+                            <input type="date" required id="date" onchange="updateMin()" onkeyup="addDate()">
                         </div>
                         <div class="inputBlock">
                             <span class="inputTitle">Prio</span>
                             <div class="prio">
-                                <div id="urgentBtn" class="prioBtn" onclick="choosePriority('urgent')">
+                                <div id="urgentBtn" class="prioBtn" onclick="choosePriority('Urgent')">
                                     Urgent
-                                    <img src="assets/img/prio_urgent.png">
+                                    <img src="assets/img/prio_Urgent.png">
                                 </div>
-                                <div id="mediumBtn" class="prioBtn" onclick="choosePriority('medium')">
+                                <div id="mediumBtn" class="prioBtn" onclick="choosePriority('Medium')">
                                     Medium
-                                    <img src="assets/img/prio_medium.png">
+                                    <img src="assets/img/prio_Medium.png">
                                 </div>
-                                <div id="lowBtn" class="prioBtn" onclick="choosePriority('low')">
+                                <div id="lowBtn" class="prioBtn" onclick="choosePriority('Low')">
                                     Low
-                                    <img src="assets/img/prio_low.png">
+                                    <img src="assets/img/prio_Low.png">
                                 </div>
                             </div>
                         </div>
