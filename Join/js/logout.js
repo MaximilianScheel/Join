@@ -8,3 +8,11 @@ async function logout() {
     await backend.setItem('currentUser', currentUser);
     window.location.href = './index.html';
 }
+
+function showLogOut() {
+    document.getElementById('logoutContainer').classList.add('logoutDisplayed');
+}
+
+function hideLogOut() {
+    document.getElementById('logoutContainer').classList.remove('logoutDisplayed');
+}

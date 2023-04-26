@@ -14,7 +14,7 @@
     border-style: none;
     border-radius: 10px;
     transition: 825ms ease-in-out;
-    z-index: 2;
+    z-index: 11;
     opacity: 1;
 }
 
@@ -23,7 +23,7 @@
     background-color: rgba(9, 25, 49, 1);
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .contactPopUp-join-container-inner {
@@ -179,10 +179,8 @@
         border-style: none;
         border-radius: 0px;
         transition: 825ms ease-in-out;
-        z-index: 2;
         opacity: 1;
         flex-direction: column;
-        overflow: scroll;
     }
 
     .contactPopUp-join-container {
@@ -224,6 +222,10 @@
 
     .cancelButton {
         display: none;
+    }
+
+    .contactPopUp-form-body-formular form {
+        margin-top: 20px !important;
     }
 
 
@@ -414,17 +416,17 @@
     font-family: 'open sans', sans-serif;
     padding: 5px;
     color: white;
-    opacity: 0;
-    transform: translateY(10px);
+    display: none;
     transition: all 0.3s ease-in-out;
-    z-index: 999;
+    z-index: -999;
     text-align: center;
     cursor: pointer;
 }
 
-.image-container-top-bar:hover .logout-container {
+.logoutDisplayed {
     opacity: 1;
-    transform: translateY(0);
+    display: block;
+    z-index: 999;
 }
 
 .logout-text {
