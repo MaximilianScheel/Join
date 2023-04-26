@@ -134,7 +134,7 @@ function renderAssigned(id){
         let splitNames = fullname.split(' ');
         let bothLetters = splitNames[0].charAt(0)+splitNames[1].charAt(0);
         let favouriteColor = contacts[k].favouriteColor;
-        document.getElementById(`boardInitials${id}`).innerHTML +=/*html*/`
+        document.getElementById(`boardInitials${id}`).innerHTML +=`
         <div class="boardInitialsInitials">
         <div class="boardInitialsShortName" style="background-color: ${favouriteColor};">${bothLetters}</div>     
         </div>
@@ -144,8 +144,7 @@ function renderAssigned(id){
 
 
 function startDragging(id) {
-    currentDraggedElement = id; // TODO: id is currently only a number 0, 2 or 4.. 
-    console.log(currentDraggedElement);
+    currentDraggedElement = id;
 }
 
 function allowDrop(ev) {
@@ -154,7 +153,6 @@ function allowDrop(ev) {
 
 async function moveTo(state) {
     allTasks[currentDraggedElement]['state'] = state;
-    console.log(currentDraggedElement.state);
     await backend.setItem('allTasks', JSON.stringify(allTasks));
     init();
 }

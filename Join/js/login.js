@@ -41,10 +41,6 @@ async function login(e) {
 
     currentUser = contacts.find(c => c.email == email.value && c.password == password.value);
 
-    console.log(contacts.find(c => c.email == email.value && c.password == password.value));
-    console.log(currentUser);
-    console.log(contacts);
-
     if (currentUser) {
         await saveOnServer('currentUser', currentUser);
         window.location.href = './summary.html?login=2';

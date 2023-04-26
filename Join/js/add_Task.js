@@ -166,7 +166,6 @@ function loadAllTasks() {
     if (allTasks.length > 0) {
       idCounter = Math.max(...allTasks.map(task => task.id)) + 1;
     }
-    // console.log(allTasks);
 }
 
 
