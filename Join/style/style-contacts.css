@@ -272,6 +272,7 @@ body {
     font-weight: bold;
     display: flex;
     justify-content: flex-start;
+    align-items: center;
 }
 
 .addContact-button img {
