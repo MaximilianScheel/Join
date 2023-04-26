@@ -21,12 +21,14 @@
                 <input required min="2" maxlength="25" type="text" placeholder="Preame" id="add_prename_input">
                 <input required min="2" maxlength="25" type="text" placeholder="Name" id="add_name_input">
                 <input required min="5" maxlength="30" type="email" placeholder="Email" id="add_email_input">
-                <input required min="6" maxlength="25" type="tel" placeholder="Phone" id="add_phone_input">
+                <input pattern="[+]{1}[0-9]{11,14}" required min="6" maxlength="25" type="phone" placeholder="tel" id="add_phone_input">
                 <div>
                     <input type="button" value="Cancel" id="cancelButton" class="cancelButton">
                     <input type="submit" value="Create contact" id="submitButtonAddContact" class="submitButton">
                 </div>
             </form>
+            <div style="height: 60px"></div>
         </div>
     </div>
+   
 </div>

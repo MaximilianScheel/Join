@@ -24,7 +24,6 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding-top: 125px;
 }
 
 .contactPopUp-join-container-inner {
@@ -131,7 +130,6 @@
 .submitButton {
     background-color: rgba(9, 25, 49, 1);
     color: white;
-    width: 50%;
     transition: 525ms;
 }
 
