@@ -12,6 +12,10 @@ let subtaskChecked = [];
 async function init() {
     loadBoard();
     loadingFinished();
+    for (let i = 0; i < allTasks.length; i++) {
+        const task = allTasks[i];
+    countPrio(i,task);
+    }
 }
 
 async function loadBoard() {
@@ -34,6 +38,7 @@ function routeToPage(destination) {
 }
 
 
+
 function loadTask() {
     let toDoTasks = document.getElementById("todoArea");
     let progressTasks = document.getElementById("progressArea");
@@ -51,22 +56,22 @@ function loadTask() {
             toDoTasks.innerHTML += renderTask(task, i);
             renderProgressBar(task, id, i);
             renderAssigned(id);
-            countPrio(i,task);
+            
         } else if (allTasks[i].state == "progress") {
             progressTasks.innerHTML += renderTask(task, i);
             renderProgressBar(task, id, i);
             renderAssigned(id);
-            countPrio(i,task);
+            // countPrio(i,task);
         } else if (allTasks[i].state == "feedback") {
             feedbackTasks.innerHTML += renderTask(task, i);
             renderProgressBar(task, id, i);
             renderAssigned(id);
-            countPrio(i,task);
+            // countPrio(i,task);
         } else if (allTasks[i].state == "done") {
             doneTasks.innerHTML += renderTask(task, i);
             renderProgressBar(task, id, i);
             renderAssigned(id);
-            countPrio(i,task);
+            // countPrio(i,task);
             
         }
     
@@ -328,7 +333,7 @@ async function subtaskIsChecked(id, index){
         allTasks[id]['subtasksChecked'].push(allTasks[id]['subtasks'][index]['name'])
     } else {
         subtask.state = 'todo';
-        allTasks[id]['subtasksChecked'].splice(allTasks[id]['subtasks'][index]['name'])
+        allTasks[id]['subtasksChecked'].pop(allTasks[id]['subtasks'][index]['name'])
     }
     await backend.setItem('allTasks', JSON.stringify(allTasks));
     init()
