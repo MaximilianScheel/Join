@@ -178,14 +178,14 @@ function loadAllTasks() {
 function renderPrioBtnClicked(prio) {
     return `
         <span>${prio.charAt(0).toUpperCase() + prio.slice(1)}</span>
-        <img src="assets/img/prio_${prio}_white.png" width="18px"/>
+        <img src="assets/img/prio_${prio}_white1.png" width="18px"/>
     `;
 }
 
 function renderPrioBtnUnclicked(prio) {
     return `
         <span>${prio.charAt(0).toUpperCase() + prio.slice(1)}</span>
-        <img src="assets/img/prio_${prio}.png" width="18px"/>
+        <img src="assets/img/prio_${prio}1.png" width="18px"/>
     `;
 }
 
