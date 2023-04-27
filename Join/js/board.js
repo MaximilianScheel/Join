@@ -14,7 +14,7 @@ async function init() {
     loadingFinished();
     for (let i = 0; i < allTasks.length; i++) {
         const task = allTasks[i];
-    countPrio(i,task);
+        countPrio(i, task);
     }
 }
 
@@ -31,7 +31,7 @@ async function loadBoard() {
 
 function loadingFinished() {
     document.getElementById('preloader').classList.add('d-none');
-  }
+}
 
 function routeToPage(destination) {
     window.location.href = destination;
@@ -51,12 +51,12 @@ function loadTask() {
 
     for (let i = 0; i < allTasks.length; i++) {
         const task = allTasks[i];
-       let id = task['id'];
+        let id = task['id'];
         if (allTasks[i].state == "todo") {
             toDoTasks.innerHTML += renderTask(task, i);
             renderProgressBar(task, id, i);
             renderAssigned(id);
-            
+
         } else if (allTasks[i].state == "progress") {
             progressTasks.innerHTML += renderTask(task, i);
             renderProgressBar(task, id, i);
@@ -72,9 +72,9 @@ function loadTask() {
             renderProgressBar(task, id, i);
             renderAssigned(id);
             // countPrio(i,task);
-            
+
         }
-    
+
     }
 
 }
@@ -107,13 +107,13 @@ function renderTask(task, id, i) {
 
 
 function renderProgressBar(task, id, i) {
-let percent = allTasks[id]['subtasksChecked'].length / allTasks[id]['subtasks'].length
-percentProgress = percent * 100
+    let percent = allTasks[id]['subtasksChecked'].length / allTasks[id]['subtasks'].length
+    percentProgress = percent * 100
 
-if (allTasks[id]['subtasks'].length == 0) {
+    if (allTasks[id]['subtasks'].length == 0) {
 
-} else {
-    document.getElementById(`subTaskContainer${id}`).innerHTML += /* html */ `
+    } else {
+        document.getElementById(`subTaskContainer${id}`).innerHTML += /* html */ `
     <div class="progressBarContainer">
     <div id="progressBar${id}" class="progressBar"></div>
     </div>
@@ -122,24 +122,24 @@ if (allTasks[id]['subtasks'].length == 0) {
     </div>
 `;
 
-document.getElementById(`progressBar${id}`).style = `width: ${percentProgress}%`;
+        document.getElementById(`progressBar${id}`).style = `width: ${percentProgress}%`;
 
-}  
+    }
 }
 
 
 
 
-function renderAssigned(id){
+function renderAssigned(id) {
     let task = allTasks[id];
     let assignedName = task['contactNames'];
-    document.getElementById(`boardInitials${id}`).innerHTML ='';
+    document.getElementById(`boardInitials${id}`).innerHTML = '';
     for (let k = 0; k < assignedName.length; k++) {
         const fullname = assignedName[k];
         let splitNames = fullname.split(' ');
-        let bothLetters = splitNames[0].charAt(0)+splitNames[1].charAt(0);
+        let bothLetters = splitNames[0].charAt(0) + splitNames[1].charAt(0);
         let favouriteColor = contacts[k].favouriteColor;
-        document.getElementById(`boardInitials${id}`).innerHTML +=`
+        document.getElementById(`boardInitials${id}`).innerHTML += `
         <div class="boardInitialsInitials">
         <div class="boardInitialsShortName" style="background-color: ${favouriteColor};">${bothLetters}</div>     
         </div>
@@ -173,9 +173,9 @@ function removedragHighlight(id) {
 function countTasks() {
     let numbTodo = document.getElementById("todoArea").childElementCount;
     let numbProgress = document.getElementById("progressArea").childElementCount;
-    let numbFeedback = document.getElementById("feedbackArea").childElementCount;   
-    let numbArea = document.getElementById("doneArea").childElementCount;    
-    let numbTask = numbTodo + numbProgress + numbFeedback + numbArea; 
+    let numbFeedback = document.getElementById("feedbackArea").childElementCount;
+    let numbArea = document.getElementById("doneArea").childElementCount;
+    let numbTask = numbTodo + numbProgress + numbFeedback + numbArea;
     countNumbs(numbTodo, numbProgress, numbFeedback, numbArea, numbTask);
 
 }
@@ -198,9 +198,9 @@ async function countNumbs(numbTodo, numbProgress, numbFeedback, numbArea, numbTa
 
 
 
-async function countPrio(i,task ) {
+async function countPrio(i, task) {
     if (task['priority'] == 'Urgent') {
-        priorityCount++ 
+        priorityCount++
     }
     prioCount.push(priorityCount)
     await backend.setItem("prioCount", JSON.stringify(prioCount));
@@ -217,7 +217,7 @@ async function countPrio(i,task ) {
 
 function openTask(id) {
     document.getElementById('TaskOverview').classList.remove('d-none');
-    document.getElementById('TaskCard').innerHTML='';
+    document.getElementById('TaskCard').innerHTML = '';
     renderFullscreenView(id);
 }
 
@@ -227,7 +227,7 @@ function openTask(id) {
  * @param {number} id - number to get the correct task
  */
 
-async function renderFullscreenView(id){
+async function renderFullscreenView(id) {
     let task = allTasks[id];
     let title = task['title'];
     let contactNames = task['contactNames'];
@@ -237,9 +237,9 @@ async function renderFullscreenView(id){
     let prio = task['priority'];
     let subtask = task['subtasks']['name'];
     let color = task['color'];
-    
+
     document.getElementById('TaskCard').innerHTML = generateFullscreenView(id, title, description, category, color, date, prio);
-    generateAssignedToOverlay(id,contactNames);
+    generateAssignedToOverlay(id, contactNames);
     generateSubtaskOverlay(id, subtask);
 }
 
@@ -256,7 +256,7 @@ async function renderFullscreenView(id){
  * @returns 
  */
 
-function generateFullscreenView(id, title, description, category, color, date, prio){
+function generateFullscreenView(id, title, description, category, color, date, prio) {
     return /*html*/`
     <div class="innerContentBoxOverlay">
         <img class="overlayTaskClose" src="assets/img/cross.png" onclick="closeOverview()">
@@ -281,12 +281,12 @@ function generateFullscreenView(id, title, description, category, color, date, p
  * @param {string} contactNames - name assigned to the task
  */
 
-function generateAssignedToOverlay(id,contactNames){
-    document.getElementById(`overlayInitials`).innerHTML ='';
+function generateAssignedToOverlay(id, contactNames) {
+    document.getElementById(`overlayInitials`).innerHTML = '';
     for (let t = 0; t < contactNames.length; t++) {
         const fullname = contactNames[t];
         let splitNames = fullname.split(' ');
-        let bothLetters = splitNames[0].charAt(0)+splitNames[1].charAt(0);
+        let bothLetters = splitNames[0].charAt(0) + splitNames[1].charAt(0);
         let favouriteColor = contacts.find(contact => contact.name === splitNames[1]).favouriteColor;
         document.getElementById(`overlayInitials`).innerHTML +=/*html*/`
           <div class="overlayInitials">
@@ -304,7 +304,7 @@ function generateAssignedToOverlay(id,contactNames){
  * @param {string} subtask - The information about the subtask.
  */
 
-function generateSubtaskOverlay(id,subtask){
+function generateSubtaskOverlay(id, subtask) {
     // document.getElementById('overlaySubtasks').innerHTML ='';
 
     for (let i = 0; i < allTasks[id]['subtasks'].length; i++) {
@@ -325,7 +325,7 @@ function generateSubtaskOverlay(id,subtask){
  * 
  */
 
-async function subtaskIsChecked(id, index){
+async function subtaskIsChecked(id, index) {
     const task = allTasks[id];
     const subtask = task.subtasks[index];
     if (document.getElementById(`${id}-${index}`).checked) {
@@ -360,7 +360,7 @@ function mouseOutBoard(i) {
  * function to search Task in board
  */
 
-function searchTasks() {            
+function searchTasks() {
     let search = document.getElementById('search').value;
     search = search.toLowerCase();
     showSearchedTask(search);
@@ -379,7 +379,7 @@ function showSearchedTask(search) {
         document.getElementById(i).classList.add('d-none');
         if (currentTask.toLowerCase().includes(search) || currentDescription.toLowerCase().includes(search)) {
             document.getElementById(i).classList.remove('d-none');
-        
+
         }
     }
 }
