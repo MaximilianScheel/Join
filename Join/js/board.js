@@ -98,7 +98,7 @@ function renderTask(task, id, i) {
 
     <div class="contactsPrioContainer">
     <div id="boardInitials${id}" class="contactsPictureContainer">renderAssigned()</div>
-    <div class="prioImage"><img class="#" src="./assets/img/prio_${task['priority']}.png"></div>
+    <div class="prioImage"><img class="#" src="./assets/img/prio_${task['priority']}1.png"></div>
     </div>
 </div>
 </div> `
@@ -265,7 +265,7 @@ function generateFullscreenView(id, title, description, category, color, date, p
         <div class="overlayTitle"><h5>${title}</h5></div>
         <div class="overlayDiscription">${description}</div>
         <div class="overlayDate"> <div><b>Due date:</b></div> <div>${date}</div> </div>
-        <div class="overlayPrio"><div><b>Priority:</b></div><div class="overlayCardPrio ${prio}"> <div> ${prio}</div><img src='assets/img/prio_${prio}_white.png'></div></div>
+        <div class="overlayPrio"><div><b>Priority:</b></div><div class="overlayCardPrio ${prio}"> <div> ${prio}</div><img src='assets/img/prio_${prio}_white1.png'></div></div>
         <div id="overlaySubtasks" class="overlaySubtasks"><b>Subtasks:</b></div>
         <div><b>Assigned To:</b></div>
         <div id="overlayInitials" class="overlayInitialArea">
