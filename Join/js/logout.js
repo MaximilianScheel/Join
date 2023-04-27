@@ -10,6 +10,7 @@ async function logout() {
 }
 
 function showLogOut() {
+    console.log('got here.')
     document.getElementById('logoutContainer').classList.add('logoutDisplayed');
 }
 
