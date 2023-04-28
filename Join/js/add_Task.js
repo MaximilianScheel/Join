@@ -14,12 +14,20 @@ let state = 'todo';
 let subtasksChecked = [];
 
 
+/**
+ * Initiates the main page
+ */
 async function initTask() {
   await loadAddTask();
   loadingFinished();
   updateMin();
 }
 
+
+/**
+ * Loads all data from the server
+ * @returns {Array} allTasks
+ */
 async function loadAddTask() {
   await downloadFromServer();
   await loadContacts();
@@ -29,10 +37,18 @@ async function loadAddTask() {
   loadAllTasks();
 }
 
+
+/**
+ * Removes the preloader
+ */
 function loadingFinished() {
   document.getElementById('preloader').classList.add('d-none');
 }
 
+
+/**
+ * Loads the requested data from server
+ */
 async function addTask() {
   addDate();
   let task = {
@@ -57,17 +73,21 @@ async function addTask() {
     hideAddTask();
   }
 
+
+
 function addTitle() {
   let title = document.getElementById('title');
   selectedTitle = '';
   selectedTitle = title.value;
 }
 
+
 function addDescription() {
   let description = document.getElementById('description');
   selectedDescription = '';
   selectedDescription = description.value;
 }
+
 
 function addDate() {
   selectedDate = document.getElementById('date').value;
@@ -105,12 +125,17 @@ function clearValues() {
   resetContent();
 }
 
+
+/**
+ * function to load all tasks from the backend
+ */
 function  resetVariables() {
   selectedLetters = [];
   selectedContactNames = [];
   selectedSubtasks = [];
   allSubtasks = [];
 }
+
 
 function resetContent() {
   document.getElementById('title').value = '';
@@ -479,9 +504,7 @@ async function displayEditTask(id) {
  */
 
 async function editTask() {
-
-  let id = idCounter;   
-
+    let id = idCounter;   
     let newTitle = document.getElementById('Edittitle').value;
     let newDescription = document.getElementById('Editdescription').value;
     let newDate = document.getElementById('Editdate').value;

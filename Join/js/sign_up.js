@@ -29,17 +29,7 @@ async function registerUser(e) {
                 password: password.value,
                 phone: "",
                 favouriteColor: color
-            });
-
-            /*
-            "prename": "Emmanuel",
-        "name": "Mauer",
-        "short_name": "EM",
-        "email": "emmanuelMa@gmail.com",
-        "password": "test123",
-        "phone": "+49 116311 11 2",
-        "favouriteColor": "rgba(175, 22, 22, 1)"
-        */ 
+            }); 
         await backend.setItem('contacts', JSON.stringify(contacts));
         showSignupPopup('popup-success-signup');
         setTimeout(function () {window.location.href = './index.html?msg=success';}, 3000);

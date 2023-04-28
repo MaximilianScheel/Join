@@ -3,13 +3,18 @@ function routeToPage(destination) {
     window.location.href = destination;
 }
 
-
+/**
+ * @description This function is used to show the preloader for 1.5 seconds
+ */
 setTimeout(function () {
     document.getElementById('preloader').style.display = 'none';
 }, 1500);
 
 
-
+/**
+ * 
+ * @returns {void} This function is used to disable the input field for the contact
+ */
 function includeHTML() {
     var z, i, elmnt, file, xhttp;
     /* Loop through a collection of all HTML elements: */

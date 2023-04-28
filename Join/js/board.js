@@ -9,6 +9,9 @@ let currentDraggedElement;
 let subtaskChecked = [];
 
 
+/**
+ * Initiates the main page
+ */
 async function init() {
     loadBoard();
     loadingFinished();
@@ -18,6 +21,10 @@ async function init() {
     }
 }
 
+
+/**
+ * Loads all data from the server for the board
+ */
 async function loadBoard() {
     await downloadFromServer();
     await loadContacts();
@@ -29,16 +36,24 @@ async function loadBoard() {
     countTasks();
 }
 
+
+/**
+ * Removes the preloader when the page is loaded
+ */
 function loadingFinished() {
     document.getElementById('preloader').classList.add('d-none');
 }
+
+
 
 function routeToPage(destination) {
     window.location.href = destination;
 }
 
 
-
+/**
+ * Counts the tasks in each category and displays the number in the summary
+ */
 function loadTask() {
     let toDoTasks = document.getElementById("todoArea");
     let progressTasks = document.getElementById("progressArea");
@@ -80,6 +95,9 @@ function loadTask() {
 }
 
 
+/**
+ * Renders all tasks in the board
+*/
 function renderTask(task, id, i) {
     return /* html */ `    <div draggable="true" id="${task['id']}" class="taskContainer" ondragstart="startDragging(${task['id']})"  onclick="openTask(id)">
     <div style="background-color: ${task['color']};" class="categoryContainer">
@@ -94,8 +112,6 @@ function renderTask(task, id, i) {
 
     <div id="subTaskContainer${id}" class="subTaskContainer">
 </div>
-
-
     <div class="contactsPrioContainer">
     <div id="boardInitials${id}" class="contactsPictureContainer">renderAssigned()</div>
     <div class="prioImage"><img class="#" src="./assets/img/prio_${task['priority']}1.png"></div>
@@ -103,7 +119,6 @@ function renderTask(task, id, i) {
 </div>
 </div> `
 }
-
 
 
 function renderProgressBar(task, id, i) {
@@ -129,7 +144,6 @@ function renderProgressBar(task, id, i) {
 
 
 
-
 function renderAssigned(id) {
     let task = allTasks[id];
     let assignedName = task['contactNames'];
@@ -147,11 +161,18 @@ function renderAssigned(id) {
     }
 }
 
-
+/**
+ * Drag and drop function
+ * @param {*} id  id of the task
+ */
 function startDragging(id) {
     currentDraggedElement = id;
 }
 
+
+/**
+ * Drag and drop function
+ */
 function allowDrop(ev) {
     ev.preventDefault();
 }
@@ -194,10 +215,6 @@ async function countNumbs(numbTodo, numbProgress, numbFeedback, numbArea, numbTa
 }
 
 
-
-
-
-
 async function countPrio(i, task) {
     if (task['priority'] == 'Urgent') {
         priorityCount++
@@ -205,8 +222,6 @@ async function countPrio(i, task) {
     prioCount.push(priorityCount)
     await backend.setItem("prioCount", JSON.stringify(prioCount));
 }
-
-
 
 
 /**

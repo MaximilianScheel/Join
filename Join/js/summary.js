@@ -71,13 +71,6 @@ function greetUser() {
     } else {
         document.getElementById("greetTime").innerHTML = "Good evening, ";
     }
-    // if (name == undefined) {
-    //   document.getElementById("nameUser").innerHTML =
-    //     ShowCurrentUserNameForSummery;
-    // } else {
-    //   document.getElementById("nameUser").innerHTML =
-    //     ShowCurrentUserNameForSummery["userName"];
-    // }
 }
 
 function routeToPage(destination) {

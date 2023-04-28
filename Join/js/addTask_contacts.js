@@ -75,6 +75,10 @@ function addContactToTask(i) {
   }
 }
 
+
+/**
+ * function to reset the selection of a contact
+ */
 function resetSelect(index, index2, i) {
   document.getElementById('contactButton' + i).innerHTML = '<img src="assets/img/button_rectangle.png">'; // reset button
   selectedContactNames.splice(index, 1);
@@ -87,6 +91,9 @@ function resetSelect(index, index2, i) {
 }
 
 
+/**
+ * function to select a contact
+ */
 function select(contactID, i) {
   document.getElementById('contactButton' + i).innerHTML = `<img src="assets/img/button_rectangle_checked.png">`; //insert checked rectangle
   selectedContactNames.push(contactID.innerHTML);
@@ -99,6 +106,9 @@ function select(contactID, i) {
 }
 
 
+/**
+ * function to open or close the contact field
+ */
 function openCloseContacts() {
   if (document.getElementById('selectFieldContact').style.height == '147px') {
     if ($(window).width() > 720) {
@@ -116,6 +126,10 @@ function openCloseContacts() {
   disableInputContact()
 }
 
+
+/**
+ * function to prevent to open or close the category-field
+ */
 function openCloseContactsEdit() {
   if (document.getElementById('selectFieldContactEdit').style.height == '147px') {
     if ($(window).width() > 720) {
@@ -133,6 +147,10 @@ function openCloseContactsEdit() {
   disableInputContact()
 }
 
+
+/**
+ * function to disable the input field
+ */
 function disableInputContact () {
   if (document.getElementById('contact').disabled = true) {
     document.getElementById('contact').disabled = false;
@@ -140,6 +158,7 @@ function disableInputContact () {
     document.getElementById('contact').disabled = true;
   }
 }
+
 
 /**
  * function to prevent to open or close the category-field
