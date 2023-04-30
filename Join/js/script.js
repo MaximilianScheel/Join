@@ -26,6 +26,7 @@ async function loadCurrentUserFromServer() {
     currentUser = JSON.parse(backend.getItem('currentUser'))
 }
 
+
 /**
  * Loads the requested data from server
  * @param {string} key 
@@ -48,7 +49,6 @@ async function saveOnServer(key, item) {
     itemAsString = JSON.stringify(item);
     await backend.setItem(key, itemAsString);
 }
-
 
 
 /**
@@ -94,7 +94,6 @@ function toggleContextMenu(ctxMenuId) {
 }
 
 
-
 /**
  * Logout and reset currentUser
  */
@@ -103,8 +102,6 @@ async function logout() {
     await saveOnServer('currentUser', currentUser);
     window.location.href = './index.html';
 }
-
-
 
 
 /**
@@ -146,7 +143,6 @@ function generateColors() {
     let h = Math.floor(Math.random() * 359);
     return color = `hsl(${h}, 100%, 50%)`;
 }
-
 
 
 /**

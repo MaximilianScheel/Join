@@ -8,6 +8,7 @@ async function init() {
     loadingFinished();
 }
 
+
 async function loadSummary() {
     await downloadFromServer();
     const date = new Date();
@@ -21,9 +22,11 @@ async function loadSummary() {
     currentUrgent();
 }
 
-function loadingFinished () {
+
+function loadingFinished() {
     document.getElementById('preloader').classList.add('d-none');
 }
+
 
 function loadAtStart() {
     let nameTest = JSON.parse(backend.getItem("currentUser")) || [];
@@ -37,19 +40,18 @@ function loadAtStart() {
 
 function currentTasks() {
     for (let i = 0; i < counts.length; i++) {
-    countsNumber = counts[i]
-    let boardNumber = countsNumber['boardCount']
-    let progressNumber = countsNumber['progressCount']
-    let feedbackNumber = countsNumber['feedbackCount']
-    let todoNumber = countsNumber['todoCount']
-    let doneNumber = countsNumber['doneCount']
-
-    document.getElementById('boardCount').innerHTML = boardNumber;
-    document.getElementById('progressCount').innerHTML = progressNumber;
-    document.getElementById('feedbackCount').innerHTML = feedbackNumber;
-    document.getElementById('todoCount').innerHTML = todoNumber;
-    document.getElementById('doneCount').innerHTML = doneNumber;
-}
+        countsNumber = counts[i]
+        let boardNumber = countsNumber['boardCount']
+        let progressNumber = countsNumber['progressCount']
+        let feedbackNumber = countsNumber['feedbackCount']
+        let todoNumber = countsNumber['todoCount']
+        let doneNumber = countsNumber['doneCount']
+        document.getElementById('boardCount').innerHTML = boardNumber;
+        document.getElementById('progressCount').innerHTML = progressNumber;
+        document.getElementById('feedbackCount').innerHTML = feedbackNumber;
+        document.getElementById('todoCount').innerHTML = todoNumber;
+        document.getElementById('doneCount').innerHTML = doneNumber;
+    }
 }
 
 
@@ -58,7 +60,6 @@ function currentUrgent() {
     let urgentNumber = prioCounts.length
     document.getElementById('urgentCount').innerHTML = urgentNumber;
 }
-
 
 
 function greetUser() {
@@ -73,10 +74,10 @@ function greetUser() {
     }
 }
 
+
 function routeToPage(destination) {
     window.location.href = destination;
 }
-
 
 
 function mouseOverTodo(i) {
@@ -87,6 +88,7 @@ function mouseOverTodo(i) {
     document.getElementById('pathSmall' + i).classList.add('path');
 }
 
+
 function mouseOutTodo(i) {
     document.getElementById('todo' + i).classList.remove('linkBackground');
     document.getElementById('todo' + i).classList.remove('textHover');
@@ -95,12 +97,14 @@ function mouseOutTodo(i) {
     document.getElementById('pathSmall' + i).classList.remove('path');
 }
 
+
 function mouseOverDone(i) {
     document.getElementById('todo' + i).classList.add('linkBackground');
     document.getElementById('todo' + i).classList.add('textHover');
     document.getElementById('circle' + i).classList.add('circle');
     document.getElementById('pathBig' + i).classList.add('stroke');
 }
+
 
 function mouseOutDone(i) {
     document.getElementById('todo' + i).classList.remove('linkBackground');
@@ -115,11 +119,11 @@ function mouseOverSmall(i) {
     document.getElementById('todo' + i).classList.add('textHover');
 }
 
+
 function mouseOutSmall(i) {
     document.getElementById('todo' + i).classList.remove('linkBackground');
     document.getElementById('todo' + i).classList.remove('textHover');
 }
-
 
 
 function includeHTML() {

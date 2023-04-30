@@ -1,4 +1,7 @@
-
+/**
+Redirects the user to the specified destination
+@param {string} destination - The URL of the destination page
+*/
 function routeToPage(destination) {
     window.location.href = destination;
 }

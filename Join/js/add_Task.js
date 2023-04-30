@@ -137,6 +137,9 @@ function  resetVariables() {
 }
 
 
+/**
+ * Resets the content of the form by clearing all the input fields and resetting any added subtasks or contacts.
+ */
 function resetContent() {
   document.getElementById('title').value = '';
   document.getElementById('description').value = '';
@@ -455,6 +458,7 @@ function choosePriorityEdit(priority) {
 
   newPrio = priority;
 }
+
 
 /**
  * function to render the information for selected task

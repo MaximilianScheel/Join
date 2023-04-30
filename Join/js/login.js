@@ -13,7 +13,6 @@ async function initLogin() {
  * Setting currentUser to Guest when Logging in as Guest
  */
 async function guestLogin() {
-
     currentUser = {
         "prename": "Guest",
         "name": "Guest",
@@ -53,10 +52,10 @@ async function login(e) {
     return false
 }
 
+
 /**
  * Shows a popup message with animation
  */
-
 function hidePopupMessage(){
     let popup = document.getElementById('popup-container');
     popup.innerHTML = '';
@@ -106,6 +105,7 @@ function passwordForgotten() {
     `;
 }
 
+
 /**
  * 
  * @param {} message 
@@ -117,6 +117,7 @@ function showPopupMessage(message) {
     popup.innerHTML = message;
     document.getElementById('popup-container').appendChild(popup);
 }
+
 
 /**
  * Sending email to reset password
@@ -177,7 +178,6 @@ async function resetPassword(event) {
     event.preventDefault();
     let password1 = document.getElementById('password-field-1').value;
     let password2 = document.getElementById('password-field-2').value;
-
     if (password1 == password2) {
         const urlParams = new URLSearchParams(window.location.search);
         const userEmail = urlParams.get('email');
