@@ -14,12 +14,20 @@ let state = 'todo';
 let subtasksChecked = [];
 
 
+/**
+ * Initiates the main page
+ */
 async function initTask() {
   await loadAddTask();
   loadingFinished();
   updateMin();
 }
 
+
+/**
+ * Loads all data from the server
+ * @returns {Array} allTasks
+ */
 async function loadAddTask() {
   await downloadFromServer();
   await loadContacts();
@@ -29,10 +37,18 @@ async function loadAddTask() {
   loadAllTasks();
 }
 
+
+/**
+ * Removes the preloader
+ */
 function loadingFinished() {
   document.getElementById('preloader').classList.add('d-none');
 }
 
+
+/**
+ * Loads the requested data from server
+ */
 async function addTask() {
   addDate();
   let task = {
@@ -57,17 +73,21 @@ async function addTask() {
     hideAddTask();
   }
 
+
+
 function addTitle() {
   let title = document.getElementById('title');
   selectedTitle = '';
   selectedTitle = title.value;
 }
 
+
 function addDescription() {
   let description = document.getElementById('description');
   selectedDescription = '';
   selectedDescription = description.value;
 }
+
 
 function addDate() {
   selectedDate = document.getElementById('date').value;
@@ -105,6 +125,10 @@ function clearValues() {
   resetContent();
 }
 
+
+/**
+ * function to load all tasks from the backend
+ */
 function  resetVariables() {
   selectedLetters = [];
   selectedContactNames = [];
@@ -112,6 +136,10 @@ function  resetVariables() {
   allSubtasks = [];
 }
 
+
+/**
+ * Resets the content of the form by clearing all the input fields and resetting any added subtasks or contacts.
+ */
 function resetContent() {
   document.getElementById('title').value = '';
   document.getElementById('description').value = '';
@@ -157,7 +185,6 @@ function closeCategories() {
  * Load all tasks from local storage and display them in the list
  *
 */
-
 function loadAllTasks() {
     backend.getItem("tasks");
     let allTasksAsString = backend.getItem("allTasks");
@@ -170,7 +197,7 @@ function loadAllTasks() {
 
 
 /**
- * function for clicked or unclicked priority button
+ * function for clicked or unclicked priority button to change the img
  * 
  * @param {string} prio
  * @returns 
@@ -178,64 +205,109 @@ function loadAllTasks() {
 function renderPrioBtnClicked(prio) {
     return `
         <span>${prio.charAt(0).toUpperCase() + prio.slice(1)}</span>
-        <img src="assets/img/prio_${prio}_white.png" width="18px"/>
+        <img src="assets/img/prio_${prio}_white1.png" width="18px"/>
     `;
 }
 
 function renderPrioBtnUnclicked(prio) {
     return `
         <span>${prio.charAt(0).toUpperCase() + prio.slice(1)}</span>
-        <img src="assets/img/prio_${prio}.png" width="18px"/>
+        <img src="assets/img/prio_${prio}1.png" width="18px"/>
     `;
 }
 
 /**
- * function to choose the priority with the buttons
+ * Function that returns the color of a priority button
  * 
- * @param {string} priority - This is the priority you choose with the button
+ * @param {string} priority - The priority for which the color should be returned
+ * @returns {string} - The color of the priority button
  */
-
-function choosePriority(priority) {
-    let urgent = document.getElementById("urgentBtn");
-    let medium = document.getElementById("mediumBtn");
-    let low = document.getElementById("lowBtn");
-
-    switch (priority) {
-        case "Urgent":
-            urgent.style.backgroundColor = "#FF3D00";
-            medium.style.backgroundColor = "#FFF";
-            low.style.backgroundColor = "#FFF";
-            urgent.style.color = "#FFF";
-            medium.style.color = "#000";
-            low.style.color = "#000";
-            urgent.innerHTML = renderPrioBtnClicked("Urgent");
-            medium.innerHTML = renderPrioBtnUnclicked("Medium");
-            low.innerHTML = renderPrioBtnUnclicked("Low");
-            break;
-        case "Medium":
-            medium.style.backgroundColor = "#FFA800";
-            urgent.style.backgroundColor = "#FFF";
-            low.style.backgroundColor = "#FFF";
-            urgent.style.color = "#000";
-            medium.style.color = "#FFF";
-            low.style.color = "#000";
-            urgent.innerHTML = renderPrioBtnUnclicked("Urgent");
-            medium.innerHTML = renderPrioBtnClicked("Medium");
-            low.innerHTML = renderPrioBtnUnclicked("Low");
-            break;
-        case "Low":
-            low.style.backgroundColor = "#7AE229";
-            medium.style.backgroundColor = "#FFF";
-            urgent.style.backgroundColor = "#FFF";
-            urgent.style.color = "#000";
-            medium.style.color = "#000";
-            low.style.color = "#FFF";
-            urgent.innerHTML = renderPrioBtnUnclicked("Urgent");
-            medium.innerHTML = renderPrioBtnUnclicked("Medium");
-            low.innerHTML = renderPrioBtnClicked("Low");
-            break;
-    }
+function getButtonColor(priority) {
+  switch (priority) {
+      case "Urgent":
+          return "#FF3D00";
+      case "Medium":
+          return "#FFA800";
+      case "Low":
+          return "#7AE229";
+      default:
+          return "#FFF"; // Standardfarbe, falls die Priorität nicht erkannt wird
+  }
 }
+
+
+/**
+* Function to change the background color and text color of a button
+* 
+* @param {HTMLElement} button - The button whose style is being changed
+* @param {string} bgColor - The new background color of the button
+* @param {string} textColor - The new text color of the button
+*/
+function changeButtonStyle(button, bgColor, textColor) {
+  button.style.backgroundColor = bgColor;
+  button.style.color = textColor;
+}
+
+/**
+ * Function to change the text and style of a button when it is selected
+ * 
+ * @param {HTMLElement} button - The button that is selected
+ * @param {string} priority - The priority of the selected button
+ */
+function selectButton(button, priority) {
+  button.innerHTML = renderPrioBtnClicked(priority);
+  changeButtonStyle(button, getButtonColor(priority), "#FFF");
+}
+
+/**
+ * Function to change the text and style of a button when it is not selected
+ * 
+ * @param {HTMLElement} button - The button that is not selected
+ * @param {string} priority - The priority of the unselected button
+ */
+function deselectButton(button, priority) {
+  button.innerHTML = renderPrioBtnUnclicked(priority);
+  changeButtonStyle(button, "#FFF", "#000");
+}
+
+/**
+ * Function to select a priority button
+ * 
+ * @param {string} priority - The priority of the selected button
+ */
+function selectPriorityButton(priority) {
+  let urgent = document.getElementById("urgentBtn");
+  let medium = document.getElementById("mediumBtn");
+  let low = document.getElementById("lowBtn");
+
+  switch (priority) {
+      case "Urgent":
+          selectButton(urgent, "Urgent");
+          deselectButton(medium, "Medium");
+          deselectButton(low, "Low");
+          break;
+      case "Medium":
+          selectButton(medium, "Medium");
+          deselectButton(urgent, "Urgent");
+          deselectButton(low, "Low");
+          break;
+      case "Low":
+          selectButton(low, "Low");
+          deselectButton(urgent, "Urgent");
+          deselectButton(medium, "Medium");
+          break;
+  }
+}
+
+/**
+ * Function to choose the priority with a button
+ * 
+ * @param {string} priority - The priority selected with the button
+ */
+function choosePriority(priority) {
+  selectPriorityButton(priority);
+}
+
 
 /**
  * function to get the active priority for backend
@@ -393,43 +465,26 @@ function choosePriorityEdit(priority) {
   let low = document.getElementById("lowBtnEdit");
 
   switch (priority) {
-      case "Urgent":
-          urgent.style.backgroundColor = "#FF3D00";
-          medium.style.backgroundColor = "#FFF";
-          low.style.backgroundColor = "#FFF";
-          urgent.style.color = "#FFF";
-          medium.style.color = "#000";
-          low.style.color = "#000";
-          urgent.innerHTML = renderPrioBtnClicked("Urgent");
-          medium.innerHTML = renderPrioBtnUnclicked("Medium");
-          low.innerHTML = renderPrioBtnUnclicked("Low");
-          break;
-      case "Medium":
-          medium.style.backgroundColor = "#FFA800";
-          urgent.style.backgroundColor = "#FFF";
-          low.style.backgroundColor = "#FFF";
-          urgent.style.color = "#000";
-          medium.style.color = "#FFF";
-          low.style.color = "#000";
-          urgent.innerHTML = renderPrioBtnUnclicked("Urgent");
-          medium.innerHTML = renderPrioBtnClicked("Medium");
-          low.innerHTML = renderPrioBtnUnclicked("Low");
-          break;
-      case "Low":
-          low.style.backgroundColor = "#7AE229";
-          medium.style.backgroundColor = "#FFF";
-          urgent.style.backgroundColor = "#FFF";
-          urgent.style.color = "#000";
-          medium.style.color = "#000";
-          low.style.color = "#FFF";
-          urgent.innerHTML = renderPrioBtnUnclicked("Urgent");
-          medium.innerHTML = renderPrioBtnUnclicked("Medium");
-          low.innerHTML = renderPrioBtnClicked("Low");
-          break;
+    case "Urgent":
+        selectButton(urgent, "Urgent");
+        deselectButton(medium, "Medium");
+        deselectButton(low, "Low");
+        break;
+    case "Medium":
+        selectButton(medium, "Medium");
+        deselectButton(urgent, "Urgent");
+        deselectButton(low, "Low");
+        break;
+    case "Low":
+        selectButton(low, "Low");
+        deselectButton(urgent, "Urgent");
+        deselectButton(medium, "Medium");
+        break;
   }
 
   newPrio = priority;
 }
+
 
 /**
  * function to render the information for selected task
@@ -469,8 +524,7 @@ async function displayEditTask(id) {
   document.getElementById('Edittitle').value = title;
   document.getElementById('Editdescription').value = description;
   document.getElementById('Editdate').value = date;
-
-  };
+};
 
 
 /**
@@ -479,22 +533,17 @@ async function displayEditTask(id) {
  */
 
 async function editTask() {
-
-  let id = idCounter;   
-
+    let id = idCounter;   
     let newTitle = document.getElementById('Edittitle').value;
     let newDescription = document.getElementById('Editdescription').value;
     let newDate = document.getElementById('Editdate').value;
-
     allTasks[id]['title'] = newTitle;
     allTasks[id]['description'] = newDescription;
     allTasks[id]['date'] = newDate;
     allTasks[id]['priority'] = newPrio;
 
     await backend.setItem('allTasks', JSON.stringify(allTasks));
-
     hideEditTask()
-
     renderFullscreenView(id);
     init();
 }

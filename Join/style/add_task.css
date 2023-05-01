@@ -428,14 +428,13 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* overflow-y: scroll; */
 }
 
 
 
 
 
-@media (max-width: 950px) {
+@media (max-width: 1000px) {
 
     h1 {
         line-height: 30px;
@@ -443,6 +442,7 @@ button {
     }
 
     form {
+        margin-top: 80px;
         padding-bottom: 80px;
     }
     
@@ -499,6 +499,7 @@ button {
     }
 
     form {
+        margin-top: 80px !important;
         margin: 15px;
     }
 

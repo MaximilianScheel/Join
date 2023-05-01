@@ -369,7 +369,10 @@ body {
         flex-direction: column;
         align-items: center;
         height: auto;
-        
+    }
+
+    .main-content--container {
+        margin-top: 50px;
     }
 
     .todo-wrapper {

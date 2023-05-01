@@ -14,7 +14,7 @@
     border-style: none;
     border-radius: 10px;
     transition: 825ms ease-in-out;
-    z-index: 2;
+    z-index: 11;
     opacity: 1;
 }
 
@@ -23,7 +23,7 @@
     background-color: rgba(9, 25, 49, 1);
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .contactPopUp-join-container-inner {
@@ -179,7 +179,6 @@
         border-style: none;
         border-radius: 0px;
         transition: 825ms ease-in-out;
-        z-index: 2;
         opacity: 1;
         flex-direction: column;
     }
@@ -225,6 +224,10 @@
         display: none;
     }
 
+    .contactPopUp-form-body-formular form {
+        margin-top: 20px !important;
+    }
+
 
     .contactPopUp-form-body-formular form div {
         justify-content: center;
@@ -233,6 +236,10 @@
     .contactPopUp-form-body-formular form input {
         margin-top: 10px;
         margin-bottom: 10px;
+    }
+
+    .submitButton {
+        font-size: 12px;
     }
 }
 
@@ -281,24 +288,8 @@
     z-index: -1;
 }
 
-@media(max-width: 900px) {
 
-    .buttons-createTask {
-        position: relative !important;
-        overflow: hidden !important;
-        height: 75px !important;
-    }
-
-    .flexContainer {
-        overflow-y: hidden !important;
-    }
-
-    .addTaskPopUp-container {
-        overflow-y: auto;
-    }
-}
-
-@media(max-width: 700px) {
+@media(max-width: 1000px) {
 
     .addTaskPopUp-container, .TaskCard, .EditTaskPopUp-container {
         overflow-y: auto;
@@ -337,6 +328,20 @@
 
     .contPopupAddTask {
         padding-bottom: 20px;
+    }
+
+    .buttons-createTask {
+        position: relative !important;
+        overflow: hidden !important;
+        height: 75px !important;
+    }
+
+    .flexContainer {
+        overflow-y: hidden !important;
+    }
+
+    .addTaskPopUp-container {
+        overflow-y: auto;
     }
 }
 
@@ -411,17 +416,17 @@
     font-family: 'open sans', sans-serif;
     padding: 5px;
     color: white;
-    opacity: 0;
-    transform: translateY(10px);
+    display: none;
     transition: all 0.3s ease-in-out;
-    z-index: 999;
+    z-index: -999;
     text-align: center;
     cursor: pointer;
 }
 
-.image-container-top-bar:hover .logout-container {
+.logoutDisplayed {
     opacity: 1;
-    transform: translateY(0);
+    display: block;
+    z-index: 999;
 }
 
 .logout-text {
@@ -442,6 +447,11 @@
 
     .desktop-topBar-helpPicture {
         display: none;
+    }
+
+    .desktop-topBar-content-container {
+        position: fixed;
+        z-index: 10;
     }
 }
 
@@ -482,6 +492,10 @@
     padding-right: 35px;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.menuLinkActive {
+    background-color: rgb(12, 42, 88);
 }
 
 .sideMenu-link-container-desktop:hover {

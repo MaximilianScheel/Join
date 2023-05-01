@@ -272,6 +272,7 @@ body {
     font-weight: bold;
     display: flex;
     justify-content: flex-start;
+    align-items: center;
 }
 
 .addContact-button img {
@@ -298,6 +299,7 @@ body {
 
     .contacts-wrapper-inner-content {
         overflow-y: hidden !important;
+        margin-top: 80px;
     }
 
     .contacts-overview {
@@ -332,6 +334,7 @@ body {
         font-weight: bold;
         display: flex;
         justify-content: flex-start;
+        z-index: 5;
     }
 
     .contacts-overview-headline {
