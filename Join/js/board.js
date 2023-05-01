@@ -32,7 +32,6 @@ async function loadBoard() {
 function loadingFinished() {
     document.getElementById('preloader').classList.add('d-none');
   }
-
 function routeToPage(destination) {
     window.location.href = destination;
 }
@@ -56,27 +55,20 @@ function loadTask() {
             toDoTasks.innerHTML += renderTask(task, i);
             renderProgressBar(task, id, i);
             renderAssigned(id);
-            
         } else if (allTasks[i].state == "progress") {
             progressTasks.innerHTML += renderTask(task, i);
             renderProgressBar(task, id, i);
             renderAssigned(id);
-            // countPrio(i,task);
         } else if (allTasks[i].state == "feedback") {
             feedbackTasks.innerHTML += renderTask(task, i);
             renderProgressBar(task, id, i);
             renderAssigned(id);
-            // countPrio(i,task);
         } else if (allTasks[i].state == "done") {
             doneTasks.innerHTML += renderTask(task, i);
             renderProgressBar(task, id, i);
             renderAssigned(id);
-            // countPrio(i,task);
-            
         }
-    
     }
-
 }
 
 
@@ -85,23 +77,17 @@ function renderTask(task, id, i) {
     <div style="background-color: ${task['color']};" class="categoryContainer">
         ${task['category']}
     </div>
-    <div class="titleContainer">
-        ${task['title']}
-    </div>
+    <div class="titleContainer"> ${task['title']}</div>
     <div class="descriptionContainer">${task['description']}
 </div>
-   
-
     <div id="subTaskContainer${id}" class="subTaskContainer">
 </div>
-
-
     <div class="contactsPrioContainer">
     <div id="boardInitials${id}" class="contactsPictureContainer">renderAssigned()</div>
     <div class="prioImage"><img class="#" src="./assets/img/prio_${task['priority']}.png"></div>
     </div>
 </div>
-</div> `
+</div>`
 }
 
 
@@ -109,9 +95,7 @@ function renderTask(task, id, i) {
 function renderProgressBar(task, id, i) {
 let percent = allTasks[id]['subtasksChecked'].length / allTasks[id]['subtasks'].length
 percentProgress = percent * 100
-
 if (allTasks[id]['subtasks'].length == 0) {
-
 } else {
     document.getElementById(`subTaskContainer${id}`).innerHTML += /* html */ `
     <div class="progressBarContainer">
@@ -119,11 +103,8 @@ if (allTasks[id]['subtasks'].length == 0) {
     </div>
         <div id="subtaskCheckedCount" class="subtaskCheckedCount">${allTasks[id]['subtasksChecked'].length}</div>
         <div class="subTasksCount">/${allTasks[id]['subtasks'].length} Done</div>
-    </div>
-`;
-
+    </div>`;
 document.getElementById(`progressBar${id}`).style = `width: ${percentProgress}%`;
-
 }  
 }
 
@@ -194,10 +175,6 @@ async function countNumbs(numbTodo, numbProgress, numbFeedback, numbArea, numbTa
 }
 
 
-
-
-
-
 async function countPrio(i,task ) {
     if (task['priority'] == 'Urgent') {
         priorityCount++ 
@@ -205,8 +182,6 @@ async function countPrio(i,task ) {
     prioCount.push(priorityCount)
     await backend.setItem("prioCount", JSON.stringify(prioCount));
 }
-
-
 
 
 /**
