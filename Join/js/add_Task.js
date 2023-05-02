@@ -2,7 +2,7 @@ setURL('https://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ev
 
 let tasks = [];
 let allTasks = [];
-let priority = '"Low"' ;
+let priority = '"Low"';
 let selectedTitle;
 let selectedDescription;
 let selectedDate;
@@ -52,28 +52,6 @@ function loadingFinished() {
 async function addTask() {
   addDate();
   let task = {
-<<<<<<< HEAD
-      'title': selectedTitle,
-      'description': selectedDescription,
-      'category': selectedCategory,
-      'color': selectedColor,
-      'date': selectedDate,
-      'contactNames': selectedContactNames,
-      'priority': getActivePriority(),
-      'subtasks': selectedSubtasks,
-      'id': idCounter,
-      'state': state,
-      'subtasksChecked': subtasksChecked,
-      };
-      showInfo();
-    await saveAllTasks(task);
-    clearValues();
-    idCounter++;
-    loadAllTasks();
-    loadTask();
-    hideAddTask();
-  }
-=======
     'title': selectedTitle,
     'description': selectedDescription,
     'category': selectedCategory,
@@ -95,7 +73,6 @@ async function addTask() {
   loadTask();
   hideAddTask();
 }
->>>>>>> 4eac242401538251a2c7c7e37b6e5eee5fa079f9
 
 
 
@@ -135,9 +112,9 @@ async function saveAllTasks(task) {
 
 function showInfo() {
   document.getElementById('createTaskBtn').classList.remove('d-none');
-  setTimeout(function() {
+  setTimeout(function () {
     document.getElementById('createTaskBtn').classList.add('d-none');
-  },3800);
+  }, 3800);
 }
 
 /**
@@ -153,7 +130,7 @@ function clearValues() {
 /**
  * function to load all tasks from the backend
  */
-function  resetVariables() {
+function resetVariables() {
   selectedLetters = [];
   selectedContactNames = [];
   selectedSubtasks = [];
@@ -173,7 +150,7 @@ function resetContent() {
   document.getElementById('addedContacts').innerHTML = '';
   document.getElementById('contact').value = '';
   for (let i = 0; i < allContacts.length; i++) {
-    document.getElementById('contactButton'+i).innerHTML = '<img src="assets/img/button_rectangle.png">';
+    document.getElementById('contactButton' + i).innerHTML = '<img src="assets/img/button_rectangle.png">';
   }
   cancelNewCategory();
   closeCategories();
@@ -210,13 +187,13 @@ function closeCategories() {
  *
 */
 function loadAllTasks() {
-    backend.getItem("tasks");
-    let allTasksAsString = backend.getItem("allTasks");
-    allTasks = JSON.parse(allTasksAsString) || [];
-    idCounter = allTasks.reduce((maxId, task) => Math.max(maxId, task.id), -1) + 1;
-    if (allTasks.length > 0) {
-      idCounter = Math.max(...allTasks.map(task => task.id)) + 1;
-    }
+  backend.getItem("tasks");
+  let allTasksAsString = backend.getItem("allTasks");
+  allTasks = JSON.parse(allTasksAsString) || [];
+  idCounter = allTasks.reduce((maxId, task) => Math.max(maxId, task.id), -1) + 1;
+  if (allTasks.length > 0) {
+    idCounter = Math.max(...allTasks.map(task => task.id)) + 1;
+  }
 }
 
 
@@ -227,14 +204,14 @@ function loadAllTasks() {
  * @returns 
  */
 function renderPrioBtnClicked(prio) {
-    return `
+  return `
         <span>${prio.charAt(0).toUpperCase() + prio.slice(1)}</span>
         <img src="assets/img/prio_${prio}_white1.png" width="18px"/>
     `;
 }
 
 function renderPrioBtnUnclicked(prio) {
-    return `
+  return `
         <span>${prio.charAt(0).toUpperCase() + prio.slice(1)}</span>
         <img src="assets/img/prio_${prio}1.png" width="18px"/>
     `;
@@ -248,14 +225,14 @@ function renderPrioBtnUnclicked(prio) {
  */
 function getButtonColor(priority) {
   switch (priority) {
-      case "Urgent":
-          return "#FF3D00";
-      case "Medium":
-          return "#FFA800";
-      case "Low":
-          return "#7AE229";
-      default:
-          return "#FFF"; // Standardfarbe, falls die Priorität nicht erkannt wird
+    case "Urgent":
+      return "#FF3D00";
+    case "Medium":
+      return "#FFA800";
+    case "Low":
+      return "#7AE229";
+    default:
+      return "#FFF"; // Standardfarbe, falls die Priorität nicht erkannt wird
   }
 }
 
@@ -305,21 +282,21 @@ function selectPriorityButton(priority) {
   let low = document.getElementById("lowBtn");
 
   switch (priority) {
-      case "Urgent":
-          selectButton(urgent, "Urgent");
-          deselectButton(medium, "Medium");
-          deselectButton(low, "Low");
-          break;
-      case "Medium":
-          selectButton(medium, "Medium");
-          deselectButton(urgent, "Urgent");
-          deselectButton(low, "Low");
-          break;
-      case "Low":
-          selectButton(low, "Low");
-          deselectButton(urgent, "Urgent");
-          deselectButton(medium, "Medium");
-          break;
+    case "Urgent":
+      selectButton(urgent, "Urgent");
+      deselectButton(medium, "Medium");
+      deselectButton(low, "Low");
+      break;
+    case "Medium":
+      selectButton(medium, "Medium");
+      deselectButton(urgent, "Urgent");
+      deselectButton(low, "Low");
+      break;
+    case "Low":
+      selectButton(low, "Low");
+      deselectButton(urgent, "Urgent");
+      deselectButton(medium, "Medium");
+      break;
   }
 }
 
@@ -412,7 +389,7 @@ function changeImage(newSubtask, selectedSubtasks) {
  * @param {string} newSubtask - subtask which was written in the input field
  * @returns 
  */
-function showSubtask (i, newSubtask) {
+function showSubtask(i, newSubtask) {
   const subtaskImageSrc = changeImage(newSubtask, selectedSubtasks);
   return `
     <div class="newSubtasks">
@@ -490,20 +467,20 @@ function choosePriorityEdit(priority) {
 
   switch (priority) {
     case "Urgent":
-        selectButton(urgent, "Urgent");
-        deselectButton(medium, "Medium");
-        deselectButton(low, "Low");
-        break;
+      selectButton(urgent, "Urgent");
+      deselectButton(medium, "Medium");
+      deselectButton(low, "Low");
+      break;
     case "Medium":
-        selectButton(medium, "Medium");
-        deselectButton(urgent, "Urgent");
-        deselectButton(low, "Low");
-        break;
+      selectButton(medium, "Medium");
+      deselectButton(urgent, "Urgent");
+      deselectButton(low, "Low");
+      break;
     case "Low":
-        selectButton(low, "Low");
-        deselectButton(urgent, "Urgent");
-        deselectButton(medium, "Medium");
-        break;
+      selectButton(low, "Low");
+      deselectButton(urgent, "Urgent");
+      deselectButton(medium, "Medium");
+      break;
   }
 
   newPrio = priority;
@@ -516,13 +493,13 @@ function choosePriorityEdit(priority) {
  * @param {number} id - number to show the right information for the selceted task
  */
 
-function renderFullscreenEdit(id){
-  if(id != undefined){
-      let task = allTasks[id];
-      document.getElementById('Edittitle').value = task['title'];
-      document.getElementById('Editdescription').value = task['description'];
-      document.getElementById('Editdate').value = task['date'];
-      let prio = task['priority'];
+function renderFullscreenEdit(id) {
+  if (id != undefined) {
+    let task = allTasks[id];
+    document.getElementById('Edittitle').value = task['title'];
+    document.getElementById('Editdescription').value = task['description'];
+    document.getElementById('Editdate').value = task['date'];
+    let prio = task['priority'];
   }
 }
 
@@ -557,16 +534,6 @@ async function displayEditTask(id) {
  */
 
 async function editTask() {
-<<<<<<< HEAD
-    let id = idCounter;   
-    let newTitle = document.getElementById('Edittitle').value;
-    let newDescription = document.getElementById('Editdescription').value;
-    let newDate = document.getElementById('Editdate').value;
-    allTasks[id]['title'] = newTitle;
-    allTasks[id]['description'] = newDescription;
-    allTasks[id]['date'] = newDate;
-    allTasks[id]['priority'] = newPrio;
-=======
   let id = idCounter;
   let tempTask = allTasks[id];
   console.log(`bearbeiteter Task mit der ID: ${id}, --- ${allTasks[id]}`);
@@ -578,12 +545,11 @@ async function editTask() {
   tempTask['date'] = newDate;
   tempTask['priority'] = newPrio;
   allTasks[id] = tempTask;
->>>>>>> 4eac242401538251a2c7c7e37b6e5eee5fa079f9
 
-    await backend.setItem('allTasks', JSON.stringify(allTasks));
-    hideEditTask()
-    renderFullscreenView(id);
-    init();
+  await backend.setItem('allTasks', JSON.stringify(allTasks));
+  hideEditTask()
+  renderFullscreenView(id);
+  init();
 }
 
 
@@ -614,29 +580,29 @@ function updateMin() {
 }
 
 function includeHTML() {
-    var z, i, elmnt, file, xhttp;
-    /* Loop through a collection of all HTML elements: */
-    z = document.getElementsByTagName("*");
-    for (i = 0; i < z.length; i++) {
-        elmnt = z[i];
-        /*search for elements with a certain atrribute:*/
-        file = elmnt.getAttribute("w3-include-html");
-        if (file) {
-            /* Make an HTTP request using the attribute value as the file name: */
-            xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4) {
-                    if (this.status == 200) { elmnt.innerHTML = this.responseText; }
-                    if (this.status == 404) { elmnt.innerHTML = "Page not found."; }
-                    /* Remove the attribute, and call this function once more: */
-                    elmnt.removeAttribute("w3-include-html");
-                    includeHTML();
-                }
-            }
-            xhttp.open("GET", file, true);
-            xhttp.send();
-            /* Exit the function: */
-            return;
+  var z, i, elmnt, file, xhttp;
+  /* Loop through a collection of all HTML elements: */
+  z = document.getElementsByTagName("*");
+  for (i = 0; i < z.length; i++) {
+    elmnt = z[i];
+    /*search for elements with a certain atrribute:*/
+    file = elmnt.getAttribute("w3-include-html");
+    if (file) {
+      /* Make an HTTP request using the attribute value as the file name: */
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4) {
+          if (this.status == 200) { elmnt.innerHTML = this.responseText; }
+          if (this.status == 404) { elmnt.innerHTML = "Page not found."; }
+          /* Remove the attribute, and call this function once more: */
+          elmnt.removeAttribute("w3-include-html");
+          includeHTML();
         }
+      }
+      xhttp.open("GET", file, true);
+      xhttp.send();
+      /* Exit the function: */
+      return;
     }
+  }
 }
