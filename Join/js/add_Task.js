@@ -52,6 +52,7 @@ function loadingFinished() {
 async function addTask() {
   addDate();
   let task = {
+<<<<<<< HEAD
       'title': selectedTitle,
       'description': selectedDescription,
       'category': selectedCategory,
@@ -72,6 +73,29 @@ async function addTask() {
     loadTask();
     hideAddTask();
   }
+=======
+    'title': selectedTitle,
+    'description': selectedDescription,
+    'category': selectedCategory,
+    'color': selectedColor,
+    'date': selectedDate,
+    'contactNames': selectedContactNames,
+    'priority': getActivePriority(),
+    'subtasks': selectedSubtasks,
+    'id': idCounter,
+    'state': state,
+    'subtasksChecked': subtasksChecked,
+  };
+  showInfo();
+  await saveAllTasks(task);
+  clearValues();
+  console.log('Task mit der ID:', task.id);
+  idCounter++;
+  loadAllTasks();
+  loadTask();
+  hideAddTask();
+}
+>>>>>>> 4eac242401538251a2c7c7e37b6e5eee5fa079f9
 
 
 
@@ -533,6 +557,7 @@ async function displayEditTask(id) {
  */
 
 async function editTask() {
+<<<<<<< HEAD
     let id = idCounter;   
     let newTitle = document.getElementById('Edittitle').value;
     let newDescription = document.getElementById('Editdescription').value;
@@ -541,6 +566,19 @@ async function editTask() {
     allTasks[id]['description'] = newDescription;
     allTasks[id]['date'] = newDate;
     allTasks[id]['priority'] = newPrio;
+=======
+  let id = idCounter;
+  let tempTask = allTasks[id];
+  console.log(`bearbeiteter Task mit der ID: ${id}, --- ${allTasks[id]}`);
+  let newTitle = document.getElementById('Edittitle').value;
+  let newDescription = document.getElementById('Editdescription').value;
+  let newDate = document.getElementById('Editdate').value;
+  tempTask['title'] = newTitle;
+  tempTask['description'] = newDescription;
+  tempTask['date'] = newDate;
+  tempTask['priority'] = newPrio;
+  allTasks[id] = tempTask;
+>>>>>>> 4eac242401538251a2c7c7e37b6e5eee5fa079f9
 
     await backend.setItem('allTasks', JSON.stringify(allTasks));
     hideEditTask()

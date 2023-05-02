@@ -286,6 +286,7 @@ function openTask(id) {
     document.getElementById('TaskOverview').classList.remove('d-none');
     document.getElementById('TaskCard').innerHTML = '';
     renderFullscreenView(id);
+    idCounter = id;
 }
 
 
