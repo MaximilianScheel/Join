@@ -64,7 +64,7 @@ async function addTask() {
       'state': state,
       'subtasksChecked': subtasksChecked,
       };
-      showInfo();
+    showInfo();
     await saveAllTasks(task);
     clearValues();
     idCounter++;
