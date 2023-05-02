@@ -71,6 +71,42 @@ function loadTask() {
 }
 
 
+function cleanAreas() {
+    let toDoTasks = document.getElementById("todoArea");
+    let progressTasks = document.getElementById("progressArea");
+    let feedbackTasks = document.getElementById("feedbackArea");
+    let doneTasks = document.getElementById("doneArea");
+    toDoTasks.innerHTML = "";
+    progressTasks.innerHTML = "";
+    feedbackTasks.innerHTML = "";
+    doneTasks.innerHTML = "";
+
+}
+
+function renderTodo(task, i, id) {
+    document.getElementById("todoArea").innerHTML += renderTask(task, i);
+renderProgressBar(task, id,);
+renderAssigned(id);
+}
+
+
+function renderProgress(task, i, id,){
+    document.getElementById("progressArea").innerHTML += renderTask(task, i);
+renderProgressBar(task, id,);
+renderAssigned(id);
+}
+
+function renderFeedback(task, i, id){
+    document.getElementById("feedbackArea").innerHTML += renderTask(task, i);
+renderProgressBar(task, id,);
+renderAssigned(id);
+}
+
+function renderdoneArea(task, i, id){
+    document.getElementById("doneArea").innerHTML += renderTask(task, i);
+renderProgressBar(task, id,);
+renderAssigned(id);
+}
 
 function renderTask(task, id, i) {
     return /* html */ `    <div draggable="true" id="${task['id']}" class="taskContainer" ondragstart="startDragging(${task['id']})"  onclick="openTask(id)">
@@ -94,13 +130,14 @@ function renderTask(task, id, i) {
  * @param {number} id - number to get the correct task
  * @param {JSON} task - contains informations for a task
 */
-function renderProgressBar(id) {
-    let percent = allTasks[id]['subtasksChecked'].length / allTasks[id]['subtasks'].length
-    percentProgress = percent * 100
-    if (allTasks[id]['subtasks'].length == 0) {
+function renderProgressBar(task, id,) {
+    if (task.subtasks.length == 0) {
     } else {
+        let percent = task['subtasksChecked'].length / task['subtasks'].length
+    percentProgress = percent * 100
         document.getElementById(`subTaskContainer${id}`).innerHTML += renderSubtaskContainer(id, allTasks);
         document.getElementById(`progressBar${id}`).style = `width: ${percentProgress}%`;
+        
     }
 }
 

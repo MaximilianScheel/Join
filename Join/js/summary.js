@@ -56,13 +56,10 @@ function loadAtStart() {
     }
 }
 
-<<<<<<< HEAD
-=======
 /**
  * 
  *Removes the preloader
  */
->>>>>>> 60d77f438cb313242374789dbe2bc0abece456b8
 function currentTasks() {
     for (let i = 0; i < counts.length; i++) {
         countsNumber = counts[i]
@@ -74,15 +71,10 @@ function currentTasks() {
     }
 }
 
-<<<<<<< HEAD
-
-
-=======
 /**
  * 
  *Shows the Ammount of urgent Tasks
  */
->>>>>>> 60d77f438cb313242374789dbe2bc0abece456b8
 function currentUrgent() {
     if (prioCounts.length == 0) {
     }else {
