@@ -32,6 +32,7 @@ async function loadAddTask() {
   await downloadFromServer();
   await loadContacts();
   allTasks = JSON.parse(backend.getItem(allTasks)) || [];
+  console.log(allTasks);
   renderAllContacts()
   includeHTML();
   loadAllTasks();

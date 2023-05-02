@@ -76,10 +76,9 @@ function currentTasks() {
  *Shows the Ammount of urgent Tasks
  */
 function currentUrgent() {
-    if (prioCounts.length == 0) {
-    }else {
-    prioCounts = prioCount
-    let urgentNumber = prioCounts.length
+    if (prioCount == 0) {
+    }else { 
+    let urgentNumber = prioCount
     document.getElementById('urgentCount').innerHTML = urgentNumber;
 }
 }
