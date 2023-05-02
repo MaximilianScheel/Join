@@ -68,6 +68,7 @@ async function addTask() {
   showInfo();
   await saveAllTasks(task);
   clearValues();
+  console.log('Task mit der ID:', task.id);
   idCounter++;
   loadAllTasks();
   loadTask();
@@ -526,13 +527,16 @@ async function displayEditTask(id) {
 
 async function editTask() {
   let id = idCounter;
+  let tempTask = allTasks[id];
+  console.log(`bearbeiteter Task mit der ID: ${id}, --- ${allTasks[id]}`);
   let newTitle = document.getElementById('Edittitle').value;
   let newDescription = document.getElementById('Editdescription').value;
   let newDate = document.getElementById('Editdate').value;
-  allTasks[id]['title'] = newTitle;
-  allTasks[id]['description'] = newDescription;
-  allTasks[id]['date'] = newDate;
-  allTasks[id]['priority'] = newPrio;
+  tempTask['title'] = newTitle;
+  tempTask['description'] = newDescription;
+  tempTask['date'] = newDate;
+  tempTask['priority'] = newPrio;
+  allTasks[id] = tempTask;
 
   await backend.setItem('allTasks', JSON.stringify(allTasks));
   hideEditTask()
