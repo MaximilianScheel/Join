@@ -45,49 +45,27 @@ function loadingFinished() {
 }
 
 
-
 function routeToPage(destination) {
     window.location.href = destination;
 }
 
 
 /**
- * Counts the tasks in each category and displays the number in the summary
+ * Initiates the tasks
  */
 function loadTask() {
-    let toDoTasks = document.getElementById("todoArea");
-    let progressTasks = document.getElementById("progressArea");
-    let feedbackTasks = document.getElementById("feedbackArea");
-    let doneTasks = document.getElementById("doneArea");
-    toDoTasks.innerHTML = "";
-    progressTasks.innerHTML = "";
-    feedbackTasks.innerHTML = "";
-    doneTasks.innerHTML = "";
-
+    cleanAreas();
     for (let i = 0; i < allTasks.length; i++) {
         const task = allTasks[i];
         let id = task['id'];
         if (allTasks[i].state == "todo") {
-            toDoTasks.innerHTML += renderTask(task, i);
-            renderProgressBar(task, id, i);
-            renderAssigned(id);
-
+            renderTodo(task, i, id)
         } else if (allTasks[i].state == "progress") {
-            progressTasks.innerHTML += renderTask(task, i);
-            renderProgressBar(task, id, i);
-            renderAssigned(id);
-            // countPrio(i,task);
+            renderProgress(task, i, id)
         } else if (allTasks[i].state == "feedback") {
-            feedbackTasks.innerHTML += renderTask(task, i);
-            renderProgressBar(task, id, i);
-            renderAssigned(id);
-            // countPrio(i,task);
+            renderFeedback(task, i, id)
         } else if (allTasks[i].state == "done") {
-            doneTasks.innerHTML += renderTask(task, i);
-            renderProgressBar(task, id, i);
-            renderAssigned(id);
-            // countPrio(i,task);
-
+            renderdoneArea(task, i, id);
         }
     }
 }
@@ -97,49 +75,58 @@ function loadTask() {
 function renderTask(task, id, i) {
     return /* html */ `    <div draggable="true" id="${task['id']}" class="taskContainer" ondragstart="startDragging(${task['id']})"  onclick="openTask(id)">
     <div style="background-color: ${task['color']};" class="categoryContainer">
-        ${task['category']}
-    </div>
-    <div class="titleContainer">
-        ${task['title']}
-    </div>
-    <div class="descriptionContainer">${task['description']}
-</div>
-   
-
-    <div id="subTaskContainer${id}" class="subTaskContainer">
-</div>
+        ${task['category']}</div>
+    <div class="titleContainer"> ${task['title']}</div>
+    <div class="descriptionContainer">${task['description']}</div>
+    <div id="subTaskContainer${id}" class="subTaskContainer"></div>
     <div class="contactsPrioContainer">
-    <div id="boardInitials${id}" class="contactsPictureContainer">renderAssigned()</div>
+    <div id="boardInitials${id}" class="contactsPictureContainer"></div>
     <div class="prioImage"><img class="#" src="./assets/img/prio_${task['priority']}1.png"></div>
     </div>
 </div>
-</div> `
+</div>`
 }
 
 
-function renderProgressBar(task, id, i) {
+/**
+ * Initiates the function to render the progressbar
+ * 
+ * @param {number} id - number to get the correct task
+ * @param {JSON} task - contains informations for a task
+*/
+function renderProgressBar(id) {
     let percent = allTasks[id]['subtasksChecked'].length / allTasks[id]['subtasks'].length
     percentProgress = percent * 100
-
     if (allTasks[id]['subtasks'].length == 0) {
-
     } else {
-        document.getElementById(`subTaskContainer${id}`).innerHTML += /* html */ `
+        document.getElementById(`subTaskContainer${id}`).innerHTML += renderSubtaskContainer(id, allTasks);
+        document.getElementById(`progressBar${id}`).style = `width: ${percentProgress}%`;
+    }
+}
+
+
+/**
+ * Renders progressbar
+ * 
+ * @param {number} id - number to get the correct task
+ * @param {JSON} task - contains informations for a task
+*/
+function renderSubtaskContainer(id, allTasks) {
+    return /* html */ `
     <div class="progressBarContainer">
     <div id="progressBar${id}" class="progressBar"></div>
     </div>
         <div id="subtaskCheckedCount" class="subtaskCheckedCount">${allTasks[id]['subtasksChecked'].length}</div>
         <div class="subTasksCount">/${allTasks[id]['subtasks'].length} Done</div>
-    </div>
-`;
-
-        document.getElementById(`progressBar${id}`).style = `width: ${percentProgress}%`;
-
-    }
+    </div>`;
 }
 
 
-
+/**
+ * Initiates the function to render assigned
+ * 
+ * @param {number} id - number to get the correct task
+*/
 function renderAssigned(id) {
     let task = allTasks[id];
     let assignedName = task['contactNames'];
@@ -149,15 +136,30 @@ function renderAssigned(id) {
         let splitNames = fullname.split(' ');
         let bothLetters = splitNames[0].charAt(0) + splitNames[1].charAt(0);
         let favouriteColor = contacts[k].favouriteColor;
-        document.getElementById(`boardInitials${id}`).innerHTML += `
-        <div class="boardInitialsInitials">
-        <div class="boardInitialsShortName" style="background-color: ${favouriteColor};">${bothLetters}</div>     
-        </div>
-        `;
+        document.getElementById(`boardInitials${id}`).innerHTML += renderInitials(favouriteColor, bothLetters);
     }
 }
 
 
+/**
+ * Renders assigned
+ * 
+ * @param {number} id - number to get the correct task
+*/
+
+function renderInitials(favouriteColor, bothLetters) {
+    return /* html */`
+    <div class="boardInitialsInitials">
+    <div class="boardInitialsShortName" style="background-color: ${favouriteColor};">${bothLetters}</div>     
+    </div>
+    `;
+}
+
+
+/**
+ * Drag and drop function
+ * @param {*} id  id of the task
+ */
 function startDragging(id) {
     currentDraggedElement = id;
 }
@@ -174,14 +176,21 @@ async function moveTo(state) {
     init();
 }
 
+
 function dragHighlight(id) {
     document.getElementById(id).classList.add('dragAreaHighlight');
 }
+
 
 function removedragHighlight(id) {
     document.getElementById(id).classList.remove('dragAreaHighlight');
 }
 
+
+
+/**
+ * function to create variable for function countNumbs
+*/
 function countTasks() {
     let numbTodo = document.getElementById("todoArea").childElementCount;
     let numbProgress = document.getElementById("progressArea").childElementCount;
@@ -189,10 +198,18 @@ function countTasks() {
     let numbArea = document.getElementById("doneArea").childElementCount;
     let numbTask = numbTodo + numbProgress + numbFeedback + numbArea;
     countNumbs(numbTodo, numbProgress, numbFeedback, numbArea, numbTask);
-
 }
 
 
+/**
+ * function to count tasks and save in backend
+ * 
+*@param {string} numbTodo - variable to get number of todo 
+@param {string} numbProgress - variable to get number of progress
+@param {string} numbFeedback - variable to get number of feedback
+@param {string} numbArea - variable to get number of area 
+@param {string} numbTask - variable to get number of task
+*/
 async function countNumbs(numbTodo, numbProgress, numbFeedback, numbArea, numbTask) {
     let countsBoard = {
         'todoCount': numbTodo,
@@ -206,6 +223,11 @@ async function countNumbs(numbTodo, numbProgress, numbFeedback, numbArea, numbTa
 }
 
 
+/**
+ * function to count tasks with priority: urgent and save in backend
+ * 
+*@param {JSON} task - contains informations for a task
+*/
 async function countPrio(i, task) {
     if (task['priority'] == 'Urgent') {
         priorityCount++
@@ -226,6 +248,7 @@ function openTask(id) {
     document.getElementById('TaskCard').innerHTML = '';
     renderFullscreenView(id);
 }
+
 
 /**
  * function to get all informations for the open task
@@ -248,6 +271,7 @@ async function renderFullscreenView(id) {
     generateAssignedToOverlay(id, contactNames);
     generateSubtaskOverlay(id, subtask);
 }
+
 
 /**
  * function to show the open Task with all informations
@@ -280,6 +304,7 @@ function generateFullscreenView(id, title, description, category, color, date, p
     `;
 }
 
+
 /**
  * function to show the contact names for the task
  * 
@@ -302,6 +327,7 @@ function generateAssignedToOverlay(id, contactNames) {
         `;
     }
 }
+
 
 /**
  * Adds all subtasks of the selected main task to the "overlaySubtasks" div.
@@ -326,6 +352,7 @@ function generateSubtaskOverlay(id, subtask) {
     }
 }
 
+
 /**
  * this function is checking if a subtask is checked and saves it
  * 
@@ -345,6 +372,7 @@ async function subtaskIsChecked(id, index) {
     init()
 }
 
+
 function closeOverview(id) {
     document.getElementById('TaskOverview').classList.add('d-none');
 }
@@ -355,6 +383,7 @@ function mouseOverBoard(i) {
     document.getElementById('pathB' + i).classList.add('pathA');
     document.getElementById('rect' + i).classList.add('rect');
 }
+
 
 function mouseOutBoard(i) {
     document.getElementById('pathA' + i).classList.remove('pathA');
@@ -371,6 +400,7 @@ function searchTasks() {
     search = search.toLowerCase();
     showSearchedTask(search);
 }
+
 
 /**
  * function to show searched task
@@ -389,6 +419,7 @@ function showSearchedTask(search) {
         }
     }
 }
+
 
 function includeHTML() {
     var z, i, elmnt, file, xhttp;
