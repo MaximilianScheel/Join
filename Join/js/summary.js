@@ -37,7 +37,6 @@ function loadAtStart() {
     }
 }
 
-
 function currentTasks() {
     for (let i = 0; i < counts.length; i++) {
         countsNumber = counts[i]
@@ -53,6 +52,7 @@ function currentTasks() {
         document.getElementById('doneCount').innerHTML = doneNumber;
     }
 }
+
 
 
 function currentUrgent() {

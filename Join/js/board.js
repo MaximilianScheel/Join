@@ -89,15 +89,11 @@ function loadTask() {
             // countPrio(i,task);
 
         }
-
     }
-
 }
 
 
-/**
- * Renders all tasks in the board
-*/
+
 function renderTask(task, id, i) {
     return /* html */ `    <div draggable="true" id="${task['id']}" class="taskContainer" ondragstart="startDragging(${task['id']})"  onclick="openTask(id)">
     <div style="background-color: ${task['color']};" class="categoryContainer">
@@ -161,18 +157,13 @@ function renderAssigned(id) {
     }
 }
 
-/**
- * Drag and drop function
- * @param {*} id  id of the task
- */
+
 function startDragging(id) {
     currentDraggedElement = id;
 }
 
 
-/**
- * Drag and drop function
- */
+
 function allowDrop(ev) {
     ev.preventDefault();
 }
