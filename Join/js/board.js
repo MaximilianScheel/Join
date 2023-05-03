@@ -14,7 +14,7 @@ let subtaskChecked = [];
 async function init() {
     loadBoard();
     loadingFinished();
-
+    
 }
 
 
