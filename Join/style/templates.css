@@ -426,7 +426,7 @@
 
 .logoutDisplayed {
     opacity: 1;
-    display: block;
+    display: none;
     z-index: 999;
 }
 
@@ -453,6 +453,12 @@
     .desktop-topBar-content-container {
         position: fixed;
         z-index: 10;
+    }
+
+    .logoutDisplayed {
+        opacity: 1;
+        display: block;
+        z-index: 999;
     }
 }
 
