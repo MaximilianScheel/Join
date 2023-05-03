@@ -34,12 +34,9 @@ async function guestLogin() {
  */
 async function login(e) {
     e.preventDefault();
-
     let email = document.getElementById('email');
     let password = document.getElementById('password');
-
     currentUser = contacts.find(c => c.email == email.value && c.password == password.value);
-
     if (currentUser) {
         await saveOnServer('currentUser', currentUser);
         window.location.href = './summary.html?login=2';
