@@ -33,7 +33,6 @@ async function loadBoard() {
     for (let i = 0; i < allTasks.length; i++) {
         const task = allTasks[i];
         countPrio(task);
-        console.log('Hallo')
     }
 }
 
@@ -74,6 +73,9 @@ function loadTask() {
     }
 }
 
+/**
+ * cleans the Areas
+ */
 
 function cleanAreas() {
     let toDoTasks = document.getElementById("todoArea");
@@ -87,31 +89,61 @@ function cleanAreas() {
 
 }
 
+/**
+ * Initiates the render Todo
+ * 
+ * @param {number} id - number to get the correct task
+ * @param {JSON} task - contains informations for a task
+*/
+
 function renderTodo(task, i, id) {
     document.getElementById("todoArea").innerHTML += renderTask(task, i);
     renderProgressBar(task, id,);
     renderAssigned(id);
 }
 
-
+/**
+ * Initiates the render Progress
+ * 
+ * @param {number} id - number to get the correct task
+ * @param {JSON} task - contains informations for a task
+*/
 function renderProgress(task, i, id,) {
     document.getElementById("progressArea").innerHTML += renderTask(task, i);
     renderProgressBar(task, id,);
     renderAssigned(id);
 }
 
+/*
+ * Initiates the render Feedback
+ * 
+ * @param {number} id - number to get the correct task
+ * @param {JSON} task - contains informations for a task
+*/
 function renderFeedback(task, i, id) {
     document.getElementById("feedbackArea").innerHTML += renderTask(task, i);
     renderProgressBar(task, id,);
     renderAssigned(id);
 }
 
+/**
+ * Initiates the render done
+ * 
+ * @param {number} id - number to get the correct task
+ * @param {JSON} task - contains informations for a task
+*/
 function renderdoneArea(task, i, id) {
     document.getElementById("doneArea").innerHTML += renderTask(task, i);
     renderProgressBar(task, id,);
     renderAssigned(id);
 }
 
+/**
+ * Initiates the function to render the progressbar
+ * 
+ * @param {number} id - number to get the correct task
+ * @param {JSON} task - contains informations for a task
+*/
 function renderTask(task, id, i) {
     return /* html */ `    <div draggable="true" id="${task['id']}" class="taskContainer" ondragstart="startDragging(${task['id']})"  onclick="openTask(id)">
     <div style="background-color: ${task['color']};" class="categoryContainer">
@@ -203,6 +235,7 @@ function renderInitials(favouriteColor, bothLetters) {
  */
 function startDragging(id) {
     currentDraggedElement = id;
+    prioCount = 0;
 }
 
 
