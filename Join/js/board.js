@@ -14,12 +14,7 @@ let subtaskChecked = [];
 async function init() {
     loadBoard();
     loadingFinished();
-    for (let i = 0; i < allTasks.length; i++) {
-        const task = allTasks[i];
-        countPrio(task);
-        console.log('Hallo')
-    }
-    
+
 }
 
 
@@ -35,6 +30,11 @@ async function loadBoard() {
     includeHTML();
     loadTask();
     countTasks();
+    for (let i = 0; i < allTasks.length; i++) {
+        const task = allTasks[i];
+        countPrio(task);
+        console.log('Hallo')
+    }
 }
 
 
@@ -271,9 +271,8 @@ async function countNumbs(numbTodo, numbProgress, numbFeedback, numbArea, numbTa
 */
 async function countPrio(task) {
     if (task['priority'] == 'Urgent') {
-        priorityCount++
+        prioCount++
     }
-    prioCount.push(priorityCount)
     await backend.setItem("prioCount", JSON.stringify(prioCount));
 }
 
