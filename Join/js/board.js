@@ -17,8 +17,9 @@ async function init() {
     for (let i = 0; i < allTasks.length; i++) {
         const task = allTasks[i];
         countPrio(task);
-}
-
+        console.log('Hallo')
+    }
+    
 }
 
 
@@ -34,12 +35,8 @@ async function loadBoard() {
     includeHTML();
     loadTask();
     countTasks();
-    }
-    for (let i = 0; i < allTasks.length; i++) {
-        const task = allTasks[i];
-        countPrio(task);
-    }
 }
+
 
 
 
@@ -274,8 +271,9 @@ async function countNumbs(numbTodo, numbProgress, numbFeedback, numbArea, numbTa
 */
 async function countPrio(task) {
     if (task['priority'] == 'Urgent') {
-        prioCount++
+        priorityCount++
     }
+    prioCount.push(priorityCount)
     await backend.setItem("prioCount", JSON.stringify(prioCount));
 }
 

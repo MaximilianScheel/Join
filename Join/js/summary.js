@@ -1,7 +1,7 @@
 setURL('https://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ever');
 
-let counts = []
-let prioCounts = []
+let counts = [];
+let prioCount = [];
 
 
 /**
