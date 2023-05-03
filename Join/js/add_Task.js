@@ -67,10 +67,14 @@ async function addTask() {
   };
   showInfo();
   await saveAllTasks(task);
+  if (task.priority === 'urgent') {
+    prioCount++;
+  }
   clearValues();
   console.log('Task mit der ID:', task.id);
   idCounter++;
   loadAllTasks();
+  init();
 }
 
 
