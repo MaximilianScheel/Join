@@ -382,6 +382,7 @@
     position: sticky;
     top: 0;
     background-color: white;
+    height: 40px;
 }
 
 .desktop-topBar-profilPicture {
