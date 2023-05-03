@@ -71,7 +71,6 @@ async function addTask() {
   console.log('Task mit der ID:', task.id);
   idCounter++;
   loadAllTasks();
-  hideAddTask();
 }
 
 
