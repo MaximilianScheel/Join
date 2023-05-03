@@ -426,8 +426,12 @@
 
 .logoutDisplayed {
     opacity: 1;
-    display: none;
+    display: block;
     z-index: 999;
+}
+
+.logoutDisplayed #legalLink-topbar, #helpLink-topbar {
+    display: none;
 }
 
 .logout-text {
@@ -455,10 +459,8 @@
         z-index: 10;
     }
 
-    .logoutDisplayed {
-        opacity: 1;
+    .logoutDisplayed #legalLink-topbar, #helpLink-topbar {
         display: block;
-        z-index: 999;
     }
 }
 
