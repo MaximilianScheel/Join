@@ -14,7 +14,10 @@ let subtaskChecked = [];
 async function init() {
     loadBoard();
     loadingFinished();
-
+    for (let i = 0; i < allTasks.length; i++) {
+        const task = allTasks[i];
+        countPrio(task);
+}
 
 }
 
@@ -31,10 +34,6 @@ async function loadBoard() {
     includeHTML();
     loadTask();
     countTasks();
-    for (let i = 0; i < allTasks.length; i++) {
-        const task = allTasks[i];
-        countPrio(task);
-}
     }
 
 
