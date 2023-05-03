@@ -34,8 +34,8 @@ async function loadBoard() {
     for (let i = 0; i < allTasks.length; i++) {
         const task = allTasks[i];
         countPrio(task);
-}
     }
+}
 
 
 
@@ -88,27 +88,27 @@ function cleanAreas() {
 
 function renderTodo(task, i, id) {
     document.getElementById("todoArea").innerHTML += renderTask(task, i);
-renderProgressBar(task, id,);
-renderAssigned(id);
+    renderProgressBar(task, id,);
+    renderAssigned(id);
 }
 
 
-function renderProgress(task, i, id,){
+function renderProgress(task, i, id,) {
     document.getElementById("progressArea").innerHTML += renderTask(task, i);
-renderProgressBar(task, id,);
-renderAssigned(id);
+    renderProgressBar(task, id,);
+    renderAssigned(id);
 }
 
-function renderFeedback(task, i, id){
+function renderFeedback(task, i, id) {
     document.getElementById("feedbackArea").innerHTML += renderTask(task, i);
-renderProgressBar(task, id,);
-renderAssigned(id);
+    renderProgressBar(task, id,);
+    renderAssigned(id);
 }
 
-function renderdoneArea(task, i, id){
+function renderdoneArea(task, i, id) {
     document.getElementById("doneArea").innerHTML += renderTask(task, i);
-renderProgressBar(task, id,);
-renderAssigned(id);
+    renderProgressBar(task, id,);
+    renderAssigned(id);
 }
 
 function renderTask(task, id, i) {
@@ -137,10 +137,10 @@ function renderProgressBar(task, id,) {
     if (task.subtasks.length == 0) {
     } else {
         let percent = task['subtasksChecked'].length / task['subtasks'].length
-    percentProgress = percent * 100
+        percentProgress = percent * 100
         document.getElementById(`subTaskContainer${id}`).innerHTML += renderSubtaskContainer(id, allTasks);
         document.getElementById(`progressBar${id}`).style = `width: ${percentProgress}%`;
-        
+
     }
 }
 

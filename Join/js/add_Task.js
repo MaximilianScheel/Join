@@ -14,6 +14,7 @@ let state = 'todo';
 let subtasksChecked = [];
 
 
+
 /**
  * Initiates the main page
  */
@@ -70,7 +71,6 @@ async function addTask() {
   console.log('Task mit der ID:', task.id);
   idCounter++;
   loadAllTasks();
-  loadTask();
   hideAddTask();
 }
 
@@ -196,6 +196,15 @@ function loadAllTasks() {
   }
 }
 
+function getUrgentCount() {
+  let urgentCounter = 0;
+  for (let i = 0; i < allTasks.length; i++) {
+    if (allTasks[i].state === 'urgent') {
+      urgentCounter++;
+    }
+  }
+  return urgentCounter;
+}
 
 /**
  * function for clicked or unclicked priority button to change the img
