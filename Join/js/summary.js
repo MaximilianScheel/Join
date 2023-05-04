@@ -1,8 +1,7 @@
 setURL('https://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ever');
 
 let counts = [];
-let prioCount = [];
-
+let prioCount = 0;
 
 /**
  * 
@@ -23,11 +22,17 @@ async function loadSummary() {
     const date = new Date();
     const dateFormatted = new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeZone: 'Europe/Berlin' }).format(date)
     document.getElementById('currentDate').innerHTML = dateFormatted;
+    currentUser = JSON.parse(backend.getItem("currentUser"));
+    allTasks = JSON.parse(backend.getItem('allTasks'));
     counts = JSON.parse(backend.getItem('counts'));
-    prioCount = JSON.parse(backend.getItem('prioCount'));
     includeHTML();
+    loadAtStart()
     greetUser();
     currentTasks();
+    for (let i = 0; i < allTasks.length; i++) {
+        const task = allTasks[i];
+        countPrio(task);
+    }
     currentUrgent();
 }
 
@@ -48,13 +53,28 @@ function loadingFinished() {
  *Loads the User
  */
 function loadAtStart() {
-    let nameTest = JSON.parse(backend.getItem("currentUser")) || [];
-    if (nameTest.length < 2) {
-        ShowCurrentUserNameForSummery = "Guest user";
+    if (currentUser.length < 2) {
+        document.getElementById('nameUser').innerHTML += "Guest user";
+        
     } else {
-        ShowCurrentUserNameForSummery = nameTest;
+        document.getElementById('nameUser').innerHTML += `${currentUser.prename + ' ' + currentUser.name}`
     }
 }
+
+
+/**
+ * function to count tasks with priority: urgent and save in backend
+ * 
+*@param {JSON} task - contains informations for a task
+*/
+async function countPrio(task) {
+    if (task['priority'] == 'Urgent') {
+        prioCount++
+    }
+    await backend.setItem("prioCount", JSON.stringify(prioCount));
+}
+
+
 
 /**
  * 

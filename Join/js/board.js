@@ -30,10 +30,6 @@ async function loadBoard() {
     includeHTML();
     loadTask();
     countTasks();
-    for (let i = 0; i < allTasks.length; i++) {
-        const task = allTasks[i];
-        countPrio(task);
-    }
 }
 
 
@@ -297,18 +293,6 @@ async function countNumbs(numbTodo, numbProgress, numbFeedback, numbArea, numbTa
 }
 
 
-/**
- * function to count tasks with priority: urgent and save in backend
- * 
-*@param {JSON} task - contains informations for a task
-*/
-async function countPrio(task) {
-    if (task['priority'] == 'Urgent') {
-        prioCount++
-    }
-    await backend.setItem("prioCount", JSON.stringify(prioCount));
-}
-
 
 /**
  * function to open the task
@@ -365,6 +349,7 @@ function generateFullscreenView(id, title, description, category, color, date, p
     <div class="innerContentBoxOverlay">
         <img class="overlayTaskClose" src="assets/img/cross.png" onclick="closeOverview()">
         <img class="overlayTaskEdit" src="assets/img/editTask_button.png" onclick="displayEditTask(${id})">
+        <img class="deleteButton" src="assets/img/deleteButton.svg" onclick="deleteTask(${id})">
         <div class="overlayCategory" style="background-color: ${color}";>${category}</div>
         <div class="overlayTitle"><h5>${title}</h5></div>
         <div class="overlayDiscription">${description}</div>
@@ -376,6 +361,16 @@ function generateFullscreenView(id, title, description, category, color, date, p
         </div>
     </div>
     `;
+}
+
+
+async function deleteTask(id){
+    const task = allTasks[id];
+    allTasks.splice(id, 1);
+    await backend.setItem('allTasks', JSON.stringify(allTasks));
+    closeOverview();
+    init();
+    
 }
 
 
