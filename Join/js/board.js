@@ -363,16 +363,23 @@ function generateFullscreenView(id, title, description, category, color, date, p
     `;
 }
 
-
+/**
+ * Deletes a task from the `allTasks` array.
+ *
+ * @param {number} id - The ID of the task to delete.
+ */
 async function deleteTask(id){
     const task = allTasks[id];
     allTasks.splice(id, 1);
+    
+    for(let i = id; i < allTasks.length; i++){
+        allTasks[i].id--;
+    }
+    
     await backend.setItem('allTasks', JSON.stringify(allTasks));
     closeOverview();
-    init();
-    
+    init(); 
 }
-
 
 /**
  * function to show the contact names for the task
