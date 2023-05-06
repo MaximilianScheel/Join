@@ -56,10 +56,7 @@ function loadAtStart() {
     }
 }
 
-/**
- * 
- *Removes the preloader
- */
+
 function currentTasks() {
     for (let i = 0; i < counts.length; i++) {
         countsNumber = counts[i]
@@ -79,7 +76,7 @@ function currentUrgent() {
     if (prioCount == 0) {
     }else { 
     let urgentNumber = prioCount
-    document.getElementById('urgentCount').innerHTML = urgentNumber;
+    document.getElementById('urgentCount').innerHTML = urgentNumber.length;
 }
 }
 
