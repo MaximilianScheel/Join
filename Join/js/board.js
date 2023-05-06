@@ -110,7 +110,7 @@ function renderProgress(task, i, id,) {
     renderAssigned(id);
 }
 
-/*
+/**
  * Initiates the render Feedback
  * 
  * @param {number} id - number to get the correct task

@@ -62,8 +62,6 @@ function loadAtStart() {
 }
 
 
-<<<<<<< HEAD
-=======
 /**
  * function to count tasks with priority: urgent and save in backend
  * 
@@ -80,9 +78,8 @@ async function countPrio(task) {
 
 /**
  * 
- *Removes the preloader
+ *Loads the numbers of each ammount of tasks
  */
->>>>>>> ea9812c740fda6777d5ebe62ca8aa43293a19e6d
 function currentTasks() {
     for (let i = 0; i < counts.length; i++) {
         countsNumber = counts[i]
@@ -99,10 +96,9 @@ function currentTasks() {
  *Shows the Ammount of urgent Tasks
  */
 function currentUrgent() {
-    if (prioCount == 0) {
-    }else { 
+    if (prioCount != 0) {
     let urgentNumber = prioCount
-    document.getElementById('urgentCount').innerHTML = urgentNumber.length;
+    document.getElementById('urgentCount').innerHTML = urgentNumber;
 }
 }
 
