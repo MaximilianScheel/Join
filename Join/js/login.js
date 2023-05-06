@@ -15,7 +15,7 @@ async function initLogin() {
 async function guestLogin() {
     currentUser = {
         "prename": "Guest",
-        "name": "Guest",
+        "name": "",
         "short_name": "G",
         "email": "",
         "password": "",

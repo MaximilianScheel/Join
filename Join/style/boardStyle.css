@@ -555,6 +555,15 @@ body {
     cursor: pointer;
 }
 
+.deleteButton {
+    position: absolute;
+    z-index: 101;
+    bottom: 11px;
+    right: 61px;
+    cursor: pointer;
+    height: 55px;
+}
+
 .overlayTaskShortName {
     height: 42px;
     width: 42px;
