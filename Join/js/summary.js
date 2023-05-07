@@ -53,17 +53,10 @@ function loadingFinished() {
  *Loads the User
  */
 function loadAtStart() {
-    if (currentUser.length < 2) {
-        document.getElementById('nameUser').innerHTML += "Guest user";
-        
-    } else {
-        document.getElementById('nameUser').innerHTML += `${currentUser.prename + ' ' + currentUser.name}`
-    }
+    document.getElementById('nameUser').innerHTML += `${currentUser.prename + ' ' + currentUser.name}`
 }
 
 
-<<<<<<< HEAD
-=======
 /**
  * function to count tasks with priority: urgent and save in backend
  * 
@@ -78,11 +71,6 @@ async function countPrio(task) {
 
 
 
-/**
- * 
- *Removes the preloader
- */
->>>>>>> ea9812c740fda6777d5ebe62ca8aa43293a19e6d
 function currentTasks() {
     for (let i = 0; i < counts.length; i++) {
         countsNumber = counts[i]
@@ -100,10 +88,10 @@ function currentTasks() {
  */
 function currentUrgent() {
     if (prioCount == 0) {
-    }else { 
-    let urgentNumber = prioCount
-    document.getElementById('urgentCount').innerHTML = urgentNumber.length;
-}
+    } else {
+        let urgentNumber = prioCount
+        document.getElementById('urgentCount').innerHTML = urgentNumber.length;
+    }
 }
 
 
