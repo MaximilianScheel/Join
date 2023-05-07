@@ -71,6 +71,10 @@ async function countPrio(task) {
 
 
 
+/**
+ * 
+ *Loads the numbers of each ammount of tasks
+ */
 function currentTasks() {
     for (let i = 0; i < counts.length; i++) {
         countsNumber = counts[i]
@@ -82,16 +86,16 @@ function currentTasks() {
     }
 }
 
+
 /**
  * 
  *Shows the Ammount of urgent Tasks
  */
 function currentUrgent() {
-    if (prioCount == 0) {
-    } else {
-        let urgentNumber = prioCount
-        document.getElementById('urgentCount').innerHTML = urgentNumber.length;
-    }
+    if (prioCount != 0) {
+    let urgentNumber = prioCount
+    document.getElementById('urgentCount').innerHTML = urgentNumber;
+}
 }
 
 
