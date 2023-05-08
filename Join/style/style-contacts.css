@@ -35,7 +35,6 @@ body {
 }
 
 .contacts-list {
-    height: 100%;
     max-width: 35%;
     overflow-y: scroll;
     overflow-x: wrap;

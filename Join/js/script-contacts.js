@@ -22,7 +22,6 @@ function loadingFinished() {
 async function loadContactSite() {
     await downloadFromServer();
     contacts = await JSON.parse(backend.getItem('contacts'));
-    // await backend.setItem('contacts', JSON.stringify(contacts));
     startingLetters = []
     existingLetterIndex = 0;
     sortContacts();

@@ -1,5 +1,6 @@
 setURL('https://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ever');
 
+
 let tasks = [];
 let allTasks = [];
 let priority = '"Low"';
@@ -74,34 +75,6 @@ async function addTask() {
   idCounter++;
   loadAllTasks();
   init();
-}
-
-/**
- * Loads the requested data from server
- */
-async function addTaskToBoard() {
-  addDate();
-  let task = {
-    'title': selectedTitle,
-    'description': selectedDescription,
-    'category': selectedCategory,
-    'color': selectedColor,
-    'date': selectedDate,
-    'contactNames': selectedContactNames,
-    'priority': getActivePriority(),
-    'subtasks': selectedSubtasks,
-    'id': idCounter,
-    'state': state,
-    'subtasksChecked': subtasksChecked,
-  };
-  showInfo();
-  await saveAllTasks(task);
-  if (task.priority === 'urgent') {
-    prioCount++;
-  }
-  clearValues();
-  idCounter++;
-  loadAllTasks();
 }
 
 
@@ -616,6 +589,36 @@ function updateMin() {
   const datepicker = document.getElementById('date');
   datepicker.setAttribute('min', getTodayDate());
 }
+
+
+/**
+ * Loads the requested data from server
+ */
+async function addTaskToBoard() {
+  addDate();
+  let task = {
+    'title': selectedTitle,
+    'description': selectedDescription,
+    'category': selectedCategory,
+    'color': selectedColor,
+    'date': selectedDate,
+    'contactNames': selectedContactNames,
+    'priority': getActivePriority(),
+    'subtasks': selectedSubtasks,
+    'id': idCounter,
+    'state': state,
+    'subtasksChecked': subtasksChecked,
+  };
+  showInfo();
+  await saveAllTasks(task);
+  if (task.priority === 'urgent') {
+    prioCount++;
+  }
+  clearValues();
+  idCounter++;
+  loadAllTasks();
+}
+
 
 function includeHTML() {
   var z, i, elmnt, file, xhttp;

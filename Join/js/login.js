@@ -3,8 +3,6 @@
  * Loading data from server
  */
 async function initLogin() {
-    //~~~~~~~ NEVER REMOVE THE FOLLOWING LINE -> ITS FOR DATABASE REPAIR PURPOSE!!! ~~~~~~~
-    //await backend.setItem('contacts', contacts);
     await loadDataFromServer();
 }
 
