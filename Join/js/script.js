@@ -191,4 +191,6 @@ async function logout() {
  */
 function routeToPage(destination) {
     window.location.href = destination;
+
 }
+

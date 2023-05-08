@@ -54,12 +54,7 @@ function loadingFinished() {
  *Loads the User
  */
 function loadAtStart() {
-    if (currentUser.length < 2) {
-        document.getElementById('nameUser').innerHTML += "Guest user";
-        
-    } else {
-        document.getElementById('nameUser').innerHTML += `${currentUser.prename + ' ' + currentUser.name}`
-    }
+    document.getElementById('nameUser').innerHTML += `${currentUser.prename + ' ' + currentUser.name}`
 }
 
 
@@ -91,6 +86,7 @@ function currentTasks() {
         document.getElementById('doneCount').innerHTML = countsNumber['doneCount'];
     }
 }
+
 
 /**
  * 

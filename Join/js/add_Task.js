@@ -71,12 +71,38 @@ async function addTask() {
     prioCount++;
   }
   clearValues();
-  console.log('Task mit der ID:', task.id);
   idCounter++;
   loadAllTasks();
   init();
 }
 
+/**
+ * Loads the requested data from server
+ */
+async function addTaskToBoard() {
+  addDate();
+  let task = {
+    'title': selectedTitle,
+    'description': selectedDescription,
+    'category': selectedCategory,
+    'color': selectedColor,
+    'date': selectedDate,
+    'contactNames': selectedContactNames,
+    'priority': getActivePriority(),
+    'subtasks': selectedSubtasks,
+    'id': idCounter,
+    'state': state,
+    'subtasksChecked': subtasksChecked,
+  };
+  showInfo();
+  await saveAllTasks(task);
+  if (task.priority === 'urgent') {
+    prioCount++;
+  }
+  clearValues();
+  idCounter++;
+  loadAllTasks();
+}
 
 
 function addTitle() {

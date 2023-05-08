@@ -262,9 +262,9 @@ function createShortname(prename, name) {
  * @param newContact - the contact as a json.
  */
 async function addContact() {
-    let contactPreName = document.getElementById('add_prename_input').value;
+    let contactPreName = document.getElementById('add_prename_input').value.trim();
     contactPreName = contactPreName.charAt(0).toUpperCase() + contactPreName.slice(1);
-    let contactName = document.getElementById('add_name_input').value;
+    let contactName = document.getElementById('add_name_input').value.trim();
     contactName = contactName.charAt(0).toUpperCase() + contactName.slice(1);
     let contactEmail = document.getElementById('add_email_input').value;
     let contactPhone = document.getElementById('add_phone_input').value;
@@ -291,9 +291,9 @@ async function addContact() {
  * @param newContact - the contact as a json.
  */
 async function editContact() {
-    let contactPreName = document.getElementById('edit-prename-input').value;
+    let contactPreName = document.getElementById('edit-prename-input').value.trim();
     contactPreName = contactPreName.charAt(0).toUpperCase() + contactPreName.slice(1);
-    let contactName = document.getElementById('edit-name-input').value;
+    let contactName = document.getElementById('edit-name-input').value.trim();
     contactName = contactName.charAt(0).toUpperCase() + contactName.slice(1);
     let contactEmail = document.getElementById('edit-email-input').value;
     let contactPhone = document.getElementById('edit-phone-input').value;
