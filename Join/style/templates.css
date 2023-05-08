@@ -163,12 +163,13 @@
     z-index: -1;
 }
 
-.contact-edit-button{
-    font-size: 20px;
-    border: #2A3647;
+.contact-edit-button img{
+    height: 35px;
+    margin-top: 4px;
+    margin-left: 10px;  
 }
 
-@media(max-width: 1028px) {
+@media(max-width: 1030px) {
     .contactPopUp-container {
         position: fixed;
         top: 0;
@@ -293,7 +294,7 @@
 }
 
 
-@media(max-width: 1000px) {
+@media(max-width: 1028px) {
 
     .addTaskPopUp-container, .TaskCard, .EditTaskPopUp-container {
         overflow-y: auto;
@@ -547,7 +548,7 @@
     margin-left: 30px !important;
 }
 
-@media(max-width: 1000px) {
+@media(max-width: 1028px) {
 
     .sidemenu-container-desktop {
         position: fixed;
