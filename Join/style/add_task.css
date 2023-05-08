@@ -300,14 +300,13 @@ button {
 
 .buttons-createTask {
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 360px;
     position: absolute;
     bottom: 100px;
-    right: 10px;
     height: 50px;
-    gap: 10px;
+    gap: 0px;
     border: unset;
     background-color: unset;
     cursor: pointer;
@@ -431,7 +430,11 @@ button {
 }
 
 
-
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 
 
 @media (max-width: 1000px) {
@@ -439,6 +442,7 @@ button {
     h1 {
         line-height: 30px;
         font-size: 50px;
+        margin-top: 120px;
     }
 
     form {
@@ -460,13 +464,6 @@ button {
         height: fit-content;
     }
 
-    .clearBtn {
-        display: none !important;
-    }
-
-    .buttons-createTask {
-        top: 10px;
-    }
     
     .inputBlock input, .inputBlock textarea, .subtask-input,.subtaskBtn, .subtask, .selectContact, .selectField, .selectCategory, .prioBtn {
         height: 43px !important;

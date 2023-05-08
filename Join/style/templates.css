@@ -163,6 +163,11 @@
     z-index: -1;
 }
 
+.contact-edit-button{
+    font-size: 20px;
+    border: #2A3647;
+}
+
 @media(max-width: 1028px) {
     .contactPopUp-container {
         position: fixed;
@@ -333,6 +338,7 @@
         position: relative !important;
         overflow: hidden !important;
         height: 75px !important;
+        padding-top: 145px;
     }
 
     .flexContainer {
@@ -541,7 +547,7 @@
     margin-left: 30px !important;
 }
 
-@media(max-width: 1028px) {
+@media(max-width: 1000px) {
 
     .sidemenu-container-desktop {
         position: fixed;

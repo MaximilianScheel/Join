@@ -315,3 +315,16 @@ async function editContact() {
 }
 
 
+function deleteContact() {
+      contacts.splice(currentContactIndex, 1);
+      backend.setItem('contacts', JSON.stringify(contacts));
+      sortContacts();
+      buildContactList();
+      hideEditContact();
+      closeContactsOverview();
+}
+
+
+function closeContactsOverview() {
+    document.getElementById('contacts_overview_container').innerHTML = "";
+}

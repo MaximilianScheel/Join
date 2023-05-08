@@ -297,12 +297,12 @@ body {
 
     .contacts-wrapper {
         flex-direction: column-reverse;
-        height: 100% !important;
+        height: fit-content;
     }
 
     .contacts-wrapper-inner-content {
         overflow-y: hidden !important;
-        margin-top: 80px;
+        margin-top: 40px;
     }
 
     .contacts-overview {
