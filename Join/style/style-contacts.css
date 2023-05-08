@@ -221,13 +221,12 @@ body {
 }
 
 .contacts-overview-container .overview-body-editContact-container img {
-    margin-right: 10px;
 }
 
 .contacts-overview-container .overview-body-editContact-container-mobile {
     position: absolute;
     bottom: 120px;
-    right: 20px;
+    right: 21px;
     padding: 10px;
     background-color: rgba(42, 54, 71, 1);
     border-radius: 10px;
@@ -235,6 +234,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.trashCan {
+    position: absolute;
+    bottom: 175px;
+    right: 24px;
+}
+
+.overview_body_editContact_container_img {
+width: 23px;
+height: 28px;
 }
 
 .contacts-overview-container .overview-body-bonusInformation {
