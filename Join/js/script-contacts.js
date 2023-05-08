@@ -211,6 +211,7 @@ function generateContactListEntry(index) {
  */
 function displayAddContact() {
     document.getElementById('contactAddPopUp-container').classList.remove('hideAddContact');
+    document.getElementById('contactsWrapper').style.filter = "blur(3px)";
 }
 
 /**
@@ -218,6 +219,7 @@ function displayAddContact() {
  */
 function hideAddContact() {
     document.getElementById('contactAddPopUp-container').classList.add('hideAddContact');
+    document.getElementById('contactsWrapper').style.filter = "blur(0px)";
 }
 
 /**

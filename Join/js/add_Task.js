@@ -436,6 +436,7 @@ function checkmark(i) {
 function displayAddTask(type) {
   initTask();
   document.getElementById('addTaskPopUp-container').classList.remove('hideAddTask');
+  document.getElementById('contentBoard').style.filter = 'blur(3px)';
   switch (type) {
     case "todo":
       state = "todo";
@@ -457,6 +458,7 @@ function displayAddTask(type) {
 
 function hideAddTask() {
   document.getElementById('addTaskPopUp-container').classList.add('hideAddTask');
+  document.getElementById('contentBoard').style.filter = 'blur(0px)';
   clearValues();
 }
 
