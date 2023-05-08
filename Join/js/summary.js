@@ -26,7 +26,7 @@ async function loadSummary() {
     allTasks = JSON.parse(backend.getItem('allTasks'));
     counts = JSON.parse(backend.getItem('counts'));
     includeHTML();
-    loadAtStart()
+    loadAtStart();
     greetUser();
     currentTasks();
     for (let i = 0; i < allTasks.length; i++) {
@@ -35,6 +35,7 @@ async function loadSummary() {
     }
     currentUrgent();
 }
+
 
 
 /**
@@ -224,5 +225,7 @@ function includeHTML() {
             /* Exit the function: */
             return;
         }
+        
     }
+
 }
