@@ -317,14 +317,6 @@ async function editContact() {
 }
 
 
-/*function deleteContact() {
-    contacts.splice(currentContactIndex, 1);
-    backend.setItem('contacts', JSON.stringify(contacts));
-    sortContacts();
-    buildContactList();
-    hideEditContact();
-    closeContactsOverview();
-}*/
 
 function deleteContact() {
     contacts.splice(currentContactIndex, 1);
@@ -340,7 +332,6 @@ function deleteContact() {
 
 
 function closeContactsOverview() {
-   
     document.getElementById('contacts_overview_container').classList.add('d-none');
     if (isMobile()) {
         document.getElementById('contacts_overview').classList.remove('d-show');
