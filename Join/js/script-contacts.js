@@ -6,12 +6,14 @@ let existingLetterIndex = 0;
 let currentContactIndex = 0;
 let currentUser;
 
+
 /**
  * removes the loader gif.
  */
 function loadingFinished() {
     document.getElementById('preloader').classList.add('d-none');
 }
+
 
 /**
  * sets up the contacts application.
@@ -29,7 +31,6 @@ async function loadContactSite() {
     includeHTML();
     buildContactList();
 }
-
 
 
 /**
@@ -62,6 +63,7 @@ function displayContact(index) {
     }
 }
 
+
 /**
  * checks wether the screen is mobile
  */
@@ -84,6 +86,7 @@ function showContactListMobile() {
     document.getElementById('addContact_button').classList.remove('d-none');
 }
 
+
 /**
  * sets the css property of a clicked contact to make visible the contact is now displayed.
  */
@@ -95,6 +98,7 @@ function activateContactEntry(contactIndex) {
     });
     document.getElementById('contacts_list_contact_' + contactIndex).classList.add('contactActive');
 }
+
 
 /**
  * helper function for the contacts list starting letters of each past name
@@ -109,6 +113,7 @@ function findStartingLetters() {
     });
 }
 
+
 /**
  * sorts the contacts on their past name
  */
@@ -117,6 +122,7 @@ function sortContacts() {
         return a.name.localeCompare(b.name);
     });
 }
+
 
 /**
  * iterates over the contacts array to display all contacts in the contacts list.
@@ -129,6 +135,7 @@ function buildContactList() {
     }
 }
 
+
 /**
  * initializes the startingletters array out of the contacts array based on the past name of each contact.
  */
@@ -138,6 +145,7 @@ function loadNameStartingLetters() {
         startingLetters = [...new Set(startingLetters)];
     }
 }
+
 
 /**
  * helper function for filling the startingletter array with unique characters of the contacts past name.
@@ -156,6 +164,7 @@ function isNameStartingWithExistingLetter(contactIndex) {
     return false;
 }
 
+
 /**
  * sets the favourite backgroundcolor of each contact as their background behind the starting letters of this contact in the UI
  */
@@ -163,12 +172,14 @@ function setFavouriteBackgroundColor(contactIndex) {
     document.getElementById('contacts_list_contact_pictureContainer_' + contactIndex).style.backgroundColor = contacts[contactIndex].favouriteColor;
 }
 
+
 /**
  * getter for contacts shortname. starting letter of first and past name together.
  */
 function getNamePrefix(contactIndex) {
     return contacts[contactIndex].short_name;
 }
+
 
 /**
  * generates the html for filling the contacts list with contacts and writing the correct starting letter over contacts with same starting letter of the past name.
@@ -217,6 +228,7 @@ function displayAddContact() {
     document.getElementById('contactsWrapper').style.filter = "blur(3px)";
 }
 
+
 /**
  * disables the view on the add-contacts card.
  */
@@ -224,6 +236,7 @@ function hideAddContact() {
     document.getElementById('contactAddPopUp-container').classList.add('hideAddContact');
     document.getElementById('contactsWrapper').style.filter = "blur(0px)";
 }
+
 
 /**
  * enables the view on the edit-contacts card.
@@ -235,8 +248,9 @@ function displayEditContact() {
     document.getElementById('edit-email-input').value = contacts[currentContactIndex].email;
     document.getElementById('edit-phone-input').value = contacts[currentContactIndex].phone;
     document.getElementById('contactsWrapper').style.filter = "blur(3px)";
-    
+
 }
+
 
 /**
  * disables the view on the edit-contacts card.
@@ -246,6 +260,7 @@ function hideEditContact() {
     document.getElementById('contactsWrapper').style.filter = "blur(0px)";
 }
 
+
 /**
  * updates the shortname of a contact
  */
@@ -253,12 +268,14 @@ function updateShortname(name) {
     contacts[currentContactIndex].short_name = contacts[currentContactIndex].prename.charAt(0).toUpperCase() + name.charAt(0).toUpperCase();
 }
 
+
 /**
  * creates a shortname of a contact
  */
 function createShortname(prename, name) {
     return prename.charAt(0).toUpperCase() + name.charAt(0).toUpperCase();
 }
+
 
 /**
  * creates a contact out of the add contact popup card, saves in backend and navigates the ui back to the start of the contacts application.
@@ -288,6 +305,7 @@ async function addContact() {
     await backend.setItem("contacts", JSON.stringify(contacts));
     window.location.href = "./contacts.html";
 }
+
 
 /**
  * edits a contact out of the edit contact popup card, saves in backend and navigates the ui back to the start of the contacts application.
@@ -321,7 +339,11 @@ async function editContact() {
 }
 
 
-
+/**
+ * Deletes the current contact from the contacts array and updates the UI accordingly.
+ *
+ * @return {void}
+ */
 function deleteContact() {
     contacts.splice(currentContactIndex, 1);
     backend.setItem('contacts', JSON.stringify(contacts));
@@ -335,6 +357,11 @@ function deleteContact() {
 }
 
 
+/**
+ * Hides the contacts overview UI and resets its state to the initial state on mobile devices.
+ *
+ * @return {void}
+ */
 function closeContactsOverview() {
     document.getElementById('contacts_overview_container').classList.add('d-none');
     if (isMobile()) {
@@ -346,4 +373,3 @@ function closeContactsOverview() {
         document.getElementById('overview_body_editContact_container_img').src = "./assets/img/pencil_white.png";
     }
 }
-

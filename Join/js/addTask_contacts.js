@@ -1,4 +1,4 @@
-let allContacts =[];
+let allContacts = [];
 let selectedContactNames = [];
 let short_name = [];
 let firstLetters = [];
@@ -10,17 +10,19 @@ async function loadContacts() {
   getContactInfo();
 }
 
+
 /**
  * function to sort all contacts in alphabetical order
  */
 
 function sortAllContacts() {
-  allContacts = allContacts.sort((a,b) => {
+  allContacts = allContacts.sort((a, b) => {
     if (a.prename < b.prename) {
       return -1;
     }
   });
 }
+
 
 /**
  * function to get the contact information from the JSON
@@ -28,13 +30,14 @@ function sortAllContacts() {
 
 function getContactInfo() {
   for (let i = 0; i < allContacts.length; i++) {
-    let contact = allContacts[i]['prename']+ ' ' + allContacts[i]['name'];
+    let contact = allContacts[i]['prename'] + ' ' + allContacts[i]['name'];
     let color = allContacts[i]['favouriteColor'];
     let short_name = allContacts[i]['short_name'];
     let bothLetters = short_name;
-    firstLetters.push({bothLetters, color});
+    firstLetters.push({ bothLetters, color });
   }
 }
+
 
 /**
  * function to render all contacts in the contact field
@@ -53,6 +56,7 @@ function renderAllContacts() {
   }
 }
 
+
 /**
  * function to add Contacts to the task
  * 
@@ -62,9 +66,9 @@ function renderAllContacts() {
 function addContactToTask(i) {
   let contactID = document.getElementById('contact' + i);
   let index = selectedContactNames.indexOf(contactID.innerHTML);
-  let index2 = selectedLetters.findIndex(obj => obj.bothLetters==firstLetters[i]['bothLetters']);
+  let index2 = selectedLetters.findIndex(obj => obj.bothLetters == firstLetters[i]['bothLetters']);
   if (index > -1) {
-    resetSelect(index, index2,i);
+    resetSelect(index, index2, i);
   } else {
     select(contactID, i);
   };
@@ -82,7 +86,7 @@ function addContactToTask(i) {
 function resetSelect(index, index2, i) {
   document.getElementById('contactButton' + i).innerHTML = '<img src="assets/img/button_rectangle.png">'; // reset button
   selectedContactNames.splice(index, 1);
-  selectedLetters.splice(index2,1); 
+  selectedLetters.splice(index2, 1);
   document.getElementById('addedContacts').innerHTML = '';
   for (let x = 0; x < selectedLetters.length; x++) {
     const selectedLetter = selectedLetters[x]['bothLetters'];
@@ -151,7 +155,7 @@ function openCloseContactsEdit() {
 /**
  * function to disable the input field
  */
-function disableInputContact () {
+function disableInputContact() {
   if (document.getElementById('contact').disabled = true) {
     document.getElementById('contact').disabled = false;
   } else {

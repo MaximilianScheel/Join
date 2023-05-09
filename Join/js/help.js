@@ -6,6 +6,7 @@ function routeToPage(destination) {
     window.location.href = destination;
 }
 
+
 /**
  * @description This function is used to show the preloader for 1.5 seconds
  */

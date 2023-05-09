@@ -37,7 +37,6 @@ async function loadSummary() {
 }
 
 
-
 /**
  * 
  *Removes the preloader
@@ -45,8 +44,6 @@ async function loadSummary() {
 function loadingFinished() {
     document.getElementById('preloader').classList.add('d-none');
 }
-
-
 
 
 /**
@@ -71,7 +68,6 @@ async function countPrio(task) {
 }
 
 
-
 /**
  * 
  *Loads the numbers of each ammount of tasks
@@ -94,9 +90,9 @@ function currentTasks() {
  */
 function currentUrgent() {
     if (prioCount != 0) {
-    let urgentNumber = prioCount
-    document.getElementById('urgentCount').innerHTML = urgentNumber;
-}
+        let urgentNumber = prioCount
+        document.getElementById('urgentCount').innerHTML = urgentNumber;
+    }
 }
 
 
@@ -117,6 +113,12 @@ function greetUser() {
 }
 
 
+/**
+ * Redirects the user to the specified destination page.
+ *
+ * @param {string} destination - The URL of the destination page.
+ * @return {void}
+ */
 function routeToPage(destination) {
     window.location.href = destination;
 }

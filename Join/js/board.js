@@ -14,7 +14,7 @@ let subtaskChecked = [];
 async function init() {
     loadBoard();
     loadingFinished();
-    
+
 }
 
 
@@ -368,17 +368,17 @@ function generateFullscreenView(id, title, description, category, color, date, p
  *
  * @param {number} id - The ID of the task to delete.
  */
-async function deleteTask(id){
+async function deleteTask(id) {
     const task = allTasks[id];
     allTasks.splice(id, 1);
-    
-    for(let i = id; i < allTasks.length; i++){
+
+    for (let i = id; i < allTasks.length; i++) {
         allTasks[i].id--;
     }
-    
+
     await backend.setItem('allTasks', JSON.stringify(allTasks));
     closeOverview();
-    init(); 
+    init();
 }
 
 /**

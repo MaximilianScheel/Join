@@ -1,4 +1,4 @@
-let colors = ['#e200be','#1fd7c1','#0038ff','#ff8a00','#2ad300','#ff0000','#8aa4ff'];
+let colors = ['#e200be', '#1fd7c1', '#0038ff', '#ff8a00', '#2ad300', '#ff0000', '#8aa4ff'];
 let selectedCategory = [];
 let selectedColor = [];
 
@@ -6,13 +6,14 @@ let selectedColor = [];
 /**
  * function to disable and enable the category-inputfield
  */
-function disableInput () {
+function disableInput() {
   if (document.getElementById('category').disabled = true) {
     document.getElementById('category').disabled = false;
   } else {
     document.getElementById('category').disabled = true;
   }
 }
+
 
 /**
  * function to add a existing category and its color to the array "selectedCategory"
@@ -100,7 +101,7 @@ function acceptNewCategory() {
 function openCloseCategories() {
   if (document.getElementById('selectField').style.height == '192px') {
     if ($(window).width() > 720) {
-    document.getElementById('selectField').style.height = '50px';
+      document.getElementById('selectField').style.height = '50px';
     } else {
       document.getElementById('selectField').style.height = '43px';
     }
@@ -114,10 +115,10 @@ function openCloseCategories() {
   disableInput();
 }
 
+
 /**
  * function to prevent to open or close the category-field
  */
 function notOpenCloseCategories(event) {
   event.stopPropagation();
 }
-  

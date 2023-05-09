@@ -51,7 +51,7 @@ async function login(e) {
 /**
  * Shows a popup message with animation
  */
-function hidePopupMessage(){
+function hidePopupMessage() {
     let popup = document.getElementById('popup-container');
     popup.innerHTML = '';
 }

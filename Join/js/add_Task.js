@@ -15,7 +15,6 @@ let state = 'todo';
 let subtasksChecked = [];
 
 
-
 /**
  * Initiates the main page
  */
@@ -78,6 +77,11 @@ async function addTask() {
 }
 
 
+/**
+ * Adds the selected title to the selected content.
+ *
+ * @return {void}
+ */
 function addTitle() {
   let title = document.getElementById('title');
   selectedTitle = '';
@@ -85,6 +89,11 @@ function addTitle() {
 }
 
 
+/**
+ * Adds the selected description to the selected content.
+ *
+ * @return {void}
+ */
 function addDescription() {
   let description = document.getElementById('description');
   selectedDescription = '';
@@ -92,9 +101,15 @@ function addDescription() {
 }
 
 
+/**
+ * Adds the selected date to the selected content.
+ *
+ * @return {void}
+ */
 function addDate() {
   selectedDate = document.getElementById('date').value;
 }
+
 
 /**
  * this function save the new created Task in the backend
@@ -108,6 +123,7 @@ async function saveAllTasks(task) {
   loadAllTasks();
 }
 
+
 /**
  * function to show a PopUp Information 
  */
@@ -118,6 +134,7 @@ function showInfo() {
     document.getElementById('createTaskBtn').classList.add('d-none');
   }, 3800);
 }
+
 
 /**
  * function to clear all values in AddTask template
@@ -174,6 +191,12 @@ function closeContacts() {
   document.getElementById('openedContacts').classList.add('d-none');
 }
 
+
+/**
+ * Closes the category dropdown and sets the height of the select field depending on the window width.
+ *
+ * @return {void}
+ */
 function closeCategories() {
   if ($(window).width() > 720) {
     document.getElementById('selectField').style.height = '50px';
@@ -198,6 +221,12 @@ function loadAllTasks() {
   }
 }
 
+
+/**
+ * Returns the number of tasks with a state of 'urgent' in the allTasks array.
+ *
+ * @return {number} The number of urgent tasks.
+ */
 function getUrgentCount() {
   let urgentCounter = 0;
   for (let i = 0; i < allTasks.length; i++) {
@@ -207,6 +236,7 @@ function getUrgentCount() {
   }
   return urgentCounter;
 }
+
 
 /**
  * function for clicked or unclicked priority button to change the img
@@ -221,12 +251,20 @@ function renderPrioBtnClicked(prio) {
     `;
 }
 
+
+/**
+ * Renders the HTML for an unclicked priority button with the specified priority level.
+ *
+ * @param {string} prio - The priority level to render.
+ * @return {string} The HTML string for the unclicked priority button.
+ */
 function renderPrioBtnUnclicked(prio) {
   return `
         <span>${prio.charAt(0).toUpperCase() + prio.slice(1)}</span>
         <img src="assets/img/prio_${prio}1.png" width="18px"/>
     `;
 }
+
 
 /**
  * Function that returns the color of a priority button
@@ -260,6 +298,7 @@ function changeButtonStyle(button, bgColor, textColor) {
   button.style.color = textColor;
 }
 
+
 /**
  * Function to change the text and style of a button when it is selected
  * 
@@ -271,6 +310,7 @@ function selectButton(button, priority) {
   changeButtonStyle(button, getButtonColor(priority), "#FFF");
 }
 
+
 /**
  * Function to change the text and style of a button when it is not selected
  * 
@@ -281,6 +321,7 @@ function deselectButton(button, priority) {
   button.innerHTML = renderPrioBtnUnclicked(priority);
   changeButtonStyle(button, "#FFF", "#000");
 }
+
 
 /**
  * Function to select a priority button
@@ -311,6 +352,7 @@ function selectPriorityButton(priority) {
   }
 }
 
+
 /**
  * Function to choose the priority with a button
  * 
@@ -326,7 +368,6 @@ function choosePriority(priority) {
  * 
  * @returns 
  */
-
 function getActivePriority() {
   let activePriority = "";
   let urgent = document.getElementById("urgentBtn");
@@ -344,10 +385,10 @@ function getActivePriority() {
   return activePriority;
 }
 
+
 /**
  * function to reset the priority buttons
  */
-
 function resetPriority() {
   document.getElementById('urgentBtn').style.backgroundColor = '#FFF';
   document.getElementById('mediumBtn').style.backgroundColor = '#FFF';
@@ -359,6 +400,7 @@ function resetPriority() {
   document.getElementById('mediumBtn').innerHTML = renderPrioBtnUnclicked('Medium');
   document.getElementById('lowBtn').innerHTML = renderPrioBtnUnclicked('Low');
 }
+
 
 /**
  * function to add a new Subtask to the subtasks list
@@ -378,6 +420,7 @@ function addNewSubtask() {
   newSubtaskInput.value = '';
 }
 
+
 /**
  * function to change the image for selected subtasks
  * 
@@ -393,6 +436,8 @@ function changeImage(newSubtask, selectedSubtasks) {
   }
   return subtaskImageSrc;
 }
+
+
 /**
  * function to show the new subtask and the correct image left to it. checkmark or rectangle
  * 
@@ -408,6 +453,7 @@ function showSubtask(i, newSubtask) {
     </div>
   `;
 }
+
 
 /**
  * function to add or remove the checkmark next to the subtask
@@ -427,12 +473,12 @@ function checkmark(i) {
   document.getElementById('checkbox' + i).src = subtaskImageSrc;
 }
 
+
 /**
  * function to display AddTask template and create the state
  *
  * @param {string} type - type ist the state for the task
  */
-
 function displayAddTask(type) {
   initTask();
   document.getElementById('addTaskPopUp-container').classList.remove('hideAddTask');
@@ -456,6 +502,12 @@ function displayAddTask(type) {
   }
 }
 
+
+/**
+ * Hides the add task popup and clears the values of the input fields.
+ *
+ * @return {void}
+ */
 function hideAddTask() {
   document.getElementById('addTaskPopUp-container').classList.add('hideAddTask');
   document.getElementById('contentBoard').style.filter = 'blur(0px)';
@@ -463,10 +515,16 @@ function hideAddTask() {
 }
 
 
+/**
+ * Hides the edit task popup and resets the popupAddTaskBoard container to its initial state.
+ *
+ * @return {void}
+ */
 function hideEditTask() {
   document.getElementById('editTaskPopUp-container').classList.add('hideAddTask');
   document.getElementById('popupAddTaskBoard').classList.add('d-none')
 }
+
 
 /**
  * function to choose the new priority in editTask
@@ -516,6 +574,7 @@ function renderFullscreenEdit(id) {
   }
 }
 
+
 /**
  * function to display editTaks template
  * 
@@ -528,7 +587,7 @@ async function displayEditTask(id) {
   let description = task['description'];
   let date = task['date'];
   let prio = task['priority'];
-  let state  = task['state'];
+  let state = task['state'];
 
   document.getElementById('TaskOverview').classList.add('d-none');
   document.getElementById('editTaskPopUp-container').classList.remove('hideAddTask');
@@ -575,6 +634,7 @@ function routeToPage(destination) {
   window.location.href = destination;
 }
 
+
 /**
  * function for Datepicker to get the Date from today
  * 
@@ -586,6 +646,7 @@ function getTodayDate() {
   const day = today.getDate().toString().padStart(2, '0');
   return `${today.getFullYear()}-${month}-${day}`;
 }
+
 
 /**
  * Add the minimum date to an HTML date input field based on today's date
