@@ -261,6 +261,10 @@ h1 {
     box-shadow: 2px 1px 2px 1px #DDDDDD;
 }
 
+#statusSelector {
+    font-size: 18px;
+}
+
 .subtask {
     display: flex;
     align-items: center;

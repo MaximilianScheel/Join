@@ -528,6 +528,7 @@ async function displayEditTask(id) {
   let description = task['description'];
   let date = task['date'];
   let prio = task['priority'];
+  let state  = task['state'];
 
   document.getElementById('TaskOverview').classList.add('d-none');
   document.getElementById('editTaskPopUp-container').classList.remove('hideAddTask');
@@ -535,6 +536,7 @@ async function displayEditTask(id) {
   choosePriorityEdit(prio);
   renderFullscreenEdit(id)
 
+  document.getElementById('statusSelector').value = state;
   document.getElementById('Edittitle').value = title;
   document.getElementById('Editdescription').value = description;
   document.getElementById('Editdate').value = date;
@@ -553,10 +555,13 @@ async function editTask() {
   let newTitle = document.getElementById('Edittitle').value;
   let newDescription = document.getElementById('Editdescription').value;
   let newDate = document.getElementById('Editdate').value;
+  let state = document.getElementById('statusSelector').value;
+  console.log(state);
   tempTask['title'] = newTitle;
   tempTask['description'] = newDescription;
   tempTask['date'] = newDate;
   tempTask['priority'] = newPrio;
+  tempTask['state'] = state;
   allTasks[id] = tempTask;
 
   await backend.setItem('allTasks', JSON.stringify(allTasks));
