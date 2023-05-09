@@ -30,6 +30,8 @@ async function loadContactSite() {
     buildContactList();
 }
 
+
+
 /**
  * starts the setup of contacts application.
  */
@@ -315,17 +317,38 @@ async function editContact() {
 }
 
 
-function deleteContact() {
+/*function deleteContact() {
     contacts.splice(currentContactIndex, 1);
     backend.setItem('contacts', JSON.stringify(contacts));
     sortContacts();
     buildContactList();
     hideEditContact();
     closeContactsOverview();
+}*/
+
+function deleteContact() {
+    contacts.splice(currentContactIndex, 1);
+    backend.setItem('contacts', JSON.stringify(contacts));
+    startingLetters = []
+    existingLetterIndex = 0;
+    sortContacts();
+    loadNameStartingLetters();
+    includeHTML();
+    buildContactList();
+    closeContactsOverview();
 }
 
 
 function closeContactsOverview() {
-    document.getElementById('contacts_overview_container').innerHTML = "";
+   
+    document.getElementById('contacts_overview_container').classList.add('d-none');
+    if (isMobile()) {
+        document.getElementById('contacts_overview').classList.remove('d-show');
+        document.getElementById('contacts_list').classList.remove('d-none');
+        document.getElementById('showMobileContactListArrow').classList.add('d-none');
+        document.getElementById('addContact_button').classList.remove('d-none');
+        document.getElementById('overview_body_editContact_container').classList.remove('overview-body-editContact-container-mobile');
+        document.getElementById('overview_body_editContact_container_img').src = "./assets/img/pencil_white.png";
+    }
 }
 
