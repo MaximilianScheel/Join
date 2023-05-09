@@ -422,12 +422,10 @@ body {
         justify-content: center;
         align-items: center;
         background-color: #2A3647;
-        width: 137px;
         height: 51px;
         color: white;
         font-weight: bold;
         border-radius: 10px;
-        margin-left: 35px;
         cursor: pointer;
     }
 
@@ -440,7 +438,8 @@ body {
     }
 
     .addTaskIcon {
-        margin-left: 10px;
+        margin-left: 1px;
+        padding: 16px;
     }
 
     .searchBar {
@@ -451,7 +450,7 @@ body {
         background-color: #FFFFFF;
         border: 1px solid #D1D1D1;
         border-radius: 10px;
-        margin-right: 69px;
+
     }
 
     .inputSearch {

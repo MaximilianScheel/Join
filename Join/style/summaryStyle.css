@@ -420,6 +420,7 @@ body {
 
     .main-inner {
         width: 80%;
+        margin-top: 50px;
     }
 
     .headline {
@@ -602,9 +603,23 @@ body {
 @media (max-height: 815px) {
     .main {
         height: 90vh;
+    } 
+}
+
+
+@media (max-height: 800px) {
+    .main-inner {
+        margin-top: -60px;
     }
 }
 
+
+@media (min-height: 820px) {
+    .main-inner {
+        width: 80%;
+        margin-top: -80px;
+    }
+}
 
 @media (max-width: 375px) {
     .summary {
@@ -617,6 +632,13 @@ body {
     .nutshell {
         font-size: 1.0rem;
     }
+}
+
+@media (max-width: 360px) {
+    .main-inner {
+        margin-top: 20px;
+    }
+    
 }
 /* 
 @media only screen and (max-width: 1300px) {

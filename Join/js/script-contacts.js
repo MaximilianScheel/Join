@@ -208,6 +208,7 @@ function generateContactListEntry(index) {
     `;
 }
 
+
 /**
  * enables the view on the add-contacts card.
  */
@@ -233,6 +234,8 @@ function displayEditContact() {
     document.getElementById('edit-name-input').value = contacts[currentContactIndex].name;
     document.getElementById('edit-email-input').value = contacts[currentContactIndex].email;
     document.getElementById('edit-phone-input').value = contacts[currentContactIndex].phone;
+    document.getElementById('contactsWrapper').style.filter = "blur(3px)";
+    
 }
 
 /**
@@ -240,6 +243,7 @@ function displayEditContact() {
  */
 function hideEditContact() {
     document.getElementById('contactEditPopUp-container').classList.add('hideEditContact');
+    document.getElementById('contactsWrapper').style.filter = "blur(0px)";
 }
 
 /**
