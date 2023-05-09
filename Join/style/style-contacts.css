@@ -221,12 +221,13 @@ body {
 }
 
 .contacts-overview-container .overview-body-editContact-container img {
-}
+    margin-right: 10px;
+    }
 
 .contacts-overview-container .overview-body-editContact-container-mobile {
     position: absolute;
     bottom: 120px;
-    right: 21px;
+    right: 20px;
     padding: 10px;
     background-color: rgba(42, 54, 71, 1);
     border-radius: 10px;
@@ -234,17 +235,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.trashCan {
-    position: absolute;
-    bottom: 175px;
-    right: 24px;
-}
-
-.overview_body_editContact_container_img {
-width: 23px;
-height: 28px;
 }
 
 .contacts-overview-container .overview-body-bonusInformation {
@@ -297,6 +287,14 @@ height: 28px;
 
 .blurWrapper {
     backdrop-filter: blur(5px);
+}
+
+.trashCan {
+    height: 32px;
+}
+
+.trashCan:hover {
+    cursor: pointer;
 }
 
 @media(max-width: 1028px) {

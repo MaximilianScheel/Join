@@ -606,7 +606,10 @@ body {
 }
 
 
-@media (max-width: 380px) {
+@media (max-width: 375px) {
+    .summary {
+        margin-top: -100px;
+    }
     .headline {
         height: 100px;
     }
