@@ -510,7 +510,7 @@ function displayAddTask(type) {
  */
 function hideAddTask() {
   document.getElementById('addTaskPopUp-container').classList.add('hideAddTask');
-  document.getElementById('contentBoard').style.filter = 'blur(0px)';
+  document.getElementById('contentBoard').style = '';
   clearValues();
 }
 
