@@ -43,7 +43,10 @@ function loadingFinished() {
     document.getElementById('preloader').classList.add('d-none');
 }
 
-
+/**
+ * routes the page to a page on server related to the path
+ * @param {path} destination 
+ */
 function routeToPage(destination) {
     window.location.href = destination;
 }
@@ -235,23 +238,35 @@ function startDragging(id) {
 }
 
 
-
+/**
+ * allows dropping dragged element
+ * @param {event} ev the event occuring. Usually a touch or click
+ */
 function allowDrop(ev) {
     ev.preventDefault();
 }
-
+/**
+ * moves the dragged task to the state container
+ * @param {state} state the state of the task usually todo, progress, done, in preview
+ */
 async function moveTo(state) {
     allTasks[currentDraggedElement]['state'] = state;
     await backend.setItem('allTasks', JSON.stringify(allTasks));
     init();
 }
 
-
+/**
+ * highlights the dragged task
+ * @param {id} id the id of the dragged task
+ */
 function dragHighlight(id) {
     document.getElementById(id).classList.add('dragAreaHighlight');
 }
 
-
+/**
+ * unhighlights the dragged task
+ * @param {id} id the id of the dragged task
+ */
 function removedragHighlight(id) {
     document.getElementById(id).classList.remove('dragAreaHighlight');
 }
@@ -448,19 +463,28 @@ async function subtaskIsChecked(id, index) {
     init()
 }
 
-
+/**
+ * closes the overview of the selected task
+ * @param {id} id id of the taskoverview popup
+ */
 function closeOverview(id) {
     document.getElementById('TaskOverview').classList.add('d-none');
 }
 
-
+/**
+ * todo
+ * @param {index} i an index
+ */
 function mouseOverBoard(i) {
     document.getElementById('pathA' + i).classList.add('pathA');
     document.getElementById('pathB' + i).classList.add('pathA');
     document.getElementById('rect' + i).classList.add('rect');
 }
 
-
+/**
+ * todo
+ * @param {index} i an index
+ */
 function mouseOutBoard(i) {
     document.getElementById('pathA' + i).classList.remove('pathA');
     document.getElementById('pathB' + i).classList.remove('pathA');
@@ -470,7 +494,6 @@ function mouseOutBoard(i) {
 /**
  * function to search Task in board
  */
-
 function searchTasks() {
     let search = document.getElementById('search').value;
     search = search.toLowerCase();
@@ -483,7 +506,6 @@ function searchTasks() {
  * 
  * @param {string} search - search is the value from the search input field
  */
-
 function showSearchedTask(search) {
     for (let i = 0; i < allTasks.length; i++) {
         let currentTask = allTasks[i]['title'];
