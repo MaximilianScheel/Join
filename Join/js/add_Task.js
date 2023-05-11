@@ -4,6 +4,7 @@ setURL('https://tommy-syllow.developerakademie.net/smallest_backend_ever');
 let tasks = [];
 let allTasks = [];
 let priority = '"Low"';
+let isPrioritySelected = false;
 let selectedTitle;
 let selectedDescription;
 let selectedDate;
@@ -13,6 +14,7 @@ let allSubtasks = [];
 let idCounter = 0;
 let state = 'todo';
 let subtasksChecked = [];
+
 
 
 /**
@@ -32,10 +34,14 @@ async function initTask() {
 async function loadAddTask() {
   await downloadFromServer();
   await loadContacts();
-  allTasks = JSON.parse(backend.getItem(allTasks)) || [];
-  renderAllContacts()
-  includeHTML();
+  allTasks = JSON.parse(backend.getItem('allTasks')) || [];
+  categories = JSON.parse(backend.getItem('categories') || []);
+  renderAllContacts();
+  await includeHTML();
   loadAllTasks();
+  console.log(allTasks)
+  renderCategoryOptions();
+  document.getElementById('addTask_Link').classList.add('menuLinkActive');
 }
 
 
@@ -51,29 +57,36 @@ function loadingFinished() {
  * Loads the requested data from server
  */
 async function addTask() {
-  addDate();
-  let task = {
-    'title': selectedTitle,
-    'description': selectedDescription,
-    'category': selectedCategory,
-    'color': selectedColor,
-    'date': selectedDate,
-    'contactNames': selectedContactNames,
-    'priority': getActivePriority(),
-    'subtasks': selectedSubtasks,
-    'id': idCounter,
-    'state': state,
-    'subtasksChecked': subtasksChecked,
-  };
-  showInfo();
-  await saveAllTasks(task);
-  if (task.priority === 'urgent') {
-    prioCount++;
+  if (isPrioritySelected) {
+    document.getElementById('priorityAlertTemplate').classList.add('d-none');
+    addDate();
+    let task = {
+      'title': selectedTitle,
+      'description': selectedDescription,
+      'category': selectedCategory,
+      'color': selectedColor,
+      'date': selectedDate,
+      'contactNames': selectedContactNames,
+      'priority': getActivePriority(),
+      'subtasks': selectedSubtasks,
+      'id': idCounter,
+      'state': state,
+      'subtasksChecked': subtasksChecked,
+    };
+    showInfo();
+    await saveAllTasks(task);
+    await backend.setItem('categories', JSON.stringify(categories));
+    if (task.priority === 'urgent') {
+      prioCount++;
+    }
+    clearValues();
+    idCounter++;
+    loadAllTasks();
+    init();
+    isPrioritySelected = false;
+  } else {
+    document.getElementById('priorityAlertTemplate').classList.remove('d-none');
   }
-  clearValues();
-  idCounter++;
-  loadAllTasks();
-  init();
 }
 
 
@@ -211,9 +224,8 @@ function closeCategories() {
  * Load all tasks from local storage and display them in the list
  *
 */
-function loadAllTasks() {
-  backend.getItem("tasks");
-  let allTasksAsString = backend.getItem("allTasks");
+async function loadAllTasks() {
+  let allTasksAsString = await backend.getItem("allTasks");
   allTasks = JSON.parse(allTasksAsString) || [];
   idCounter = allTasks.reduce((maxId, task) => Math.max(maxId, task.id), -1) + 1;
   if (allTasks.length > 0) {
@@ -332,6 +344,7 @@ function selectPriorityButton(priority) {
   let urgent = document.getElementById("urgentBtn");
   let medium = document.getElementById("mediumBtn");
   let low = document.getElementById("lowBtn");
+  isPrioritySelected = true;
 
   switch (priority) {
     case "Urgent":
@@ -479,10 +492,16 @@ function checkmark(i) {
  *
  * @param {string} type - type ist the state for the task
  */
-function displayAddTask(type) {
-  initTask();
+async function displayAddTask(type) {
+  await initTask();
+  renderCategoryOptions();
+  renderAllContacts();
   document.getElementById('addTaskPopUp-container').classList.remove('hideAddTask');
-  document.getElementById('contentBoard').style.filter = 'blur(3px)';
+  if(document.getElementById('contentBoard') == null) {
+    document.getElementById('contactsWrapper').style.filter = 'blur(3px)';
+  } else {
+    document.getElementById('contentBoard').style.filter = 'blur(3px)';
+  }
   switch (type) {
     case "todo":
       state = "todo";
@@ -509,8 +528,22 @@ function displayAddTask(type) {
  * @return {void}
  */
 function hideAddTask() {
+  if (isPrioritySelected == true) {
+    document.getElementById('addTaskPopUp-container').classList.add('hideAddTask');
+    document.getElementById('contentBoard').style = '';
+    clearValues();
+  }
+}
+
+function hidePopupAddTask() {
   document.getElementById('addTaskPopUp-container').classList.add('hideAddTask');
-  document.getElementById('contentBoard').style = '';
+  if(document.getElementById('contentBoard') == null) {
+    document.getElementById('contactsWrapper').style = '';
+  } else {
+    document.getElementById('contentBoard').style = '';
+  }
+  
+  
   clearValues();
 }
 
@@ -610,12 +643,10 @@ async function displayEditTask(id) {
 async function editTask() {
   let id = idCounter;
   let tempTask = allTasks[id];
-  console.log(`bearbeiteter Task mit der ID: ${id}, --- ${allTasks[id]}`);
   let newTitle = document.getElementById('Edittitle').value;
   let newDescription = document.getElementById('Editdescription').value;
   let newDate = document.getElementById('Editdate').value;
   let state = document.getElementById('statusSelector').value;
-  console.log(state);
   tempTask['title'] = newTitle;
   tempTask['description'] = newDescription;
   tempTask['date'] = newDate;
@@ -663,28 +694,39 @@ function updateMin() {
  * Loads the requested data from server
  */
 async function addTaskToBoard() {
-  addDate();
-  let task = {
-    'title': selectedTitle,
-    'description': selectedDescription,
-    'category': selectedCategory,
-    'color': selectedColor,
-    'date': selectedDate,
-    'contactNames': selectedContactNames,
-    'priority': getActivePriority(),
-    'subtasks': selectedSubtasks,
-    'id': idCounter,
-    'state': state,
-    'subtasksChecked': subtasksChecked,
-  };
-  showInfo();
-  await saveAllTasks(task);
-  if (task.priority === 'urgent') {
-    prioCount++;
+  if (isPrioritySelected) {
+    document.getElementById('priorityAlertPage').classList.add('d-none');
+    addDate();
+    setTimeout(() => {
+      console.log(selectedCategory)
+    }, 3000)
+    
+    let task = {
+      'title': selectedTitle,
+      'description': selectedDescription,
+      'category': selectedCategory,
+      'color': selectedColor,
+      'date': selectedDate,
+      'contactNames': selectedContactNames,
+      'priority': getActivePriority(),
+      'subtasks': selectedSubtasks,
+      'id': idCounter,
+      'state': state,
+      'subtasksChecked': subtasksChecked,
+    };
+    showInfo();
+    await saveAllTasks(task);
+    await backend.setItem('categories', JSON.stringify(categories));
+    if (task.priority === 'urgent') {
+      prioCount++;
+    }
+    clearValues();
+    idCounter++;
+    loadAllTasks();
+    isPrioritySelected = false;
+  } else {
+    document.getElementById('priorityAlertPage').classList.remove('d-none');
   }
-  clearValues();
-  idCounter++;
-  loadAllTasks();
 }
 
 

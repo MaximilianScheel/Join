@@ -283,7 +283,7 @@ body {
 
 .addContact-button:hover {
     cursor: pointer;
-    background-color: rgba(42, 54, 71, 0.8)
+    background-color: #2AABE2;
 }
 
 .blurWrapper {

@@ -27,9 +27,11 @@ async function loadBoard() {
     allTasks = JSON.parse(backend.getItem('allTasks'));
     contacts = JSON.parse(backend.getItem('contacts'));
     currentUser = JSON.parse(backend.getItem(currentUser));
-    includeHTML();
+    categories = JSON.parse(backend.getItem('categories')) || [];
+    await includeHTML();
     loadTask();
     countTasks();
+    document.getElementById('board_Link').classList.add('menuLinkActive');
 }
 
 
@@ -145,8 +147,8 @@ function renderdoneArea(task, i, id) {
 */
 function renderTask(task, id, i) {
     return /* html */ `    <div draggable="true" id="${task['id']}" class="taskContainer" ondragstart="startDragging(${task['id']})"  onclick="openTask(id)">
-    <div style="background-color: ${task['color']};" class="categoryContainer">
-        ${task['category']}</div>
+    <div style="background-color: ${task['category'][1]};" class="categoryContainer">
+        ${task['category'][0]}</div>
     <div class="titleContainer"> ${task['title']}</div>
     <div class="descriptionContainer">${task['description']}</div>
     <div id="subTaskContainer${id}" class="subTaskContainer"></div>
@@ -365,7 +367,7 @@ function generateFullscreenView(id, title, description, category, color, date, p
         <img class="overlayTaskClose" src="assets/img/cross.png" onclick="closeOverview()">
         <img class="overlayTaskEdit" src="assets/img/editTask_button.png" onclick="displayEditTask(${id})">
         <img class="deleteButton" src="assets/img/deleteButton.svg" onclick="deleteTask(${id})">
-        <div class="overlayCategory" style="background-color: ${color}";>${category}</div>
+        <div class="overlayCategory" style="background-color: ${category[1]}";>${category[0]}</div>
         <div class="overlayTitle"><h5>${title}</h5></div>
         <div class="overlayDiscription">${description}</div>
         <div class="overlayDate"> <div><b>Due date:</b></div> <div>${date}</div> </div>

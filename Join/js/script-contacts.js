@@ -28,8 +28,9 @@ async function loadContactSite() {
     existingLetterIndex = 0;
     sortContacts();
     loadNameStartingLetters();
-    includeHTML();
+    await includeHTML();
     buildContactList();
+    document.getElementById('contacts_Link').classList.add('menuLinkActive')
 }
 
 

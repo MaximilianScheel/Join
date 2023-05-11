@@ -25,7 +25,7 @@ async function loadSummary() {
     currentUser = JSON.parse(backend.getItem("currentUser"));
     allTasks = JSON.parse(backend.getItem('allTasks'));
     counts = JSON.parse(backend.getItem('counts'));
-    includeHTML();
+    await includeHTML();
     loadAtStart();
     greetUser();
     currentTasks();
@@ -34,6 +34,7 @@ async function loadSummary() {
         countPrio(task);
     }
     currentUrgent();
+    document.getElementById('summary_Link').classList.add('menuLinkActive');
 }
 
 

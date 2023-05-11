@@ -1,6 +1,7 @@
-let colors = ['#e200be', '#1fd7c1', '#0038ff', '#ff8a00', '#2ad300', '#ff0000', '#8aa4ff'];
+let colors = ['pink', 'turquoise', 'darkblue', 'orange', 'green', 'red', 'blue'];
 let selectedCategory = [];
 let selectedColor = [];
+let categories = [];
 
 
 /**
@@ -23,16 +24,68 @@ function disableInput() {
 function addCategory(i) {
   let categoryName = document.getElementById('category');
   categoryName.style.color = 'black';
+  selectedCategory = categories[i];
   document.getElementById('category').value = document.getElementById('category' + i).innerHTML;
   document.getElementById('categoryColor').innerHTML = document.getElementById('imageCat' + i).innerHTML;
   document.getElementById('categoryImage').innerHTML = `<img src="assets/img/dropdown_arrow.png">`;
   openCloseCategories();
-  selectedCategory = '';
-  selectedColor = '';
-  selectedCategory = categoryName.value;
-  selectedColor = colors[i];
 }
 
+/**
+ * updates the categories array, if the category does not already exist.
+ */
+function updateCategories() {
+  if (!existsCategoryAlready()) {
+    categories.push(selectedCategory);
+    categories.sort((a, b) => {
+      if (a < b) {
+        return -1;
+      }
+    });
+  }
+}
+
+/**
+ * 
+ * @returns true, if selectedCategory is already contained in categories array. If not contained, return false.
+ */
+function existsCategoryAlready() {
+  for (i = 0; i < categories.length; i++) {
+    if (categories[i] === selectedCategory) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * renders the categoryOptions for the addTask Popup 
+ */
+function renderCategoryOptions() {
+  let categoriesContainer = document.getElementById('openedCategories');
+  categoriesContainer.innerHTML = '';
+  categoriesContainer.innerHTML += '<div class="oneCategory" onclick="addNewCategory()">New category</div>';
+  for (let i = 0; i < categories.length; i++) {
+    categoriesContainer.innerHTML += renderCategoryOption(i);
+  }
+}
+
+/**
+ * 
+ * @param {Integer} i 
+ * @returns html of a category option
+ */
+function renderCategoryOption(i) {
+  return `
+    <div class="oneCategory" onclick="addCategory(${i})">
+        <div class="center">
+            <div id="imageCat${i}" class="imageCat"><img src="assets/img/circle_${categories[i][1]}.png">
+            </div>
+            <div id="category${i}">${categories[i][0]}</div>
+        </div>
+    </div>
+  `;
+}
 
 /**
  * function to make the container editable that you can write in your own category and select a color
@@ -44,7 +97,11 @@ function addNewCategory() {
   categoryName.style.color = 'black';
   selectedCategory = '';
   selectedColor = '';
-  document.getElementById('categoryImage').innerHTML = `<div onclick="notOpenCloseCategories(event)" class="crossAndCheck"><img src="assets/img/cancel_icon.png" onclick="cancelNewCategory()"> <img src="assets/img/check_icon.png" onclick="acceptNewCategory()"></div>`;
+  document.getElementById('categoryImage').innerHTML = `
+    <div onclick="notOpenCloseCategories(event)" class="crossAndCheck">
+      <img src="assets/img/cancel_icon.png" onclick="cancelNewCategory()">
+      <img src="assets/img/check_icon.png" onclick="acceptNewCategory()">
+    </div>`;
   document.getElementById('categoryColors').classList.remove('d-none');
   document.getElementById('selectField').removeAttribute('onclick');
   document.getElementById('categoryColor').innerHTML = '';
@@ -90,7 +147,8 @@ function acceptNewCategory() {
     document.getElementById('selectField').setAttribute('onclick', 'openCloseCategories()');
     document.getElementById('categoryColors').classList.add('d-none');
     selectedCategory = '';
-    selectedCategory = categoryName.value;
+    selectedCategory = [categoryName.value, selectedColor];
+    updateCategories();
   }
 }
 

@@ -44,6 +44,7 @@ function getContactInfo() {
  */
 
 function renderAllContacts() {
+  document.getElementById('openedContacts').innerHTML = '';
   for (let i = 0; i < allContacts.length; i++) {
     const prename = allContacts[i]['prename'];
     const contact = prename + ' ' + allContacts[i]['name'];

@@ -17,9 +17,9 @@
 
     <script src="js/mini_backend.js"></script>
     <script src="js/add_Task.js"></script>
+    <script src="js/addTask_contacts.js"></script>
     <script src="js/board.js"></script>
     <script src="js/addTask_categories.js"></script>
-    <script src="js/addTask_contacts.js"></script>
     <script src="js/includeHTML.js"></script>
     <script src="js/logout.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -49,7 +49,7 @@
                             <div class="lineBoard"></div>
                             <div class="lensContainer"><img class="lensImg" src="assets/img/lens.svg" alt="Lupe"></div>
                         </div>
-                        <div class="addTaskContainer" onclick="displayAddTask()">
+                        <div class="addTaskContainer" onclick="displayAddTask(), renderCategoryOptions()">
                             <p>Add Task</p>
                             <img class="addTaskIcon" src="assets/img/plus.svg" alt="Plus">
                         </div>
@@ -60,7 +60,7 @@
                         <div class="todoHeadlineContainer">
                             <div class="todoHeadline fontBold">To do</div>
                             <div class="todoPlusButton" onmouseover="mouseOverBoard(1)" onmouseout="mouseOutBoard(1)"
-                                onclick="displayAddTask('todo')">
+                                onclick="displayAddTask('todo'), renderCategoryOptions()">
                                 <svg class="svg" width="30" height="30" viewBox="0 0 30 30" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path id="pathA1" d="M15 7.5V22.5" stroke="#2A3647" stroke-width="2"
@@ -84,7 +84,7 @@
                         <div class="progressHeadlineContainer">
                             <div class="progressHeadline fontBold">In Progress</div>
                             <div class="progressPlusButton" onmouseover="mouseOverBoard(2)"
-                                onmouseout="mouseOutBoard(2)" onclick="displayAddTask('progress')">
+                                onmouseout="mouseOutBoard(2)" onclick="displayAddTask('progress'), renderCategoryOptions()">
                                 <svg class="svg" width="30" height="30" viewBox="0 0 30 30" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path id="pathA2" d="M15 7.5V22.5" stroke="#2A3647" stroke-width="2"
@@ -112,7 +112,7 @@
                         <div class="feedbackHeadlineContainer">
                             <div class="feedbackHeadline fontBold">Awaiting Feedback</div>
                             <div class="feedbackPlusButton" onmouseover="mouseOverBoard(3)"
-                                onmouseout="mouseOutBoard(3)" onclick="displayAddTask('feedback')">
+                                onmouseout="mouseOutBoard(3)" onclick="displayAddTask('feedback'), renderCategoryOptions()">
                                 <svg class="svg" width="30" height="30" viewBox="0 0 30 30" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path id="pathA3" d="M15 7.5V22.5" stroke="#2A3647" stroke-width="2"
@@ -138,7 +138,7 @@
                         <div class="doneHeadlineContainer">
                             <div class="doneHeadline fontBold">Done</div>
                             <div class="donePlusButton" onmouseover="mouseOverBoard(4)" onmouseout="mouseOutBoard(4)"
-                                onclick="displayAddTask('done')">
+                                onclick="displayAddTask('done'), renderCategoryOptions()">
                                 <svg class="svg" width="30" height="30" viewBox="0 0 30 30" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path id="pathA4" d="M15 7.5V22.5" stroke="#2A3647" stroke-width="2"

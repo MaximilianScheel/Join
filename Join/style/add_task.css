@@ -81,6 +81,10 @@ h1 {
     font-family: 'Inter';
 }
 
+#openedCategories {
+    overflow: scroll;
+}
+
 /* Category Input Field Start */
 .selectCategory{
     display: flex;
@@ -306,7 +310,7 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 360px;
+    /*width: 360px;*/
     position: absolute;
     bottom: 100px;
     height: 50px;
@@ -314,6 +318,10 @@ button {
     border: unset;
     background-color: unset;
     cursor: pointer;
+}
+
+.priorityAlert {
+    color: red;
 }
 
 

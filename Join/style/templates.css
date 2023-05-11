@@ -136,6 +136,7 @@
 .submitButton:hover {
     color: white;
     cursor: pointer;
+    background-color: #2AABE2;
 }
 
 .cancelButton {
@@ -339,9 +340,11 @@
 
     .buttons-createTask {
         position: relative !important;
-        overflow: hidden !important;
+        /*overflow: hidden !important;*/
         height: 75px !important;
-        padding-top: 145px;
+        padding-top: 165px;
+        flex-direction: column-reverse;
+        align-items: start;
     }
 
     .flexContainer {
@@ -403,8 +406,8 @@
 }
 
 .desktop-topBar-helpPicture {
-    height: 29px;
-    width: 28px;
+    height: 32px;
+    width: 32px;
     border-radius: 30px;
     margin-right: 15px;
 }
@@ -446,6 +449,11 @@
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
+    transition: 525ms;
+}
+
+.logout-text:hover {
+    color:rgb(79, 199, 251)
 }
 
 
@@ -512,7 +520,7 @@
 }
 
 .menuLinkActive {
-    background-color: rgb(12, 42, 88);
+    background-color: rgba(9, 25, 49, 1);
 }
 
 .sideMenu-link-container-desktop:hover {
