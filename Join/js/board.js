@@ -1,4 +1,4 @@
-setURL('https://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ever');
+setURL('https://tommy-syllow.developerakademie.net/smallest_backend_ever');
 
 let currentUser = [];
 let prioCount = 0;
@@ -500,7 +500,6 @@ function searchTasks() {
     showSearchedTask(search);
 }
 
-Join/js/addTask_contacts.js
 /**
  * function to show searched task
  * 

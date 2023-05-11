@@ -1,4 +1,4 @@
-setURL('https://gruppenarbeit-join-474.developerakademie.net/smallest_backend_ever');
+setURL('https://tommy-syllow.developerakademie.net/smallest_backend_ever');
 
 
 let tasks = [];
